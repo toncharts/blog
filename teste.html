@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toncharts - Artista</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Open Runde';
+            src: url('https://raw.githubusercontent.com/toncharts/blog/main/fonts/OpenRunde-Regular.woff2') format('woff2');
+            font-weight: normal; font-style: normal;
+        }
+
+        :root {
+            --verde: #17EE30; --turquesa: #04F8CA; --azul: #05CEFC; --azul-marinho: #071E62;
+            --texto: #333; --cinza-claro: #eee; --destaque: #FFF;
+            --ouro: linear-gradient(135deg, #FFD700, #FDB931);
+            --platina: linear-gradient(135deg, #E0E0E0, #B0BEC5);
+            --diamante: linear-gradient(135deg, #AACCCC, #445566); /* CORRIGIDO */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Runde', sans-serif; text-decoration: none; color: inherit; }
+        body { background-color: var(--destaque); color: var(--texto); display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+        
+        main { width: 1000px; display: flex; flex-direction: column; gap: 4rem; padding-bottom: 5rem; }
+
+        header {
+            width: 100%; background: linear-gradient(25deg, var(--turquesa), var(--azul));
+            display: flex; flex-direction: column; align-items: center; padding: 2rem 0 4rem 0; color: var(--destaque);
+            box-shadow: inset 0 10rem 10rem rgba(0,0,0,0.2); margin-bottom: 2rem;
+        }
+        .nav-container { width: 1000px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+        .logo-img { height: 1.5rem; }
+
+        .hero-grid { 
+            display: grid; grid-template-columns: repeat(5, 175px); 
+            grid-template-rows: 80px 175px 175px; gap: 31px; width: 1000px; 
+        }
+
+        .artist-name-h1 { grid-column: 1 / 5; font-size: 3.5rem; align-self: center; overflow: hidden; white-space: nowrap; }
+        .artist-main-img { grid-column: 2 / 4; grid-row: 2 / 4; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem; background: rgba(255,255,255,0.1); }
+        
+        .section-header-group { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .custom-select { background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 0.3rem; cursor: pointer; position: relative; z-index: 101; font-size: 0.85rem; min-width: 100px; text-align: center; }
+        .custom-select-dark { background: var(--cinza-claro); color: var(--texto); }
+        .options-menu { position: absolute; top: 110%; right: 0; background: var(--destaque); color: var(--texto); border-radius: 0.3rem; width: 150px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); text-align: left; z-index: 999; }
+        .options-menu div { padding: 10px; font-size: 14px; cursor: pointer; }
+        .options-menu div:hover { background: var(--cinza-claro); }
+        .show { display: block; }
+
+        .stat-card { background: rgba(255,255,255,0.1); padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1/1; width: 100%; }
+        .stat-number { font-size: 1.6rem; font-weight: bold; line-height: 1; }
+        .stat-sub { font-size: 0.65rem; opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 0.5rem; }
+        .stat-card-gray { background: var(--cinza-claro); color: var(--texto); aspect-ratio: 1/1; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
+        .stat-card-gray .stat-sub { border-top: 1px solid #ccc; color: var(--texto); }
+
+        .graph-wrapper { background: var(--cinza-claro); padding: 1rem; border-radius: 0.5rem; }
+        .graph-container { height: 12rem; display: flex; align-items: flex-end; gap: 5px; }
+        .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+        .bar { width: 100%; background: linear-gradient(0deg, var(--turquesa), var(--azul)); transition: height 0.5s; position: relative; border-radius: 2px 2px 0 0; }
+        .bar-label { font-size: 9px; margin-bottom: 4px; font-weight: bold; color: var(--azul-marinho); }
+        .axis-label { margin-top: 8px; font-size: 9px; text-align: center; line-height: 1.2; color: #666; font-weight: bold; }
+
+        .semanas-grid { display: grid; grid-template-columns: repeat(52, 1fr); gap: 2px; background: var(--cinza-claro); padding: 1rem; border-radius: 0.3rem; }
+        .week-cell { aspect-ratio: 1/1; background: var(--turquesa); cursor: pointer; }
+        
+        #tt { position: fixed; background: var(--texto); color: white; padding: 12px; border-radius: 6px; font-size: 12px; pointer-events: none; display: none; z-index: 10000; width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .tt-date { opacity: 0.7; margin-bottom: 4px; display: block; }
+        .tt-stat { display: flex; justify-content: space-between; margin-bottom: 2px; }
+
+        .comparacao { border-radius: 3rem; background-color: rgba(255,255,255, 0.2); color: #fff; padding: 2px 8px; font-size: 10px; display: inline-flex; align-items: center; gap: 4px; margin-top: 5px; width: fit-content; }
+
+        /* ÁLBUNS - AJUSTE TRIANGULO */
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; }
+        .album-item { display: flex; flex-direction: column; gap: 0.8rem; position: relative; }
+        .album-img-box { width: 100%; aspect-ratio: 1/1; position: relative; background: var(--cinza-claro); }
+        .album-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* CORRIGIDO: TRIANGULO RETANGULO NO CANTO */
+        .album-rank-badge { 
+            position: absolute; top: 0; left: 0; 
+            background: var(--turquesa); color: var(--texto); 
+            font-weight: 900; padding: 5px 18px 20px 8px; 
+            font-size: 1.1rem;
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+        }
+        
+        .album-details { font-size: 0.75rem; }
+        .album-meta { margin-bottom: 0.5rem; color: #666; }
+        .album-meta span { display: block; margin-bottom: 2px; }
+
+        /* TABELA INTERNA ALBUM */
+        .album-songs-table { width: 100%; border-top: 1px solid #ddd; padding-top: 0.5rem; margin-top: 0.5rem; border-collapse: collapse; }
+        .album-songs-table td { padding: 2px 0; color: #555; font-size: 0.7rem; }
+        .album-songs-table td strong { color: var(--texto); padding-right: 5px; }
+
+        /* TABELA DE MÚSICAS */
+        .table-wrapper { width: 100%; overflow-x: auto; }
+        .songs-table { width: 100%; border-collapse: collapse; margin-top: 1rem; min-width: 800px; }
+        .songs-table th { text-align: center; padding: 1rem 0.5rem; font-size: 0.7rem; opacity: 0.5; border-bottom: 1px solid var(--cinza-claro); text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
+        .songs-table th:hover { opacity: 1; color: var(--azul); }
+        .songs-table td { padding: 1rem 0.5rem; border-bottom: 1px solid var(--cinza-claro); font-size: 0.85rem; text-align: center; }
+        .td-left { text-align: left !important; }
+        .capa-mini { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
+        .numero-semanas-topo { font-size: 0.75rem; opacity: 0.6; margin-left: 3px; }
+        .numero-semanas-topo::after { content: 'x'; font-size: 0.65rem; }
+
+        .filter-btn { background: var(--cinza-claro); border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 13px; margin-right: 8px; margin-bottom: 10px; }
+        .filter-btn.active { background: var(--azul); color: white; }
+        .reset-btn { background: var(--texto); color: var(--cinza-claro); display: none; }
+        
+        /* CERTIFICAÇÕES - NOVO LAYOUT (vh.png) */
+        .cert-card { 
+            height: 480px; 
+            display: grid; 
+            grid-template-rows: auto auto 1fr auto auto; 
+            padding: 1.5rem; 
+            position: relative; 
+            border-radius: 4px; 
+            color: white; 
+            text-align: center;
+        }
+        .cert-header { display: flex; justify-content: space-between; border-bottom: 2px solid rgba(255,255,255,0.6); padding-bottom: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem; }
+        .cert-title { font-weight: bold; font-size: 1.4rem; line-height: 1.2; margin-bottom: 2px; }
+        .cert-artist { font-size: 1.1rem; margin-bottom: 25px; }
+        .cert-img-container { display: flex; justify-content: center; align-items: center; }
+        .cert-img { width: 140px; height: 140px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .cert-divider { border-top: 2px solid rgba(255,255,255,0.6); margin: 25px 0 15px 0; width: 100%; display: flex; }
+        .cert-ranks { display: grid; grid-template-columns: 1fr 2px 1fr; align-items: center; margin-bottom: 20px; }
+        .rank-item { display: flex; flex-direction: column; }
+        .rank-item span:first-child { font-size: 1.8rem; font-weight: bold; }
+        .rank-item span:last-child { font-size: 0.8rem; opacity: 0.9; }
+        .rank-sep { background: rgba(255,255,255,0.6); width: 2px; height: 50px; margin: 0 auto; }
+        .cert-date { font-size: 0.9rem; opacity: 0.8; }
+
+        h2 { font-size: 2rem; background: linear-gradient(to right, var(--azul), var(--turquesa)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
+
+        @media (max-width: 1000px) {
+            main, .nav-container, .hero-grid { width: 95%; }
+            .grid-5 { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body id="6jJ0s89eD6GaHleKKya26X">
+
+    <header>
+        <div class="nav-container">
+            <img src="https://raw.githubusercontent.com/toncharts/blog/main/logo/toncharts-branco.svg" class="logo-img">
+            <nav style="opacity: 0.7; font-size: 0.8rem;">calendário | charts | artistas | álbuns | certificações</nav>
+        </div>
+        <div class="hero-grid">
+            <h1 class="artist-name-h1">Katy Perry</h1>
+            <div class="custom-select" onclick="toggleMenu('m-header')">
+                <span class="sel-txt-display">12 meses</span>
+                <div class="options-menu" id="m-header">
+                    <div onclick="updateAllPeriods('12 meses')">12 meses</div>
+                    <div onclick="updateAllPeriods('6 meses')">6 meses</div>
+                    <div onclick="updateAllPeriods('3 meses')">3 meses</div>
+                </div>
+            </div>
+            <div class="stat-card" style="grid-row:2; grid-column:1">
+                <h4>scrobbles registrados</h4>
+                <div class="stat-number" data-v="75255">0</div>
+                <div class="stat-sub">↑ 590% <br> #1 no ranking</div>
+            </div>
+            <img src="" id="pfp" class="artist-main-img">
+            <div class="stat-card" style="grid-row:2; grid-column:4"><h4>músicas principal</h4><div class="stat-number" data-v="146">0</div><div class="stat-sub">↑ 269% <br> #1 no ranking</div></div>
+            <div class="stat-card" style="grid-row:2; grid-column:5"><h4>músicas no No. 1</h4><div class="stat-number" data-v="78">0</div><div class="stat-sub">↑ 269% <br> #1 no ranking</div></div>
+            <div class="stat-card" style="grid-row:3; grid-column:1"><h4>pontos acumulados</h4><div class="stat-number" data-v="254865">0</div><div class="stat-sub">↑ 590% <br> #1 no ranking</div></div>
+            <div class="stat-card" style="grid-row:3; grid-column:4"><h4>semanas toncharts</h4><div class="stat-number" data-v="1547">0</div><div class="stat-sub">↑ 269% <br> #1 no ranking</div></div>
+            <div class="stat-card" style="grid-row:3; grid-column:5"><h4>certificados</h4><div class="stat-number" data-v="243">0</div><div class="stat-sub">↑ 269% <br> #1 no ranking</div></div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="section-header-group">
+                <h2>Desempenho por período</h2>
+                <div class="custom-select custom-select-dark" onclick="toggleMenu('m-graph')">
+                    <span class="sel-txt-display">12 meses</span>
+                    <div class="options-menu" id="m-graph">
+                        <div onclick="updateAllPeriods('12 meses')">12 meses</div>
+                        <div onclick="updateAllPeriods('6 meses')">6 meses</div>
+                        <div onclick="updateAllPeriods('3 meses')">3 meses</div>
+                    </div>
+                </div>
+            </div>
+            <div class="graph-wrapper">
+                <div class="graph-container" id="graph"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header-group">
+                <h2>Semanas</h2>
+                 <div class="custom-select custom-select-dark" onclick="toggleMenu('m-weeks')">
+                    <span class="sel-txt-display">12 meses</span>
+                    <div class="options-menu" id="m-weeks">
+                        <div onclick="updateAllPeriods('12 meses')">12 meses</div>
+                        <div onclick="updateAllPeriods('6 meses')">6 meses</div>
+                        <div onclick="updateAllPeriods('3 meses')">3 meses</div>
+                    </div>
+                </div>
+            </div>
+            <div class="semanas-grid" id="weeks"></div>
+        </section>
+
+        <section>
+            <div class="section-header-group">
+                <h2>Álbuns</h2>
+                <div class="custom-select custom-select-dark" onclick="toggleMenu('m-albums')">
+                    <span class="sel-txt-display">12 meses</span>
+                    <div class="options-menu" id="m-albums">
+                        <div onclick="updateAllPeriods('12 meses')">12 meses</div>
+                        <div onclick="updateAllPeriods('6 meses')">6 meses</div>
+                        <div onclick="updateAllPeriods('3 meses')">3 meses</div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-5" id="albums"></div>
+        </section>
+
+        <section>
+            <div class="section-header-group">
+                <h2>Principais músicas</h2>
+                <div class="custom-select custom-select-dark" onclick="toggleMenu('m-songs')">
+                    <span class="sel-txt-display">12 meses</span>
+                    <div class="options-menu" id="m-songs">
+                        <div onclick="updateAllPeriods('12 meses')">12 meses</div>
+                        <div onclick="updateAllPeriods('6 meses')">6 meses</div>
+                        <div onclick="updateAllPeriods('3 meses')">3 meses</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-5" style="margin-bottom: 2rem;">
+                <div class="stat-card-gray"><h4>no pico No. 1</h4><div class="stat-number" data-v="54">0</div><div class="stat-sub">#1 no ranking</div></div>
+                <div class="stat-card-gray"><h4>no top 5</h4><div class="stat-number" data-v="85">0</div><div class="stat-sub">#1 no ranking</div></div>
+                <div class="stat-card-gray"><h4>no top 10</h4><div class="stat-number" data-v="102">0</div><div class="stat-sub">#1 no ranking</div></div>
+                <div class="stat-card-gray"><h4>no toncharts</h4><div class="stat-number" data-v="109">0</div><div class="stat-sub">#1 no ranking</div></div>
+                <div class="stat-card-gray"><h4>com certificado</h4><div class="stat-number" data-v="154">0</div><div class="stat-sub">#1 no ranking</div></div>
+            </div>
+
+            <div id="filter-container">
+                <button class="filter-btn active" onclick="setFilter('all', this)">Todas</button>
+                <button class="filter-btn" onclick="setFilter('main', this)">Como artista principal</button>
+                <button class="filter-btn" onclick="setFilter('feat', this)">Participações</button>
+                <button class="filter-btn" onclick="setFilter('diamante', this)">Diamante</button>
+                <button class="filter-btn" onclick="setFilter('platina', this)">Platina</button> <button class="filter-btn" onclick="setFilter('ouro', this)">Ouro</button> <button class="filter-btn" onclick="setFilter('no1', this)">Músicas No. 1</button>
+                <button id="reset-sort" class="filter-btn reset-btn" onclick="resetSorting()">Redefinir</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="songs-table" id="sortable-table">
+                    <thead>
+                        <tr>
+                            <th class="col-pos" onclick="sortTable('pos')">Pos.</th>
+                            <th onclick="sortTable('rank')">ranking</th>
+                            <th></th>
+                            <th class="td-left" onclick="sortTable('name')">música</th>
+                            <th onclick="sortTable('scr')">scrobbles</th>
+                            <th onclick="sortTable('pts')">pontuação</th>
+                            <th onclick="sortTable('pk')">pico</th>
+                            <th onclick="sortTable('wks')">semanas</th>
+                            <th onclick="sortTable('d1')">dias #1</th>
+                        </tr>
+                    </thead>
+                    <tbody id="song-list"></tbody>
+                </table>
+            </div>
+            <button onclick="expand()" id="btnMore" style="width:100%; padding:1.2rem; border:none; background:var(--cinza-claro); margin-top:2rem; cursor:pointer; font-weight:bold; border-radius:4px">EXIBIR MAIS</button>
+        </section>
+
+        <section>
+            <div class="section-header-group">
+                <h2>Últimos certificados</h2>
+                </div>
+            <div class="grid-5" id="certs"></div>
+        </section>
+    </main>
+
+    <div id="tt"></div>
+
+    <script>
+        const ID = '5d6fa75bb8b643dbb86661b4e46b5382', SEC = '781ca22c68804bfda171dc1caa627435';
+        let tk = '', allTracks = [], currentLimit = 10, currentFilter = 'all';
+        let sortCol = null, sortDir = 1;
+
+        const fmt = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        async function init() {
+            const r = await fetch('https://accounts.spotify.com/api/token', {
+                method: 'POST', headers: { 'Authorization': 'Basic ' + btoa(ID + ':' + SEC), 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'grant_type=client_credentials'
+            });
+            tk = (await r.json()).access_token;
+            
+            fetch(`https://api.spotify.com/v1/artists/${document.body.id}`, { headers: {'Authorization': 'Bearer '+tk}})
+                .then(res => res.json()).then(d => document.getElementById('pfp').src = d.images[0].url);
+
+            loadAlbums();
+            await loadTracks();
+            renderWeeks();
+            renderG(12);
+            renderCerts();
+            anim();
+        }
+
+        function toggleMenu(id) {
+            document.querySelectorAll('.options-menu').forEach(m => {
+                if(m.id !== id) m.classList.remove('show');
+            });
+            document.getElementById(id).classList.toggle('show');
+        }
+
+        function updateAllPeriods(p) { 
+            document.querySelectorAll('.sel-txt-display').forEach(sp => sp.innerText = p);
+            document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show'));
+            let n = 12; if(p==='6 meses') n=6; if(p==='3 meses') n=3;
+            renderG(n); anim(); 
+        }
+
+        async function loadAlbums() {
+            const ids = ['06SY6Ke6mXzZHhURLVU57R', '3jB9yFDwRe3KhtGnHXJntk', '0UlbGi4oAth8s6rwaGSU8Z', '3xshXXIfhAKRQ2995VJ7kZ', '3jxt1S4JtW4uFalBwlfehS'];
+            const container = document.getElementById('albums');
+            container.innerHTML = '';
+            let rank = 1;
+            for(let id of ids) {
+                const res = await fetch(`https://api.spotify.com/v1/albums/${id}`, { headers: {'Authorization': 'Bearer '+tk}});
+                const d = await res.json();
+                const scr = Math.floor(Math.random()*50000)+1000;
+                
+                // Músicas em formato TABLE literal
+                const rows = `
+                    <tr><td><strong>${fmt(Math.floor(scr*0.1))}</strong></td><td>Some Things Never...</td></tr>
+                    <tr><td><strong>${fmt(Math.floor(scr*0.08))}</strong></td><td>${d.tracks.items[1]?.name.substring(0,15) || 'Track 2'}...</td></tr>
+                    <tr><td><strong>${fmt(Math.floor(scr*0.05))}</strong></td><td>${d.tracks.items[2]?.name.substring(0,15) || 'Track 3'}...</td></tr>
+                `;
+
+                container.innerHTML += `
+                    <div class="album-item">
+                        <div class="album-img-box"><span class="album-rank-badge">${rank}</span><img src="${d.images[0].url}"></div>
+                        <div class="album-details">
+                            <p style="font-weight:bold; font-size:0.9rem; margin-bottom:5px;">${d.name}</p>
+                            <div class="album-meta"><span>${fmt(scr)} scrobbles</span><span>${(Math.random()*30).toFixed(1).replace('.',',')}% dos scrobbles</span><span>#${rank} no ranking</span></div>
+                            <table class="album-songs-table">${rows}</table>
+                        </div>
+                    </div>`;
+                rank++;
+            }
+        }
+
+        async function loadTracks() {
+            const res = await fetch(`https://api.spotify.com/v1/artists/${document.body.id}/top-tracks?market=BR`, { headers: {'Authorization': 'Bearer '+tk}});
+            const d = await res.json();
+            const feats = ["Snoop Dogg", "Timbaland", "Juicy J", "Kanye West", "Migos"];
+            allTracks = [...d.tracks, ...d.tracks, ...d.tracks].slice(0, 50).map((t, i) => {
+                const scr = Math.floor(Math.random()*1500 + 100);
+                const pk = i < 3 ? 1 : (Math.floor(Math.random()*10)+2);
+                const isFeat = Math.random() > 0.8;
+                return {
+                    ...t, pos: i+1, rank: i+1, scr: scr, pts: Math.floor(scr*1.4), pk: pk, wks: Math.floor(Math.random()*50)+1,
+                    d1: pk == 1 ? Math.floor(Math.random()*15)+1 : 0, isFeat: isFeat, featName: isFeat ? feats[Math.floor(Math.random()*feats.length)] : null
+                }
+            });
+            renderT();
+        }
+
+        function renderT() {
+            const body = document.getElementById('song-list');
+            body.innerHTML = '';
+            let f = [...allTracks];
+
+            if(currentFilter === 'main') f = f.filter(t => !t.isFeat);
+            if(currentFilter === 'feat') f = f.filter(t => t.isFeat);
+            if(currentFilter === 'diamante') f = f.filter(t => t.scr >= 1000);
+            if(currentFilter === 'platina') f = f.filter(t => t.scr >= 500); // CORREÇÃO FILTRO
+            if(currentFilter === 'ouro') f = f.filter(t => t.scr >= 200);   // CORREÇÃO FILTRO
+            if(currentFilter === 'no1') f = f.filter(t => t.d1 > 0);
+
+            if (sortCol) {
+                f.sort((a, b) => {
+                    let valA = a[sortCol], valB = b[sortCol];
+                    if (typeof valA === 'string') return valA.localeCompare(valB) * -sortDir;
+                    return (valB - valA) * sortDir;
+                });
+            }
+
+            const listToShow = (currentLimit >= f.length) ? f : f.slice(0, currentLimit);
+
+            listToShow.forEach((t) => {
+                let musicName = `<strong>${t.name}</strong>`;
+                if(t.isFeat) musicName += ` <span class="feat-text">com ${t.featName}</span>`;
+                let picoHTML = `#${t.pk}`;
+                if (t.pk === 1) picoHTML += ` <span class="numero-semanas-topo">${t.d1}</span>`;
+
+                body.innerHTML += `<tr>
+                    <td>${t.pos}</td><td>#${t.rank}</td><td><img src="${t.album.images[2].url}" class="capa-mini"></td>
+                    <td class="td-left">${musicName}</td>
+                    <td>${fmt(t.scr)}</td><td>${fmt(t.pts)}</td>
+                    <td>${picoHTML}</td>
+                    <td>${t.wks}</td>
+                    <td>${t.d1}</td>
+                </tr>`;
+            });
+            
+            const btn = document.getElementById('btnMore');
+            if(currentLimit >= f.length) { btn.innerText = "RECOLHER"; btn.onclick = () => { currentLimit = 10; renderT(); }; } 
+            else { btn.innerText = "EXIBIR MAIS"; btn.onclick = () => { currentLimit = 9999; renderT(); }; }
+        }
+
+        function setFilter(f, btn) {
+            currentFilter = f; currentLimit = 10;
+            document.querySelectorAll('.filter-btn').forEach(b => { if(!b.classList.contains('reset-btn')) b.classList.remove('active'); });
+            btn.classList.add('active'); renderT();
+        }
+
+        function renderWeeks() {
+            const container = document.getElementById('weeks');
+            const tt = document.getElementById('tt');
+            const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+            container.innerHTML = '';
+            for(let i=0; i<52*5; i++){
+                const cell = document.createElement('div'); 
+                cell.className = 'week-cell'; 
+                cell.style.opacity = Math.random() * 0.8 + 0.2;
+                const day = Math.floor(Math.random()*28)+1, month = months[Math.floor(Math.random()*12)], year = 2020 + Math.floor(i/52);
+                const scr = fmt(Math.floor(Math.random()*500)), pk = Math.floor(Math.random()*100)+1;
+                const isPos = Math.random() > 0.5, icon = isPos ? '<i class="fa-solid fa-arrow-up"></i>' : '<i class="fa-solid fa-arrow-down"></i>';
+                const ttContent = `<span class="tt-date">${day} ${month} ${year}</span><div class="tt-stat"><span>Scrobbles:</span> <strong>${scr}</strong></div><div class="tt-stat"><span>Pico:</span> <strong>#${pk}</strong></div>`;
+                cell.onmouseenter = () => { tt.innerHTML = ttContent; tt.style.display = 'block'; };
+                cell.onmousemove = (e) => { tt.style.left=(e.clientX+15)+'px'; tt.style.top=(e.clientY+15)+'px'; };
+                cell.onmouseleave = () => tt.style.display = 'none';
+                container.appendChild(cell);
+            }
+        }
+
+        function renderCerts() {
+            const container = document.getElementById('certs'); 
+            const types = [
+                {name: "5x Ouro", bg: "var(--ouro)", val: "5000"}, 
+                {name: "Diamante", bg: "var(--diamante)", val: "10000"}, 
+                {name: "2x Platina", bg: "var(--platina)", val: "2000"}
+            ];
+            allTracks.slice(0, 5).forEach((t, i) => {
+                const type = types[i % 3];
+                // GRID LAYOUT BASEADO EM VH.PNG
+                container.innerHTML += `
+                <div class="cert-card" style="background:${type.bg}">
+                    <div class="cert-header">
+                        <span>${type.name}</span>
+                        <span>${type.val}</span>
+                    </div>
+                    <div class="cert-title">${t.name.substring(0,18)}...</div>
+                    <div class="cert-artist">Katy Perry</div>
+                    <div class="cert-img-container">
+                        <img src="${t.album.images[0].url}" class="cert-img">
+                    </div>
+                    <div class="cert-divider"></div>
+                    <div class="cert-ranks">
+                        <div class="rank-item"><span>44º</span><span>do artista</span></div>
+                        <div class="rank-sep"></div>
+                        <div class="rank-item"><span>44º</span><span>no geral</span></div>
+                    </div>
+                    <div class="cert-date">1 jan 2026 20:15</div>
+                </div>`;
+            });
+        }
+
+        // Funções de apoio
+        function sortTable(col) { if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; } document.getElementById('reset-sort').style.display = 'inline-block'; renderT(); }
+        function resetSorting() { sortCol = null; sortDir = 1; document.getElementById('reset-sort').style.display = 'none'; renderT(); }
+        function renderG(n) {
+            const g = document.getElementById('graph'); g.innerHTML = '';
+            for(let i=0; i<n; i++) {
+                const height = Math.floor(Math.random()*80+20);
+                const grp = document.createElement('div'); grp.className = 'bar-group';
+                grp.innerHTML = `<div class="bar-label">${fmt(Math.floor(Math.random()*5000)+1000)}</div><div class="bar" style="height:0%"></div><div class="axis-label">${2020+(i%5)}<br>#${(i%5)+1}</div>`;
+                g.appendChild(grp);
+                setTimeout(() => { grp.querySelector('.bar').style.height = height + '%'; }, 100);
+            }
+        }
+        function anim() { document.querySelectorAll('.stat-number').forEach(n => { const v = +n.dataset.v; let c = 0; const i = setInterval(() => { c += v/40; if(c >= v){ n.innerText = fmt(v); clearInterval(i); } else n.innerText = fmt(Math.floor(c)); }, 30); }); }
+
+        init();
+        window.onclick = function(event) { if (!event.target.matches('.custom-select') && !event.target.matches('.sel-txt-display')) { document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show')); }}
+    </script>
+</body>
+</html>
