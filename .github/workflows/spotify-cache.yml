@@ -1,0 +1,162 @@
+name: Atualizar Spotify Cache
+
+on:
+  push:
+    paths-ignore:
+      - "data/spotify-cache.json"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  gerar-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Gerar spotify-cache.json
+        run: |
+          node <<'NODE'
+          const { readdir, readFile, writeFile, mkdir } = require("node:fs/promises");
+          const path = require("node:path");
+
+          const ignorar = new Set([".git", ".github", "node_modules"]);
+          const arquivosHtml = await listarHtml(".");
+          const artistIds = new Set();
+          const albumIds = new Set();
+          const trackIds = new Set();
+
+          for (const arquivo of arquivosHtml) {
+            const html = await readFile(arquivo, "utf8");
+
+            for (const match of html.matchAll(/<[^>]*class=["'][^"']*\bspotify-artista\b[^"']*["'][^>]*>/gi)) {
+              const id = match[0].match(/\bid=["']([^"']+)["']/i)?.[1]?.trim();
+              if (id) artistIds.add(id);
+            }
+
+            for (const match of html.matchAll(/data-spotify-album-id=["']([^"']+)["']/gi)) {
+              albumIds.add(match[1].trim());
+            }
+
+            for (const match of html.matchAll(/data-spotify-track-id=["']([^"']+)["']/gi)) {
+              trackIds.add(match[1].trim());
+            }
+          }
+
+          const artistas = {};
+          const albuns = {};
+          const musicas = {};
+
+          for (const id of artistIds) {
+            const dados = await buscarOembed(`https://open.spotify.com/artist/${id}`);
+
+            artistas[id] = {
+              id,
+              name: limparTitulo(dados.title),
+              image: dados.thumbnail_url || "",
+              spotify: `https://open.spotify.com/artist/${id}`
+            };
+          }
+
+          for (const id of albumIds) {
+            const dados = await buscarOembed(`https://open.spotify.com/album/${id}`);
+
+            albuns[id] = {
+              id,
+              name: limparTitulo(dados.title),
+              image: dados.thumbnail_url || "",
+              spotify: `https://open.spotify.com/album/${id}`
+            };
+          }
+
+          for (const id of trackIds) {
+            const dados = await buscarOembed(`https://open.spotify.com/track/${id}`);
+
+            musicas[id] = {
+              id,
+              name: limparTitulo(dados.title),
+              image: dados.thumbnail_url || "",
+              spotify: `https://open.spotify.com/track/${id}`
+            };
+          }
+
+          await mkdir("data", { recursive: true });
+
+          await writeFile(
+            "data/spotify-cache.json",
+            JSON.stringify(
+              {
+                atualizadoEm: new Date().toISOString(),
+                artistas,
+                albuns,
+                musicas
+              },
+              null,
+              2
+            )
+          );
+
+          console.log("spotify-cache.json gerado com sucesso.");
+          console.log(`Artistas: ${artistIds.size}`);
+          console.log(`Álbuns: ${albumIds.size}`);
+          console.log(`Músicas: ${trackIds.size}`);
+
+          async function listarHtml(dir) {
+            const itens = await readdir(dir, { withFileTypes: true });
+            const arquivos = [];
+
+            for (const item of itens) {
+              if (ignorar.has(item.name)) continue;
+
+              const caminho = path.join(dir, item.name);
+
+              if (item.isDirectory()) {
+                arquivos.push(...await listarHtml(caminho));
+              } else if (item.isFile() && caminho.toLowerCase().endsWith(".html")) {
+                arquivos.push(caminho);
+              }
+            }
+
+            return arquivos;
+          }
+
+          async function buscarOembed(urlSpotify) {
+            const endpoint = `https://open.spotify.com/oembed?url=${encodeURIComponent(urlSpotify)}`;
+
+            const resposta = await fetch(endpoint);
+
+            if (!resposta.ok) {
+              console.warn(`Falha oEmbed ${resposta.status}: ${urlSpotify}`);
+              return {
+                title: "",
+                thumbnail_url: ""
+              };
+            }
+
+            return resposta.json();
+          }
+
+          function limparTitulo(titulo) {
+            return String(titulo || "")
+              .replace(/\s*\|\s*Spotify\s*$/i, "")
+              .trim();
+          }
+          NODE
+
+      - name: Commitar cache atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/spotify-cache.json
+          git diff --cached --quiet || git commit -m "Atualiza cache do Spotify"
+          git push
