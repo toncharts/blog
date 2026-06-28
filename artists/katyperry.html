@@ -55,6 +55,7 @@
       --cor-superficie: var(--cor-escura-2);
       --cor-superficie-2: var(--cor-escura-3);
       --cor-texto: var(--cor-clara);
+      --cor-texto-inverso: var(--cor-escura);
       --cor-texto-suave: var(--cor-clara-2);
       --cor-texto-mudo: var(--cor-media);
       --cor-linha: rgba(244, 244, 246, 0.12);
@@ -89,6 +90,7 @@
       --cor-superficie: #e9e9ed;
       --cor-superficie-2: #dfdfe5;
       --cor-texto: #20202a;
+      --cor-texto-inverso: var(--cor-clara);
       --cor-texto-suave: #44444e;
       --cor-texto-mudo: #777781;
       --cor-linha: rgba(32, 32, 42, 0.12);
@@ -505,7 +507,7 @@
 
     .grafico-area {
       min-height: var(--altura-grafico);
-      padding: 1.1rem;
+      padding: 2.2rem 1.1rem 1.1rem;
       background: var(--cor-superficie);
       overflow-x: auto;
       scrollbar-width: thin;
@@ -533,21 +535,34 @@
       height: 100%;
       display: grid;
       align-items: end;
+      overflow: visible;
     }
 
     .barra-preenchimento {
+      position: relative;
       width: 100%;
       min-height: 2rem;
-      display: grid;
-      place-items: start center;
-      padding-top: 0.5rem;
-      color: var(--cor-escura);
+      display: block;
+      padding-top: 0;
+      color: var(--cor-texto-inverso);
       background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
       font-size: 0.68rem;
       font-weight: var(--peso-semi);
       transition:
         height 360ms cubic-bezier(0.22, 1, 0.36, 1),
         background 180ms ease;
+    }
+
+    .barra-valor {
+      position: absolute;
+      top: -1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--cor-texto);
+      font-size: 0.68rem;
+      font-weight: var(--peso-bold);
+      line-height: 1;
+      white-space: nowrap;
     }
 
     .grafico-item:hover .barra-preenchimento {
@@ -1374,6 +1389,14 @@
       grid-template-columns: repeat(2, minmax(0, 1fr)) 350px repeat(5, minmax(0, 1fr));
       align-items: center;
       gap: 0.6rem;
+    }
+
+    .linha-musica-feat {
+      opacity: 0.6
+    }
+
+    .linha-musica-feat:hover {
+      opacity: 1
     }
 
     .cabecalho-musicas {
