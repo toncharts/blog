@@ -1,450 +1,2663 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toncharts - Artista</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://kit.fontawesome.com/d10173a287.js" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/14e69425b5.js" crossorigin="anonymous"></script>
+  <title>Perfil do artista — TonCharts</title>
+  <meta name="description" content="Perfil musical com métricas, desempenho por período, semanas, álbuns, músicas e certificações.">
 
-<style>
-        :root {
-            --verde: #17EE30; --turquesa: #04F8CA; --azul: #05CEFC; --azul-marinho: #071E62;
-            --texto: #333; --cinza-claro: #eeeeee10; --destaque: #FFF;
-            --ouro: linear-gradient(135deg, #AD7600, #FFD700);
-            --platina: linear-gradient(135deg, #E0E0E0, #B0BEC5);
-            --diamante: linear-gradient(135deg, #AACCCC, #445566);
-            --sombra-header: linear-gradient(90deg, #333 0%, rgba(0,0,0,0) 100%);
-            --fonte-grande: 2rem; --fonte-media: 1rem; --fonte-pequena: 0.85rem;
-            --gradiente-titulo: linear-gradient(to right, var(--azul), var(--turquesa));
-        }
+  <meta property="og:title" content="Perfil do artista — TonCharts">
+  <meta property="og:description" content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações.">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="website">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter Tight', sans-serif; text-decoration: none; color: inherit; }
-        body { background-color: var(--texto); color: var(--destaque); display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
-        main { width: 1000px; display: flex; flex-direction: column; gap: 4rem; padding-bottom: 5rem; }
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Perfil do artista — TonCharts">
+  <meta name="twitter:description" content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações.">
+  <meta name="twitter:image" content="">
 
-        header, footer { width: 100%; display: flex; flex-direction: column; align-items: center; }
-        header { 
-            background: linear-gradient(0deg, var(--texto), transparent), linear-gradient(25deg, var(--turquesa), var(--azul)); 
-            padding: 2rem 0 4rem 0; color: var(--destaque); box-shadow: inset 0 10rem 10rem rgba(0,0,0,0.2); 
-            margin-bottom: 2rem; position: relative;
-        }
-        header::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--sombra-header); pointer-events: none; z-index: 1; }
-        
-        .nav-container { width: 1000px; padding-bottom: 3rem; display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; position: relative; z-index: 2; }
-        .logo-img { height: 1.5rem; grid-column: 1; }
-        nav { grid-column: 2 / 6; display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; }
+  <link rel="preconnect" href="https://fonts.googleapis.com" class="fonte-preconnect-1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin class="fonte-preconnect-2">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet" class="fonte-exo-2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" class="fonte-awesome">
 
-        .hero-grid { 
-            display: grid; grid-template-columns: repeat(5, 175px); 
-            grid-template-rows: 80px 175px 175px; gap: 31px; width: 1000px; margin-top: 3rem; position: relative; z-index: 2;
-        }
+  <style>
+    :root {
+      --fonte-principal: "Exo 2", system-ui, sans-serif;
 
-        .hero-grid .custom-select {
-    grid-column: 4 / 6; 
-    grid-row: 1;
-    align-self: center;
-    justify-self: end;
-    /* O estilo visual (cor e fonte) ele já puxa da classe .custom-select geral */
+      --peso-normal: 400;
+      --peso-semi: 600;
+      --peso-bold: 800;
+
+      --cor-ciano: #08d4f2;
+      --cor-verde: #08dfb0;
+      --cor-hero-1: #087584;
+      --cor-hero-2: #09b8c9;
+      --cor-hero-3: #08dfad;
+      --gradiente-destaque: linear-gradient(45deg, var(--cor-verde), var(--cor-ciano));
+
+      --cor-clara: #f4f4f6;
+      --cor-clara-2: #e7e7eb;
+      --cor-media: #9c9ca6;
+      --cor-media-2: #6f6f7a;
+      --cor-escura: #14141a;
+      --cor-escura-2: #20202a;
+      --cor-escura-3: #2c2c36;
+
+      --cor-fundo: var(--cor-escura);
+      --cor-superficie: var(--cor-escura-2);
+      --cor-superficie-2: var(--cor-escura-3);
+      --cor-texto: var(--cor-clara);
+      --cor-texto-suave: var(--cor-clara-2);
+      --cor-texto-mudo: var(--cor-media);
+      --cor-linha: rgba(244, 244, 246, 0.12);
+      --cor-rodape: #191920;
+      --cor-badge: rgba(244, 244, 246, 0.1);
+      --cor-tooltip: rgba(32, 32, 42, 0.98);
+
+      --cor-ouro: #b88d0a;
+      --cor-platina: #7d969f;
+      --cor-diamante: #838172;
+
+      --largura-container: 57.5rem;
+      --largura-musicas: 57.5rem;
+      --largura-card-album: 9.5rem;
+      --largura-top-card: 9.5rem;
+      --largura-certificado: 9.5rem;
+
+      --raio-sm: 0.25rem;
+      --raio-full: 999rem;
+
+      --sombra: 0 1rem 2.6rem rgba(20, 20, 26, 0.22);
+      --transicao: 260ms cubic-bezier(0.22, 1, 0.36, 1);
+      --transicao-popup: 120ms ease-out;
+
+      --altura-grafico: 14.5rem;
+      --tamanho-semana: 0.72rem;
+      --largura-ano: 2.15rem;
+    }
+
+    html[data-theme="light"] {
+      --cor-fundo: #f4f4f6;
+      --cor-superficie: #e9e9ed;
+      --cor-superficie-2: #dfdfe5;
+      --cor-texto: #20202a;
+      --cor-texto-suave: #44444e;
+      --cor-texto-mudo: #777781;
+      --cor-linha: rgba(32, 32, 42, 0.12);
+      --cor-rodape: #dfdfe5;
+      --cor-badge: rgba(32, 32, 42, 0.1);
+      --cor-tooltip: rgba(32, 32, 42, 0.98);
+      --sombra: 0 1rem 2.4rem rgba(32, 32, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      scrollbar-color: #7b7b84 transparent;
+      scrollbar-width: thin;
+    }
+
+    *::-webkit-scrollbar {
+      width: 0.65rem;
+      height: 0.65rem;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: #7b7b84;
+      border-radius: var(--raio-full);
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background: #92929c;
+    }
+
+    body.body-pagina {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: var(--fonte-principal);
+      font-weight: var(--peso-normal);
+      color: var(--cor-texto);
+      background: var(--cor-fundo);
+    }
+
+    img.imagem-fluida {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button.botao,
+    select.seletor-periodo {
+      font-family: inherit;
+    }
+
+    button.botao {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button.botao:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+    }
+
+    :focus-visible {
+      outline: 0.18rem solid rgba(156, 156, 166, 0.8);
+      outline-offset: 0.18rem;
+    }
+
+    .pagina {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .spotify-fontes {
+      display: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--largura-container));
+      margin-inline: auto;
+    }
+
+    .conteudo-periodo {
+      display: none;
+    }
+
+    .conteudo-periodo-ativo {
+      display: block;
+    }
+
+    .hero-area {
+      color: var(--cor-clara);
+      background:
+        radial-gradient(circle at 72% 26%, rgba(8, 223, 176, 0.6), transparent 32%),
+        linear-gradient(155deg, var(--cor-hero-1), var(--cor-hero-2), var(--cor-hero-3));
+      overflow: hidden;
+    }
+
+    .site-header {
+      padding-block: 1.5rem 0;
+    }
+
+    .site-header-container {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1.25rem;
+      padding-bottom: 1.35rem;
+      border-bottom: 0.0625rem solid rgba(244, 244, 246, 0.22);
+    }
+
+    .logo-toncharts {
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: end;
+      width: fit-content;
+      line-height: 0.86;
+      letter-spacing: -0.08em;
+    }
+
+    .logo-toncharts-palavra-1,
+    .logo-toncharts-palavra-2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+    }
+
+    .logo-toncharts-palavra-1 {
+      font-weight: var(--peso-bold);
+    }
+
+    .logo-toncharts-palavra-2 {
+      font-weight: var(--peso-normal);
+    }
+
+    .site-nav {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: end;
+      align-items: center;
+      gap: clamp(1rem, 2vw, 1.8rem);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .site-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .site-nav-link {
+      font-size: 0.86rem;
+      white-space: nowrap;
+      opacity: 0.92;
+      transition: opacity var(--transicao), transform var(--transicao);
+    }
+
+    .site-nav-link:hover,
+    .site-nav-link-ativo {
+      opacity: 1;
+      transform: translateY(-0.08rem);
+    }
+
+    .site-nav-link-ativo {
+      font-weight: var(--peso-semi);
+    }
+
+    .botao-tema {
+      width: 2.6rem;
+      height: 2.6rem;
+      display: grid;
+      place-items: center;
+      border-radius: var(--raio-full);
+      color: var(--cor-clara);
+      background: rgba(244, 244, 246, 0.14);
+      transition: background var(--transicao), transform var(--transicao);
+    }
+
+    .botao-tema:hover {
+      background: rgba(244, 244, 246, 0.24);
+      transform: translateY(-0.08rem);
+    }
+
+    .hero-artista {
+      padding-block: 2.2rem 4.5rem;
+    }
+
+    .hero-topo {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-titulo-grupo {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .hero-titulo {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 2rem);
+      font-weight: var(--peso-bold);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-link-spotify {
+      width: fit-content;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: var(--peso-semi);
+      opacity: 0.9;
+      transition: opacity var(--transicao), transform var(--transicao);
+    }
+
+    .hero-link-spotify:hover {
+      opacity: 1;
+      transform: translateY(-0.08rem);
+    }
+
+    .seletor-periodo {
+      appearance: none;
+      min-width: 9rem;
+      border: 0;
+      border-radius: 0;
+      color: var(--cor-clara);
+      background-color: rgba(244, 244, 246, 0.2);
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--cor-clara) 50%),
+        linear-gradient(135deg, var(--cor-clara) 50%, transparent 50%);
+      background-position:
+        calc(100% - 1.1rem) 50%,
+        calc(100% - 0.75rem) 50%;
+      background-size: 0.45rem 0.45rem, 0.45rem 0.45rem;
+      background-repeat: no-repeat;
+      padding: 0.75rem 2.6rem 0.75rem 1rem;
+      font-size: 0.86rem;
+      font-weight: var(--peso-semi);
+      cursor: pointer;
+      transition: background-color var(--transicao);
+    }
+
+    .seletor-periodo:hover {
+      background-color: rgba(244, 244, 246, 0.28);
+    }
+
+    .seletor-periodo-claro {
+      color: var(--cor-texto);
+      background-color: transparent;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--cor-texto) 50%),
+        linear-gradient(135deg, var(--cor-texto) 50%, transparent 50%);
+      font-weight: var(--peso-semi);
+    }
+
+    .opcao-periodo {
+      color: var(--cor-escura);
+      background: var(--cor-clara);
+    }
+
+    .hero-grade {
+      display: grid;
+      grid-template-columns: minmax(8.4rem, 9.5rem) minmax(16rem, 19.2rem) minmax(16rem, 1fr);
+      align-items: stretch;
+      gap: 1.5rem;
+    }
+
+    .hero-coluna-metricas,
+    .hero-grade-metricas {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .hero-grade-metricas {
+      grid-template-columns: repeat(2, minmax(8.2rem, 1fr));
+    }
+
+    .card-metrica {
+      min-height: 8.9rem;
+      display: grid;
+      align-content: start;
+      gap: 0.45rem;
+      padding: 1rem;
+      color: var(--cor-clara);
+      background: rgba(8, 117, 132, 0.3);
+      transition: transform var(--transicao), background var(--transicao);
+    }
+
+    .card-metrica:hover {
+      transform: translateY(-0.16rem);
+      background: rgba(8, 117, 132, 0.42);
+    }
+
+    .card-metrica-numero {
+      font-size: clamp(1.55rem, 3vw, 2.05rem);
+      font-weight: var(--peso-bold);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .card-metrica-label {
+      max-width: 7.5rem;
+      font-size: 0.78rem;
+      font-weight: var(--peso-semi);
+      line-height: 0.96;
+    }
+
+    .badge-crescimento {
+      width: fit-content;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: var(--raio-full);
+      background: var(--cor-badge);
+      font-size: 0.7rem;
+      font-weight: var(--peso-semi);
+      line-height: 1;
+    }
+
+    .badge-crescimento-hero {
+      background: rgba(244, 244, 246, 0.1);
+    }
+
+    .card-metrica-ranking {
+      font-size: 0.68rem;
+      opacity: 0.78;
+    }
+
+    .hero-imagem-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      align-self: center;
+      margin: 0;
+      background: var(--cor-superficie-2);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .hero-imagem {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity var(--transicao), transform var(--transicao);
+    }
+
+    .hero-imagem-carregada {
+      opacity: 1;
+    }
+
+    .hero-imagem-box:hover .hero-imagem {
+      transform: scale(1.025);
+    }
+
+    .hero-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      font-size: 0.82rem;
+      font-weight: var(--peso-semi);
+      text-align: center;
+    }
+
+    .hero-imagem-box-com-imagem .hero-placeholder {
+      display: none;
+    }
+
+    .conteudo-principal {
+      padding-block: 3rem 3.6rem;
+    }
+
+    .bloco-geral {
+      margin-bottom: 3rem;
+    }
+
+    .cabecalho-bloco {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+      border-bottom: 0.0625rem solid var(--cor-linha);
+    }
+
+    .titulo-bloco {
+      margin: 0 0 0.65rem;
+      color: var(--cor-ciano);
+      font-size: clamp(1.45rem, 3vw, 1.95rem);
+      font-weight: var(--peso-semi);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .grafico-area {
+      min-height: var(--altura-grafico);
+      padding: 1.1rem;
+      background: var(--cor-superficie);
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .grafico-periodo {
+      min-width: 47.5rem;
+      height: var(--altura-grafico);
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(1.7rem, 1fr);
+      align-items: end;
+      gap: 0.9rem;
+    }
+
+    .grafico-item {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      align-items: end;
+      gap: 0.5rem;
+    }
+
+    .barra-area {
+      height: 100%;
+      display: grid;
+      align-items: end;
+    }
+
+    .barra-preenchimento {
+      width: 100%;
+      min-height: 2rem;
+      display: grid;
+      place-items: start center;
+      padding-top: 0.5rem;
+      color: var(--cor-escura);
+      background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
+      font-size: 0.68rem;
+      font-weight: var(--peso-bold);
+      transition:
+        height 360ms cubic-bezier(0.22, 1, 0.36, 1),
+        background 180ms ease;
+    }
+
+    .grafico-item:hover .barra-preenchimento {
+      height: 100%;
+      background: linear-gradient(90deg, var(--cor-clara), var(--cor-clara-2));
+    }
+
+    .barra-legenda {
+      display: grid;
+      justify-items: center;
+      color: var(--cor-texto);
+      font-size: 0.68rem;
+      line-height: 1.05;
+    }
+
+    .altura-38 { height: 38%; }
+    .altura-45 { height: 45%; }
+    .altura-52 { height: 52%; }
+    .altura-58 { height: 58%; }
+    .altura-64 { height: 64%; }
+    .altura-70 { height: 70%; }
+    .altura-76 { height: 76%; }
+    .altura-82 { height: 82%; }
+    .altura-88 { height: 88%; }
+    .altura-95 { height: 95%; }
+
+    .semanas-container {
+      width: min(100% - 2rem, var(--largura-container));
+      margin-inline: auto;
+    }
+
+    .semanas-area {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: thin;
+    }
+
+.grade-semanas {
+  width: max-content;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: var(--largura-ano) repeat(53, minmax(var(--tamanho-semana), 1fr));
+  gap: 0.18rem;
+  align-items: center;
 }
 
-        .artist-name-h1 { grid-column: 1 / 4; font-size: 3.5rem; align-self: center; overflow: hidden; white-space: nowrap; font-weight: 700; }
-        .artist-main-img { grid-column: 2 / 4; grid-row: 2 / 4; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem; background: rgba(255,255,255,0.1); }
-        
-        .section-header-group { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 1.5rem; }
-        
-        .custom-select { 
-            background: var(--cinza-claro); color: var(--destaque); padding: 0.5rem 1rem; border-radius: 0.3rem; 
-            cursor: pointer; position: relative; z-index: 101; font-size: var(--fonte-pequena); 
-            min-width: 150px; text-align: center; font-weight: 700;
-        }
-        
-        .options-menu { position: absolute; top: 110%; right: 0; background: var(--destaque); color: var(--texto); border-radius: 0.3rem; width: 150px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); text-align: left; z-index: 999; }
-        .options-menu div { padding: 10px; font-size: 14px; cursor: pointer; color: var(--texto); }
-        .options-menu.show { display: block; }
+.semana-quadrinho {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  min-width: var(--tamanho-semana);
+  border: 0;
+  padding: 0;
+  background: var(--semana-cor, var(--cor-superficie-2));
+  opacity: var(--semana-opacidade, 0.28);
+  color: var(--cor-escura);
+  font-size: 0.45rem;
+  font-weight: var(--peso-bold);
+  line-height: 1;
+  transition: transform var(--transicao), opacity var(--transicao), box-shadow var(--transicao);
+}
 
-        .stat-card { background: rgba(255,255,255,0.1); padding: 1.2rem; display: flex; border-radius:0.5rem; flex-direction: column; justify-content: space-between; aspect-ratio: 1/1; width: 100%; }
-        .stat-number { font-size: 1.6rem; font-weight: 900; line-height: 1; }
-        .stat-sub { font-size: 0.65rem; opacity: 0.7; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 0.5rem; }
-        .stat-card { background: var(--cinza-claro); color: var(--destaque); aspect-ratio: 1/1; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
-        .comparacao { border-radius: 5rem; background: rgba(255,255,255,0.2); padding: 5px 10px; font-size: 0.7rem; font-weight: 700; width: fit-content; }
+.semana-quadrinho:hover,
+.semana-quadrinho:focus-visible {
+  transform: scale(1.45);
+  opacity: 1;
+  box-shadow: 0 0 0 0.12rem rgba(156, 156, 166, 0.8);
+}
 
-        .graph-wrapper { background: var(--cinza-claro); padding: 1rem; border-radius: 0.5rem; }
-        .graph-container { height: 12rem; display: flex; align-items: flex-end; gap: 5px; }
-        .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
-        .bar { width: 100%; background: linear-gradient(0deg, var(--turquesa), var(--azul)); transition: height 0.5s; position: relative; border-radius: 2px; }
-        .bar-label { font-size: 0.7rem; margin-bottom: 4px; }
-        .axis-label { margin-top: 8px; font-size: 0.7rem; text-align: center; font-weight: 700; }
-        .posicao-periodo{padding-top:0.3rem;font-weight:normal;opacity:0.6}
+.semana-melhor-desempenho::before {
+  content: "\e098";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--cor-escura);
+  font-family: "Font Awesome 6 Free";
+  font-size: 0.46rem;
+  font-weight: 900;
+  line-height: 1;
+}
+    .semana-cabecalho,
+    .semana-ano {
+      min-height: var(--tamanho-semana);
+      display: grid;
+      place-items: center;
+      color: var(--cor-texto);
+      font-size: 0.58rem;
+      line-height: 1;
+    }
 
-        .semanas-grid { display: grid; grid-template-columns: repeat(52, 1fr); gap: 2px; background: var(--cinza-claro); padding: 1rem; border-radius: 0.3rem; }
-        .week-cell { aspect-ratio: 1/1; background: var(--destaque); cursor: pointer; }
+    .semana-ano {
+      justify-content: start;
+    }
 
-        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; width: 100%; }
-        .album-item { display: flex; flex-direction: column; gap: 0.8rem; position: relative; }
-        .album-rank-badge { position: absolute; top: 0; left: 0; background: var(--turquesa); border-radius:0.5rem 0 0 0; color: var(--texto); font-weight: 900; width: 55px; height: 55px; clip-path: polygon(0 0, 100% 0, 0 100%); display: flex; align-items: flex-start; padding: 5px; font-size: 2rem; z-index: 10; }
-        .album-img-box { width: 100%; aspect-ratio: 1/1; background: var(--cinza-claro);}
-        .album-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem !important}
-        .album-meta { display: flex; flex-direction: column; gap: 2px; font-size: 0.75rem; opacity: 0.7; margin-top: 5px; }
-        .album-songs-grid { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.5rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 4px; }
-        .album-song-row { display: grid; grid-template-columns: 40px 1fr; font-size: 0.7rem; color: rgba(255,255,255,0.6); }
+.grade-semanas {
+  width: max-content;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: var(--largura-ano) repeat(53, minmax(var(--tamanho-semana), 1fr));
+  gap: 0.18rem;
+  align-items: center;
+}
 
-        .songs-grid-table { width: 100%; margin-top: 1rem; }
-        .grid-row { display: grid; grid-template-columns: 50px 70px 60px 350px 100px 100px 90px 90px 90px; align-items: center; border-bottom: 1px solid var(--cinza-claro); text-align: center; padding: 0.5rem 0; }
-        .grid-row:hover {background-color: var(--cinza-claro);}
-        .grid-header { font-size: 0.7rem; opacity: 0.5; font-weight: 700; text-transform: uppercase; padding-bottom: 0.5rem; cursor: pointer; }
-        .grid-header:hover {background-color: transparent !important;}
-        .grid-cell { padding: 0 0.5rem; font-size: var(--fonte-pequena); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; justify-content: center; }
-        .grid-cell.td-left { text-align: left !important; justify-content: flex-start; }
-        .feat-text { font-size: 0.75rem; opacity: 0.6; padding-left: 0.5rem}
-        .numero-semanas-topo { font-size: 0.75rem; opacity: 0.6; margin-left: 3px; }
-        .numero-semanas-topo::after { content: 'x'; }
+.semana-cabecalho,
+.semana-ano {
+  min-height: var(--tamanho-semana);
+  display: grid;
+  place-items: center;
+  color: var(--cor-texto);
+  font-size: 0.58rem;
+  font-weight: var(--peso-normal);
+  line-height: 1;
+}
 
-        .filter-btn { background: var(--cinza-claro); color: var(--destaque); border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 13px; margin-right: 8px; margin-bottom: 10px; font-weight: 700; }
-        .filter-btn.active { background: var(--gradiente-titulo); color: var(--texto); }
-        
-        .cert-card { height: auto; display: grid; grid-template-rows: auto auto auto 1fr auto auto; padding: 1.5rem; border-radius: 0.5rem; color: white; text-align: center; overflow: hidden; position: relative; }
-        .cert-header { display: flex; justify-content: space-between; border-bottom: 2px solid rgba(255,255,255,0.6); padding-bottom: 5px; margin-bottom: 15px; font-weight: 700; }
-        .certificacao, .numero-certificacao { font-size: var(--fonte-pequena); font-weight:normal}
-        .cert-title { font-weight: 700; font-size: var(--fonte-media); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .cert-artista { font-size: var(--fonte-pequena); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 5px; }
-        .cert-img { width: 120px; height: 120px; object-fit: cover; margin: 10px auto; border-radius:0.5rem}
-        .cert-divider { border-top: 2px solid rgba(255,255,255,0.4); margin: 10px 0; }
-        .cert-stats-grid { display: grid; grid-template-columns: 1fr 2px 1fr; align-items: center; }
-        .cert-v-line { background: rgba(255,255,255,0.4); height: 30px; }
-        .rank-val { font-size: 1.3rem; font-weight: 700; display: block; }
-        .rank-label { font-size: 0.6rem; }
-        .cert-date { font-size: var(--fonte-pequena); margin-top: 10px; opacity: 0.8; }
+.semana-ano {
+  justify-content: start;
+}
 
-        h2 { font-size: var(--fonte-grande); background: var(--gradiente-titulo); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
-        #tt { position: fixed; background: var(--texto); color: #fff; padding: 12px; border-radius: 6px; font-size: 12px; pointer-events: none; display: none; z-index: 10000; width: 160px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-    </style>
+.semana-quadrinho {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  min-width: var(--tamanho-semana);
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  color: var(--cor-escura);
+  background: var(--semana-cor, var(--cor-superficie-2));
+  opacity: var(--semana-opacidade, 0.28);
+  font-size: 0.5rem;
+  font-weight: var(--peso-bold);
+  line-height: 1;
+  transition: transform var(--transicao), opacity var(--transicao), box-shadow var(--transicao);
+}
+
+.semana-quadrinho:hover,
+.semana-quadrinho:focus-visible {
+  transform: scale(1.45);
+  opacity: 1;
+  box-shadow: 0 0 0 0.12rem rgba(156, 156, 166, 0.8);
+}
+
+.semana-melhor-desempenho {
+  color: var(--cor-escura);
+  background: var(--cor-clara);
+  opacity: 1;
+}
+
+.semana-melhor-desempenho::before {
+  content: none;
+}
+
+    .forca-0 { opacity: 0.28; }
+    .forca-1 { opacity: 0.42; background: var(--cor-ciano); }
+    .forca-2 { opacity: 0.56; background: var(--cor-ciano); }
+    .forca-3 { opacity: 0.7; background: var(--cor-verde); }
+    .forca-4 { opacity: 0.84; background: var(--cor-verde); }
+    .forca-5 { opacity: 1; background: linear-gradient(135deg, var(--cor-ciano), var(--cor-verde)); }
+
+    .tooltip-semana {
+      position: fixed;
+      z-index: 99999;
+      max-width: 14rem;
+      display: grid;
+      gap: 0.3rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: var(--raio-sm);
+      color: var(--cor-clara);
+      background: var(--cor-tooltip);
+      box-shadow: var(--sombra);
+      font-size: 0.62rem;
+      line-height: 1.25;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -120%);
+      transition: opacity var(--transicao-popup), transform var(--transicao-popup);
+    }
+
+    .tooltip-semana-visivel {
+      opacity: 1;
+      transform: translate(-50%, -135%);
+    }
+
+    .tooltip-data {
+      color: var(--cor-clara-2);
+      font-size: 0.6rem;
+    }
+
+    .tooltip-linha {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-content: start;
+      gap: 0.35rem;
+      align-items: baseline;
+    }
+
+    .tooltip-posicao,
+    .tooltip-melhor {
+      font-weight: var(--peso-semi);
+      background: var(--gradiente-destaque);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .tooltip-plays {
+      color: var(--cor-clara-2);
+    }
+
+    .tooltip-melhor {
+      display: none;
+      width: fit-content;
+    }
+
+    .tooltip-melhor-visivel {
+      display: inline-grid;
+    }
+
+    .albuns-area,
+    .top-cards-area,
+    .certificados-area {
+      overflow-x: visible;
+    }
+
+    .grade-albuns,
+    .grade-top-cards,
+    .grade-certificados {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card-album {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .card-album-capa {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: var(--cor-clara);
+      background: var(--cor-superficie-2);
+    }
+
+    .card-album-capa::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 3rem;
+      height: 3rem;
+      background: var(--gradiente-destaque);
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      pointer-events: none;
+    }
+
+    .card-album-rank {
+      position: absolute;
+      top: 0.35rem;
+      left: 0.45rem;
+      z-index: 2;
+      color: var(--cor-escura);
+      font-size: 1.3rem;
+      font-weight: var(--peso-bold);
+      line-height: 0.8;
+      pointer-events: none;
+    }
+
+    .card-album-imagem,
+    .musica-imagem,
+    .card-certificado-imagem {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-album-overlay,
+    .musica-capa-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--cor-clara);
+      background: rgba(20, 20, 26, 0.58);
+      opacity: 0;
+      transition: opacity var(--transicao);
+    }
+
+    .card-album-capa:hover .card-album-overlay,
+    .musica-capa-link:hover .musica-capa-overlay {
+      opacity: 1;
+    }
+
+    .card-album-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: var(--peso-semi);
+      text-align: center;
+    }
+
+    .card-album-com-imagem .card-album-placeholder {
+      display: none;
+    }
+
+    .card-album-info {
+      display: grid;
+      gap: 0.42rem;
+    }
+
+    .card-album-nome {
+      color: var(--cor-texto);
+      font-size: 0.82rem;
+      font-weight: var(--peso-semi);
+      line-height: 1.1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-album-meta {
+      padding-top: 0.45rem;
+      border-top: 0.0625rem solid var(--cor-linha);
+      display: grid;
+      gap: 0.35rem;
+      color: var(--cor-texto-mudo);
+      font-size: 0.7rem;
+      line-height: 1.15;
+    }
+
+    .card-album-numero {
+      color: var(--cor-texto);
+      font-weight: var(--peso-semi);
+    }
+
+    .album-top5 {
+      display: grid;
+      gap: 0;
+      margin-top: 0.25rem;
+    }
+
+    .album-top5-titulo {
+      padding-block: 0.26rem;
+      border-bottom: 0.0625rem solid var(--cor-linha);
+      color: var(--cor-texto-suave);
+      font-weight: var(--peso-bold);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .album-top5-musica {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 0.35rem;
+      padding-block: 0.26rem;
+      border-bottom: 0.0625rem solid var(--cor-linha);
+    }
+
+    .album-top5-plays {
+      color: var(--cor-texto);
+      font-weight: var(--peso-semi);
+      white-space: nowrap;
+    }
+
+    .album-top5-nome {
+      color: var(--cor-texto-mudo);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .top-card {
+      aspect-ratio: 1 / 1;
+      display: grid;
+      align-content: start;
+      gap: 0.38rem;
+      padding: 1rem;
+      background: var(--cor-superficie);
+      transition: transform var(--transicao), box-shadow var(--transicao);
+    }
+
+    .top-card:hover {
+      transform: translateY(-0.16rem);
+      box-shadow: var(--sombra);
+    }
+
+    .top-card-destaque {
+      color: var(--cor-escura);
+      background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
+    }
+
+    .top-card-numero {
+      font-size: clamp(1.8rem, 4vw, 2.25rem);
+      font-weight: var(--peso-bold);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .top-card-label {
+      max-width: 7.4rem;
+      font-size: 0.76rem;
+      font-weight: var(--peso-semi);
+      line-height: 0.96;
+    }
+
+    .top-card-info {
+      display: grid;
+      gap: 0.16rem;
+      font-size: 0.68rem;
+      opacity: 0.76;
+      line-height: 1.15;
+    }
+
+    .musicas-area {
+      margin-top: 1.25rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .lista-musicas {
+      min-width: var(--largura-musicas);
+      display: grid;
+    }
+
+    .cabecalho-musicas,
+    .linha-musica {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) 350px repeat(5, minmax(0, 1fr));
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cabecalho-musicas {
+      padding: 0 0.8rem 0.65rem;
+      font-size: 0.68rem;
+      font-weight: var(--peso-semi);
+    }
+
+    .linha-musica {
+      min-height: 3rem;
+      padding: 0.5rem 0.8rem;
+      border-top: 0.0625rem solid var(--cor-linha);
+      font-size: 0.82rem;
+      transition: background var(--transicao);
+    }
+
+    .linha-musica:hover {
+      background: var(--cor-superficie);
+    }
+
+    .musica-posicao {
+      font-size: 1.2rem;
+      font-weight: var(--peso-bold);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .musica-posicao::before {
+      content: "#";
+      font-weight: var(--peso-semi);
+      color: var(--cor-media);
+    }
+
+    .musica-ranking {
+      font-weight: var(--peso-semi);
+    }
+
+    .musica-principal {
+      display: grid;
+      grid-template-columns: 2.4rem minmax(0, 1fr);
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .musica-capa-link {
+      position: relative;
+      width: 2.4rem;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cor-ciano), var(--cor-verde));
+    }
+
+    .musica-info {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .musica-nome {
+      color: var(--cor-texto);
+      font-weight: var(--peso-semi);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .musica-artista {
+      color: var(--cor-texto-mudo);
+      font-size: 0.72rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .musica-numero {
+      font-weight: var(--peso-bold);
+    }
+
+    .pico-musica {
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: start;
+      justify-content: start;
+      gap: 0.18rem;
+    }
+
+    .pico-posicao {
+      font-weight: var(--peso-semi);
+      line-height: 1;
+    }
+
+    .pico-vezes {
+      color: var(--cor-texto-mudo);
+      font-size: 0.62rem;
+      transform: translateY(-0.25rem);
+    }
+
+    .acoes-musicas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .botao-musicas {
+      width: fit-content;
+      min-width: 8.2rem;
+      min-height: 2.6rem;
+      padding: 0.75rem 1.2rem;
+      color: var(--cor-escura);
+      background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
+      font-size: 0.86rem;
+      font-weight: var(--peso-semi);
+      transition: transform var(--transicao), box-shadow var(--transicao), opacity var(--transicao);
+    }
+
+    .botao-musicas:hover:not(:disabled) {
+      transform: translateY(-0.12rem);
+      box-shadow: var(--sombra);
+    }
+
+    .botao-exibir-mais {
+      justify-self: start;
+    }
+
+    .botao-recolher-tudo {
+      justify-self: end;
+      color: var(--cor-texto);
+      background: var(--cor-superficie);
+    }
+
+    .card-certificado {
+      min-height: 14.2rem;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr auto auto;
+      gap: 0.45rem;
+      padding: 0.85rem;
+      color: var(--cor-clara);
+      background: var(--cor-ouro);
+      transition: transform var(--transicao), box-shadow var(--transicao);
+    }
+
+    .card-certificado:hover {
+      transform: translateY(-0.16rem);
+      box-shadow: var(--sombra);
+    }
+
+    .card-certificado-platina {
+      background: var(--cor-platina);
+    }
+
+    .card-certificado-diamante {
+      background: var(--cor-diamante);
+    }
+
+    .card-certificado-topo {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      font-size: 0.62rem;
+    }
+
+    .card-certificado-nome {
+      color: var(--cor-clara);
+      font-size: 0.7rem;
+      font-weight: var(--peso-semi);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-certificado-artista {
+      margin-top: -0.2rem;
+      font-size: 0.62rem;
+      opacity: 0.9;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-certificado-capa {
+      width: 4.3rem;
+      aspect-ratio: 1 / 1;
+      justify-self: center;
+      align-self: center;
+      overflow: hidden;
+      background: rgba(244, 244, 246, 0.22);
+    }
+
+    .card-certificado-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      padding-top: 0.45rem;
+      border-top: 0.0625rem solid rgba(244, 244, 246, 0.35);
+      text-align: center;
+    }
+
+    .card-certificado-numero {
+      font-size: 1rem;
+      font-weight: var(--peso-bold);
+      line-height: 1;
+    }
+
+    .card-certificado-label {
+      font-size: 0.6rem;
+      opacity: 0.9;
+    }
+
+    .card-certificado-data {
+      text-align: center;
+      font-size: 0.58rem;
+      opacity: 0.78;
+    }
+
+    .site-footer {
+      color: var(--cor-texto-mudo);
+      background: var(--cor-rodape);
+      padding-block: 2rem;
+    }
+
+    .site-footer-container {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .footer-principal {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      color: var(--cor-texto-mudo);
+    }
+
+    .footer-nav {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: end;
+      align-items: center;
+      gap: clamp(1rem, 2vw, 1.8rem);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .footer-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .footer-link {
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .footer-info {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 0.0625rem solid var(--cor-linha);
+    }
+
+    .footer-texto,
+    .footer-creditos {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .footer-creditos {
+      text-align: right;
+    }
+
+    .footer-destaque {
+      font-weight: var(--peso-semi);
+    }
+
+    @media (max-width: 61.25rem) {
+      .hero-grade {
+        grid-template-columns: minmax(0, 1fr) minmax(16rem, 19.2rem);
+      }
+
+      .hero-coluna-metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-column: 1 / -1;
+        order: 2;
+      }
+
+      .hero-imagem-box {
+        order: 1;
+      }
+
+      .hero-grade-metricas {
+        grid-template-columns: repeat(4, minmax(8.2rem, 1fr));
+        grid-column: 1 / -1;
+        order: 3;
+      }
+    }
+
+    @media (max-width: 47.5rem) {
+      .container,
+      .semanas-container {
+        width: min(100% - 1.5rem, var(--largura-container));
+      }
+
+      .site-header-container {
+        grid-template-columns: 1fr auto;
+      }
+
+      .site-nav {
+        grid-column: 1 / -1;
+        justify-content: start;
+        order: 3;
+      }
+
+      .hero-grade {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .hero-coluna-metricas,
+      .hero-grade-metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .card-metrica {
+        min-height: 7.6rem;
+      }
+
+      .albuns-area,
+      .top-cards-area,
+      .certificados-area {
+        overflow-x: auto;
+        padding-right: 2rem;
+        padding-bottom: 0.55rem;
+      }
+
+      .grade-albuns,
+      .grade-top-cards,
+      .grade-certificados {
+        width: max-content;
+        gap: 1rem;
+      }
+
+      .grade-albuns {
+        grid-template-columns: repeat(5, var(--largura-card-album));
+      }
+
+      .grade-top-cards {
+        grid-template-columns: repeat(5, var(--largura-top-card));
+      }
+
+      .grade-certificados {
+        grid-template-columns: repeat(5, var(--largura-certificado));
+      }
+
+      .musicas-area,
+      .grafico-area,
+      .semanas-area {
+        padding-right: 2rem;
+      }
+
+      .footer-principal,
+      .footer-info {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-nav {
+        justify-content: start;
+      }
+
+      .footer-creditos {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 32.5rem) {
+      :root {
+        --tamanho-semana: 0.76rem;
+        --largura-musicas: 55rem;
+      }
+
+      .logo-toncharts-palavra-1,
+      .logo-toncharts-palavra-2 {
+        font-size: 2.1rem;
+      }
+
+      .hero-coluna-metricas,
+      .hero-grade-metricas {
+        grid-template-columns: 1fr;
+      }
+
+      .seletor-periodo {
+        min-width: 6.4rem;
+        padding-right: 2.1rem;
+      }
+
+      .acoes-musicas {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
-<body id="6jJ0s89eD6GaHleKKya26X">
 
-    <header>
-        <div class="nav-container">
-            <img src="https://raw.githubusercontent.com/toncharts/blog/main/logo/toncharts-branco.svg" class="logo-img">
-            <nav>
-                <a href="#">calendário</a> <a href="#">charts</a> <a href="#">artistas</a> <a href="#">álbuns</a> <a href="#">músicas</a> <a href="#">certificações</a> <a href="#">last.fm</a>
-            </nav>
+<body class="body-pagina">
+  <div class="spotify-fontes" hidden>
+    <div class="spotify-artista spotify-artista-1" id="6jJ0s89eD6GaHleKKya26X"></div>
+  </div>
+
+  <div class="pagina">
+    <section class="hero-area" id="topo">
+      <header class="site-header">
+        <div class="container site-header-container">
+          <a class="logo-toncharts link-padrao" href="#topo" aria-label="TonCharts">
+            <div class="logo-toncharts-palavra-1">ton</div>
+            <div class="logo-toncharts-palavra-2">charts</div>
+          </a>
+
+          <nav class="site-nav" aria-label="Menu principal">
+            <a class="site-nav-link site-nav-link-1" href="#calendario">calendário</a>
+            <a class="site-nav-link site-nav-link-2 site-nav-link-ativo" href="#charts">charts</a>
+            <a class="site-nav-link site-nav-link-3" href="#artistas">artistas</a>
+            <a class="site-nav-link site-nav-link-4" href="#albuns">álbuns</a>
+            <a class="site-nav-link site-nav-link-5" href="#musicas">músicas</a>
+            <a class="site-nav-link site-nav-link-6" href="#certificacoes">certificações</a>
+            <a class="site-nav-link site-nav-link-7" href="#lastfm">meu last.fm</a>
+          </nav>
+
+          <button class="botao botao-tema" type="button" id="botaoTema" aria-label="Alternar modo claro">
+            <i class="fa-solid fa-sun icone-tema" aria-hidden="true"></i>
+          </button>
         </div>
-        <div class="hero-grid">
-            <h1 class="artist-name-h1">Katy Perry</h1>
-            <div class="custom-select" onclick="toggleMenu('m-header')">
-                <span class="sel-txt-display">12 meses</span>
-                <div class="options-menu" id="m-header"><div onclick="updateAllPeriods('12 meses')">12 meses</div><div onclick="updateAllPeriods('6 meses')">6 meses</div><div onclick="updateAllPeriods('3 meses')">3 meses</div></div>
-            </div>
-            <div class="stat-card" style="grid-row:2; grid-column:1"><h4>scrobbles registrados</h4><div class="stat-number" data-v="75255">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 590%</div><div class="stat-sub">#1 no ranking</div></div>
-            <img src="" id="pfp" class="artist-main-img">
-            <div class="stat-card" style="grid-row:2; grid-column:4"><h4>músicas principal</h4><div class="stat-number" data-v="146">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-            <div class="stat-card" style="grid-row:2; grid-column:5"><h4>músicas no No. 1</h4><div class="stat-number" data-v="78">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-            <div class="stat-card" style="grid-row:3; grid-column:1"><h4>pontos acumulados</h4><div class="stat-number" data-v="254865">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 590%</div><div class="stat-sub">#1 no ranking</div></div>
-            <div class="stat-card" style="grid-row:3; grid-column:4"><h4>semanas toncharts</h4><div class="stat-number" data-v="1547">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-            <div class="stat-card" style="grid-row:3; grid-column:5"><h4>certificados</h4><div class="stat-number" data-v="243">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
+      </header>
+
+      <div class="container hero-artista">
+        <div class="hero-topo">
+          <div class="hero-titulo-grupo">
+            <h1 class="hero-titulo" id="nomeArtista">Katy Perry</h1>
+
+            <a class="hero-link-spotify link-padrao" id="linkSpotifyArtista" href="#" target="_blank" rel="noopener">
+              <i class="fa-brands fa-spotify icone-spotify" aria-hidden="true"></i>
+              <div class="hero-link-texto">abrir no Spotify</div>
+            </a>
+          </div>
+
+          <select class="seletor-periodo seletor-periodo-hero" aria-label="Selecionar período">
+            <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+            <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
+            <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
+            <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
+            <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
+          </select>
         </div>
-    </header>
 
-    <main>
-        <section>
-            <div class="section-header-group">
-                <h2>Desempenho por período</h2>
-                <div class="custom-select" onclick="toggleMenu('m-graph')"><span class="sel-txt-display">12 meses</span><div class="options-menu" id="m-graph"><div onclick="updateAllPeriods('12 meses')">12 meses</div><div onclick="updateAllPeriods('6 meses')">6 meses</div><div onclick="updateAllPeriods('3 meses')">3 meses</div></div></div>
-            </div>
-            <div class="graph-wrapper"><div class="graph-container" id="graph"></div></div>
-        </section>
+        <div class="hero-grade">
+          <div class="hero-coluna-metricas">
+            <article class="card-metrica card-metrica-1">
+              <div class="card-metrica-numero">75.255</div>
+              <div class="card-metrica-label">scrobbles registrados</div>
+              <div class="badge-crescimento badge-crescimento-hero">
+                <i class="fa-solid fa-arrow-up icone-crescimento" aria-hidden="true"></i>
+                <div class="badge-crescimento-texto">200%</div>
+              </div>
+              <div class="card-metrica-ranking">#1 no ranking</div>
+            </article>
 
-        <section>
-            <div class="section-header-group">
-                <h2>Semanas</h2>
-                <div class="custom-select" onclick="toggleMenu('m-weeks')"><span class="sel-txt-display">12 meses</span><div class="options-menu" id="m-weeks"><div onclick="updateAllPeriods('12 meses')">12 meses</div><div onclick="updateAllPeriods('6 meses')">6 meses</div><div onclick="updateAllPeriods('3 meses')">3 meses</div></div></div>
-            </div>
-            <div class="semanas-grid" id="weeks"></div>
-        </section>
+            <article class="card-metrica card-metrica-2">
+              <div class="card-metrica-numero">254.865</div>
+              <div class="card-metrica-label">pontos acumulados</div>
+              <div class="badge-crescimento badge-crescimento-hero">
+                <i class="fa-solid fa-arrow-up icone-crescimento" aria-hidden="true"></i>
+                <div class="badge-crescimento-texto">200%</div>
+              </div>
+              <div class="card-metrica-ranking">#1 no ranking</div>
+            </article>
+          </div>
 
-        <section>
-            <div class="section-header-group">
-                <h2>Álbuns</h2>
-                <div class="custom-select" onclick="toggleMenu('m-albums')"><span class="sel-txt-display">12 meses</span><div class="options-menu" id="m-albums"><div onclick="updateAllPeriods('12 meses')">12 meses</div><div onclick="updateAllPeriods('6 meses')">6 meses</div><div onclick="updateAllPeriods('3 meses')">3 meses</div></div></div>
-            </div>
-            <div class="grid-5" id="albums"></div>
-        </section>
+          <figure class="hero-imagem-box" id="heroImagemBox">
+            <img class="hero-imagem imagem-fluida" id="imagemArtista" src="" alt="Imagem do artista">
+            <figcaption class="hero-placeholder">Imagem do artista</figcaption>
+          </figure>
 
-        <section>
-            <div class="section-header-group">
-                <h2>Principais músicas</h2>
-                <div class="custom-select" onclick="toggleMenu('m-songs')"><span class="sel-txt-display">12 meses</span><div class="options-menu" id="m-songs"><div onclick="updateAllPeriods('12 meses')">12 meses</div><div onclick="updateAllPeriods('6 meses')">6 meses</div><div onclick="updateAllPeriods('3 meses')">3 meses</div></div></div>
+          <div class="hero-grade-metricas">
+            <article class="card-metrica card-metrica-3">
+              <div class="card-metrica-numero">146</div>
+              <div class="card-metrica-label">músicas como ato principal</div>
+              <div class="badge-crescimento badge-crescimento-hero">
+                <i class="fa-solid fa-arrow-up icone-crescimento" aria-hidden="true"></i>
+                <div class="badge-crescimento-texto">200%</div>
+              </div>
+              <div class="card-metrica-ranking">#6 no ranking</div>
+            </article>
+
+            <article class="card-metrica card-metrica-4">
+              <div class="card-metrica-numero">78</div>
+              <div class="card-metrica-label">músicas na posição No. 1</div>
+              <div class="badge-crescimento badge-crescimento-hero">
+                <i class="fa-solid fa-arrow-up icone-crescimento" aria-hidden="true"></i>
+                <div class="badge-crescimento-texto">200%</div>
+              </div>
+              <div class="card-metrica-ranking">#1 no ranking</div>
+            </article>
+
+            <article class="card-metrica card-metrica-5">
+              <div class="card-metrica-numero">1.547</div>
+              <div class="card-metrica-label">entradas na Ton Charts</div>
+              <div class="badge-crescimento badge-crescimento-hero">
+                <i class="fa-solid fa-arrow-up icone-crescimento" aria-hidden="true"></i>
+                <div class="badge-crescimento-texto">200%</div>
+              </div>
+              <div class="card-metrica-ranking">#1 no ranking</div>
+            </article>
+
+            <article class="card-metrica card-metrica-6">
+              <div class="card-metrica-numero">243</div>
+              <div class="card-metrica-label">certificados por scrobbles</div>
+              <div class="badge-crescimento badge-crescimento-hero">
+                <i class="fa-solid fa-arrow-up icone-crescimento" aria-hidden="true"></i>
+                <div class="badge-crescimento-texto">200%</div>
+              </div>
+              <div class="card-metrica-ranking">#1 no ranking</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="conteudo-principal">
+      <section class="bloco-geral bloco-desempenho" id="charts">
+        <div class="container">
+          <div class="cabecalho-bloco cabecalho-bloco-desempenho">
+            <h2 class="titulo-bloco titulo-bloco-desempenho">Desempenho por período</h2>
+
+            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-desempenho" aria-label="Selecionar período de desempenho">
+              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+              <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
+              <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
+              <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
+              <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
+            </select>
+          </div>
+
+          <div class="conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+            <div class="grafico-area">
+              <div class="grafico-periodo">
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-95"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-82"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-88"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-58"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-70"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-82"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-64"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-76"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+              </div>
             </div>
-            <div class="grid-5" style="margin-bottom: 2rem;">
-                <div class="stat-card"><h4>no pico No. 1</h4><div class="stat-number" data-v="54">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-                <div class="stat-card"><h4>no top 5</h4><div class="stat-number" data-v="85">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-                <div class="stat-card"><h4>no top 10</h4><div class="stat-number" data-v="102">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-                <div class="stat-card"><h4>no toncharts</h4><div class="stat-number" data-v="109">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-                <div class="stat-card"><h4>com certificado</h4><div class="stat-number" data-v="154">0</div><div class="comparacao"><i class="fa-solid fa-arrow-up"></i> 269%</div><div class="stat-sub">#1 no ranking</div></div>
-            </div>
-            <div id="filter-container">
-                <button id="f-all" class="filter-btn active" onclick="setFilter('all', this)">Todas</button>
-                <button class="filter-btn" onclick="setFilter('main', this)">Como artista principal</button>
-                <button class="filter-btn" onclick="setFilter('feat', this)">Participações</button>
-                <button class="filter-btn" onclick="setFilter('diamante', this)">Diamante</button>
-                <button class="filter-btn" onclick="setFilter('platina', this)">Platina</button>
-                <button class="filter-btn" onclick="setFilter('ouro', this)">Ouro</button>
-                <button class="filter-btn" onclick="setFilter('no1', this)">Músicas No. 1</button>
-            </div>
-            <div class="songs-grid-table">
-                <div class="grid-row grid-header">
-                    <div onclick="handleSort('pos')">Pos.</div><div onclick="handleSort('rank')">rank</div><div></div><div class="grid-cell td-left" onclick="handleSort('name')">música</div><div onclick="handleSort('scr')">scrobbles</div><div onclick="handleSort('pts')">pontos</div><div onclick="handleSort('pk')">pico</div><div onclick="handleSort('wks')">semanas</div><div onclick="handleSort('d1')">dias #1</div>
+          </div>
+        </div>
+      </section>
+
+<section class="bloco-geral bloco-semanas" id="calendario">
+  <div class="semanas-container">
+    <div class="cabecalho-bloco cabecalho-bloco-semanas">
+      <h2 class="titulo-bloco titulo-bloco-semanas">Semanas</h2>
+    </div>
+
+<div class="grade-semanas">
+  <!-- cabeçalho: 1 vazio + 53 semanas -->
+  <div class="semana-cabecalho"></div>
+  <div class="semana-cabecalho">1</div>
+  <div class="semana-cabecalho">2</div>
+  <div class="semana-cabecalho">3</div>
+  <div class="semana-cabecalho">4</div>
+  <div class="semana-cabecalho">5</div>
+  <div class="semana-cabecalho">6</div>
+  <div class="semana-cabecalho">7</div>
+  <div class="semana-cabecalho">8</div>
+  <div class="semana-cabecalho">9</div>
+  <div class="semana-cabecalho">10</div>
+  <div class="semana-cabecalho">11</div>
+  <div class="semana-cabecalho">12</div>
+  <div class="semana-cabecalho">13</div>
+  <div class="semana-cabecalho">14</div>
+  <div class="semana-cabecalho">15</div>
+  <div class="semana-cabecalho">16</div>
+  <div class="semana-cabecalho">17</div>
+  <div class="semana-cabecalho">18</div>
+  <div class="semana-cabecalho">19</div>
+  <div class="semana-cabecalho">20</div>
+  <div class="semana-cabecalho">21</div>
+  <div class="semana-cabecalho">22</div>
+  <div class="semana-cabecalho">23</div>
+  <div class="semana-cabecalho">24</div>
+  <div class="semana-cabecalho">25</div>
+  <div class="semana-cabecalho">26</div>
+  <div class="semana-cabecalho">27</div>
+  <div class="semana-cabecalho">28</div>
+  <div class="semana-cabecalho">29</div>
+  <div class="semana-cabecalho">30</div>
+  <div class="semana-cabecalho">31</div>
+  <div class="semana-cabecalho">32</div>
+  <div class="semana-cabecalho">33</div>
+  <div class="semana-cabecalho">34</div>
+  <div class="semana-cabecalho">35</div>
+  <div class="semana-cabecalho">36</div>
+  <div class="semana-cabecalho">37</div>
+  <div class="semana-cabecalho">38</div>
+  <div class="semana-cabecalho">39</div>
+  <div class="semana-cabecalho">40</div>
+  <div class="semana-cabecalho">41</div>
+  <div class="semana-cabecalho">42</div>
+  <div class="semana-cabecalho">43</div>
+  <div class="semana-cabecalho">44</div>
+  <div class="semana-cabecalho">45</div>
+  <div class="semana-cabecalho">46</div>
+  <div class="semana-cabecalho">47</div>
+  <div class="semana-cabecalho">48</div>
+  <div class="semana-cabecalho">49</div>
+  <div class="semana-cabecalho">50</div>
+  <div class="semana-cabecalho">51</div>
+  <div class="semana-cabecalho">52</div>
+  <div class="semana-cabecalho">53</div>
+
+  <!-- 2011 -->
+  <div class="semana-ano">2011</div>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
+
+  <div class="semana-ano">2011</div>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
+
+  <div class="semana-ano">2011</div>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
+
+  <div class="semana-ano">2011</div>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
+
+  <div class="semana-ano">2011</div>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
+
+  <!-- repita o bloco de 53 botões para cada ano: 2012 até 2026 -->
+</div>
+
+
+</section>
+</div>
+</section>
+      <section class="bloco-geral bloco-albuns" id="albuns">
+        <div class="container">
+          <div class="cabecalho-bloco cabecalho-bloco-albuns">
+            <h2 class="titulo-bloco titulo-bloco-albuns">Álbuns</h2>
+
+            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-albuns" aria-label="Selecionar período de álbuns">
+              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+              <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
+              <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
+              <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
+              <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
+            </select>
+          </div>
+
+          <div class="albuns-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+            <div class="grade-albuns">
+              <article class="card-album card-album-1" data-spotify-album-id="5BvgP623rtvlc0HDcpzquz">
+                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <div class="card-album-rank">1</div>
+                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="card-album-placeholder">Capa do álbum</div>
+                  <div class="card-album-overlay">
+                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <div class="card-album-info">
+                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Teenage Dream</a>
+
+                  <div class="card-album-meta">
+                    <div><strong class="card-album-numero">5.000</strong> scrobbles</div>
+                    <div><strong class="card-album-numero">28%</strong> dos scrobbles do ato</div>
+                    <div><strong class="card-album-numero">#1</strong> no ranking</div>
+
+                    <div class="album-top5">
+                      <div class="album-top5-titulo">Principais músicas</div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">5.000</div><div class="album-top5-nome">The One That Got Away</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.800</div><div class="album-top5-nome">Firework</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.520</div><div class="album-top5-nome">Teenage Dream</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.210</div><div class="album-top5-nome">California Gurls</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.980</div><div class="album-top5-nome">E.T.</div></div>
+                    </div>
+                  </div>
                 </div>
-                <div id="song-list"></div>
-            </div>
-            <button id="btnMore" style="width:100%; padding:1.2rem; border:none; background:var(--cinza-claro); margin-top:2rem; cursor:pointer; font-weight:900; border-radius:4px; display:none"></button>
-        </section>
+              </article>
 
-        <section>
-            <div class="section-header-group"><h2>Últimos certificados</h2></div>
-            <div class="grid-5" id="certs"></div>
-        </section>
+              <article class="card-album card-album-2" data-spotify-album-id="3jB9yFDwRe3KhtGnHXJntk">
+                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <div class="card-album-rank">2</div>
+                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="card-album-placeholder">Capa do álbum</div>
+                  <div class="card-album-overlay">
+                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <div class="card-album-info">
+                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">PRISM</a>
+
+                  <div class="card-album-meta">
+                    <div><strong class="card-album-numero">4.740</strong> scrobbles</div>
+                    <div><strong class="card-album-numero">24%</strong> dos scrobbles do ato</div>
+                    <div><strong class="card-album-numero">#2</strong> no ranking</div>
+
+                    <div class="album-top5">
+                      <div class="album-top5-titulo">Principais músicas</div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.740</div><div class="album-top5-nome">Dark Horse</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.500</div><div class="album-top5-nome">Roar</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.120</div><div class="album-top5-nome">Unconditionally</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.850</div><div class="album-top5-nome">Birthday</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.610</div><div class="album-top5-nome">Walking On Air</div></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card-album card-album-3" data-spotify-album-id="0r2BUyPTmpbfuz4rR39mLl">
+                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <div class="card-album-rank">3</div>
+                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="card-album-placeholder">Capa do álbum</div>
+                  <div class="card-album-overlay">
+                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <div class="card-album-info">
+                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">One Of The Boys</a>
+
+                  <div class="card-album-meta">
+                    <div><strong class="card-album-numero">4.480</strong> scrobbles</div>
+                    <div><strong class="card-album-numero">21%</strong> dos scrobbles do ato</div>
+                    <div><strong class="card-album-numero">#3</strong> no ranking</div>
+
+                    <div class="album-top5">
+                      <div class="album-top5-titulo">Principais músicas</div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.480</div><div class="album-top5-nome">Hot N Cold</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.300</div><div class="album-top5-nome">I Kissed A Girl</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.900</div><div class="album-top5-nome">Thinking Of You</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.650</div><div class="album-top5-nome">Waking Up In Vegas</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.400</div><div class="album-top5-nome">Mannequin</div></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card-album card-album-4" data-spotify-album-id="1Fxp4d5gcsxq4gH2wKYXpB">
+                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <div class="card-album-rank">4</div>
+                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="card-album-placeholder">Capa do álbum</div>
+                  <div class="card-album-overlay">
+                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <div class="card-album-info">
+                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Witness</a>
+
+                  <div class="card-album-meta">
+                    <div><strong class="card-album-numero">4.220</strong> scrobbles</div>
+                    <div><strong class="card-album-numero">18%</strong> dos scrobbles do ato</div>
+                    <div><strong class="card-album-numero">#4</strong> no ranking</div>
+
+                    <div class="album-top5">
+                      <div class="album-top5-titulo">Principais músicas</div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.220</div><div class="album-top5-nome">Chained To The Rhythm</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">4.000</div><div class="album-top5-nome">Swish Swish</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.760</div><div class="album-top5-nome">Bon Appétit</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.500</div><div class="album-top5-nome">Witness</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.260</div><div class="album-top5-nome">Roulette</div></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="card-album card-album-5" data-spotify-album-id="3KjXg0MDej2pG9fv6I22lT">
+                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <div class="card-album-rank">5</div>
+                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="card-album-placeholder">Capa do álbum</div>
+                  <div class="card-album-overlay">
+                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <div class="card-album-info">
+                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Smile</a>
+
+                  <div class="card-album-meta">
+                    <div><strong class="card-album-numero">3.960</strong> scrobbles</div>
+                    <div><strong class="card-album-numero">16%</strong> dos scrobbles do ato</div>
+                    <div><strong class="card-album-numero">#5</strong> no ranking</div>
+
+                    <div class="album-top5">
+                      <div class="album-top5-titulo">Principais músicas</div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.960</div><div class="album-top5-nome">Never Really Over</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.800</div><div class="album-top5-nome">Harleys In Hawaii</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.600</div><div class="album-top5-nome">Daisies</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.420</div><div class="album-top5-nome">Smile</div></div>
+                      <div class="album-top5-musica"><div class="album-top5-plays">3.100</div><div class="album-top5-nome">Cry About It Later</div></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco-geral bloco-musicas" id="musicas">
+        <div class="container">
+          <div class="cabecalho-bloco cabecalho-bloco-musicas">
+            <h2 class="titulo-bloco titulo-bloco-musicas">Principais músicas</h2>
+
+            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-musicas" aria-label="Selecionar período de músicas">
+              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+              <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
+              <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
+              <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
+              <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
+            </select>
+          </div>
+
+          <div class="top-cards-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+            <div class="grade-top-cards">
+              <article class="top-card top-card-1 top-card-destaque">
+                <div class="top-card-numero">54</div>
+                <div class="top-card-label">na posição No. 1</div>
+                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
+                <div class="top-card-info"><div>111 entradas</div><div>#1 no ranking</div></div>
+              </article>
+
+              <article class="top-card top-card-2">
+                <div class="top-card-numero">85</div>
+                <div class="top-card-label">no top 5</div>
+                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
+                <div class="top-card-info"><div>437 entradas</div><div>#1 no ranking</div></div>
+              </article>
+
+              <article class="top-card top-card-3">
+                <div class="top-card-numero">102</div>
+                <div class="top-card-label">no top 10</div>
+                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
+                <div class="top-card-info"><div>870 entradas</div><div>#1 no ranking</div></div>
+              </article>
+
+              <article class="top-card top-card-4">
+                <div class="top-card-numero">109</div>
+                <div class="top-card-label">na Ton Charts</div>
+                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
+                <div class="top-card-info"><div>1.747 entradas</div><div>#1 no ranking</div></div>
+              </article>
+
+              <article class="top-card top-card-5">
+                <div class="top-card-numero">154</div>
+                <div class="top-card-label">músicas com algum scrobble</div>
+                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
+                <div class="top-card-info"><div>total editorial</div><div>#1 no ranking</div></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="musicas-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+            <div class="lista-musicas">
+              <div class="cabecalho-musicas">
+                <div class="cabecalho-musica cabecalho-musica-1">Posição</div>
+                <div class="cabecalho-musica cabecalho-musica-2">Ranking</div>
+                <div class="cabecalho-musica cabecalho-musica-3">Música</div>
+                <div class="cabecalho-musica cabecalho-musica-4">Scrobbles</div>
+                <div class="cabecalho-musica cabecalho-musica-5">Pontuação</div>
+                <div class="cabecalho-musica cabecalho-musica-6">Pico</div>
+                <div class="cabecalho-musica cabecalho-musica-7">Semanas</div>
+                <div class="cabecalho-musica cabecalho-musica-8">Dias #1</div>
+              </div>
+
+              <div class="linhas-musicas">
+                <article class="linha-musica linha-musica-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
+                  <div class="musica-posicao">1</div>
+                  <div class="musica-ranking">#1</div>
+                  <div class="musica-principal">
+                    <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
+                      <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
+                      <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone" aria-hidden="true"></i></div>
+                    </a>
+                    <div class="musica-info">
+                      <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">The One That Got Away</a>
+                      <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> · 3:47</div>
+                    </div>
+                  </div>
+                  <div class="musica-numero musica-scrobbles">5.000</div>
+                  <div class="musica-numero musica-pontuacao">10.000</div>
+                  <div class="pico-musica"><div class="pico-posicao">#1</div><div class="pico-vezes">10x</div></div>
+                  <div class="musica-semanas">150</div>
+                  <div class="musica-dias">6.347</div>
+                </article>
+
+                <article class="linha-musica linha-musica-2" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
+                  <div class="musica-posicao">2</div>
+                  <div class="musica-ranking">#1</div>
+                  <div class="musica-principal">
+                    <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
+                      <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
+                      <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone" aria-hidden="true"></i></div>
+                    </a>
+                    <div class="musica-info">
+                      <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">Firework</a>
+                      <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> · 3:48</div>
+                    </div>
+                  </div>
+                  <div class="musica-numero musica-scrobbles">4.800</div>
+                  <div class="musica-numero musica-pontuacao">9.750</div>
+                  <div class="pico-musica"><div class="pico-posicao">#1</div><div class="pico-vezes">8x</div></div>
+                  <div class="musica-semanas">148</div>
+                  <div class="musica-dias">6.120</div>
+                </article>
+
+                <article class="linha-musica linha-musica-3" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
+                  <div class="musica-posicao">3</div>
+                  <div class="musica-ranking">#1</div>
+                  <div class="musica-principal">
+                    <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
+                      <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
+                      <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone" aria-hidden="true"></i></div>
+                    </a>
+                    <div class="musica-info">
+                      <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">Dark Horse</a>
+                      <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> · 3:35</div>
+                    </div>
+                  </div>
+                  <div class="musica-numero musica-scrobbles">4.600</div>
+                  <div class="musica-numero musica-pontuacao">9.410</div>
+                  <div class="pico-musica"><div class="pico-posicao">#1</div><div class="pico-vezes">7x</div></div>
+                  <div class="musica-semanas">144</div>
+                  <div class="musica-dias">5.980</div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="acoes-musicas">
+            <button class="botao botao-musicas botao-exibir-mais" type="button" id="botaoExibirMais">exibir mais</button>
+            <button class="botao botao-musicas botao-recolher-tudo" type="button" id="botaoRecolherTudo">recolher tudo</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco-geral bloco-certificados" id="certificacoes">
+        <div class="container">
+          <div class="cabecalho-bloco cabecalho-bloco-certificados">
+            <h2 class="titulo-bloco titulo-bloco-certificados">Últimos certificados</h2>
+          </div>
+
+          <div class="certificados-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+            <div class="grade-certificados">
+              <article class="card-certificado card-certificado-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
+                <div class="card-certificado-topo">
+                  <div class="card-certificado-tipo">5x Ouro</div>
+                  <div class="card-certificado-quantidade">5000</div>
+                </div>
+
+                <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">The One That Got Away</a>
+                <div class="card-certificado-artista nome-artista-api">Artista</div>
+
+                <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
+                </a>
+
+                <div class="card-certificado-stats">
+                  <div><div class="card-certificado-numero">44°</div><div class="card-certificado-label">do artista</div></div>
+                  <div><div class="card-certificado-numero">44°</div><div class="card-certificado-label">no geral</div></div>
+                </div>
+
+                <time class="card-certificado-data" datetime="2026-01-01">1 jan 2026 20:15</time>
+              </article>
+
+              <article class="card-certificado card-certificado-2 card-certificado-platina" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
+                <div class="card-certificado-topo">
+                  <div class="card-certificado-tipo">5x Platina</div>
+                  <div class="card-certificado-quantidade">5000</div>
+                </div>
+
+                <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">Firework</a>
+                <div class="card-certificado-artista nome-artista-api">Artista</div>
+
+                <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
+                </a>
+
+                <div class="card-certificado-stats">
+                  <div><div class="card-certificado-numero">45°</div><div class="card-certificado-label">do artista</div></div>
+                  <div><div class="card-certificado-numero">45°</div><div class="card-certificado-label">no geral</div></div>
+                </div>
+
+                <time class="card-certificado-data" datetime="2026-01-02">2 jan 2026 20:15</time>
+              </article>
+
+              <article class="card-certificado card-certificado-3 card-certificado-diamante" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
+                <div class="card-certificado-topo">
+                  <div class="card-certificado-tipo">5x Diamante</div>
+                  <div class="card-certificado-quantidade">5000</div>
+                </div>
+
+                <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">Dark Horse</a>
+                <div class="card-certificado-artista nome-artista-api">Artista</div>
+
+                <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
+                  <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
+                </a>
+
+                <div class="card-certificado-stats">
+                  <div><div class="card-certificado-numero">46°</div><div class="card-certificado-label">do artista</div></div>
+                  <div><div class="card-certificado-numero">46°</div><div class="card-certificado-label">no geral</div></div>
+                </div>
+
+                <time class="card-certificado-data" datetime="2026-01-03">3 jan 2026 20:15</time>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer>
-        <div class="nav-container">
-            <img src="https://raw.githubusercontent.com/toncharts/blog/main/logo/toncharts-branco.svg" class="logo-img">
-            <nav>
-                <a href="#">calendário</a> <a href="#">charts</a> <a href="#">artistas</a> <a href="#">álbuns</a> <a href="#">músicas</a> <a href="#">certificações</a> <a href="#">last.fm</a>
-            </nav>
+    <footer class="site-footer" id="lastfm">
+      <div class="container site-footer-container">
+        <div class="footer-principal">
+          <a class="logo-toncharts footer-logo link-padrao" href="#topo" aria-label="TonCharts">
+            <div class="logo-toncharts-palavra-1">ton</div>
+            <div class="logo-toncharts-palavra-2">charts</div>
+          </a>
+
+          <nav class="footer-nav" aria-label="Menu do rodapé">
+            <a class="footer-link footer-link-1 link-padrao" href="#calendario">calendário</a>
+            <a class="footer-link footer-link-2 link-padrao" href="#charts">charts</a>
+            <a class="footer-link footer-link-3 link-padrao" href="#artistas">artistas</a>
+            <a class="footer-link footer-link-4 link-padrao" href="#albuns">álbuns</a>
+            <a class="footer-link footer-link-5 link-padrao" href="#musicas">músicas</a>
+            <a class="footer-link footer-link-6 link-padrao" href="#certificacoes">certificações</a>
+            <a class="footer-link footer-link-7 link-padrao" href="#lastfm">meu last.fm</a>
+          </nav>
         </div>
+
+        <div class="footer-info">
+          <p class="footer-texto">
+            Esta página usa dados públicos da Spotify Web API apenas para perfil, capa e links. Rankings, scrobbles, semanas e certificações são preenchidos manualmente no HTML.
+          </p>
+
+          <p class="footer-creditos">
+            <strong class="footer-destaque">TonCharts</strong> — visual experimental para charts musicais.
+          </p>
+        </div>
+      </div>
     </footer>
+  </div>
 
-    <template id="template-album">
-        <div class="album-item">
-            <div class="album-img-box"><span class="album-rank-badge"></span><img src=""></div>
-            <div class="album-details">
-                <p class="album-name" style="font-weight:900; font-size:var(--fonte-pequena); margin-bottom:5px;"></p>
-                <div class="album-meta"><div class="album-scrobbles"></div><div class="album-ranking"></div></div>
-                <div class="album-songs-grid">
-                    <div class="album-song-row"><span class="song-1-scr"></span><span class="song-1-name">Track Name</span></div>
-                    <div class="album-song-row"><span class="song-2-scr"></span><span class="song-2-name">Another Song</span></div>
-                </div>
-            </div>
-        </div>
-    </template>
+  <div class="tooltip-semana" id="tooltipSemana">
+    <div class="tooltip-data" id="tooltipData"></div>
 
-    <template id="template-song-row">
-        <div class="grid-row">
-            <div class="grid-cell song-pos"></div>
-            <div class="grid-cell song-rank"></div>
-            <div class="grid-cell"><img class="song-img" src="" style="width:40px;height:40px;border-radius:4px"></div>
-            <div class="grid-cell td-left song-name-container"></div>
-            <div class="grid-cell song-scr"></div>
-            <div class="grid-cell song-pts"></div>
-            <div class="grid-cell song-pk"></div>
-            <div class="grid-cell song-wks"></div>
-            <div class="grid-cell song-d1"></div>
-        </div>
-    </template>
+    <div class="tooltip-linha">
+      <div class="tooltip-posicao" id="tooltipPosicao"></div>
+      <div class="tooltip-plays" id="tooltipPlays"></div>
+    </div>
 
-    <template id="template-cert-card">
-        <div class="cert-card">
-            <div class="cert-header"><div class="certificacao"></div><div class="numero-certificacao"></div></div>
-            <div class="cert-title"></div>
-            <div class="cert-artista">Katy Perry</div>
-            <img src="" class="cert-img">
-            <div class="cert-divider"></div>
-            <div class="cert-stats-grid">
-                <div class="rank-item"><span class="rank-val">44º</span><span class="rank-label">do artista</span></div>
-                <div class="cert-v-line"></div>
-                <div class="rank-item"><span class="rank-val">102º</span><span class="rank-label">no geral</span></div>
-            </div>
-            <div class="cert-date">1 jan 2026</div>
-        </div>
-    </template>
+    <div class="tooltip-melhor" id="tooltipMelhor">Melhor desempenho até aqui</div>
+  </div>
 
-    <template id="template-bar">
-        <div class="bar-group">
-            <div class="bar-label"></div>
-            <div class="bar"></div>
-            <div class="axis-label"><div class="periodo"></div><div class="posicao-periodo"></div></div>
-        </div>
-    </template>
+  <script>
+    const selecionar = (query) => document.querySelector(query);
+    const selecionarTodos = (query) => document.querySelectorAll(query);
 
-    <div id="tt"></div>
+    const SPOTIFY_ACCESS_TOKEN = "SEU_TOKEN_VALIDO_DO_SPOTIFY_AQUI";
+    const SPOTIFY_MARKET = "BR";
+    const SPOTIFY_ARTIST_ID = document.querySelector(".spotify-artista")?.id?.trim() || "";
 
-    <script>
-        const ID = '5d6fa75bb8b643dbb86661b4e46b5382', SEC = '781ca22c68804bfda171dc1caa627435';
-        let tk = '', allTracks = [], currentLimit = 10, currentFilter = 'all', sortCol = 'pos', sortDir = 1;
-        const fmt = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    const tokenValido = () => {
+      const token = SPOTIFY_ACCESS_TOKEN.trim();
 
-        async function init() {
-            const r = await fetch('https://accounts.spotify.com/api/token', {
-                method: 'POST', headers: { 'Authorization': 'Basic ' + btoa(ID + ':' + SEC), 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'grant_type=client_credentials'
-            });
-            tk = (await r.json()).access_token;
-            fetch(`https://api.spotify.com/v1/artists/${document.body.id}`, { headers: {'Authorization': 'Bearer '+tk}}).then(res => res.json()).then(d => document.getElementById('pfp').src = d.images[0].url);
-            loadAlbums(); await loadTracks(); renderWeeks(); renderG(12); renderCerts(); anim();
+      return (
+        Boolean(token) &&
+        Boolean(SPOTIFY_ARTIST_ID) &&
+        !token.includes("SEU_TOKEN") &&
+        !token.includes("AQUI") &&
+        !token.includes("xxxx")
+      );
+    };
+
+    const obterImagem = (imagens) => {
+      if (!Array.isArray(imagens) || imagens.length === 0) return "";
+      return imagens[0]?.url || imagens[1]?.url || imagens[2]?.url || "";
+    };
+
+    async function spotifyFetch(endpoint) {
+      const resposta = await fetch(`https://api.spotify.com/v1${endpoint}`, {
+        headers: {
+          Authorization: `Bearer ${SPOTIFY_ACCESS_TOKEN}`
         }
+      });
 
-        async function loadAlbums() {
-            const ids = ['06SY6Ke6mXzZHhURLVU57R', '3jB9yFDwRe3KhtGnHXJntk', '0UlbGi4oAth8s6rwaGSU8Z', '3xshXXIfhAKRQ2995VJ7kZ', '3jxt1S4JtW4uFalBwlfehS'];
-            const container = document.getElementById('albums');
-            const template = document.getElementById('template-album');
-            container.innerHTML = '';
-            let rank = 1;
-            for(let id of ids) {
-                const res = await fetch(`https://api.spotify.com/v1/albums/${id}`, { headers: {'Authorization': 'Bearer '+tk}});
-                const d = await res.json(); const scr = Math.floor(Math.random()*50000)+1000;
-                
-                const clone = template.content.cloneNode(true);
-                clone.querySelector('.album-rank-badge').textContent = rank;
-                clone.querySelector('img').src = d.images[0].url;
-                clone.querySelector('.album-name').textContent = d.name;
-                clone.querySelector('.album-scrobbles').textContent = `${fmt(scr)} scrobbles`;
-                clone.querySelector('.album-ranking').textContent = `#${rank} no ranking`;
-                clone.querySelector('.song-1-scr').textContent = fmt(Math.floor(scr*0.1));
-                clone.querySelector('.song-2-scr').textContent = fmt(Math.floor(scr*0.08));
-                
-                container.appendChild(clone);
-                rank++;
-            }
+      if (!resposta.ok) {
+        const detalhe = await resposta.text();
+        throw new Error(`Erro Spotify ${resposta.status}: ${detalhe}`);
+      }
+
+      return resposta.json();
+    }
+
+    async function carregarSpotify() {
+      if (!tokenValido()) return;
+
+      try {
+        const artista = await spotifyFetch(`/artists/${SPOTIFY_ARTIST_ID}`);
+
+        aplicarPerfilArtista(artista);
+        await aplicarCapasAlbuns();
+        await aplicarCapasMusicas();
+        await aplicarCapasCertificados();
+        atualizarSeo(artista);
+      } catch (erro) {
+        console.error("ERRO REAL DO SPOTIFY:", erro);
+      }
+    }
+
+    function aplicarPerfilArtista(artista) {
+      const imagem = obterImagem(artista.images);
+
+      selecionar("#nomeArtista").textContent = artista.name || "Artista";
+      selecionar("#linkSpotifyArtista").href = artista.external_urls?.spotify || "#";
+
+      const imagemArtista = selecionar("#imagemArtista");
+      const heroImagemBox = selecionar("#heroImagemBox");
+
+      if (imagem && imagemArtista && heroImagemBox) {
+        imagemArtista.src = imagem;
+        imagemArtista.alt = `Imagem de ${artista.name}`;
+        imagemArtista.classList.add("hero-imagem-carregada");
+        heroImagemBox.classList.add("hero-imagem-box-com-imagem");
+      }
+
+      selecionarTodos(".nome-artista-api").forEach((elemento) => {
+        elemento.textContent = artista.name || "Artista";
+      });
+    }
+
+    async function aplicarCapasAlbuns() {
+      const cards = Array.from(document.querySelectorAll("[data-spotify-album-id]"));
+      const ids = [...new Set(cards.map((card) => card.dataset.spotifyAlbumId).filter(Boolean))];
+
+      if (!ids.length) return;
+
+      const dados = await spotifyFetch(`/albums?ids=${ids.slice(0, 20).join(",")}&market=${SPOTIFY_MARKET}`);
+      const mapa = new Map((dados.albums || []).filter(Boolean).map((album) => [album.id, album]));
+
+      cards.forEach((card) => {
+        const album = mapa.get(card.dataset.spotifyAlbumId);
+        if (!album) return;
+
+        const imagemUrl = obterImagem(album.images);
+        const link = album.external_urls?.spotify || "#";
+        const imagem = card.querySelector(".card-album-imagem");
+        const capa = card.querySelector(".card-album-capa");
+        const nome = card.querySelector(".card-album-nome");
+
+        if (capa) capa.href = link;
+        if (nome) nome.href = link;
+
+        if (imagem && imagemUrl) {
+          imagem.src = imagemUrl;
+          imagem.alt = `Capa de ${album.name}`;
+          capa?.classList.add("card-album-com-imagem");
         }
+      });
+    }
 
-        async function loadTracks() {
-            const res = await fetch(`https://api.spotify.com/v1/artists/${document.body.id}/top-tracks?market=BR`, { headers: {'Authorization': 'Bearer '+tk}});
-            const d = await res.json();
-            allTracks = [...d.tracks, ...d.tracks].slice(0, 30).map((t, i) => {
-                const scr = Math.floor(Math.random()*1500 + 100); const pk = i < 2 ? 1 : (Math.floor(Math.random()*15)+2);
-                const isFeat = Math.random() > 0.7;
-                return { ...t, pos: i+1, rank: i+1, scr, pts: Math.floor(scr*1.4), pk, wks: Math.floor(Math.random()*50)+1, d1: pk == 1 ? Math.floor(Math.random()*15)+1 : 0, isFeat, featName: isFeat ? "Snoop Dogg" : null };
-            });
-            renderT();
+    async function aplicarCapasMusicas() {
+      const linhas = Array.from(document.querySelectorAll(".linha-musica[data-spotify-track-id]"));
+      const ids = [...new Set(linhas.map((linha) => linha.dataset.spotifyTrackId).filter(Boolean))];
+
+      if (!ids.length) return;
+
+      const dados = await spotifyFetch(`/tracks?ids=${ids.slice(0, 50).join(",")}&market=${SPOTIFY_MARKET}`);
+      const mapa = new Map((dados.tracks || []).filter(Boolean).map((track) => [track.id, track]));
+
+      linhas.forEach((linha) => {
+        const musica = mapa.get(linha.dataset.spotifyTrackId);
+        if (!musica) return;
+
+        const imagemUrl = obterImagem(musica.album?.images);
+        const link = musica.external_urls?.spotify || "#";
+        const imagem = linha.querySelector(".musica-imagem");
+        const capaLink = linha.querySelector(".musica-capa-link");
+        const nome = linha.querySelector(".musica-nome");
+
+        if (capaLink) capaLink.href = link;
+        if (nome) nome.href = link;
+
+        if (imagem && imagemUrl) {
+          imagem.src = imagemUrl;
+          imagem.alt = `Capa de ${musica.name}`;
         }
+      });
+    }
 
-        function renderT() {
-            const body = document.getElementById('song-list');
-            const template = document.getElementById('template-song-row');
-            body.innerHTML = '';
-            let filtered = allTracks.filter(t => {
-                if(currentFilter === 'main') return !t.isFeat;
-                if(currentFilter === 'feat') return t.isFeat;
-                if(currentFilter === 'diamante') return t.scr >= 1000;
-                if(currentFilter === 'platina') return t.scr >= 500;
-                if(currentFilter === 'ouro') return t.scr >= 200;
-                if(currentFilter === 'no1') return t.pk === 1;
-                return true;
-            });
-            filtered.sort((a,b) => (a[sortCol] > b[sortCol] ? 1 : -1) * sortDir);
-            const btn = document.getElementById('btnMore');
-            if(filtered.length > 10) { btn.style.display = 'block'; btn.innerText = currentLimit >= filtered.length ? "RECOLHER" : "EXIBIR MAIS"; btn.onclick = () => { currentLimit = currentLimit >= filtered.length ? 10 : 999; renderT(); }; } else { btn.style.display = 'none'; }
-            
-            filtered.slice(0, currentLimit).forEach(t => {
-                const clone = template.content.cloneNode(true);
-                clone.querySelector('.song-pos').textContent = t.pos;
-                clone.querySelector('.song-rank').textContent = `#${t.rank}`;
-                clone.querySelector('.song-img').src = t.album.images[2].url;
-                
-                const nameContainer = clone.querySelector('.song-name-container');
-                const strong = document.createElement('strong');
-                strong.textContent = t.name;
-                nameContainer.appendChild(strong);
-                if(t.isFeat) {
-                    const feat = document.createElement('span');
-                    feat.className = 'feat-text';
-                    feat.textContent = ` com ${t.featName}`;
-                    nameContainer.appendChild(feat);
-                }
+    async function aplicarCapasCertificados() {
+      const cards = Array.from(document.querySelectorAll(".card-certificado[data-spotify-track-id]"));
+      const ids = [...new Set(cards.map((card) => card.dataset.spotifyTrackId).filter(Boolean))];
 
-                clone.querySelector('.song-scr').textContent = fmt(t.scr);
-                clone.querySelector('.song-pts').textContent = fmt(t.pts);
-                
-                const pkCell = clone.querySelector('.song-pk');
-                pkCell.textContent = `#${t.pk}`;
-                if(t.pk == 1) {
-                    const span = document.createElement('span');
-                    span.className = 'numero-semanas-topo';
-                    span.textContent = t.d1;
-                    pkCell.appendChild(span);
-                }
+      if (!ids.length) return;
 
-                clone.querySelector('.song-wks').textContent = t.wks;
-                clone.querySelector('.song-d1').textContent = t.d1;
-                body.appendChild(clone);
-            });
+      const dados = await spotifyFetch(`/tracks?ids=${ids.slice(0, 50).join(",")}&market=${SPOTIFY_MARKET}`);
+      const mapa = new Map((dados.tracks || []).filter(Boolean).map((track) => [track.id, track]));
+
+      cards.forEach((card) => {
+        const musica = mapa.get(card.dataset.spotifyTrackId);
+        if (!musica) return;
+
+        const imagemUrl = obterImagem(musica.album?.images);
+        const link = musica.external_urls?.spotify || "#";
+        const imagem = card.querySelector(".card-certificado-imagem");
+        const capa = card.querySelector(".card-certificado-capa");
+        const nome = card.querySelector(".card-certificado-nome");
+
+        if (capa) capa.href = link;
+        if (nome) nome.href = link;
+
+        if (imagem && imagemUrl) {
+          imagem.src = imagemUrl;
+          imagem.alt = `Capa de ${musica.name}`;
         }
+      });
+    }
 
-        function handleSort(col) { if(sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; } renderT(); }
-        function setFilter(f, btn) { currentFilter = f; currentLimit = 10; document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderT(); }
+    function aplicarPeriodo(periodo) {
+      selecionarTodos(".seletor-periodo").forEach((select) => {
+        select.value = periodo;
+      });
 
-        function renderCerts() {
-            const container = document.getElementById('certs');
-            const template = document.getElementById('template-cert-card');
-            container.innerHTML = '';
-            const types = [{name: "5x Ouro", bg: "var(--ouro)", val: "5.000"}, {name: "Diamante", bg: "var(--diamante)", val: "10.000"}];
-            allTracks.slice(0, 5).forEach((t, i) => {
-                const type = types[i % 2];
-                const clone = template.content.cloneNode(true);
-                const card = clone.querySelector('.cert-card');
-                card.style.background = type.bg;
-                clone.querySelector('.certificacao').textContent = type.name;
-                clone.querySelector('.numero-certificacao').textContent = type.val;
-                clone.querySelector('.cert-title').textContent = t.name;
-                clone.querySelector('.cert-img').src = t.album.images[0].url;
-                container.appendChild(clone);
-            });
-        }
+      const blocosPorPeriodo = selecionarTodos(".conteudo-periodo[data-periodo]");
 
-        function toggleMenu(id) { 
-            const menu = document.getElementById(id); const isVisible = menu.classList.contains('show');
-            document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show'));
-            if (!isVisible) menu.classList.add('show');
-        }
-        
-        function updateAllPeriods(p) { 
-            const n = parseInt(p); document.querySelectorAll('.sel-txt-display').forEach(sp => sp.innerText = p); 
-            renderG(n); setFilter('all', document.getElementById('f-all'));
-            document.querySelectorAll('.stat-number').forEach(el => { const base = parseInt(el.dataset.v); el.innerText = fmt(Math.floor(base * (n/12))); });
-            document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show'));
-        }
+      blocosPorPeriodo.forEach((bloco) => {
+        bloco.classList.toggle("conteudo-periodo-ativo", bloco.dataset.periodo === periodo);
+      });
 
-        function renderWeeks() { 
-            const c = document.getElementById('weeks'); const tt = document.getElementById('tt'); c.innerHTML = '';
-            for(let i=0; i<260; i++){ 
-                const d = document.createElement('div'); d.className = 'week-cell'; d.style.opacity = Math.random()*0.8+0.2; 
-                d.onmouseenter = (e) => { 
-                    tt.innerHTML = '';
-                    const s = document.createElement('strong'); s.textContent = `Semana ${i+1}`;
-                    tt.appendChild(s); tt.appendChild(document.createElement('br'));
-                    tt.append(`Scrobbles: ${fmt(Math.floor(Math.random()*500))}`);
-                    tt.appendChild(document.createElement('br'));
-                    tt.append(`Posição: #1`);
-                    tt.style.display = 'block'; 
-                };
-                d.onmousemove = (e) => { tt.style.left = (e.clientX + 15) + 'px'; tt.style.top = (e.clientY + 15) + 'px'; };
-                d.onmouseleave = () => tt.style.display = 'none';
-                c.appendChild(d); 
-            }
-        }
+      atualizarBotoesMusicas();
+    }
 
-        function renderG(n) { 
-            const g = document.getElementById('graph');
-            const template = document.getElementById('template-bar');
-            g.innerHTML = ''; 
-            for(let i=0; i<n; i++){ 
-                const h = Math.floor(Math.random()*80+20);
-                const clone = template.content.cloneNode(true);
-                clone.querySelector('.bar-label').textContent = fmt(h*100);
-                clone.querySelector('.bar').style.height = `${h}%`;
-                clone.querySelector('.periodo').textContent = `202${i%5}`;
-                clone.querySelector('.posicao-periodo').textContent = `#${i+1}`;
-                g.appendChild(clone); 
-            }
-        }
+    function configurarPeriodos() {
+      selecionarTodos(".seletor-periodo").forEach((select) => {
+        select.addEventListener("change", (evento) => {
+          aplicarPeriodo(evento.target.value);
+        });
+      });
+    }
 
-        function anim() { document.querySelectorAll('.stat-number').forEach(n => { n.innerText = fmt(n.dataset.v); }); }
-        init();
-        window.onclick = function(e) { if (!e.target.closest('.custom-select')) document.querySelectorAll('.options-menu').forEach(m => m.classList.remove('show')); }
-    </script>
+    function configurarMusicas() {
+      const botaoExibir = selecionar("#botaoExibirMais");
+      const botaoRecolher = selecionar("#botaoRecolherTudo");
+
+      if (!botaoExibir || !botaoRecolher) return;
+
+      botaoExibir.addEventListener("click", () => {
+        const lista = selecionar(".musicas-area.conteudo-periodo-ativo .linhas-musicas");
+        if (!lista) return;
+
+        const escondidas = Array.from(lista.querySelectorAll(".linha-musica[hidden]"));
+        escondidas.slice(0, 10).forEach((linha) => {
+          linha.hidden = false;
+        });
+
+        atualizarBotoesMusicas();
+      });
+
+      botaoRecolher.addEventListener("click", () => {
+        const lista = selecionar(".musicas-area.conteudo-periodo-ativo .linhas-musicas");
+        if (!lista) return;
+
+        const linhas = Array.from(lista.querySelectorAll(".linha-musica"));
+        linhas.forEach((linha, indice) => {
+          linha.hidden = indice >= 10;
+        });
+
+        atualizarBotoesMusicas();
+      });
+    }
+
+    function atualizarBotoesMusicas() {
+      const lista = selecionar(".musicas-area.conteudo-periodo-ativo .linhas-musicas");
+      const botaoExibir = selecionar("#botaoExibirMais");
+      const botaoRecolher = selecionar("#botaoRecolherTudo");
+
+      if (!lista || !botaoExibir || !botaoRecolher) return;
+
+      const linhas = Array.from(lista.querySelectorAll(".linha-musica"));
+      const visiveis = linhas.filter((linha) => !linha.hidden).length;
+
+      botaoExibir.disabled = visiveis >= linhas.length;
+      botaoRecolher.disabled = visiveis <= 10;
+    }
+
+    function configurarTema() {
+      const temaSalvo = localStorage.getItem("toncharts-theme") || "dark";
+
+      document.documentElement.setAttribute("data-theme", temaSalvo);
+      atualizarIconeTema(temaSalvo);
+
+      selecionar("#botaoTema")?.addEventListener("click", () => {
+        const temaAtual = document.documentElement.getAttribute("data-theme");
+        const proximoTema = temaAtual === "dark" ? "light" : "dark";
+
+        document.documentElement.setAttribute("data-theme", proximoTema);
+        localStorage.setItem("toncharts-theme", proximoTema);
+        atualizarIconeTema(proximoTema);
+      });
+    }
+
+    function atualizarIconeTema(tema) {
+      const botao = selecionar("#botaoTema");
+      const icone = botao?.querySelector(".icone-tema");
+
+      if (!botao || !icone) return;
+
+      icone.classList.toggle("fa-sun", tema === "dark");
+      icone.classList.toggle("fa-moon", tema === "light");
+      botao.setAttribute("aria-label", tema === "dark" ? "Alternar modo claro" : "Alternar modo escuro");
+    }
+
+    function atualizarLabelsPeriodoResponsivo() {
+      const usarTextoCurto = window.matchMedia("(max-width: 32.5rem)").matches;
+
+      selecionarTodos(".opcao-periodo").forEach((opcao) => {
+        opcao.textContent = usarTextoCurto ? opcao.dataset.short : opcao.dataset.full;
+      });
+    }
+
+    function configurarTooltipSemanas() {
+      selecionarTodos(".semana-quadrinho").forEach((quadrinho) => {
+        quadrinho.addEventListener("mouseenter", () => mostrarTooltipSemana(quadrinho));
+        quadrinho.addEventListener("focus", () => mostrarTooltipSemana(quadrinho));
+        quadrinho.addEventListener("mouseleave", esconderTooltipSemana);
+        quadrinho.addEventListener("blur", esconderTooltipSemana);
+      });
+    }
+
+    function mostrarTooltipSemana(quadrinho) {
+      const tooltip = selecionar("#tooltipSemana");
+      const tooltipData = selecionar("#tooltipData");
+      const tooltipPosicao = selecionar("#tooltipPosicao");
+      const tooltipPlays = selecionar("#tooltipPlays");
+      const tooltipMelhor = selecionar("#tooltipMelhor");
+
+      if (!tooltip || !tooltipData || !tooltipPosicao || !tooltipPlays || !tooltipMelhor) return;
+
+      const rect = quadrinho.getBoundingClientRect();
+
+      tooltipData.textContent = quadrinho.dataset.data || "";
+      tooltipPosicao.textContent = quadrinho.dataset.posicao || "";
+      tooltipPlays.textContent = quadrinho.dataset.plays || "";
+      tooltipMelhor.classList.toggle("tooltip-melhor-visivel", quadrinho.dataset.melhor === "true");
+
+      tooltip.classList.add("tooltip-semana-visivel");
+
+      tooltip.style.left = `${Math.min(Math.max(rect.left + rect.width / 2, 112), window.innerWidth - 112)}px`;
+      tooltip.style.top = `${Math.max(rect.top - 8, 90)}px`;
+    }
+
+    function esconderTooltipSemana() {
+      selecionar("#tooltipSemana")?.classList.remove("tooltip-semana-visivel");
+    }
+
+    function atualizarSeo(artista) {
+      const nome = artista.name || "Artista";
+      const imagem = obterImagem(artista.images);
+      const descricao = `Perfil musical de ${nome} com métricas, desempenho por período, semanas, álbuns, principais músicas e certificações.`;
+
+      document.title = `${nome} — TonCharts`;
+      atualizarMetaNome("description", descricao);
+      atualizarMetaPropriedade("og:title", `${nome} — TonCharts`);
+      atualizarMetaPropriedade("og:description", descricao);
+      atualizarMetaPropriedade("og:image", imagem);
+      atualizarMetaNome("twitter:title", `${nome} — TonCharts`);
+      atualizarMetaNome("twitter:description", descricao);
+      atualizarMetaNome("twitter:image", imagem);
+    }
+
+    function atualizarMetaNome(nome, conteudo) {
+      const meta = document.querySelector(`meta[name="${nome}"]`);
+      if (meta) meta.setAttribute("content", conteudo || "");
+    }
+
+    function atualizarMetaPropriedade(propriedade, conteudo) {
+      const meta = document.querySelector(`meta[property="${propriedade}"]`);
+      if (meta) meta.setAttribute("content", conteudo || "");
+    }
+
+    function iniciarPagina() {
+      configurarTema();
+      configurarPeriodos();
+      configurarMusicas();
+      configurarTooltipSemanas();
+      atualizarLabelsPeriodoResponsivo();
+      aplicarPeriodo("12m");
+      carregarSpotify();
+    }
+
+    iniciarPagina();
+
+    window.addEventListener("resize", atualizarLabelsPeriodoResponsivo);
+  </script>
 </body>
 </html>
