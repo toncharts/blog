@@ -26,9 +26,9 @@ jobs:
 
       - name: Gerar spotify-cache.json
         run: |
-          node <<'NODE'
-          const { readdir, readFile, writeFile, mkdir } = require("node:fs/promises");
-          const path = require("node:path");
+          node --input-type=module <<'NODE'
+          import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+          import path from "node:path";
 
           const ignorar = new Set([".git", ".github", "node_modules"]);
           const arquivosHtml = await listarHtml(".");
@@ -132,7 +132,6 @@ jobs:
 
           async function buscarOembed(urlSpotify) {
             const endpoint = `https://open.spotify.com/oembed?url=${encodeURIComponent(urlSpotify)}`;
-
             const resposta = await fetch(endpoint);
 
             if (!resposta.ok) {
