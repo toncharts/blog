@@ -588,7 +588,7 @@
 
     .grafico-item:hover .barra-preenchimento {
       height: 100%;
-      background: linear-gradient(90deg, var(--cor-clara), var(--cor-clara-2));
+      background: linear-gradient(0deg, var(--cor-hero-1), var(--cor-hero-2));
     }
 
     .barra-legenda {
@@ -2700,6 +2700,29 @@
         <div class="semanas-container">
           <div class="cabecalho-bloco cabecalho-bloco-semanas">
             <h2 class="titulo-bloco titulo-bloco-semanas">Desempenho por semanas</h2>
+
+            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-semanas"
+              aria-label="Selecionar período de semanas">
+              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">
+                Todo o período
+              </option>
+
+              <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>
+                12 meses
+              </option>
+
+              <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">
+                6 meses
+              </option>
+
+              <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">
+                3 meses
+              </option>
+
+              <option class="opcao-periodo" value="1m" data-full="1m" data-short="1m">
+                1 mês
+              </option>
+            </select>
           </div>
 
           <div class="grade-semanas">
@@ -3628,7 +3651,7 @@
                 </div>
               </article>
 
-              <article class="card-album card-album-4" data-spotify-album-id="1Fxp4d5gcsxq4gH2wKYXpB">
+              <article class="card-album card-album-4" data-spotify-album-id="0UlbGi4oAth8s6rwaGSU8Z">
                 <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
                   <div class="card-album-rank">4</div>
                   <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
