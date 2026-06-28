@@ -80,9 +80,15 @@
       --transicao: 260ms cubic-bezier(0.22, 1, 0.36, 1);
       --transicao-popup: 120ms ease-out;
 
-      --altura-grafico: 14.5rem;
-      --tamanho-semana: 0.72rem;
-      --largura-ano: 1.5rem;
+      --altura-grafico: 16rem;
+      --tamanho-semana: 1rem;
+      --largura-ano: 1.4rem;
+
+      --texto-pequeno: 0.65rem;
+      --texto-normal: 0.7rem;
+      --texto-medio: 0.8rem;
+      --texto-numero: 2rem;
+      --texto-grande: 1.7rem;
     }
 
     html[data-theme="light"] {
@@ -250,7 +256,7 @@
     }
 
     .site-nav-link {
-      font-size: 0.86rem;
+      font-size: var(--texto-medio);
       white-space: nowrap;
       opacity: 0.92;
       transition: opacity var(--transicao), transform var(--transicao);
@@ -313,7 +319,7 @@
       grid-template-columns: auto auto;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.82rem;
+      font-size: var(--texto-medio);
       font-weight: var(--peso-semi);
       opacity: 0.9;
       transition: opacity var(--transicao), transform var(--transicao);
@@ -340,7 +346,7 @@
       background-size: 0.45rem 0.45rem, 0.45rem 0.45rem;
       background-repeat: no-repeat;
       padding: 0.75rem 2.6rem 0.75rem 1rem;
-      font-size: 0.86rem;
+      font-size: var(--texto-medio);
       font-weight: var(--peso-semi);
       cursor: pointer;
       transition: background-color var(--transicao);
@@ -398,7 +404,7 @@
     }
 
     .card-metrica-numero {
-      font-size: clamp(1.55rem, 3vw, 2.05rem);
+      font-size: var(--texto-numero);
       font-weight: var(--peso-bold);
       line-height: 0.9;
       letter-spacing: -0.04em;
@@ -406,7 +412,7 @@
 
     .card-metrica-label {
       max-width: 7.5rem;
-      font-size: 0.78rem;
+      font-size: var(--texto-normal);
       font-weight: var(--peso-semi);
       line-height: 0.96;
     }
@@ -430,7 +436,7 @@
     }
 
     .card-metrica-ranking {
-      font-size: 0.68rem;
+      font-size: var(--texto-pequeno);
       opacity: 0.78;
     }
 
@@ -467,7 +473,7 @@
       display: grid;
       place-items: center;
       padding: 1rem;
-      font-size: 0.82rem;
+      font-size: var(--texto-medio);
       font-weight: var(--peso-semi);
       text-align: center;
     }
@@ -496,7 +502,7 @@
     .titulo-bloco {
       margin: 0 0 0.65rem;
       color: var(--cor-ciano);
-      font-size: clamp(1.45rem, 3vw, 1.95rem);
+      font-size: valor(--texto-grande);
       font-weight: var(--peso-semi);
       line-height: 1;
       letter-spacing: -0.04em;
@@ -520,7 +526,7 @@
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
       align-items: end;
-      gap: 0.9rem;
+      gap: 0.3rem;
     }
 
     .grafico-item {
@@ -546,7 +552,7 @@
       padding-top: 0;
       color: var(--cor-texto-inverso);
       background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
-      font-size: 0.68rem;
+      font-size: var(--texto-pequeno);
       font-weight: var(--peso-semi);
       transition:
         height 360ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -559,8 +565,8 @@
       left: 50%;
       transform: translateX(-50%);
       color: var(--cor-texto);
-      font-size: 0.68rem;
-      font-weight: var(--peso-bold);
+      font-size: 0.7rem;
+      font-weight: var(--peso-semi);
       line-height: 1;
       white-space: nowrap;
     }
@@ -574,7 +580,7 @@
       display: grid;
       justify-items: center;
       color: var(--cor-texto);
-      font-size: 0.68rem;
+      font-size: var(--texto-pequeno);
       line-height: 1.05;
     }
 
@@ -634,7 +640,7 @@
       width: max-content;
       min-width: 100%;
       display: grid;
-      grid-template-columns: var(--largura-ano) repeat(53, minmax(var(--tamanho-semana), 1fr));
+      grid-template-columns: var(--largura-ano) repeat(20, minmax(var(--tamanho-semana), 1fr));
       gap: 0.18rem;
       align-items: center;
     }
@@ -1076,7 +1082,7 @@
       display: grid;
       place-items: center;
       color: var(--cor-texto);
-      font-size: 0.58rem;
+      font-size: var(--texto-pequeno);
       line-height: 1;
     }
 
@@ -1099,7 +1105,7 @@
       display: grid;
       place-items: center;
       color: var(--cor-texto);
-      font-size: 0.58rem;
+      font-size: var(--texto-pequeno);
       font-weight: var(--peso-normal);
       line-height: 1;
     }
@@ -1120,7 +1126,7 @@
       color: var(--cor-clara);
       background: var(--cor-tooltip);
       box-shadow: var(--sombra);
-      font-size: 0.62rem;
+      font-size: var(--texto-pequeno);
       line-height: 1.25;
       pointer-events: none;
       opacity: 0;
@@ -1253,7 +1259,7 @@
       display: grid;
       place-items: center;
       padding: 0.75rem;
-      font-size: 0.72rem;
+      font-size: var(--texto-normal);
       font-weight: var(--peso-semi);
       text-align: center;
     }
@@ -1269,7 +1275,7 @@
 
     .card-album-nome {
       color: var(--cor-texto);
-      font-size: 0.82rem;
+      font-size: var(--texto-medio);
       font-weight: var(--peso-semi);
       line-height: 1.1;
       overflow: hidden;
@@ -1351,7 +1357,7 @@
     }
 
     .top-card-numero {
-      font-size: clamp(1.8rem, 4vw, 2.25rem);
+      font-size: var(--texto-numero);
       font-weight: var(--peso-bold);
       line-height: 0.9;
       letter-spacing: -0.04em;
@@ -1359,7 +1365,7 @@
 
     .top-card-label {
       max-width: 7.4rem;
-      font-size: 0.76rem;
+      font-size: var(--texto-normal);
       font-weight: var(--peso-semi);
       line-height: 0.96;
     }
@@ -1367,7 +1373,7 @@
     .top-card-info {
       display: grid;
       gap: 0.16rem;
-      font-size: 0.68rem;
+      font-size: var(--texto-pequeno);
       opacity: 0.76;
       line-height: 1.15;
     }
@@ -1401,7 +1407,7 @@
 
     .cabecalho-musicas {
       padding: 0 0.8rem 0.65rem;
-      font-size: 0.68rem;
+      font-size: var(--texto-pequeno);
       font-weight: var(--peso-semi);
     }
 
@@ -1409,7 +1415,7 @@
       min-height: 3rem;
       padding: 0.5rem 0.8rem;
       border-top: 0.0625rem solid var(--cor-linha);
-      font-size: 0.82rem;
+      font-size: var(--texto-medio);
       transition: background var(--transicao);
     }
 
@@ -1418,7 +1424,7 @@
     }
 
     .musica-posicao {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: var(--peso-bold);
       line-height: 1;
       letter-spacing: -0.05em;
@@ -1464,7 +1470,7 @@
 
     .musica-artista {
       color: var(--cor-texto-mudo);
-      font-size: 0.72rem;
+      font-size: var(--texto-normal);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -1489,7 +1495,7 @@
 
     .pico-vezes {
       color: var(--cor-texto-mudo);
-      font-size: 0.62rem;
+      font-size: var(--texto-pequeno);
       transform: translateY(-0.25rem);
     }
 
@@ -1508,7 +1514,7 @@
       padding: 0.75rem 1.2rem;
       color: var(--cor-escura);
       background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
-      font-size: 0.86rem;
+      font-size: var(--texto-medio);
       font-weight: var(--peso-semi);
       transition: transform var(--transicao), box-shadow var(--transicao), opacity var(--transicao);
     }
@@ -1556,7 +1562,7 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 0.5rem;
-      font-size: 0.62rem;
+      font-size: var(--texto-pequeno);
     }
 
     .card-certificado-nome {
@@ -1570,7 +1576,7 @@
 
     .card-certificado-artista {
       margin-top: -0.2rem;
-      font-size: 0.62rem;
+      font-size: var(--texto-pequeno);
       opacity: 0.9;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1596,7 +1602,7 @@
     }
 
     .card-certificado-numero {
-      font-size: 1rem;
+      font-size: var(--texto-medio);
       font-weight: var(--peso-bold);
       line-height: 1;
     }
@@ -1608,7 +1614,7 @@
 
     .card-certificado-data {
       text-align: center;
-      font-size: 0.58rem;
+      font-size: var(--texto-pequeno);
       opacity: 0.78;
     }
 
@@ -1649,7 +1655,7 @@
     }
 
     .footer-link {
-      font-size: 0.86rem;
+      font-size: var(--texto-medio);
       white-space: nowrap;
     }
 
@@ -1664,7 +1670,7 @@
     .footer-texto,
     .footer-creditos {
       margin: 0;
-      font-size: 0.78rem;
+      font-size: var(--texto-normal);
       line-height: 1.5;
     }
 
