@@ -152,7 +152,17 @@ function aplicarPeriodo(periodo) {
     );
   });
 
+  filtrarSemanas(periodo);
   atualizarBotoesMusicas();
+}
+
+function filtrarSemanas(periodo) {
+  selecionarTodos(".grade-semanas .semana-celula").forEach((semana) => {
+    const periodos = semana.dataset.periodos || "all";
+    const deveMostrar = periodos.split(" ").includes(periodo);
+
+    semana.hidden = !deveMostrar;
+  });
 }
 
 function configurarPeriodos() {

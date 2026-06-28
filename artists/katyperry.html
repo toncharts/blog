@@ -85,10 +85,15 @@
       --largura-ano: 1.4rem;
 
       --texto-pequeno: 0.65rem;
-      --texto-normal: 0.7rem;
-      --texto-medio: 0.8rem;
+      --texto-normal: 0.8rem;
+      --texto-medio: 0.9rem;
       --texto-numero: 2rem;
       --texto-grande: 1.7rem;
+
+      --scrollbar-tamanho: 0.65rem;
+      --scrollbar-cor: #7b7b84;
+      --scrollbar-cor-hover: #92929c;
+      --scrollbar-trilho: transparent;
     }
 
     html[data-theme="light"] {
@@ -114,26 +119,37 @@
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
-      scrollbar-color: #7b7b84 transparent;
-      scrollbar-width: thin;
+      scrollbar-color: var(--cor-media) !important;
+      scrollbar-width: initial !important;
     }
 
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-cor) var(--scrollbar-trilho);
+    }
+
+    /* Chrome, Edge, Safari */
     *::-webkit-scrollbar {
-      width: 0.65rem;
-      height: 0.65rem;
+      width: var(--scrollbar-tamanho);
+      height: var(--scrollbar-tamanho);
     }
 
     *::-webkit-scrollbar-track {
-      background: transparent;
+      background: var(--scrollbar-trilho);
     }
 
     *::-webkit-scrollbar-thumb {
-      background: #7b7b84;
+      background: var(--scrollbar-cor);
       border-radius: var(--raio-full);
     }
 
     *::-webkit-scrollbar-thumb:hover {
-      background: #92929c;
+      background: var(--scrollbar-cor-hover);
+    }
+
+    *::-webkit-scrollbar-corner {
+      background: transparent;
     }
 
     body.body-pagina {
@@ -516,7 +532,6 @@
       padding: 2.2rem 1.1rem 1.1rem;
       background: var(--cor-superficie);
       overflow-x: auto;
-      scrollbar-width: thin;
     }
 
     .grafico-periodo {
@@ -633,17 +648,8 @@
       width: 100%;
       overflow-x: auto;
       padding-bottom: 0.5rem;
-      scrollbar-width: thin;
     }
 
-    .grade-semanas {
-      width: max-content;
-      min-width: 100%;
-      display: grid;
-      grid-template-columns: var(--largura-ano) repeat(20, minmax(var(--tamanho-semana), 1fr));
-      gap: 0.18rem;
-      align-items: center;
-    }
 
     .semana-quadrinho {
       position: relative;
@@ -657,8 +663,8 @@
       background: var(--cor-superficie-2) !important;
       opacity: 1 !important;
       color: var(--cor-texto);
-      font-size: .6rem;
-      font-weight: var(--peso-semi);
+      font-size: var(--texto-normal);
+      font-weight: var(--peso-normal);
       line-height: 1;
       transition: transform var(--transicao), box-shadow var(--transicao);
     }
@@ -667,6 +673,8 @@
     .semana-quadrinho:focus-visible {
       transform: scale(1.45);
       box-shadow: 0 0 0 .12rem rgba(156, 156, 166, .8);
+      z-index: 999;
+      9
     }
 
     .grade-semanas button.botao.semana-quadrinho.semana-quadrinho-1 {
@@ -1070,49 +1078,57 @@
     }
 
     .grade-semanas button.botao.semana-quadrinho.semana-melhor-desempenho {
-      background: #fff !important;
-      color: #14141a !important;
+      background: var(--cor-texto) !important;
+      color: var(--cor-texto-inverso) !important;
       opacity: 1 !important;
+      font-weight: var(--peso-semi)
     }
 
-
-    .semana-cabecalho,
-    .semana-ano {
-      min-height: var(--tamanho-semana);
-      display: grid;
-      place-items: center;
-      color: var(--cor-texto);
-      font-size: var(--texto-pequeno);
-      line-height: 1;
-    }
-
-    .semana-ano {
-      justify-content: start;
-    }
 
     .grade-semanas {
-      width: max-content;
+      width: 100%;
       min-width: 100%;
       display: grid;
-      grid-template-columns: var(--largura-ano) repeat(53, minmax(var(--tamanho-semana), 1fr));
-      gap: 0.18rem;
+      grid-template-columns: repeat(25, minmax(var(--tamanho-semana), 1fr));
+      row-gap: 1rem;
       align-items: center;
     }
 
-    .semana-cabecalho,
-    .semana-ano {
-      min-height: var(--tamanho-semana);
+    .semana-celula {
+      position: relative;
       display: grid;
-      place-items: center;
-      color: var(--cor-texto);
-      font-size: var(--texto-pequeno);
-      font-weight: var(--peso-normal);
-      line-height: 1;
     }
 
-    .semana-ano {
-      justify-content: start;
+    .semana-marcador-ano {
+      position: absolute;
+      top: -0.75rem;
+      left: 0;
+      z-index: 2;
+      text-align: center;
+      color: var(--cor-texto-mudo);
+      font-size: var(--texto-pequeno);
+      font-weight: var(--peso-semi);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
+
+    .semana-inicio-ano::before {
+      content: attr(data-ano);
+      position: absolute;
+      top: -0.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--cor-texto-mudo);
+      font-size: 0.5rem;
+      font-weight: var(--peso-semi);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+
+
+
 
 
     .tooltip-semana {
@@ -1381,7 +1397,6 @@
     .musicas-area {
       margin-top: 1.25rem;
       overflow-x: auto;
-      scrollbar-width: thin;
     }
 
     .lista-musicas {
@@ -1725,7 +1740,7 @@
 
       .hero-coluna-metricas,
       .hero-grade-metricas {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
 
@@ -1771,10 +1786,6 @@
         grid-template-columns: 1fr;
       }
 
-      .footer-nav {
-        justify-content: start;
-      }
-
       .footer-creditos {
         text-align: left;
       }
@@ -1786,14 +1797,18 @@
         --largura-musicas: 55rem;
       }
 
+      .grade-semanas {
+        grid-template-columns: repeat(12, minmax(var(--tamanho-semana), 1fr));
+      }
+
+      .footer-nav {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-auto-flow: initial !important;
+      }
+
       .logo-toncharts-palavra-1,
       .logo-toncharts-palavra-2 {
         font-size: 2.1rem;
-      }
-
-      .hero-coluna-metricas,
-      .hero-grade-metricas {
-        grid-template-columns: 1fr;
       }
 
       .seletor-periodo {
@@ -2688,606 +2703,774 @@
           </div>
 
           <div class="grade-semanas">
-            <!-- cabeçalho: 1 vazio + 53 semanas -->
-            <div class="semana-cabecalho"></div>
-            <div class="semana-cabecalho">1</div>
-            <div class="semana-cabecalho">2</div>
-            <div class="semana-cabecalho">3</div>
-            <div class="semana-cabecalho">4</div>
-            <div class="semana-cabecalho">5</div>
-            <div class="semana-cabecalho">6</div>
-            <div class="semana-cabecalho">7</div>
-            <div class="semana-cabecalho">8</div>
-            <div class="semana-cabecalho">9</div>
-            <div class="semana-cabecalho">10</div>
-            <div class="semana-cabecalho">11</div>
-            <div class="semana-cabecalho">12</div>
-            <div class="semana-cabecalho">13</div>
-            <div class="semana-cabecalho">14</div>
-            <div class="semana-cabecalho">15</div>
-            <div class="semana-cabecalho">16</div>
-            <div class="semana-cabecalho">17</div>
-            <div class="semana-cabecalho">18</div>
-            <div class="semana-cabecalho">19</div>
-            <div class="semana-cabecalho">20</div>
-            <div class="semana-cabecalho">21</div>
-            <div class="semana-cabecalho">22</div>
-            <div class="semana-cabecalho">23</div>
-            <div class="semana-cabecalho">24</div>
-            <div class="semana-cabecalho">25</div>
-            <div class="semana-cabecalho">26</div>
-            <div class="semana-cabecalho">27</div>
-            <div class="semana-cabecalho">28</div>
-            <div class="semana-cabecalho">29</div>
-            <div class="semana-cabecalho">30</div>
-            <div class="semana-cabecalho">31</div>
-            <div class="semana-cabecalho">32</div>
-            <div class="semana-cabecalho">33</div>
-            <div class="semana-cabecalho">34</div>
-            <div class="semana-cabecalho">35</div>
-            <div class="semana-cabecalho">36</div>
-            <div class="semana-cabecalho">37</div>
-            <div class="semana-cabecalho">38</div>
-            <div class="semana-cabecalho">39</div>
-            <div class="semana-cabecalho">40</div>
-            <div class="semana-cabecalho">41</div>
-            <div class="semana-cabecalho">42</div>
-            <div class="semana-cabecalho">43</div>
-            <div class="semana-cabecalho">44</div>
-            <div class="semana-cabecalho">45</div>
-            <div class="semana-cabecalho">46</div>
-            <div class="semana-cabecalho">47</div>
-            <div class="semana-cabecalho">48</div>
-            <div class="semana-cabecalho">49</div>
-            <div class="semana-cabecalho">50</div>
-            <div class="semana-cabecalho">51</div>
-            <div class="semana-cabecalho">52</div>
-            <div class="semana-cabecalho">53</div>
-
             <!-- 2011 -->
-            <div class="semana-ano">2011</div>
-            <button class="botao semana-quadrinho semana-quadrinho-25" data-data="2011 — Semana 1" data-posicao="#24"
-              data-plays="240 plays" data-melhor="false">24</button>
-            <button class="botao semana-quadrinho semana-quadrinho-35" data-data="2011 — Semana 2" data-posicao="#18"
-              data-plays="410 plays" data-melhor="false">18</button>
-            <button class="botao semana-quadrinho semana-quadrinho-55" data-data="2011 — Semana 3" data-posicao="#9"
-              data-plays="870 plays" data-melhor="false">9</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
-              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-72" data-data="2011 — Semana 5" data-posicao="#4"
-              data-plays="1.540 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-18" data-data="2011 — Semana 6" data-posicao="#42"
-              data-plays="120 plays" data-melhor="false">42</button>
-            <button class="botao semana-quadrinho semana-quadrinho-28" data-data="2011 — Semana 7" data-posicao="#33"
-              data-plays="190 plays" data-melhor="false">33</button>
-            <button class="botao semana-quadrinho semana-quadrinho-60" data-data="2011 — Semana 8" data-posicao="#7"
-              data-plays="940 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-31" data-data="2011 — Semana 9" data-posicao="#28"
-              data-plays="280 plays" data-melhor="false">28</button>
-            <button class="botao semana-quadrinho semana-quadrinho-82" data-data="2011 — Semana 10" data-posicao="#3"
-              data-plays="1.720 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-40" data-data="2011 — Semana 11" data-posicao="#15"
-              data-plays="520 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-65" data-data="2011 — Semana 12" data-posicao="#6"
-              data-plays="1.110 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-22" data-data="2011 — Semana 13" data-posicao="#38"
-              data-plays="160 plays" data-melhor="false">38</button>
-            <button class="botao semana-quadrinho semana-quadrinho-44" data-data="2011 — Semana 14" data-posicao="#13"
-              data-plays="600 plays" data-melhor="false">13</button>
-            <button class="botao semana-quadrinho semana-quadrinho-70" data-data="2011 — Semana 15" data-posicao="#5"
-              data-plays="1.300 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-20" data-data="2011 — Semana 16" data-posicao="#45"
-              data-plays="90 plays" data-melhor="false">45</button>
-            <button class="botao semana-quadrinho semana-quadrinho-33" data-data="2011 — Semana 17" data-posicao="#22"
-              data-plays="350 plays" data-melhor="false">22</button>
-            <button class="botao semana-quadrinho semana-quadrinho-58" data-data="2011 — Semana 18" data-posicao="#8"
-              data-plays="880 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-37" data-data="2011 — Semana 19" data-posicao="#19"
-              data-plays="430 plays" data-melhor="false">19</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
-              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-42" data-data="2011 — Semana 21" data-posicao="#14"
-              data-plays="620 plays" data-melhor="false">14</button>
-            <button class="botao semana-quadrinho semana-quadrinho-76" data-data="2011 — Semana 22" data-posicao="#4"
-              data-plays="1.460 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 23" data-posicao="#35"
-              data-plays="210 plays" data-melhor="false">35</button>
-            <button class="botao semana-quadrinho semana-quadrinho-52" data-data="2011 — Semana 24" data-posicao="#10"
-              data-plays="760 plays" data-melhor="false">10</button>
-            <button class="botao semana-quadrinho semana-quadrinho-73" data-data="2011 — Semana 25" data-posicao="#5"
-              data-plays="1.380 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-30" data-data="2011 — Semana 26" data-posicao="#29"
-              data-plays="270 plays" data-melhor="false">29</button>
-            <button class="botao semana-quadrinho semana-quadrinho-36" data-data="2011 — Semana 27" data-posicao="#20"
-              data-plays="390 plays" data-melhor="false">20</button>
-            <button class="botao semana-quadrinho semana-quadrinho-66" data-data="2011 — Semana 28" data-posicao="#6"
-              data-plays="1.140 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-24" data-data="2011 — Semana 29" data-posicao="#36"
-              data-plays="200 plays" data-melhor="false">36</button>
-            <button class="botao semana-quadrinho semana-quadrinho-88" data-data="2011 — Semana 30" data-posicao="#2"
-              data-plays="1.980 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-43" data-data="2011 — Semana 31" data-posicao="#12"
-              data-plays="660 plays" data-melhor="false">12</button>
-            <button class="botao semana-quadrinho semana-quadrinho-69" data-data="2011 — Semana 32" data-posicao="#5"
-              data-plays="1.250 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-21" data-data="2011 — Semana 33" data-posicao="#41"
-              data-plays="130 plays" data-melhor="false">41</button>
-            <button class="botao semana-quadrinho semana-quadrinho-39" data-data="2011 — Semana 34" data-posicao="#16"
-              data-plays="510 plays" data-melhor="false">16</button>
-            <button class="botao semana-quadrinho semana-quadrinho-63" data-data="2011 — Semana 35" data-posicao="#7"
-              data-plays="1.030 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-34" data-data="2011 — Semana 36" data-posicao="#23"
-              data-plays="340 plays" data-melhor="false">23</button>
-            <button class="botao semana-quadrinho semana-quadrinho-80" data-data="2011 — Semana 37" data-posicao="#3"
-              data-plays="1.700 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-46" data-data="2011 — Semana 38" data-posicao="#11"
-              data-plays="700 plays" data-melhor="false">11</button>
-            <button class="botao semana-quadrinho semana-quadrinho-27" data-data="2011 — Semana 39" data-posicao="#31"
-              data-plays="250 plays" data-melhor="false">31</button>
-            <button class="botao semana-quadrinho semana-quadrinho-71" data-data="2011 — Semana 40" data-posicao="#5"
-              data-plays="1.330 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-32" data-data="2011 — Semana 41" data-posicao="#25"
-              data-plays="310 plays" data-melhor="false">25</button>
-            <button class="botao semana-quadrinho semana-quadrinho-57" data-data="2011 — Semana 42" data-posicao="#8"
-              data-plays="910 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-78" data-data="2011 — Semana 43" data-posicao="#4"
-              data-plays="1.500 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-29" data-data="2011 — Semana 44" data-posicao="#27"
-              data-plays="280 plays" data-melhor="false">27</button>
-            <button class="botao semana-quadrinho semana-quadrinho-41" data-data="2011 — Semana 45" data-posicao="#15"
-              data-plays="570 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-67" data-data="2011 — Semana 46" data-posicao="#6"
-              data-plays="1.180 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-23" data-data="2011 — Semana 47" data-posicao="#39"
-              data-plays="170 plays" data-melhor="false">39</button>
-            <button class="botao semana-quadrinho semana-quadrinho-84" data-data="2011 — Semana 48" data-posicao="#2"
-              data-plays="1.820 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-38" data-data="2011 — Semana 49" data-posicao="#17"
-              data-plays="480 plays" data-melhor="false">17</button>
-            <button class="botao semana-quadrinho semana-quadrinho-74" data-data="2011 — Semana 50" data-posicao="#4"
-              data-plays="1.430 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 51" data-posicao="#34"
-              data-plays="220 plays" data-melhor="false">34</button>
-            <button class="botao semana-quadrinho semana-quadrinho-59" data-data="2011 — Semana 52" data-posicao="#8"
-              data-plays="940 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-45" data-data="2011 — Semana 53" data-posicao="#13"
-              data-plays="610 plays" data-melhor="false">13</button>
+            <div class="semana-celula">
+              <div class="semana-marcador-ano">2011</div><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2011 — Semana 18" data-posicao="#48" data-plays="756 plays" data-melhor="false">48</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-91"
+                data-data="2011 — Semana 19" data-posicao="#5" data-plays="793 plays" data-melhor="false">5</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-78"
+                data-data="2011 — Semana 20" data-posicao="#12" data-plays="830 plays" data-melhor="false">12</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-65"
+                data-data="2011 — Semana 21" data-posicao="#19" data-plays="867 plays" data-melhor="false">19</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-52"
+                data-data="2011 — Semana 22" data-posicao="#26" data-plays="904 plays" data-melhor="false">26</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-39"
+                data-data="2011 — Semana 23" data-posicao="#33" data-plays="941 plays" data-melhor="false">33</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-26"
+                data-data="2011 — Semana 24" data-posicao="#40" data-plays="978 plays" data-melhor="false">40</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-13"
+                data-data="2011 — Semana 25" data-posicao="#47" data-plays="1.015 plays" data-melhor="false">47</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-94"
+                data-data="2011 — Semana 26" data-posicao="#4" data-plays="1.052 plays" data-melhor="false">4</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-81"
+                data-data="2011 — Semana 27" data-posicao="#11" data-plays="1.089 plays" data-melhor="false">11</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-68"
+                data-data="2011 — Semana 28" data-posicao="#18" data-plays="1.126 plays" data-melhor="false">18</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-55"
+                data-data="2011 — Semana 29" data-posicao="#25" data-plays="1.163 plays" data-melhor="false">25</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-42"
+                data-data="2011 — Semana 30" data-posicao="#32" data-plays="1.200 plays" data-melhor="false">32</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-29"
+                data-data="2011 — Semana 31" data-posicao="#39" data-plays="1.237 plays" data-melhor="false">39</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-16"
+                data-data="2011 — Semana 32" data-posicao="#46" data-plays="1.274 plays" data-melhor="false">46</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-97"
+                data-data="2011 — Semana 33" data-posicao="#3" data-plays="1.311 plays" data-melhor="false">3</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-84"
+                data-data="2011 — Semana 34" data-posicao="#10" data-plays="1.348 plays" data-melhor="false">10</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-71"
+                data-data="2011 — Semana 35" data-posicao="#17" data-plays="1.385 plays" data-melhor="false">17</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-58"
+                data-data="2011 — Semana 36" data-posicao="#24" data-plays="1.422 plays" data-melhor="false">24</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-melhor-desempenho"
+                data-data="2011 — Semana 37" data-posicao="#1" data-plays="1.459 plays" data-melhor="true">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-32"
+                data-data="2011 — Semana 38" data-posicao="#38" data-plays="1.496 plays" data-melhor="false">38</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-19"
+                data-data="2011 — Semana 39" data-posicao="#45" data-plays="1.533 plays" data-melhor="false">45</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2011 — Semana 40" data-posicao="#2" data-plays="1.570 plays" data-melhor="false">2</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-87"
+                data-data="2011 — Semana 41" data-posicao="#9" data-plays="1.607 plays" data-melhor="false">9</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-74"
+                data-data="2011 — Semana 42" data-posicao="#16" data-plays="1.644 plays" data-melhor="false">16</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-61"
+                data-data="2011 — Semana 43" data-posicao="#23" data-plays="1.681 plays" data-melhor="false">23</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-48"
+                data-data="2011 — Semana 44" data-posicao="#30" data-plays="1.718 plays" data-melhor="false">30</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-35"
+                data-data="2011 — Semana 45" data-posicao="#37" data-plays="1.755 plays" data-melhor="false">37</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-22"
+                data-data="2011 — Semana 46" data-posicao="#44" data-plays="1.792 plays" data-melhor="false">44</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2011 — Semana 47" data-posicao="#1" data-plays="1.829 plays" data-melhor="false">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-90"
+                data-data="2011 — Semana 48" data-posicao="#8" data-plays="1.866 plays" data-melhor="false">8</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-77"
+                data-data="2011 — Semana 49" data-posicao="#15" data-plays="1.903 plays" data-melhor="false">15</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-64"
+                data-data="2011 — Semana 50" data-posicao="#22" data-plays="1.940 plays" data-melhor="false">22</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-51"
+                data-data="2011 — Semana 51" data-posicao="#29" data-plays="1.977 plays" data-melhor="false">29</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-38"
+                data-data="2011 — Semana 52" data-posicao="#36" data-plays="2.014 plays" data-melhor="false">36</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-25"
+                data-data="2011 — Semana 53" data-posicao="#43" data-plays="2.051 plays" data-melhor="false">43</button>
+            </div>
 
-            <!-- repita o bloco de 53 botões para cada ano: 2012 até 2026 -->
+            <!-- 2012 -->
+            <div class="semana-celula">
+              <div class="semana-marcador-ano">2012</div><button class="botao semana-quadrinho semana-quadrinho-48"
+                data-data="2012 — Semana 1" data-posicao="#28" data-plays="2.088 plays" data-melhor="false">28</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-35"
+                data-data="2012 — Semana 2" data-posicao="#35" data-plays="2.125 plays" data-melhor="false">35</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-22"
+                data-data="2012 — Semana 3" data-posicao="#42" data-plays="2.162 plays" data-melhor="false">42</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2012 — Semana 4" data-posicao="#49" data-plays="2.199 plays" data-melhor="false">49</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-92"
+                data-data="2012 — Semana 5" data-posicao="#6" data-plays="2.236 plays" data-melhor="false">6</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-79"
+                data-data="2012 — Semana 6" data-posicao="#13" data-plays="2.273 plays" data-melhor="false">13</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-66"
+                data-data="2012 — Semana 7" data-posicao="#20" data-plays="10 plays" data-melhor="false">20</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-53"
+                data-data="2012 — Semana 8" data-posicao="#27" data-plays="47 plays" data-melhor="false">27</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-40"
+                data-data="2012 — Semana 9" data-posicao="#34" data-plays="84 plays" data-melhor="false">34</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-27"
+                data-data="2012 — Semana 10" data-posicao="#41" data-plays="121 plays" data-melhor="false">41</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-14"
+                data-data="2012 — Semana 11" data-posicao="#48" data-plays="158 plays" data-melhor="false">48</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-95"
+                data-data="2012 — Semana 12" data-posicao="#5" data-plays="195 plays" data-melhor="false">5</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-82"
+                data-data="2012 — Semana 13" data-posicao="#12" data-plays="232 plays" data-melhor="false">12</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-69"
+                data-data="2012 — Semana 14" data-posicao="#19" data-plays="269 plays" data-melhor="false">19</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-56"
+                data-data="2012 — Semana 15" data-posicao="#26" data-plays="306 plays" data-melhor="false">26</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-43"
+                data-data="2012 — Semana 16" data-posicao="#33" data-plays="343 plays" data-melhor="false">33</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-30"
+                data-data="2012 — Semana 17" data-posicao="#40" data-plays="380 plays" data-melhor="false">40</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-17"
+                data-data="2012 — Semana 18" data-posicao="#47" data-plays="417 plays" data-melhor="false">47</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-98"
+                data-data="2012 — Semana 19" data-posicao="#4" data-plays="454 plays" data-melhor="false">4</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-85"
+                data-data="2012 — Semana 20" data-posicao="#11" data-plays="491 plays" data-melhor="false">11</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-72"
+                data-data="2012 — Semana 21" data-posicao="#18" data-plays="528 plays" data-melhor="false">18</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-59"
+                data-data="2012 — Semana 22" data-posicao="#25" data-plays="565 plays" data-melhor="false">25</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-46"
+                data-data="2012 — Semana 23" data-posicao="#32" data-plays="602 plays" data-melhor="false">32</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-33"
+                data-data="2012 — Semana 24" data-posicao="#39" data-plays="639 plays" data-melhor="false">39</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-20"
+                data-data="2012 — Semana 25" data-posicao="#46" data-plays="676 plays" data-melhor="false">46</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2012 — Semana 26" data-posicao="#3" data-plays="713 plays" data-melhor="false">3</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-88"
+                data-data="2012 — Semana 27" data-posicao="#10" data-plays="750 plays" data-melhor="false">10</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-75"
+                data-data="2012 — Semana 28" data-posicao="#17" data-plays="787 plays" data-melhor="false">17</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-62"
+                data-data="2012 — Semana 29" data-posicao="#24" data-plays="824 plays" data-melhor="false">24</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-49"
+                data-data="2012 — Semana 30" data-posicao="#31" data-plays="861 plays" data-melhor="false">31</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-36"
+                data-data="2012 — Semana 31" data-posicao="#38" data-plays="898 plays" data-melhor="false">38</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-23"
+                data-data="2012 — Semana 32" data-posicao="#45" data-plays="935 plays" data-melhor="false">45</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2012 — Semana 33" data-posicao="#2" data-plays="972 plays" data-melhor="false">2</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-91"
+                data-data="2012 — Semana 34" data-posicao="#9" data-plays="1.009 plays" data-melhor="false">9</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-78"
+                data-data="2012 — Semana 35" data-posicao="#16" data-plays="1.046 plays" data-melhor="false">16</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-melhor-desempenho"
+                data-data="2012 — Semana 36" data-posicao="#1" data-plays="1.083 plays" data-melhor="true">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-52"
+                data-data="2012 — Semana 37" data-posicao="#30" data-plays="1.120 plays" data-melhor="false">30</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-39"
+                data-data="2012 — Semana 38" data-posicao="#37" data-plays="1.157 plays" data-melhor="false">37</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-26"
+                data-data="2012 — Semana 39" data-posicao="#44" data-plays="1.194 plays" data-melhor="false">44</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2012 — Semana 40" data-posicao="#1" data-plays="1.231 plays" data-melhor="false">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-94"
+                data-data="2012 — Semana 41" data-posicao="#8" data-plays="1.268 plays" data-melhor="false">8</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-81"
+                data-data="2012 — Semana 42" data-posicao="#15" data-plays="1.305 plays" data-melhor="false">15</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-68"
+                data-data="2012 — Semana 43" data-posicao="#22" data-plays="1.342 plays" data-melhor="false">22</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-55"
+                data-data="2012 — Semana 44" data-posicao="#29" data-plays="1.379 plays" data-melhor="false">29</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-42"
+                data-data="2012 — Semana 45" data-posicao="#36" data-plays="1.416 plays" data-melhor="false">36</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-29"
+                data-data="2012 — Semana 46" data-posicao="#43" data-plays="1.453 plays" data-melhor="false">43</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-16"
+                data-data="2012 — Semana 47" data-posicao="#50" data-plays="1.490 plays" data-melhor="false">50</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-97"
+                data-data="2012 — Semana 48" data-posicao="#7" data-plays="1.527 plays" data-melhor="false">7</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-84"
+                data-data="2012 — Semana 49" data-posicao="#14" data-plays="1.564 plays" data-melhor="false">14</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-71"
+                data-data="2012 — Semana 50" data-posicao="#21" data-plays="1.601 plays" data-melhor="false">21</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-58"
+                data-data="2012 — Semana 51" data-posicao="#28" data-plays="1.638 plays" data-melhor="false">28</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-45"
+                data-data="2012 — Semana 52" data-posicao="#35" data-plays="1.675 plays" data-melhor="false">35</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-32"
+                data-data="2012 — Semana 53" data-posicao="#42" data-plays="1.712 plays" data-melhor="false">42</button>
+            </div>
 
-            <div class="semana-ano">2011</div>
-            <button class="botao semana-quadrinho semana-quadrinho-25" data-data="2011 — Semana 1" data-posicao="#24"
-              data-plays="240 plays" data-melhor="false">24</button>
-            <button class="botao semana-quadrinho semana-quadrinho-35" data-data="2011 — Semana 2" data-posicao="#18"
-              data-plays="410 plays" data-melhor="false">18</button>
-            <button class="botao semana-quadrinho semana-quadrinho-55" data-data="2011 — Semana 3" data-posicao="#9"
-              data-plays="870 plays" data-melhor="false">9</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
-              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-72" data-data="2011 — Semana 5" data-posicao="#4"
-              data-plays="1.540 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-18" data-data="2011 — Semana 6" data-posicao="#42"
-              data-plays="120 plays" data-melhor="false">42</button>
-            <button class="botao semana-quadrinho semana-quadrinho-28" data-data="2011 — Semana 7" data-posicao="#33"
-              data-plays="190 plays" data-melhor="false">33</button>
-            <button class="botao semana-quadrinho semana-quadrinho-60" data-data="2011 — Semana 8" data-posicao="#7"
-              data-plays="940 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-31" data-data="2011 — Semana 9" data-posicao="#28"
-              data-plays="280 plays" data-melhor="false">28</button>
-            <button class="botao semana-quadrinho semana-quadrinho-82" data-data="2011 — Semana 10" data-posicao="#3"
-              data-plays="1.720 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-40" data-data="2011 — Semana 11" data-posicao="#15"
-              data-plays="520 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-65" data-data="2011 — Semana 12" data-posicao="#6"
-              data-plays="1.110 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-22" data-data="2011 — Semana 13" data-posicao="#38"
-              data-plays="160 plays" data-melhor="false">38</button>
-            <button class="botao semana-quadrinho semana-quadrinho-44" data-data="2011 — Semana 14" data-posicao="#13"
-              data-plays="600 plays" data-melhor="false">13</button>
-            <button class="botao semana-quadrinho semana-quadrinho-70" data-data="2011 — Semana 15" data-posicao="#5"
-              data-plays="1.300 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-20" data-data="2011 — Semana 16" data-posicao="#45"
-              data-plays="90 plays" data-melhor="false">45</button>
-            <button class="botao semana-quadrinho semana-quadrinho-33" data-data="2011 — Semana 17" data-posicao="#22"
-              data-plays="350 plays" data-melhor="false">22</button>
-            <button class="botao semana-quadrinho semana-quadrinho-58" data-data="2011 — Semana 18" data-posicao="#8"
-              data-plays="880 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-37" data-data="2011 — Semana 19" data-posicao="#19"
-              data-plays="430 plays" data-melhor="false">19</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
-              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-42" data-data="2011 — Semana 21" data-posicao="#14"
-              data-plays="620 plays" data-melhor="false">14</button>
-            <button class="botao semana-quadrinho semana-quadrinho-76" data-data="2011 — Semana 22" data-posicao="#4"
-              data-plays="1.460 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 23" data-posicao="#35"
-              data-plays="210 plays" data-melhor="false">35</button>
-            <button class="botao semana-quadrinho semana-quadrinho-52" data-data="2011 — Semana 24" data-posicao="#10"
-              data-plays="760 plays" data-melhor="false">10</button>
-            <button class="botao semana-quadrinho semana-quadrinho-73" data-data="2011 — Semana 25" data-posicao="#5"
-              data-plays="1.380 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-30" data-data="2011 — Semana 26" data-posicao="#29"
-              data-plays="270 plays" data-melhor="false">29</button>
-            <button class="botao semana-quadrinho semana-quadrinho-36" data-data="2011 — Semana 27" data-posicao="#20"
-              data-plays="390 plays" data-melhor="false">20</button>
-            <button class="botao semana-quadrinho semana-quadrinho-66" data-data="2011 — Semana 28" data-posicao="#6"
-              data-plays="1.140 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-24" data-data="2011 — Semana 29" data-posicao="#36"
-              data-plays="200 plays" data-melhor="false">36</button>
-            <button class="botao semana-quadrinho semana-quadrinho-88" data-data="2011 — Semana 30" data-posicao="#2"
-              data-plays="1.980 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-43" data-data="2011 — Semana 31" data-posicao="#12"
-              data-plays="660 plays" data-melhor="false">12</button>
-            <button class="botao semana-quadrinho semana-quadrinho-69" data-data="2011 — Semana 32" data-posicao="#5"
-              data-plays="1.250 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-21" data-data="2011 — Semana 33" data-posicao="#41"
-              data-plays="130 plays" data-melhor="false">41</button>
-            <button class="botao semana-quadrinho semana-quadrinho-39" data-data="2011 — Semana 34" data-posicao="#16"
-              data-plays="510 plays" data-melhor="false">16</button>
-            <button class="botao semana-quadrinho semana-quadrinho-63" data-data="2011 — Semana 35" data-posicao="#7"
-              data-plays="1.030 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-34" data-data="2011 — Semana 36" data-posicao="#23"
-              data-plays="340 plays" data-melhor="false">23</button>
-            <button class="botao semana-quadrinho semana-quadrinho-80" data-data="2011 — Semana 37" data-posicao="#3"
-              data-plays="1.700 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-46" data-data="2011 — Semana 38" data-posicao="#11"
-              data-plays="700 plays" data-melhor="false">11</button>
-            <button class="botao semana-quadrinho semana-quadrinho-27" data-data="2011 — Semana 39" data-posicao="#31"
-              data-plays="250 plays" data-melhor="false">31</button>
-            <button class="botao semana-quadrinho semana-quadrinho-71" data-data="2011 — Semana 40" data-posicao="#5"
-              data-plays="1.330 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-32" data-data="2011 — Semana 41" data-posicao="#25"
-              data-plays="310 plays" data-melhor="false">25</button>
-            <button class="botao semana-quadrinho semana-quadrinho-57" data-data="2011 — Semana 42" data-posicao="#8"
-              data-plays="910 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-78" data-data="2011 — Semana 43" data-posicao="#4"
-              data-plays="1.500 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-29" data-data="2011 — Semana 44" data-posicao="#27"
-              data-plays="280 plays" data-melhor="false">27</button>
-            <button class="botao semana-quadrinho semana-quadrinho-41" data-data="2011 — Semana 45" data-posicao="#15"
-              data-plays="570 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-67" data-data="2011 — Semana 46" data-posicao="#6"
-              data-plays="1.180 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-23" data-data="2011 — Semana 47" data-posicao="#39"
-              data-plays="170 plays" data-melhor="false">39</button>
-            <button class="botao semana-quadrinho semana-quadrinho-84" data-data="2011 — Semana 48" data-posicao="#2"
-              data-plays="1.820 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-38" data-data="2011 — Semana 49" data-posicao="#17"
-              data-plays="480 plays" data-melhor="false">17</button>
-            <button class="botao semana-quadrinho semana-quadrinho-74" data-data="2011 — Semana 50" data-posicao="#4"
-              data-plays="1.430 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 51" data-posicao="#34"
-              data-plays="220 plays" data-melhor="false">34</button>
-            <button class="botao semana-quadrinho semana-quadrinho-59" data-data="2011 — Semana 52" data-posicao="#8"
-              data-plays="940 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-45" data-data="2011 — Semana 53" data-posicao="#13"
-              data-plays="610 plays" data-melhor="false">13</button>
+            <!-- 2013 -->
+            <div class="semana-celula">
+              <div class="semana-marcador-ano">2013</div><button class="botao semana-quadrinho semana-quadrinho-59"
+                data-data="2013 — Semana 1" data-posicao="#39" data-plays="1.749 plays" data-melhor="false">39</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-46"
+                data-data="2013 — Semana 2" data-posicao="#46" data-plays="1.786 plays" data-melhor="false">46</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 3" data-posicao="#3" data-plays="1.823 plays" data-melhor="false">3</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-98"
+                data-data="2013 — Semana 4" data-posicao="#10" data-plays="1.860 plays" data-melhor="false">10</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-85"
+                data-data="2013 — Semana 5" data-posicao="#17" data-plays="1.897 plays" data-melhor="false">17</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-72"
+                data-data="2013 — Semana 6" data-posicao="#24" data-plays="1.934 plays" data-melhor="false">24</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-59"
+                data-data="2013 — Semana 7" data-posicao="#31" data-plays="1.971 plays" data-melhor="false">31</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-46"
+                data-data="2013 — Semana 8" data-posicao="#38" data-plays="2.008 plays" data-melhor="false">38</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-33"
+                data-data="2013 — Semana 9" data-posicao="#45" data-plays="2.045 plays" data-melhor="false">45</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 10" data-posicao="#2" data-plays="2.082 plays" data-melhor="false">2</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 11" data-posicao="#1" data-plays="2.119 plays" data-melhor="false">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-85"
+                data-data="2013 — Semana 12" data-posicao="#16" data-plays="2.156 plays" data-melhor="false">16</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-72"
+                data-data="2013 — Semana 13" data-posicao="#23" data-plays="2.193 plays" data-melhor="false">23</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-59"
+                data-data="2013 — Semana 14" data-posicao="#30" data-plays="2.230 plays" data-melhor="false">30</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-46"
+                data-data="2013 — Semana 15" data-posicao="#37" data-plays="2.267 plays" data-melhor="false">37</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-33"
+                data-data="2013 — Semana 16" data-posicao="#44" data-plays="4 plays" data-melhor="false">44</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 17" data-posicao="#1" data-plays="41 plays" data-melhor="false">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 18" data-posicao="#8" data-plays="78 plays" data-melhor="false">8</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-87"
+                data-data="2013 — Semana 19" data-posicao="#15" data-plays="115 plays" data-melhor="false">15</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-74"
+                data-data="2013 — Semana 20" data-posicao="#22" data-plays="152 plays" data-melhor="false">22</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-61"
+                data-data="2013 — Semana 21" data-posicao="#29" data-plays="189 plays" data-melhor="false">29</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-48"
+                data-data="2013 — Semana 22" data-posicao="#36" data-plays="226 plays" data-melhor="false">36</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-35"
+                data-data="2013 — Semana 23" data-posicao="#43" data-plays="263 plays" data-melhor="false">43</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-22"
+                data-data="2013 — Semana 24" data-posicao="#50" data-plays="300 plays" data-melhor="false">50</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 25" data-posicao="#7" data-plays="337 plays" data-melhor="false">7</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-90"
+                data-data="2013 — Semana 26" data-posicao="#14" data-plays="374 plays" data-melhor="false">14</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-77"
+                data-data="2013 — Semana 27" data-posicao="#21" data-plays="411 plays" data-melhor="false">21</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-64"
+                data-data="2013 — Semana 28" data-posicao="#28" data-plays="448 plays" data-melhor="false">28</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-51"
+                data-data="2013 — Semana 29" data-posicao="#35" data-plays="485 plays" data-melhor="false">35</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-38"
+                data-data="2013 — Semana 30" data-posicao="#42" data-plays="522 plays" data-melhor="false">42</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-25"
+                data-data="2013 — Semana 31" data-posicao="#49" data-plays="559 plays" data-melhor="false">49</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 32" data-posicao="#6" data-plays="596 plays" data-melhor="false">6</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-93"
+                data-data="2013 — Semana 33" data-posicao="#13" data-plays="633 plays" data-melhor="false">13</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-80"
+                data-data="2013 — Semana 34" data-posicao="#20" data-plays="670 plays" data-melhor="false">20</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-67"
+                data-data="2013 — Semana 35" data-posicao="#27" data-plays="707 plays" data-melhor="false">27</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-54"
+                data-data="2013 — Semana 36" data-posicao="#34" data-plays="744 plays" data-melhor="false">34</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-41"
+                data-data="2013 — Semana 37" data-posicao="#41" data-plays="781 plays" data-melhor="false">41</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-28"
+                data-data="2013 — Semana 38" data-posicao="#48" data-plays="818 plays" data-melhor="false">48</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 39" data-posicao="#5" data-plays="855 plays" data-melhor="false">5</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-96"
+                data-data="2013 — Semana 40" data-posicao="#12" data-plays="892 plays" data-melhor="false">12</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-83"
+                data-data="2013 — Semana 41" data-posicao="#19" data-plays="929 plays" data-melhor="false">19</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-70"
+                data-data="2013 — Semana 42" data-posicao="#26" data-plays="966 plays" data-melhor="false">26</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-57"
+                data-data="2013 — Semana 43" data-posicao="#33" data-plays="1.003 plays" data-melhor="false">33</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-melhor-desempenho"
+                data-data="2013 — Semana 44" data-posicao="#1" data-plays="1.040 plays" data-melhor="true">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-31"
+                data-data="2013 — Semana 45" data-posicao="#47" data-plays="1.077 plays" data-melhor="false">47</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 46" data-posicao="#4" data-plays="1.114 plays" data-melhor="false">4</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-99"
+                data-data="2013 — Semana 47" data-posicao="#11" data-plays="1.151 plays" data-melhor="false">11</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-86"
+                data-data="2013 — Semana 48" data-posicao="#18" data-plays="1.188 plays" data-melhor="false">18</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-73"
+                data-data="2013 — Semana 49" data-posicao="#25" data-plays="1.225 plays" data-melhor="false">25</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-60"
+                data-data="2013 — Semana 50" data-posicao="#32" data-plays="1.262 plays" data-melhor="false">32</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-47"
+                data-data="2013 — Semana 51" data-posicao="#39" data-plays="1.299 plays" data-melhor="false">39</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-34"
+                data-data="2013 — Semana 52" data-posicao="#46" data-plays="1.336 plays" data-melhor="false">46</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2013 — Semana 53" data-posicao="#3" data-plays="1.373 plays" data-melhor="false">3</button>
+            </div>
 
-            <div class="semana-ano">2011</div>
-            <button class="botao semana-quadrinho semana-quadrinho-25" data-data="2011 — Semana 1" data-posicao="#24"
-              data-plays="240 plays" data-melhor="false">24</button>
-            <button class="botao semana-quadrinho semana-quadrinho-35" data-data="2011 — Semana 2" data-posicao="#18"
-              data-plays="410 plays" data-melhor="false">18</button>
-            <button class="botao semana-quadrinho semana-quadrinho-55" data-data="2011 — Semana 3" data-posicao="#9"
-              data-plays="870 plays" data-melhor="false">9</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
-              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-72" data-data="2011 — Semana 5" data-posicao="#4"
-              data-plays="1.540 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-18" data-data="2011 — Semana 6" data-posicao="#42"
-              data-plays="120 plays" data-melhor="false">42</button>
-            <button class="botao semana-quadrinho semana-quadrinho-28" data-data="2011 — Semana 7" data-posicao="#33"
-              data-plays="190 plays" data-melhor="false">33</button>
-            <button class="botao semana-quadrinho semana-quadrinho-60" data-data="2011 — Semana 8" data-posicao="#7"
-              data-plays="940 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-31" data-data="2011 — Semana 9" data-posicao="#28"
-              data-plays="280 plays" data-melhor="false">28</button>
-            <button class="botao semana-quadrinho semana-quadrinho-82" data-data="2011 — Semana 10" data-posicao="#3"
-              data-plays="1.720 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-40" data-data="2011 — Semana 11" data-posicao="#15"
-              data-plays="520 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-65" data-data="2011 — Semana 12" data-posicao="#6"
-              data-plays="1.110 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-22" data-data="2011 — Semana 13" data-posicao="#38"
-              data-plays="160 plays" data-melhor="false">38</button>
-            <button class="botao semana-quadrinho semana-quadrinho-44" data-data="2011 — Semana 14" data-posicao="#13"
-              data-plays="600 plays" data-melhor="false">13</button>
-            <button class="botao semana-quadrinho semana-quadrinho-70" data-data="2011 — Semana 15" data-posicao="#5"
-              data-plays="1.300 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-20" data-data="2011 — Semana 16" data-posicao="#45"
-              data-plays="90 plays" data-melhor="false">45</button>
-            <button class="botao semana-quadrinho semana-quadrinho-33" data-data="2011 — Semana 17" data-posicao="#22"
-              data-plays="350 plays" data-melhor="false">22</button>
-            <button class="botao semana-quadrinho semana-quadrinho-58" data-data="2011 — Semana 18" data-posicao="#8"
-              data-plays="880 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-37" data-data="2011 — Semana 19" data-posicao="#19"
-              data-plays="430 plays" data-melhor="false">19</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
-              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-42" data-data="2011 — Semana 21" data-posicao="#14"
-              data-plays="620 plays" data-melhor="false">14</button>
-            <button class="botao semana-quadrinho semana-quadrinho-76" data-data="2011 — Semana 22" data-posicao="#4"
-              data-plays="1.460 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 23" data-posicao="#35"
-              data-plays="210 plays" data-melhor="false">35</button>
-            <button class="botao semana-quadrinho semana-quadrinho-52" data-data="2011 — Semana 24" data-posicao="#10"
-              data-plays="760 plays" data-melhor="false">10</button>
-            <button class="botao semana-quadrinho semana-quadrinho-73" data-data="2011 — Semana 25" data-posicao="#5"
-              data-plays="1.380 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-30" data-data="2011 — Semana 26" data-posicao="#29"
-              data-plays="270 plays" data-melhor="false">29</button>
-            <button class="botao semana-quadrinho semana-quadrinho-36" data-data="2011 — Semana 27" data-posicao="#20"
-              data-plays="390 plays" data-melhor="false">20</button>
-            <button class="botao semana-quadrinho semana-quadrinho-66" data-data="2011 — Semana 28" data-posicao="#6"
-              data-plays="1.140 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-24" data-data="2011 — Semana 29" data-posicao="#36"
-              data-plays="200 plays" data-melhor="false">36</button>
-            <button class="botao semana-quadrinho semana-quadrinho-88" data-data="2011 — Semana 30" data-posicao="#2"
-              data-plays="1.980 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-43" data-data="2011 — Semana 31" data-posicao="#12"
-              data-plays="660 plays" data-melhor="false">12</button>
-            <button class="botao semana-quadrinho semana-quadrinho-69" data-data="2011 — Semana 32" data-posicao="#5"
-              data-plays="1.250 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-21" data-data="2011 — Semana 33" data-posicao="#41"
-              data-plays="130 plays" data-melhor="false">41</button>
-            <button class="botao semana-quadrinho semana-quadrinho-39" data-data="2011 — Semana 34" data-posicao="#16"
-              data-plays="510 plays" data-melhor="false">16</button>
-            <button class="botao semana-quadrinho semana-quadrinho-63" data-data="2011 — Semana 35" data-posicao="#7"
-              data-plays="1.030 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-34" data-data="2011 — Semana 36" data-posicao="#23"
-              data-plays="340 plays" data-melhor="false">23</button>
-            <button class="botao semana-quadrinho semana-quadrinho-80" data-data="2011 — Semana 37" data-posicao="#3"
-              data-plays="1.700 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-46" data-data="2011 — Semana 38" data-posicao="#11"
-              data-plays="700 plays" data-melhor="false">11</button>
-            <button class="botao semana-quadrinho semana-quadrinho-27" data-data="2011 — Semana 39" data-posicao="#31"
-              data-plays="250 plays" data-melhor="false">31</button>
-            <button class="botao semana-quadrinho semana-quadrinho-71" data-data="2011 — Semana 40" data-posicao="#5"
-              data-plays="1.330 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-32" data-data="2011 — Semana 41" data-posicao="#25"
-              data-plays="310 plays" data-melhor="false">25</button>
-            <button class="botao semana-quadrinho semana-quadrinho-57" data-data="2011 — Semana 42" data-posicao="#8"
-              data-plays="910 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-78" data-data="2011 — Semana 43" data-posicao="#4"
-              data-plays="1.500 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-29" data-data="2011 — Semana 44" data-posicao="#27"
-              data-plays="280 plays" data-melhor="false">27</button>
-            <button class="botao semana-quadrinho semana-quadrinho-41" data-data="2011 — Semana 45" data-posicao="#15"
-              data-plays="570 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-67" data-data="2011 — Semana 46" data-posicao="#6"
-              data-plays="1.180 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-23" data-data="2011 — Semana 47" data-posicao="#39"
-              data-plays="170 plays" data-melhor="false">39</button>
-            <button class="botao semana-quadrinho semana-quadrinho-84" data-data="2011 — Semana 48" data-posicao="#2"
-              data-plays="1.820 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-38" data-data="2011 — Semana 49" data-posicao="#17"
-              data-plays="480 plays" data-melhor="false">17</button>
-            <button class="botao semana-quadrinho semana-quadrinho-74" data-data="2011 — Semana 50" data-posicao="#4"
-              data-plays="1.430 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 51" data-posicao="#34"
-              data-plays="220 plays" data-melhor="false">34</button>
-            <button class="botao semana-quadrinho semana-quadrinho-59" data-data="2011 — Semana 52" data-posicao="#8"
-              data-plays="940 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-45" data-data="2011 — Semana 53" data-posicao="#13"
-              data-plays="610 plays" data-melhor="false">13</button>
+            <!-- 2014 -->
+            <div class="semana-celula">
+              <div class="semana-marcador-ano">2014</div><button class="botao semana-quadrinho semana-quadrinho-70"
+                data-data="2014 — Semana 1" data-posicao="#50" data-plays="1.410 plays" data-melhor="false">50</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 2" data-posicao="#7" data-plays="1.447 plays" data-melhor="false">7</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-98"
+                data-data="2014 — Semana 3" data-posicao="#14" data-plays="1.484 plays" data-melhor="false">14</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-85"
+                data-data="2014 — Semana 4" data-posicao="#21" data-plays="1.521 plays" data-melhor="false">21</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-72"
+                data-data="2014 — Semana 5" data-posicao="#28" data-plays="1.558 plays" data-melhor="false">28</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-59"
+                data-data="2014 — Semana 6" data-posicao="#35" data-plays="1.595 plays" data-melhor="false">35</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-46"
+                data-data="2014 — Semana 7" data-posicao="#42" data-plays="1.632 plays" data-melhor="false">42</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-33"
+                data-data="2014 — Semana 8" data-posicao="#49" data-plays="1.669 plays" data-melhor="false">49</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 9" data-posicao="#6" data-plays="1.706 plays" data-melhor="false">6</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 10" data-posicao="#13" data-plays="1.743 plays" data-melhor="false">13</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-87"
+                data-data="2014 — Semana 11" data-posicao="#20" data-plays="1.780 plays" data-melhor="false">20</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-74"
+                data-data="2014 — Semana 12" data-posicao="#27" data-plays="1.817 plays" data-melhor="false">27</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-61"
+                data-data="2014 — Semana 13" data-posicao="#34" data-plays="1.854 plays" data-melhor="false">34</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-48"
+                data-data="2014 — Semana 14" data-posicao="#41" data-plays="1.891 plays" data-melhor="false">41</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-35"
+                data-data="2014 — Semana 15" data-posicao="#48" data-plays="1.928 plays" data-melhor="false">48</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 16" data-posicao="#5" data-plays="1.965 plays" data-melhor="false">5</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 17" data-posicao="#12" data-plays="2.002 plays" data-melhor="false">12</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-melhor-desempenho"
+                data-data="2014 — Semana 18" data-posicao="#1" data-plays="2.039 plays" data-melhor="true">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-77"
+                data-data="2014 — Semana 19" data-posicao="#26" data-plays="2.076 plays" data-melhor="false">26</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-64"
+                data-data="2014 — Semana 20" data-posicao="#33" data-plays="2.113 plays" data-melhor="false">33</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-51"
+                data-data="2014 — Semana 21" data-posicao="#40" data-plays="2.150 plays" data-melhor="false">40</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-38"
+                data-data="2014 — Semana 22" data-posicao="#47" data-plays="2.187 plays" data-melhor="false">47</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 23" data-posicao="#4" data-plays="2.224 plays" data-melhor="false">4</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 24" data-posicao="#11" data-plays="2.261 plays" data-melhor="false">11</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-90"
+                data-data="2014 — Semana 25" data-posicao="#18" data-plays="2.298 plays" data-melhor="false">18</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-77"
+                data-data="2014 — Semana 26" data-posicao="#25" data-plays="35 plays" data-melhor="false">25</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-64"
+                data-data="2014 — Semana 27" data-posicao="#32" data-plays="72 plays" data-melhor="false">32</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-51"
+                data-data="2014 — Semana 28" data-posicao="#39" data-plays="109 plays" data-melhor="false">39</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-38"
+                data-data="2014 — Semana 29" data-posicao="#46" data-plays="146 plays" data-melhor="false">46</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 30" data-posicao="#3" data-plays="183 plays" data-melhor="false">3</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 31" data-posicao="#10" data-plays="220 plays" data-melhor="false">10</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-93"
+                data-data="2014 — Semana 32" data-posicao="#17" data-plays="257 plays" data-melhor="false">17</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-80"
+                data-data="2014 — Semana 33" data-posicao="#24" data-plays="294 plays" data-melhor="false">24</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-67"
+                data-data="2014 — Semana 34" data-posicao="#31" data-plays="331 plays" data-melhor="false">31</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-54"
+                data-data="2014 — Semana 35" data-posicao="#38" data-plays="368 plays" data-melhor="false">38</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-41"
+                data-data="2014 — Semana 36" data-posicao="#45" data-plays="405 plays" data-melhor="false">45</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 37" data-posicao="#2" data-plays="442 plays" data-melhor="false">2</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 38" data-posicao="#9" data-plays="479 plays" data-melhor="false">9</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-96"
+                data-data="2014 — Semana 39" data-posicao="#16" data-plays="516 plays" data-melhor="false">16</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-83"
+                data-data="2014 — Semana 40" data-posicao="#23" data-plays="553 plays" data-melhor="false">23</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-70"
+                data-data="2014 — Semana 41" data-posicao="#30" data-plays="590 plays" data-melhor="false">30</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-57"
+                data-data="2014 — Semana 42" data-posicao="#37" data-plays="627 plays" data-melhor="false">37</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-44"
+                data-data="2014 — Semana 43" data-posicao="#44" data-plays="664 plays" data-melhor="false">44</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2014 — Semana 44" data-posicao="#1" data-plays="701 plays" data-melhor="false">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 45" data-posicao="#8" data-plays="738 plays" data-melhor="false">8</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-99"
+                data-data="2014 — Semana 46" data-posicao="#15" data-plays="775 plays" data-melhor="false">15</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-86"
+                data-data="2014 — Semana 47" data-posicao="#22" data-plays="812 plays" data-melhor="false">22</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-73"
+                data-data="2014 — Semana 48" data-posicao="#29" data-plays="849 plays" data-melhor="false">29</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-60"
+                data-data="2014 — Semana 49" data-posicao="#36" data-plays="886 plays" data-melhor="false">36</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-47"
+                data-data="2014 — Semana 50" data-posicao="#43" data-plays="923 plays" data-melhor="false">43</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-34"
+                data-data="2014 — Semana 51" data-posicao="#50" data-plays="960 plays" data-melhor="false">50</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 52" data-posicao="#7" data-plays="997 plays" data-melhor="false">7</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2014 — Semana 53" data-posicao="#14" data-plays="1.034 plays" data-melhor="false">14</button>
+            </div>
 
-            <div class="semana-ano">2011</div>
-            <button class="botao semana-quadrinho semana-quadrinho-25" data-data="2011 — Semana 1" data-posicao="#24"
-              data-plays="240 plays" data-melhor="false">24</button>
-            <button class="botao semana-quadrinho semana-quadrinho-35" data-data="2011 — Semana 2" data-posicao="#18"
-              data-plays="410 plays" data-melhor="false">18</button>
-            <button class="botao semana-quadrinho semana-quadrinho-55" data-data="2011 — Semana 3" data-posicao="#9"
-              data-plays="870 plays" data-melhor="false">9</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
-              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-72" data-data="2011 — Semana 5" data-posicao="#4"
-              data-plays="1.540 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-18" data-data="2011 — Semana 6" data-posicao="#42"
-              data-plays="120 plays" data-melhor="false">42</button>
-            <button class="botao semana-quadrinho semana-quadrinho-28" data-data="2011 — Semana 7" data-posicao="#33"
-              data-plays="190 plays" data-melhor="false">33</button>
-            <button class="botao semana-quadrinho semana-quadrinho-60" data-data="2011 — Semana 8" data-posicao="#7"
-              data-plays="940 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-31" data-data="2011 — Semana 9" data-posicao="#28"
-              data-plays="280 plays" data-melhor="false">28</button>
-            <button class="botao semana-quadrinho semana-quadrinho-82" data-data="2011 — Semana 10" data-posicao="#3"
-              data-plays="1.720 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-40" data-data="2011 — Semana 11" data-posicao="#15"
-              data-plays="520 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-65" data-data="2011 — Semana 12" data-posicao="#6"
-              data-plays="1.110 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-22" data-data="2011 — Semana 13" data-posicao="#38"
-              data-plays="160 plays" data-melhor="false">38</button>
-            <button class="botao semana-quadrinho semana-quadrinho-44" data-data="2011 — Semana 14" data-posicao="#13"
-              data-plays="600 plays" data-melhor="false">13</button>
-            <button class="botao semana-quadrinho semana-quadrinho-70" data-data="2011 — Semana 15" data-posicao="#5"
-              data-plays="1.300 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-20" data-data="2011 — Semana 16" data-posicao="#45"
-              data-plays="90 plays" data-melhor="false">45</button>
-            <button class="botao semana-quadrinho semana-quadrinho-33" data-data="2011 — Semana 17" data-posicao="#22"
-              data-plays="350 plays" data-melhor="false">22</button>
-            <button class="botao semana-quadrinho semana-quadrinho-58" data-data="2011 — Semana 18" data-posicao="#8"
-              data-plays="880 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-37" data-data="2011 — Semana 19" data-posicao="#19"
-              data-plays="430 plays" data-melhor="false">19</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
-              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-42" data-data="2011 — Semana 21" data-posicao="#14"
-              data-plays="620 plays" data-melhor="false">14</button>
-            <button class="botao semana-quadrinho semana-quadrinho-76" data-data="2011 — Semana 22" data-posicao="#4"
-              data-plays="1.460 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 23" data-posicao="#35"
-              data-plays="210 plays" data-melhor="false">35</button>
-            <button class="botao semana-quadrinho semana-quadrinho-52" data-data="2011 — Semana 24" data-posicao="#10"
-              data-plays="760 plays" data-melhor="false">10</button>
-            <button class="botao semana-quadrinho semana-quadrinho-73" data-data="2011 — Semana 25" data-posicao="#5"
-              data-plays="1.380 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-30" data-data="2011 — Semana 26" data-posicao="#29"
-              data-plays="270 plays" data-melhor="false">29</button>
-            <button class="botao semana-quadrinho semana-quadrinho-36" data-data="2011 — Semana 27" data-posicao="#20"
-              data-plays="390 plays" data-melhor="false">20</button>
-            <button class="botao semana-quadrinho semana-quadrinho-66" data-data="2011 — Semana 28" data-posicao="#6"
-              data-plays="1.140 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-24" data-data="2011 — Semana 29" data-posicao="#36"
-              data-plays="200 plays" data-melhor="false">36</button>
-            <button class="botao semana-quadrinho semana-quadrinho-88" data-data="2011 — Semana 30" data-posicao="#2"
-              data-plays="1.980 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-43" data-data="2011 — Semana 31" data-posicao="#12"
-              data-plays="660 plays" data-melhor="false">12</button>
-            <button class="botao semana-quadrinho semana-quadrinho-69" data-data="2011 — Semana 32" data-posicao="#5"
-              data-plays="1.250 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-21" data-data="2011 — Semana 33" data-posicao="#41"
-              data-plays="130 plays" data-melhor="false">41</button>
-            <button class="botao semana-quadrinho semana-quadrinho-39" data-data="2011 — Semana 34" data-posicao="#16"
-              data-plays="510 plays" data-melhor="false">16</button>
-            <button class="botao semana-quadrinho semana-quadrinho-63" data-data="2011 — Semana 35" data-posicao="#7"
-              data-plays="1.030 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-34" data-data="2011 — Semana 36" data-posicao="#23"
-              data-plays="340 plays" data-melhor="false">23</button>
-            <button class="botao semana-quadrinho semana-quadrinho-80" data-data="2011 — Semana 37" data-posicao="#3"
-              data-plays="1.700 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-46" data-data="2011 — Semana 38" data-posicao="#11"
-              data-plays="700 plays" data-melhor="false">11</button>
-            <button class="botao semana-quadrinho semana-quadrinho-27" data-data="2011 — Semana 39" data-posicao="#31"
-              data-plays="250 plays" data-melhor="false">31</button>
-            <button class="botao semana-quadrinho semana-quadrinho-71" data-data="2011 — Semana 40" data-posicao="#5"
-              data-plays="1.330 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-32" data-data="2011 — Semana 41" data-posicao="#25"
-              data-plays="310 plays" data-melhor="false">25</button>
-            <button class="botao semana-quadrinho semana-quadrinho-57" data-data="2011 — Semana 42" data-posicao="#8"
-              data-plays="910 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-78" data-data="2011 — Semana 43" data-posicao="#4"
-              data-plays="1.500 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-29" data-data="2011 — Semana 44" data-posicao="#27"
-              data-plays="280 plays" data-melhor="false">27</button>
-            <button class="botao semana-quadrinho semana-quadrinho-41" data-data="2011 — Semana 45" data-posicao="#15"
-              data-plays="570 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-67" data-data="2011 — Semana 46" data-posicao="#6"
-              data-plays="1.180 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-23" data-data="2011 — Semana 47" data-posicao="#39"
-              data-plays="170 plays" data-melhor="false">39</button>
-            <button class="botao semana-quadrinho semana-quadrinho-84" data-data="2011 — Semana 48" data-posicao="#2"
-              data-plays="1.820 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-38" data-data="2011 — Semana 49" data-posicao="#17"
-              data-plays="480 plays" data-melhor="false">17</button>
-            <button class="botao semana-quadrinho semana-quadrinho-74" data-data="2011 — Semana 50" data-posicao="#4"
-              data-plays="1.430 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 51" data-posicao="#34"
-              data-plays="220 plays" data-melhor="false">34</button>
-            <button class="botao semana-quadrinho semana-quadrinho-59" data-data="2011 — Semana 52" data-posicao="#8"
-              data-plays="940 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-45" data-data="2011 — Semana 53" data-posicao="#13"
-              data-plays="610 plays" data-melhor="false">13</button>
-
-            <div class="semana-ano">2011</div>
-            <button class="botao semana-quadrinho semana-quadrinho-25" data-data="2011 — Semana 1" data-posicao="#24"
-              data-plays="240 plays" data-melhor="false">24</button>
-            <button class="botao semana-quadrinho semana-quadrinho-35" data-data="2011 — Semana 2" data-posicao="#18"
-              data-plays="410 plays" data-melhor="false">18</button>
-            <button class="botao semana-quadrinho semana-quadrinho-55" data-data="2011 — Semana 3" data-posicao="#9"
-              data-plays="870 plays" data-melhor="false">9</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
-              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-72" data-data="2011 — Semana 5" data-posicao="#4"
-              data-plays="1.540 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-18" data-data="2011 — Semana 6" data-posicao="#42"
-              data-plays="120 plays" data-melhor="false">42</button>
-            <button class="botao semana-quadrinho semana-quadrinho-28" data-data="2011 — Semana 7" data-posicao="#33"
-              data-plays="190 plays" data-melhor="false">33</button>
-            <button class="botao semana-quadrinho semana-quadrinho-60" data-data="2011 — Semana 8" data-posicao="#7"
-              data-plays="940 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-31" data-data="2011 — Semana 9" data-posicao="#28"
-              data-plays="280 plays" data-melhor="false">28</button>
-            <button class="botao semana-quadrinho semana-quadrinho-82" data-data="2011 — Semana 10" data-posicao="#3"
-              data-plays="1.720 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-40" data-data="2011 — Semana 11" data-posicao="#15"
-              data-plays="520 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-65" data-data="2011 — Semana 12" data-posicao="#6"
-              data-plays="1.110 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-22" data-data="2011 — Semana 13" data-posicao="#38"
-              data-plays="160 plays" data-melhor="false">38</button>
-            <button class="botao semana-quadrinho semana-quadrinho-44" data-data="2011 — Semana 14" data-posicao="#13"
-              data-plays="600 plays" data-melhor="false">13</button>
-            <button class="botao semana-quadrinho semana-quadrinho-70" data-data="2011 — Semana 15" data-posicao="#5"
-              data-plays="1.300 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-20" data-data="2011 — Semana 16" data-posicao="#45"
-              data-plays="90 plays" data-melhor="false">45</button>
-            <button class="botao semana-quadrinho semana-quadrinho-33" data-data="2011 — Semana 17" data-posicao="#22"
-              data-plays="350 plays" data-melhor="false">22</button>
-            <button class="botao semana-quadrinho semana-quadrinho-58" data-data="2011 — Semana 18" data-posicao="#8"
-              data-plays="880 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-37" data-data="2011 — Semana 19" data-posicao="#19"
-              data-plays="430 plays" data-melhor="false">19</button>
-            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
-              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-            <button class="botao semana-quadrinho semana-quadrinho-42" data-data="2011 — Semana 21" data-posicao="#14"
-              data-plays="620 plays" data-melhor="false">14</button>
-            <button class="botao semana-quadrinho semana-quadrinho-76" data-data="2011 — Semana 22" data-posicao="#4"
-              data-plays="1.460 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 23" data-posicao="#35"
-              data-plays="210 plays" data-melhor="false">35</button>
-            <button class="botao semana-quadrinho semana-quadrinho-52" data-data="2011 — Semana 24" data-posicao="#10"
-              data-plays="760 plays" data-melhor="false">10</button>
-            <button class="botao semana-quadrinho semana-quadrinho-73" data-data="2011 — Semana 25" data-posicao="#5"
-              data-plays="1.380 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-30" data-data="2011 — Semana 26" data-posicao="#29"
-              data-plays="270 plays" data-melhor="false">29</button>
-            <button class="botao semana-quadrinho semana-quadrinho-36" data-data="2011 — Semana 27" data-posicao="#20"
-              data-plays="390 plays" data-melhor="false">20</button>
-            <button class="botao semana-quadrinho semana-quadrinho-66" data-data="2011 — Semana 28" data-posicao="#6"
-              data-plays="1.140 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-24" data-data="2011 — Semana 29" data-posicao="#36"
-              data-plays="200 plays" data-melhor="false">36</button>
-            <button class="botao semana-quadrinho semana-quadrinho-88" data-data="2011 — Semana 30" data-posicao="#2"
-              data-plays="1.980 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-43" data-data="2011 — Semana 31" data-posicao="#12"
-              data-plays="660 plays" data-melhor="false">12</button>
-            <button class="botao semana-quadrinho semana-quadrinho-69" data-data="2011 — Semana 32" data-posicao="#5"
-              data-plays="1.250 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-21" data-data="2011 — Semana 33" data-posicao="#41"
-              data-plays="130 plays" data-melhor="false">41</button>
-            <button class="botao semana-quadrinho semana-quadrinho-39" data-data="2011 — Semana 34" data-posicao="#16"
-              data-plays="510 plays" data-melhor="false">16</button>
-            <button class="botao semana-quadrinho semana-quadrinho-63" data-data="2011 — Semana 35" data-posicao="#7"
-              data-plays="1.030 plays" data-melhor="false">7</button>
-            <button class="botao semana-quadrinho semana-quadrinho-34" data-data="2011 — Semana 36" data-posicao="#23"
-              data-plays="340 plays" data-melhor="false">23</button>
-            <button class="botao semana-quadrinho semana-quadrinho-80" data-data="2011 — Semana 37" data-posicao="#3"
-              data-plays="1.700 plays" data-melhor="false">3</button>
-            <button class="botao semana-quadrinho semana-quadrinho-46" data-data="2011 — Semana 38" data-posicao="#11"
-              data-plays="700 plays" data-melhor="false">11</button>
-            <button class="botao semana-quadrinho semana-quadrinho-27" data-data="2011 — Semana 39" data-posicao="#31"
-              data-plays="250 plays" data-melhor="false">31</button>
-            <button class="botao semana-quadrinho semana-quadrinho-71" data-data="2011 — Semana 40" data-posicao="#5"
-              data-plays="1.330 plays" data-melhor="false">5</button>
-            <button class="botao semana-quadrinho semana-quadrinho-32" data-data="2011 — Semana 41" data-posicao="#25"
-              data-plays="310 plays" data-melhor="false">25</button>
-            <button class="botao semana-quadrinho semana-quadrinho-57" data-data="2011 — Semana 42" data-posicao="#8"
-              data-plays="910 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-78" data-data="2011 — Semana 43" data-posicao="#4"
-              data-plays="1.500 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-29" data-data="2011 — Semana 44" data-posicao="#27"
-              data-plays="280 plays" data-melhor="false">27</button>
-            <button class="botao semana-quadrinho semana-quadrinho-41" data-data="2011 — Semana 45" data-posicao="#15"
-              data-plays="570 plays" data-melhor="false">15</button>
-            <button class="botao semana-quadrinho semana-quadrinho-67" data-data="2011 — Semana 46" data-posicao="#6"
-              data-plays="1.180 plays" data-melhor="false">6</button>
-            <button class="botao semana-quadrinho semana-quadrinho-23" data-data="2011 — Semana 47" data-posicao="#39"
-              data-plays="170 plays" data-melhor="false">39</button>
-            <button class="botao semana-quadrinho semana-quadrinho-84" data-data="2011 — Semana 48" data-posicao="#2"
-              data-plays="1.820 plays" data-melhor="false">2</button>
-            <button class="botao semana-quadrinho semana-quadrinho-38" data-data="2011 — Semana 49" data-posicao="#17"
-              data-plays="480 plays" data-melhor="false">17</button>
-            <button class="botao semana-quadrinho semana-quadrinho-74" data-data="2011 — Semana 50" data-posicao="#4"
-              data-plays="1.430 plays" data-melhor="false">4</button>
-            <button class="botao semana-quadrinho semana-quadrinho-26" data-data="2011 — Semana 51" data-posicao="#34"
-              data-plays="220 plays" data-melhor="false">34</button>
-            <button class="botao semana-quadrinho semana-quadrinho-59" data-data="2011 — Semana 52" data-posicao="#8"
-              data-plays="940 plays" data-melhor="false">8</button>
-            <button class="botao semana-quadrinho semana-quadrinho-45" data-data="2011 — Semana 53" data-posicao="#13"
-              data-plays="610 plays" data-melhor="false">13</button>
-
+            <!-- 2015 -->
+            <div class="semana-celula">
+              <div class="semana-marcador-ano">2015</div><button class="botao semana-quadrinho semana-quadrinho-31"
+                data-data="2015 — Semana 1" data-posicao="#11" data-plays="1.071 plays" data-melhor="false">11</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-18"
+                data-data="2015 — Semana 2" data-posicao="#18" data-plays="1.108 plays" data-melhor="false">18</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2015 — Semana 3" data-posicao="#25" data-plays="1.145 plays" data-melhor="false">25</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-91"
+                data-data="2015 — Semana 4" data-posicao="#32" data-plays="1.182 plays" data-melhor="false">32</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-78"
+                data-data="2015 — Semana 5" data-posicao="#39" data-plays="1.219 plays" data-melhor="false">39</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-65"
+                data-data="2015 — Semana 6" data-posicao="#46" data-plays="1.256 plays" data-melhor="false">46</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2015 — Semana 7" data-posicao="#3" data-plays="1.293 plays" data-melhor="false">3</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-94"
+                data-data="2015 — Semana 8" data-posicao="#10" data-plays="1.330 plays" data-melhor="false">10</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-81"
+                data-data="2015 — Semana 9" data-posicao="#17" data-plays="1.367 plays" data-melhor="false">17</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-68"
+                data-data="2015 — Semana 10" data-posicao="#24" data-plays="1.404 plays" data-melhor="false">24</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-55"
+                data-data="2015 — Semana 11" data-posicao="#31" data-plays="1.441 plays" data-melhor="false">31</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-melhor-desempenho"
+                data-data="2015 — Semana 12" data-posicao="#1" data-plays="1.478 plays" data-melhor="true">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-29"
+                data-data="2015 — Semana 13" data-posicao="#45" data-plays="1.515 plays" data-melhor="false">45</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-16"
+                data-data="2015 — Semana 14" data-posicao="#2" data-plays="1.552 plays" data-melhor="false">2</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 15" data-posicao="#9" data-plays="1.589 plays" data-melhor="false">9</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 16" data-posicao="#16" data-plays="1.626 plays" data-melhor="false">16</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-84"
+                data-data="2015 — Semana 17" data-posicao="#23" data-plays="1.663 plays" data-melhor="false">23</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-71"
+                data-data="2015 — Semana 18" data-posicao="#30" data-plays="1.700 plays" data-melhor="false">30</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-58"
+                data-data="2015 — Semana 19" data-posicao="#37" data-plays="1.737 plays" data-melhor="false">37</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-45"
+                data-data="2015 — Semana 20" data-posicao="#44" data-plays="1.774 plays" data-melhor="false">44</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-10"
+                data-data="2015 — Semana 21" data-posicao="#1" data-plays="1.811 plays" data-melhor="false">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 22" data-posicao="#8" data-plays="1.848 plays" data-melhor="false">8</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-87"
+                data-data="2015 — Semana 23" data-posicao="#15" data-plays="1.885 plays" data-melhor="false">15</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-74"
+                data-data="2015 — Semana 24" data-posicao="#22" data-plays="1.922 plays" data-melhor="false">22</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-61"
+                data-data="2015 — Semana 25" data-posicao="#29" data-plays="1.959 plays" data-melhor="false">29</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-48"
+                data-data="2015 — Semana 26" data-posicao="#36" data-plays="1.996 plays" data-melhor="false">36</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-35"
+                data-data="2015 — Semana 27" data-posicao="#43" data-plays="2.033 plays" data-melhor="false">43</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-22"
+                data-data="2015 — Semana 28" data-posicao="#50" data-plays="2.070 plays" data-melhor="false">50</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 29" data-posicao="#7" data-plays="2.107 plays" data-melhor="false">7</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-90"
+                data-data="2015 — Semana 30" data-posicao="#14" data-plays="2.144 plays" data-melhor="false">14</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-77"
+                data-data="2015 — Semana 31" data-posicao="#21" data-plays="2.181 plays" data-melhor="false">21</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-64"
+                data-data="2015 — Semana 32" data-posicao="#28" data-plays="2.218 plays" data-melhor="false">28</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-51"
+                data-data="2015 — Semana 33" data-posicao="#35" data-plays="2.255 plays" data-melhor="false">35</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-38"
+                data-data="2015 — Semana 34" data-posicao="#42" data-plays="2.292 plays" data-melhor="false">42</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-25"
+                data-data="2015 — Semana 35" data-posicao="#49" data-plays="29 plays" data-melhor="false">49</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 36" data-posicao="#6" data-plays="66 plays" data-melhor="false">6</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-93"
+                data-data="2015 — Semana 37" data-posicao="#13" data-plays="103 plays" data-melhor="false">13</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-80"
+                data-data="2015 — Semana 38" data-posicao="#20" data-plays="140 plays" data-melhor="false">20</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-67"
+                data-data="2015 — Semana 39" data-posicao="#27" data-plays="177 plays" data-melhor="false">27</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-54"
+                data-data="2015 — Semana 40" data-posicao="#34" data-plays="214 plays" data-melhor="false">34</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-41"
+                data-data="2015 — Semana 41" data-posicao="#41" data-plays="251 plays" data-melhor="false">41</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-28"
+                data-data="2015 — Semana 42" data-posicao="#48" data-plays="288 plays" data-melhor="false">48</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 43" data-posicao="#5" data-plays="325 plays" data-melhor="false">5</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-96"
+                data-data="2015 — Semana 44" data-posicao="#12" data-plays="362 plays" data-melhor="false">12</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-83"
+                data-data="2015 — Semana 45" data-posicao="#19" data-plays="399 plays" data-melhor="false">19</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-70"
+                data-data="2015 — Semana 46" data-posicao="#26" data-plays="436 plays" data-melhor="false">26</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-57"
+                data-data="2015 — Semana 47" data-posicao="#33" data-plays="473 plays" data-melhor="false">33</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-44"
+                data-data="2015 — Semana 48" data-posicao="#40" data-plays="510 plays" data-melhor="false">40</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-melhor-desempenho"
+                data-data="2015 — Semana 49" data-posicao="#1" data-plays="547 plays" data-melhor="true">1</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-100"
+                data-data="2015 — Semana 50" data-posicao="#4" data-plays="584 plays" data-melhor="false">4</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-99"
+                data-data="2015 — Semana 51" data-posicao="#11" data-plays="621 plays" data-melhor="false">11</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-86"
+                data-data="2015 — Semana 52" data-posicao="#18" data-plays="658 plays" data-melhor="false">18</button>
+            </div>
+            <div class="semana-celula"><button class="botao semana-quadrinho semana-quadrinho-73"
+                data-data="2015 — Semana 53" data-posicao="#25" data-plays="695 plays" data-melhor="false">25</button>
+            </div>
           </div>
+
+
+
+
+
+
+
+
+
 
 
       </section>

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Perfil do artista — TonCharts</title>
-  <meta name="description" content="Perfil musical com métricas, desempenho por período, semanas, álbuns, músicas e certificações.">
+  <meta name="description"
+    content="Perfil musical com métricas, desempenho por período, semanas, álbuns, músicas e certificações.">
 
   <meta property="og:title" content="Perfil do artista — TonCharts">
-  <meta property="og:description" content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações.">
+  <meta property="og:description"
+    content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações.">
   <meta property="og:image" content="">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Perfil do artista — TonCharts">
-  <meta name="twitter:description" content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações.">
+  <meta name="twitter:description"
+    content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações.">
   <meta name="twitter:image" content="">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" class="fonte-preconnect-1">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin class="fonte-preconnect-2">
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet" class="fonte-exo-2">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" class="fonte-awesome">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet"
+    class="fonte-exo-2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    class="fonte-awesome">
 
   <style>
     :root {
@@ -557,16 +563,45 @@
       line-height: 1.05;
     }
 
-    .altura-38 { height: 38%; }
-    .altura-45 { height: 45%; }
-    .altura-52 { height: 52%; }
-    .altura-58 { height: 58%; }
-    .altura-64 { height: 64%; }
-    .altura-70 { height: 70%; }
-    .altura-76 { height: 76%; }
-    .altura-82 { height: 82%; }
-    .altura-88 { height: 88%; }
-    .altura-95 { height: 95%; }
+    .altura-38 {
+      height: 38%;
+    }
+
+    .altura-45 {
+      height: 45%;
+    }
+
+    .altura-52 {
+      height: 52%;
+    }
+
+    .altura-58 {
+      height: 58%;
+    }
+
+    .altura-64 {
+      height: 64%;
+    }
+
+    .altura-70 {
+      height: 70%;
+    }
+
+    .altura-76 {
+      height: 76%;
+    }
+
+    .altura-82 {
+      height: 82%;
+    }
+
+    .altura-88 {
+      height: 88%;
+    }
+
+    .altura-95 {
+      height: 95%;
+    }
 
     .semanas-container {
       width: min(100% - 2rem, var(--largura-container));
@@ -580,129 +615,105 @@
       scrollbar-width: thin;
     }
 
-.grade-semanas {
-  width: max-content;
-  min-width: 100%;
-  display: grid;
-  grid-template-columns: var(--largura-ano) repeat(53, minmax(var(--tamanho-semana), 1fr));
-  gap: 0.18rem;
-  align-items: center;
-}
+    .semana-quadrinho {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      min-width: var(--tamanho-semana);
+      border: 0;
+      padding: 0;
+      background: var(--semana-cor, var(--cor-superficie-2));
+      opacity: var(--semana-opacidade, 0.28);
+      color: var(--cor-escura);
+      font-size: 0.45rem;
+      font-weight: var(--peso-bold);
+      line-height: 1;
+      transition: transform var(--transicao), opacity var(--transicao), box-shadow var(--transicao);
+    }
 
-.semana-quadrinho {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  width: 100%;
-  min-width: var(--tamanho-semana);
-  border: 0;
-  padding: 0;
-  background: var(--semana-cor, var(--cor-superficie-2));
-  opacity: var(--semana-opacidade, 0.28);
-  color: var(--cor-escura);
-  font-size: 0.45rem;
-  font-weight: var(--peso-bold);
-  line-height: 1;
-  transition: transform var(--transicao), opacity var(--transicao), box-shadow var(--transicao);
-}
+    .semana-quadrinho:hover,
+    .semana-quadrinho:focus-visible {
+      transform: scale(1.45);
+      opacity: 1;
+      box-shadow: 0 0 0 0.12rem rgba(156, 156, 166, 0.8);
+    }
 
-.semana-quadrinho:hover,
-.semana-quadrinho:focus-visible {
-  transform: scale(1.45);
-  opacity: 1;
-  box-shadow: 0 0 0 0.12rem rgba(156, 156, 166, 0.8);
-}
-
-.semana-melhor-desempenho::before {
-  content: "\e098";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--cor-escura);
-  font-family: "Font Awesome 6 Free";
-  font-size: 0.46rem;
-  font-weight: 900;
-  line-height: 1;
-}
-    .semana-cabecalho,
-    .semana-ano {
-      min-height: var(--tamanho-semana);
+    .semana-melhor-desempenho::before {
+      content: "\e098";
+      position: absolute;
+      inset: 0;
       display: grid;
       place-items: center;
-      color: var(--cor-texto);
-      font-size: 0.58rem;
+      color: var(--cor-escura);
+      font-family: "Font Awesome 6 Free";
+      font-size: 0.46rem;
+      font-weight: 900;
       line-height: 1;
     }
 
-    .semana-ano {
-      justify-content: start;
+    .semana-quadrinho {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      min-width: var(--tamanho-semana);
+      display: grid;
+      place-items: center;
+      border: 0;
+      padding: 0;
+      color: var(--cor-escura);
+      background: var(--semana-cor, var(--cor-superficie-2));
+      opacity: var(--semana-opacidade, 0.28);
+      font-size: 0.5rem;
+      font-weight: var(--peso-bold);
+      line-height: 1;
+      transition: transform var(--transicao), opacity var(--transicao), box-shadow var(--transicao);
     }
 
-.grade-semanas {
-  width: max-content;
-  min-width: 100%;
-  display: grid;
-  grid-template-columns: var(--largura-ano) repeat(53, minmax(var(--tamanho-semana), 1fr));
-  gap: 0.18rem;
-  align-items: center;
-}
+    .semana-quadrinho:hover,
+    .semana-quadrinho:focus-visible {
+      transform: scale(1.45);
+      opacity: 1;
+      box-shadow: 0 0 0 0.12rem rgba(156, 156, 166, 0.8);
+    }
 
-.semana-cabecalho,
-.semana-ano {
-  min-height: var(--tamanho-semana);
-  display: grid;
-  place-items: center;
-  color: var(--cor-texto);
-  font-size: 0.58rem;
-  font-weight: var(--peso-normal);
-  line-height: 1;
-}
+    .semana-melhor-desempenho {
+      color: var(--cor-escura);
+      background: var(--cor-clara);
+      opacity: 1;
+    }
 
-.semana-ano {
-  justify-content: start;
-}
+    .semana-melhor-desempenho::before {
+      content: none;
+    }
 
-.semana-quadrinho {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  width: 100%;
-  min-width: var(--tamanho-semana);
-  display: grid;
-  place-items: center;
-  border: 0;
-  padding: 0;
-  color: var(--cor-escura);
-  background: var(--semana-cor, var(--cor-superficie-2));
-  opacity: var(--semana-opacidade, 0.28);
-  font-size: 0.5rem;
-  font-weight: var(--peso-bold);
-  line-height: 1;
-  transition: transform var(--transicao), opacity var(--transicao), box-shadow var(--transicao);
-}
+    .forca-0 {
+      opacity: 0.28;
+    }
 
-.semana-quadrinho:hover,
-.semana-quadrinho:focus-visible {
-  transform: scale(1.45);
-  opacity: 1;
-  box-shadow: 0 0 0 0.12rem rgba(156, 156, 166, 0.8);
-}
+    .forca-1 {
+      opacity: 0.42;
+      background: var(--cor-ciano);
+    }
 
-.semana-melhor-desempenho {
-  color: var(--cor-escura);
-  background: var(--cor-clara);
-  opacity: 1;
-}
+    .forca-2 {
+      opacity: 0.56;
+      background: var(--cor-ciano);
+    }
 
-.semana-melhor-desempenho::before {
-  content: none;
-}
+    .forca-3 {
+      opacity: 0.7;
+      background: var(--cor-verde);
+    }
 
-    .forca-0 { opacity: 0.28; }
-    .forca-1 { opacity: 0.42; background: var(--cor-ciano); }
-    .forca-2 { opacity: 0.56; background: var(--cor-ciano); }
-    .forca-3 { opacity: 0.7; background: var(--cor-verde); }
-    .forca-4 { opacity: 0.84; background: var(--cor-verde); }
-    .forca-5 { opacity: 1; background: linear-gradient(135deg, var(--cor-ciano), var(--cor-verde)); }
+    .forca-4 {
+      opacity: 0.84;
+      background: var(--cor-verde);
+    }
+
+    .forca-5 {
+      opacity: 1;
+      background: linear-gradient(135deg, var(--cor-ciano), var(--cor-verde));
+    }
 
     .tooltip-semana {
       position: fixed;
@@ -1286,6 +1297,7 @@
     }
 
     @media (max-width: 47.5rem) {
+
       .container,
       .semanas-container {
         width: min(100% - 1.5rem, var(--largura-container));
@@ -1433,7 +1445,8 @@
           </div>
 
           <select class="seletor-periodo seletor-periodo-hero" aria-label="Selecionar período">
-            <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+            <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período
+            </option>
             <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
             <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
             <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
@@ -1520,8 +1533,10 @@
           <div class="cabecalho-bloco cabecalho-bloco-desempenho">
             <h2 class="titulo-bloco titulo-bloco-desempenho">Desempenho por período</h2>
 
-            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-desempenho" aria-label="Selecionar período de desempenho">
-              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-desempenho"
+              aria-label="Selecionar período de desempenho">
+              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período
+              </option>
               <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
               <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
               <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
@@ -1532,779 +1547,1264 @@
           <div class="conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
             <div class="grafico-area">
               <div class="grafico-periodo">
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-95"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-82"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-88"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-58"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-70"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-82"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-64"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
-                <div class="grafico-item"><div class="barra-area"><div class="barra-preenchimento altura-76"><div class="barra-valor">5.000</div></div></div><div class="barra-legenda"><div>5.000</div><div>#2</div></div></div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-95">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-82">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-88">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-58">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-70">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-82">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-64">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
+                <div class="grafico-item">
+                  <div class="barra-area">
+                    <div class="barra-preenchimento altura-76">
+                      <div class="barra-valor">5.000</div>
+                    </div>
+                  </div>
+                  <div class="barra-legenda">
+                    <div>5.000</div>
+                    <div>#2</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-<section class="bloco-geral bloco-semanas" id="calendario">
-  <div class="semanas-container">
-    <div class="cabecalho-bloco cabecalho-bloco-semanas">
-      <h2 class="titulo-bloco titulo-bloco-semanas">Semanas</h2>
-    </div>
-
-<div class="grade-semanas">
-  <!-- cabeçalho: 1 vazio + 53 semanas -->
-  <div class="semana-cabecalho"></div>
-  <div class="semana-cabecalho">1</div>
-  <div class="semana-cabecalho">2</div>
-  <div class="semana-cabecalho">3</div>
-  <div class="semana-cabecalho">4</div>
-  <div class="semana-cabecalho">5</div>
-  <div class="semana-cabecalho">6</div>
-  <div class="semana-cabecalho">7</div>
-  <div class="semana-cabecalho">8</div>
-  <div class="semana-cabecalho">9</div>
-  <div class="semana-cabecalho">10</div>
-  <div class="semana-cabecalho">11</div>
-  <div class="semana-cabecalho">12</div>
-  <div class="semana-cabecalho">13</div>
-  <div class="semana-cabecalho">14</div>
-  <div class="semana-cabecalho">15</div>
-  <div class="semana-cabecalho">16</div>
-  <div class="semana-cabecalho">17</div>
-  <div class="semana-cabecalho">18</div>
-  <div class="semana-cabecalho">19</div>
-  <div class="semana-cabecalho">20</div>
-  <div class="semana-cabecalho">21</div>
-  <div class="semana-cabecalho">22</div>
-  <div class="semana-cabecalho">23</div>
-  <div class="semana-cabecalho">24</div>
-  <div class="semana-cabecalho">25</div>
-  <div class="semana-cabecalho">26</div>
-  <div class="semana-cabecalho">27</div>
-  <div class="semana-cabecalho">28</div>
-  <div class="semana-cabecalho">29</div>
-  <div class="semana-cabecalho">30</div>
-  <div class="semana-cabecalho">31</div>
-  <div class="semana-cabecalho">32</div>
-  <div class="semana-cabecalho">33</div>
-  <div class="semana-cabecalho">34</div>
-  <div class="semana-cabecalho">35</div>
-  <div class="semana-cabecalho">36</div>
-  <div class="semana-cabecalho">37</div>
-  <div class="semana-cabecalho">38</div>
-  <div class="semana-cabecalho">39</div>
-  <div class="semana-cabecalho">40</div>
-  <div class="semana-cabecalho">41</div>
-  <div class="semana-cabecalho">42</div>
-  <div class="semana-cabecalho">43</div>
-  <div class="semana-cabecalho">44</div>
-  <div class="semana-cabecalho">45</div>
-  <div class="semana-cabecalho">46</div>
-  <div class="semana-cabecalho">47</div>
-  <div class="semana-cabecalho">48</div>
-  <div class="semana-cabecalho">49</div>
-  <div class="semana-cabecalho">50</div>
-  <div class="semana-cabecalho">51</div>
-  <div class="semana-cabecalho">52</div>
-  <div class="semana-cabecalho">53</div>
-
-  <!-- 2011 -->
-  <div class="semana-ano">2011</div>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
-
-  <div class="semana-ano">2011</div>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
-
-  <div class="semana-ano">2011</div>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
-
-  <div class="semana-ano">2011</div>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
-
-  <div class="semana-ano">2011</div>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;" data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;" data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;" data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4" data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;" data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;" data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;" data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;" data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;" data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;" data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;" data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;" data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;" data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;" data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;" data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;" data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;" data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;" data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;" data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
-  <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20" data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;" data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;" data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;" data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;" data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;" data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;" data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;" data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;" data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;" data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;" data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;" data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;" data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;" data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;" data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;" data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;" data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;" data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;" data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;" data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;" data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;" data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;" data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;" data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;" data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;" data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;" data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;" data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;" data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;" data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;" data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;" data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
-  <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;" data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
-
-  <!-- repita o bloco de 53 botões para cada ano: 2012 até 2026 -->
-</div>
-
-
-</section>
-</div>
-</section>
-      <section class="bloco-geral bloco-albuns" id="albuns">
-        <div class="container">
-          <div class="cabecalho-bloco cabecalho-bloco-albuns">
-            <h2 class="titulo-bloco titulo-bloco-albuns">Álbuns</h2>
-
-            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-albuns" aria-label="Selecionar período de álbuns">
-              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
-              <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
-              <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
-              <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
-              <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
-            </select>
+      <section class="bloco-geral bloco-semanas" id="calendario">
+        <div class="semanas-container">
+          <div class="cabecalho-bloco cabecalho-bloco-semanas">
+            <h2 class="titulo-bloco titulo-bloco-semanas">Semanas</h2>
           </div>
 
-          <div class="albuns-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
-            <div class="grade-albuns">
-              <article class="card-album card-album-1" data-spotify-album-id="5BvgP623rtvlc0HDcpzquz">
-                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <div class="card-album-rank">1</div>
-                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
-                  <div class="card-album-placeholder">Capa do álbum</div>
-                  <div class="card-album-overlay">
-                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
-                  </div>
-                </a>
+          <div class="grade-semanas">
+            <!-- cabeçalho: 1 vazio + 53 semanas -->
+            <div class="semana-cabecalho"></div>
+            <div class="semana-cabecalho">1</div>
+            <div class="semana-cabecalho">2</div>
+            <div class="semana-cabecalho">3</div>
+            <div class="semana-cabecalho">4</div>
+            <div class="semana-cabecalho">5</div>
+            <div class="semana-cabecalho">6</div>
+            <div class="semana-cabecalho">7</div>
+            <div class="semana-cabecalho">8</div>
+            <div class="semana-cabecalho">9</div>
+            <div class="semana-cabecalho">10</div>
+            <div class="semana-cabecalho">11</div>
+            <div class="semana-cabecalho">12</div>
+            <div class="semana-cabecalho">13</div>
+            <div class="semana-cabecalho">14</div>
+            <div class="semana-cabecalho">15</div>
+            <div class="semana-cabecalho">16</div>
+            <div class="semana-cabecalho">17</div>
+            <div class="semana-cabecalho">18</div>
+            <div class="semana-cabecalho">19</div>
+            <div class="semana-cabecalho">20</div>
+            <div class="semana-cabecalho">21</div>
+            <div class="semana-cabecalho">22</div>
+            <div class="semana-cabecalho">23</div>
+            <div class="semana-cabecalho">24</div>
+            <div class="semana-cabecalho">25</div>
+            <div class="semana-cabecalho">26</div>
+            <div class="semana-cabecalho">27</div>
+            <div class="semana-cabecalho">28</div>
+            <div class="semana-cabecalho">29</div>
+            <div class="semana-cabecalho">30</div>
+            <div class="semana-cabecalho">31</div>
+            <div class="semana-cabecalho">32</div>
+            <div class="semana-cabecalho">33</div>
+            <div class="semana-cabecalho">34</div>
+            <div class="semana-cabecalho">35</div>
+            <div class="semana-cabecalho">36</div>
+            <div class="semana-cabecalho">37</div>
+            <div class="semana-cabecalho">38</div>
+            <div class="semana-cabecalho">39</div>
+            <div class="semana-cabecalho">40</div>
+            <div class="semana-cabecalho">41</div>
+            <div class="semana-cabecalho">42</div>
+            <div class="semana-cabecalho">43</div>
+            <div class="semana-cabecalho">44</div>
+            <div class="semana-cabecalho">45</div>
+            <div class="semana-cabecalho">46</div>
+            <div class="semana-cabecalho">47</div>
+            <div class="semana-cabecalho">48</div>
+            <div class="semana-cabecalho">49</div>
+            <div class="semana-cabecalho">50</div>
+            <div class="semana-cabecalho">51</div>
+            <div class="semana-cabecalho">52</div>
+            <div class="semana-cabecalho">53</div>
 
-                <div class="card-album-info">
-                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Teenage Dream</a>
+            <!-- 2011 -->
+            <div class="semana-ano">2011</div>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;"
+              data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;"
+              data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;"
+              data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
+              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;"
+              data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;"
+              data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;"
+              data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;"
+              data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;"
+              data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;"
+              data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;"
+              data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;"
+              data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;"
+              data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;"
+              data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;"
+              data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;"
+              data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;"
+              data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;"
+              data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;"
+              data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
+              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;"
+              data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;"
+              data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;"
+              data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;"
+              data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;"
+              data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;"
+              data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;"
+              data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;"
+              data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;"
+              data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;"
+              data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;"
+              data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;"
+              data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;"
+              data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;"
+              data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;"
+              data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;"
+              data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;"
+              data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;"
+              data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;"
+              data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;"
+              data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;"
+              data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;"
+              data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;"
+              data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;"
+              data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;"
+              data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;"
+              data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;"
+              data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;"
+              data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;"
+              data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;"
+              data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;"
+              data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
 
-                  <div class="card-album-meta">
-                    <div><strong class="card-album-numero">5.000</strong> scrobbles</div>
-                    <div><strong class="card-album-numero">28%</strong> dos scrobbles do ato</div>
-                    <div><strong class="card-album-numero">#1</strong> no ranking</div>
+            <div class="semana-ano">2011</div>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;"
+              data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;"
+              data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;"
+              data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
+              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;"
+              data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;"
+              data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;"
+              data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;"
+              data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;"
+              data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;"
+              data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;"
+              data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;"
+              data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;"
+              data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;"
+              data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;"
+              data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;"
+              data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;"
+              data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;"
+              data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;"
+              data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
+              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;"
+              data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;"
+              data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;"
+              data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;"
+              data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;"
+              data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;"
+              data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;"
+              data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;"
+              data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;"
+              data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;"
+              data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;"
+              data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;"
+              data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;"
+              data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;"
+              data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;"
+              data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;"
+              data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;"
+              data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;"
+              data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;"
+              data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;"
+              data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;"
+              data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;"
+              data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;"
+              data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;"
+              data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;"
+              data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;"
+              data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;"
+              data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;"
+              data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;"
+              data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;"
+              data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;"
+              data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
 
-                    <div class="album-top5">
-                      <div class="album-top5-titulo">Principais músicas</div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">5.000</div><div class="album-top5-nome">The One That Got Away</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.800</div><div class="album-top5-nome">Firework</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.520</div><div class="album-top5-nome">Teenage Dream</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.210</div><div class="album-top5-nome">California Gurls</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.980</div><div class="album-top5-nome">E.T.</div></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+            <div class="semana-ano">2011</div>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;"
+              data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;"
+              data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;"
+              data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
+              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;"
+              data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;"
+              data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;"
+              data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;"
+              data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;"
+              data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;"
+              data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;"
+              data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;"
+              data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;"
+              data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;"
+              data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;"
+              data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;"
+              data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;"
+              data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;"
+              data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;"
+              data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
+              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;"
+              data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;"
+              data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;"
+              data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;"
+              data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;"
+              data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;"
+              data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;"
+              data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;"
+              data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;"
+              data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;"
+              data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;"
+              data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;"
+              data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;"
+              data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;"
+              data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;"
+              data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;"
+              data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;"
+              data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;"
+              data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;"
+              data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;"
+              data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;"
+              data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;"
+              data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;"
+              data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;"
+              data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;"
+              data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;"
+              data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;"
+              data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;"
+              data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;"
+              data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;"
+              data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;"
+              data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
 
-              <article class="card-album card-album-2" data-spotify-album-id="3jB9yFDwRe3KhtGnHXJntk">
-                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <div class="card-album-rank">2</div>
-                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
-                  <div class="card-album-placeholder">Capa do álbum</div>
-                  <div class="card-album-overlay">
-                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
-                  </div>
-                </a>
+            <div class="semana-ano">2011</div>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;"
+              data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;"
+              data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;"
+              data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
+              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;"
+              data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;"
+              data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;"
+              data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;"
+              data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;"
+              data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;"
+              data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;"
+              data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;"
+              data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;"
+              data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;"
+              data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;"
+              data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;"
+              data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;"
+              data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;"
+              data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;"
+              data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
+              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;"
+              data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;"
+              data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;"
+              data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;"
+              data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;"
+              data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;"
+              data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;"
+              data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;"
+              data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;"
+              data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;"
+              data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;"
+              data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;"
+              data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;"
+              data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;"
+              data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;"
+              data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;"
+              data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;"
+              data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;"
+              data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;"
+              data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;"
+              data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;"
+              data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;"
+              data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;"
+              data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;"
+              data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;"
+              data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;"
+              data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;"
+              data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;"
+              data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;"
+              data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;"
+              data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;"
+              data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
 
-                <div class="card-album-info">
-                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">PRISM</a>
+            <div class="semana-ano">2011</div>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .25;"
+              data-data="2011 — Semana 1" data-posicao="#24" data-plays="240 plays" data-melhor="false">24</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .35;"
+              data-data="2011 — Semana 2" data-posicao="#18" data-plays="410 plays" data-melhor="false">18</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .55;"
+              data-data="2011 — Semana 3" data-posicao="#9" data-plays="870 plays" data-melhor="false">9</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 4"
+              data-posicao="#1" data-plays="1.980 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .72;"
+              data-data="2011 — Semana 5" data-posicao="#4" data-plays="1.540 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .18;"
+              data-data="2011 — Semana 6" data-posicao="#42" data-plays="120 plays" data-melhor="false">42</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .28;"
+              data-data="2011 — Semana 7" data-posicao="#33" data-plays="190 plays" data-melhor="false">33</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .60;"
+              data-data="2011 — Semana 8" data-posicao="#7" data-plays="940 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .31;"
+              data-data="2011 — Semana 9" data-posicao="#28" data-plays="280 plays" data-melhor="false">28</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .82;"
+              data-data="2011 — Semana 10" data-posicao="#3" data-plays="1.720 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .40;"
+              data-data="2011 — Semana 11" data-posicao="#15" data-plays="520 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .65;"
+              data-data="2011 — Semana 12" data-posicao="#6" data-plays="1.110 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .22;"
+              data-data="2011 — Semana 13" data-posicao="#38" data-plays="160 plays" data-melhor="false">38</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .44;"
+              data-data="2011 — Semana 14" data-posicao="#13" data-plays="600 plays" data-melhor="false">13</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .70;"
+              data-data="2011 — Semana 15" data-posicao="#5" data-plays="1.300 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .20;"
+              data-data="2011 — Semana 16" data-posicao="#45" data-plays="90 plays" data-melhor="false">45</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .33;"
+              data-data="2011 — Semana 17" data-posicao="#22" data-plays="350 plays" data-melhor="false">22</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .58;"
+              data-data="2011 — Semana 18" data-posicao="#8" data-plays="880 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .37;"
+              data-data="2011 — Semana 19" data-posicao="#19" data-plays="430 plays" data-melhor="false">19</button>
+            <button class="botao semana-quadrinho semana-melhor-desempenho" data-data="2011 — Semana 20"
+              data-posicao="#1" data-plays="2.300 plays" data-melhor="true">1</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .42;"
+              data-data="2011 — Semana 21" data-posicao="#14" data-plays="620 plays" data-melhor="false">14</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .76;"
+              data-data="2011 — Semana 22" data-posicao="#4" data-plays="1.460 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 23" data-posicao="#35" data-plays="210 plays" data-melhor="false">35</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .52;"
+              data-data="2011 — Semana 24" data-posicao="#10" data-plays="760 plays" data-melhor="false">10</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .73;"
+              data-data="2011 — Semana 25" data-posicao="#5" data-plays="1.380 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .30;"
+              data-data="2011 — Semana 26" data-posicao="#29" data-plays="270 plays" data-melhor="false">29</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .36;"
+              data-data="2011 — Semana 27" data-posicao="#20" data-plays="390 plays" data-melhor="false">20</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .66;"
+              data-data="2011 — Semana 28" data-posicao="#6" data-plays="1.140 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .24;"
+              data-data="2011 — Semana 29" data-posicao="#36" data-plays="200 plays" data-melhor="false">36</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .88;"
+              data-data="2011 — Semana 30" data-posicao="#2" data-plays="1.980 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .43;"
+              data-data="2011 — Semana 31" data-posicao="#12" data-plays="660 plays" data-melhor="false">12</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .69;"
+              data-data="2011 — Semana 32" data-posicao="#5" data-plays="1.250 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .21;"
+              data-data="2011 — Semana 33" data-posicao="#41" data-plays="130 plays" data-melhor="false">41</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .39;"
+              data-data="2011 — Semana 34" data-posicao="#16" data-plays="510 plays" data-melhor="false">16</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .63;"
+              data-data="2011 — Semana 35" data-posicao="#7" data-plays="1.030 plays" data-melhor="false">7</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .34;"
+              data-data="2011 — Semana 36" data-posicao="#23" data-plays="340 plays" data-melhor="false">23</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .80;"
+              data-data="2011 — Semana 37" data-posicao="#3" data-plays="1.700 plays" data-melhor="false">3</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .46;"
+              data-data="2011 — Semana 38" data-posicao="#11" data-plays="700 plays" data-melhor="false">11</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .27;"
+              data-data="2011 — Semana 39" data-posicao="#31" data-plays="250 plays" data-melhor="false">31</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .71;"
+              data-data="2011 — Semana 40" data-posicao="#5" data-plays="1.330 plays" data-melhor="false">5</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .32;"
+              data-data="2011 — Semana 41" data-posicao="#25" data-plays="310 plays" data-melhor="false">25</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .57;"
+              data-data="2011 — Semana 42" data-posicao="#8" data-plays="910 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .78;"
+              data-data="2011 — Semana 43" data-posicao="#4" data-plays="1.500 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .29;"
+              data-data="2011 — Semana 44" data-posicao="#27" data-plays="280 plays" data-melhor="false">27</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .41;"
+              data-data="2011 — Semana 45" data-posicao="#15" data-plays="570 plays" data-melhor="false">15</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .67;"
+              data-data="2011 — Semana 46" data-posicao="#6" data-plays="1.180 plays" data-melhor="false">6</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .23;"
+              data-data="2011 — Semana 47" data-posicao="#39" data-plays="170 plays" data-melhor="false">39</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .84;"
+              data-data="2011 — Semana 48" data-posicao="#2" data-plays="1.820 plays" data-melhor="false">2</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .38;"
+              data-data="2011 — Semana 49" data-posicao="#17" data-plays="480 plays" data-melhor="false">17</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .74;"
+              data-data="2011 — Semana 50" data-posicao="#4" data-plays="1.430 plays" data-melhor="false">4</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .26;"
+              data-data="2011 — Semana 51" data-posicao="#34" data-plays="220 plays" data-melhor="false">34</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-verde); --semana-opacidade: .59;"
+              data-data="2011 — Semana 52" data-posicao="#8" data-plays="940 plays" data-melhor="false">8</button>
+            <button class="botao semana-quadrinho" style="--semana-cor: var(--cor-ciano); --semana-opacidade: .45;"
+              data-data="2011 — Semana 53" data-posicao="#13" data-plays="610 plays" data-melhor="false">13</button>
 
-                  <div class="card-album-meta">
-                    <div><strong class="card-album-numero">4.740</strong> scrobbles</div>
-                    <div><strong class="card-album-numero">24%</strong> dos scrobbles do ato</div>
-                    <div><strong class="card-album-numero">#2</strong> no ranking</div>
-
-                    <div class="album-top5">
-                      <div class="album-top5-titulo">Principais músicas</div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.740</div><div class="album-top5-nome">Dark Horse</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.500</div><div class="album-top5-nome">Roar</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.120</div><div class="album-top5-nome">Unconditionally</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.850</div><div class="album-top5-nome">Birthday</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.610</div><div class="album-top5-nome">Walking On Air</div></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card-album card-album-3" data-spotify-album-id="0r2BUyPTmpbfuz4rR39mLl">
-                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <div class="card-album-rank">3</div>
-                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
-                  <div class="card-album-placeholder">Capa do álbum</div>
-                  <div class="card-album-overlay">
-                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
-                  </div>
-                </a>
-
-                <div class="card-album-info">
-                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">One Of The Boys</a>
-
-                  <div class="card-album-meta">
-                    <div><strong class="card-album-numero">4.480</strong> scrobbles</div>
-                    <div><strong class="card-album-numero">21%</strong> dos scrobbles do ato</div>
-                    <div><strong class="card-album-numero">#3</strong> no ranking</div>
-
-                    <div class="album-top5">
-                      <div class="album-top5-titulo">Principais músicas</div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.480</div><div class="album-top5-nome">Hot N Cold</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.300</div><div class="album-top5-nome">I Kissed A Girl</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.900</div><div class="album-top5-nome">Thinking Of You</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.650</div><div class="album-top5-nome">Waking Up In Vegas</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.400</div><div class="album-top5-nome">Mannequin</div></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card-album card-album-4" data-spotify-album-id="1Fxp4d5gcsxq4gH2wKYXpB">
-                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <div class="card-album-rank">4</div>
-                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
-                  <div class="card-album-placeholder">Capa do álbum</div>
-                  <div class="card-album-overlay">
-                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
-                  </div>
-                </a>
-
-                <div class="card-album-info">
-                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Witness</a>
-
-                  <div class="card-album-meta">
-                    <div><strong class="card-album-numero">4.220</strong> scrobbles</div>
-                    <div><strong class="card-album-numero">18%</strong> dos scrobbles do ato</div>
-                    <div><strong class="card-album-numero">#4</strong> no ranking</div>
-
-                    <div class="album-top5">
-                      <div class="album-top5-titulo">Principais músicas</div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.220</div><div class="album-top5-nome">Chained To The Rhythm</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">4.000</div><div class="album-top5-nome">Swish Swish</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.760</div><div class="album-top5-nome">Bon Appétit</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.500</div><div class="album-top5-nome">Witness</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.260</div><div class="album-top5-nome">Roulette</div></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="card-album card-album-5" data-spotify-album-id="3KjXg0MDej2pG9fv6I22lT">
-                <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <div class="card-album-rank">5</div>
-                  <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
-                  <div class="card-album-placeholder">Capa do álbum</div>
-                  <div class="card-album-overlay">
-                    <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
-                  </div>
-                </a>
-
-                <div class="card-album-info">
-                  <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Smile</a>
-
-                  <div class="card-album-meta">
-                    <div><strong class="card-album-numero">3.960</strong> scrobbles</div>
-                    <div><strong class="card-album-numero">16%</strong> dos scrobbles do ato</div>
-                    <div><strong class="card-album-numero">#5</strong> no ranking</div>
-
-                    <div class="album-top5">
-                      <div class="album-top5-titulo">Principais músicas</div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.960</div><div class="album-top5-nome">Never Really Over</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.800</div><div class="album-top5-nome">Harleys In Hawaii</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.600</div><div class="album-top5-nome">Daisies</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.420</div><div class="album-top5-nome">Smile</div></div>
-                      <div class="album-top5-musica"><div class="album-top5-plays">3.100</div><div class="album-top5-nome">Cry About It Later</div></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
+            <!-- repita o bloco de 53 botões para cada ano: 2012 até 2026 -->
           </div>
-        </div>
+
+
       </section>
+  </div>
+  </section>
+  <section class="bloco-geral bloco-albuns" id="albuns">
+    <div class="container">
+      <div class="cabecalho-bloco cabecalho-bloco-albuns">
+        <h2 class="titulo-bloco titulo-bloco-albuns">Álbuns</h2>
 
-      <section class="bloco-geral bloco-musicas" id="musicas">
-        <div class="container">
-          <div class="cabecalho-bloco cabecalho-bloco-musicas">
-            <h2 class="titulo-bloco titulo-bloco-musicas">Principais músicas</h2>
+        <select class="seletor-periodo seletor-periodo-claro seletor-periodo-albuns"
+          aria-label="Selecionar período de álbuns">
+          <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+          <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
+          <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
+          <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
+          <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
+        </select>
+      </div>
 
-            <select class="seletor-periodo seletor-periodo-claro seletor-periodo-musicas" aria-label="Selecionar período de músicas">
-              <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
-              <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
-              <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
-              <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
-              <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
-            </select>
-          </div>
-
-          <div class="top-cards-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
-            <div class="grade-top-cards">
-              <article class="top-card top-card-1 top-card-destaque">
-                <div class="top-card-numero">54</div>
-                <div class="top-card-label">na posição No. 1</div>
-                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
-                <div class="top-card-info"><div>111 entradas</div><div>#1 no ranking</div></div>
-              </article>
-
-              <article class="top-card top-card-2">
-                <div class="top-card-numero">85</div>
-                <div class="top-card-label">no top 5</div>
-                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
-                <div class="top-card-info"><div>437 entradas</div><div>#1 no ranking</div></div>
-              </article>
-
-              <article class="top-card top-card-3">
-                <div class="top-card-numero">102</div>
-                <div class="top-card-label">no top 10</div>
-                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
-                <div class="top-card-info"><div>870 entradas</div><div>#1 no ranking</div></div>
-              </article>
-
-              <article class="top-card top-card-4">
-                <div class="top-card-numero">109</div>
-                <div class="top-card-label">na Ton Charts</div>
-                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
-                <div class="top-card-info"><div>1.747 entradas</div><div>#1 no ranking</div></div>
-              </article>
-
-              <article class="top-card top-card-5">
-                <div class="top-card-numero">154</div>
-                <div class="top-card-label">músicas com algum scrobble</div>
-                <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><div>200%</div></div>
-                <div class="top-card-info"><div>total editorial</div><div>#1 no ranking</div></div>
-              </article>
-            </div>
-          </div>
-
-          <div class="musicas-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
-            <div class="lista-musicas">
-              <div class="cabecalho-musicas">
-                <div class="cabecalho-musica cabecalho-musica-1">Posição</div>
-                <div class="cabecalho-musica cabecalho-musica-2">Ranking</div>
-                <div class="cabecalho-musica cabecalho-musica-3">Música</div>
-                <div class="cabecalho-musica cabecalho-musica-4">Scrobbles</div>
-                <div class="cabecalho-musica cabecalho-musica-5">Pontuação</div>
-                <div class="cabecalho-musica cabecalho-musica-6">Pico</div>
-                <div class="cabecalho-musica cabecalho-musica-7">Semanas</div>
-                <div class="cabecalho-musica cabecalho-musica-8">Dias #1</div>
+      <div class="albuns-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+        <div class="grade-albuns">
+          <article class="card-album card-album-1" data-spotify-album-id="5BvgP623rtvlc0HDcpzquz">
+            <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <div class="card-album-rank">1</div>
+              <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+              <div class="card-album-placeholder">Capa do álbum</div>
+              <div class="card-album-overlay">
+                <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
               </div>
+            </a>
 
-              <div class="linhas-musicas">
-                <article class="linha-musica linha-musica-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
-                  <div class="musica-posicao">1</div>
-                  <div class="musica-ranking">#1</div>
-                  <div class="musica-principal">
-                    <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
-                      <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
-                      <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone" aria-hidden="true"></i></div>
-                    </a>
-                    <div class="musica-info">
-                      <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">The One That Got Away</a>
-                      <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> · 3:47</div>
-                    </div>
-                  </div>
-                  <div class="musica-numero musica-scrobbles">5.000</div>
-                  <div class="musica-numero musica-pontuacao">10.000</div>
-                  <div class="pico-musica"><div class="pico-posicao">#1</div><div class="pico-vezes">10x</div></div>
-                  <div class="musica-semanas">150</div>
-                  <div class="musica-dias">6.347</div>
-                </article>
+            <div class="card-album-info">
+              <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Teenage Dream</a>
 
-                <article class="linha-musica linha-musica-2" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
-                  <div class="musica-posicao">2</div>
-                  <div class="musica-ranking">#1</div>
-                  <div class="musica-principal">
-                    <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
-                      <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
-                      <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone" aria-hidden="true"></i></div>
-                    </a>
-                    <div class="musica-info">
-                      <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">Firework</a>
-                      <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> · 3:48</div>
-                    </div>
-                  </div>
-                  <div class="musica-numero musica-scrobbles">4.800</div>
-                  <div class="musica-numero musica-pontuacao">9.750</div>
-                  <div class="pico-musica"><div class="pico-posicao">#1</div><div class="pico-vezes">8x</div></div>
-                  <div class="musica-semanas">148</div>
-                  <div class="musica-dias">6.120</div>
-                </article>
+              <div class="card-album-meta">
+                <div><strong class="card-album-numero">5.000</strong> scrobbles</div>
+                <div><strong class="card-album-numero">28%</strong> dos scrobbles do ato</div>
+                <div><strong class="card-album-numero">#1</strong> no ranking</div>
 
-                <article class="linha-musica linha-musica-3" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
-                  <div class="musica-posicao">3</div>
-                  <div class="musica-ranking">#1</div>
-                  <div class="musica-principal">
-                    <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
-                      <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
-                      <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone" aria-hidden="true"></i></div>
-                    </a>
-                    <div class="musica-info">
-                      <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">Dark Horse</a>
-                      <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> · 3:35</div>
-                    </div>
+                <div class="album-top5">
+                  <div class="album-top5-titulo">Principais músicas</div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">5.000</div>
+                    <div class="album-top5-nome">The One That Got Away</div>
                   </div>
-                  <div class="musica-numero musica-scrobbles">4.600</div>
-                  <div class="musica-numero musica-pontuacao">9.410</div>
-                  <div class="pico-musica"><div class="pico-posicao">#1</div><div class="pico-vezes">7x</div></div>
-                  <div class="musica-semanas">144</div>
-                  <div class="musica-dias">5.980</div>
-                </article>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.800</div>
+                    <div class="album-top5-nome">Firework</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.520</div>
+                    <div class="album-top5-nome">Teenage Dream</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.210</div>
+                    <div class="album-top5-nome">California Gurls</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.980</div>
+                    <div class="album-top5-nome">E.T.</div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="acoes-musicas">
-            <button class="botao botao-musicas botao-exibir-mais" type="button" id="botaoExibirMais">exibir mais</button>
-            <button class="botao botao-musicas botao-recolher-tudo" type="button" id="botaoRecolherTudo">recolher tudo</button>
-          </div>
-        </div>
-      </section>
+          <article class="card-album card-album-2" data-spotify-album-id="3jB9yFDwRe3KhtGnHXJntk">
+            <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <div class="card-album-rank">2</div>
+              <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+              <div class="card-album-placeholder">Capa do álbum</div>
+              <div class="card-album-overlay">
+                <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+              </div>
+            </a>
 
-      <section class="bloco-geral bloco-certificados" id="certificacoes">
-        <div class="container">
-          <div class="cabecalho-bloco cabecalho-bloco-certificados">
-            <h2 class="titulo-bloco titulo-bloco-certificados">Últimos certificados</h2>
-          </div>
+            <div class="card-album-info">
+              <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">PRISM</a>
 
-          <div class="certificados-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
-            <div class="grade-certificados">
-              <article class="card-certificado card-certificado-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
-                <div class="card-certificado-topo">
-                  <div class="card-certificado-tipo">5x Ouro</div>
-                  <div class="card-certificado-quantidade">5000</div>
+              <div class="card-album-meta">
+                <div><strong class="card-album-numero">4.740</strong> scrobbles</div>
+                <div><strong class="card-album-numero">24%</strong> dos scrobbles do ato</div>
+                <div><strong class="card-album-numero">#2</strong> no ranking</div>
+
+                <div class="album-top5">
+                  <div class="album-top5-titulo">Principais músicas</div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.740</div>
+                    <div class="album-top5-nome">Dark Horse</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.500</div>
+                    <div class="album-top5-nome">Roar</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.120</div>
+                    <div class="album-top5-nome">Unconditionally</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.850</div>
+                    <div class="album-top5-nome">Birthday</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.610</div>
+                    <div class="album-top5-nome">Walking On Air</div>
+                  </div>
                 </div>
-
-                <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">The One That Got Away</a>
-                <div class="card-certificado-artista nome-artista-api">Artista</div>
-
-                <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
-                </a>
-
-                <div class="card-certificado-stats">
-                  <div><div class="card-certificado-numero">44°</div><div class="card-certificado-label">do artista</div></div>
-                  <div><div class="card-certificado-numero">44°</div><div class="card-certificado-label">no geral</div></div>
-                </div>
-
-                <time class="card-certificado-data" datetime="2026-01-01">1 jan 2026 20:15</time>
-              </article>
-
-              <article class="card-certificado card-certificado-2 card-certificado-platina" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
-                <div class="card-certificado-topo">
-                  <div class="card-certificado-tipo">5x Platina</div>
-                  <div class="card-certificado-quantidade">5000</div>
-                </div>
-
-                <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">Firework</a>
-                <div class="card-certificado-artista nome-artista-api">Artista</div>
-
-                <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
-                </a>
-
-                <div class="card-certificado-stats">
-                  <div><div class="card-certificado-numero">45°</div><div class="card-certificado-label">do artista</div></div>
-                  <div><div class="card-certificado-numero">45°</div><div class="card-certificado-label">no geral</div></div>
-                </div>
-
-                <time class="card-certificado-data" datetime="2026-01-02">2 jan 2026 20:15</time>
-              </article>
-
-              <article class="card-certificado card-certificado-3 card-certificado-diamante" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
-                <div class="card-certificado-topo">
-                  <div class="card-certificado-tipo">5x Diamante</div>
-                  <div class="card-certificado-quantidade">5000</div>
-                </div>
-
-                <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">Dark Horse</a>
-                <div class="card-certificado-artista nome-artista-api">Artista</div>
-
-                <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
-                  <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
-                </a>
-
-                <div class="card-certificado-stats">
-                  <div><div class="card-certificado-numero">46°</div><div class="card-certificado-label">do artista</div></div>
-                  <div><div class="card-certificado-numero">46°</div><div class="card-certificado-label">no geral</div></div>
-                </div>
-
-                <time class="card-certificado-data" datetime="2026-01-03">3 jan 2026 20:15</time>
-              </article>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-    </main>
+          </article>
 
-    <footer class="site-footer" id="lastfm">
-      <div class="container site-footer-container">
-        <div class="footer-principal">
-          <a class="logo-toncharts footer-logo link-padrao" href="#topo" aria-label="TonCharts">
-            <div class="logo-toncharts-palavra-1">ton</div>
-            <div class="logo-toncharts-palavra-2">charts</div>
-          </a>
+          <article class="card-album card-album-3" data-spotify-album-id="0r2BUyPTmpbfuz4rR39mLl">
+            <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <div class="card-album-rank">3</div>
+              <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+              <div class="card-album-placeholder">Capa do álbum</div>
+              <div class="card-album-overlay">
+                <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+              </div>
+            </a>
 
-          <nav class="footer-nav" aria-label="Menu do rodapé">
-            <a class="footer-link footer-link-1 link-padrao" href="#calendario">calendário</a>
-            <a class="footer-link footer-link-2 link-padrao" href="#charts">charts</a>
-            <a class="footer-link footer-link-3 link-padrao" href="#artistas">artistas</a>
-            <a class="footer-link footer-link-4 link-padrao" href="#albuns">álbuns</a>
-            <a class="footer-link footer-link-5 link-padrao" href="#musicas">músicas</a>
-            <a class="footer-link footer-link-6 link-padrao" href="#certificacoes">certificações</a>
-            <a class="footer-link footer-link-7 link-padrao" href="#lastfm">meu last.fm</a>
-          </nav>
-        </div>
+            <div class="card-album-info">
+              <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">One Of The Boys</a>
 
-        <div class="footer-info">
-          <p class="footer-texto">
-            Esta página usa dados públicos da Spotify Web API apenas para perfil, capa e links. Rankings, scrobbles, semanas e certificações são preenchidos manualmente no HTML.
-          </p>
+              <div class="card-album-meta">
+                <div><strong class="card-album-numero">4.480</strong> scrobbles</div>
+                <div><strong class="card-album-numero">21%</strong> dos scrobbles do ato</div>
+                <div><strong class="card-album-numero">#3</strong> no ranking</div>
 
-          <p class="footer-creditos">
-            <strong class="footer-destaque">TonCharts</strong> — visual experimental para charts musicais.
-          </p>
+                <div class="album-top5">
+                  <div class="album-top5-titulo">Principais músicas</div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.480</div>
+                    <div class="album-top5-nome">Hot N Cold</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.300</div>
+                    <div class="album-top5-nome">I Kissed A Girl</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.900</div>
+                    <div class="album-top5-nome">Thinking Of You</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.650</div>
+                    <div class="album-top5-nome">Waking Up In Vegas</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.400</div>
+                    <div class="album-top5-nome">Mannequin</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-album card-album-4" data-spotify-album-id="1Fxp4d5gcsxq4gH2wKYXpB">
+            <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <div class="card-album-rank">4</div>
+              <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+              <div class="card-album-placeholder">Capa do álbum</div>
+              <div class="card-album-overlay">
+                <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <div class="card-album-info">
+              <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Witness</a>
+
+              <div class="card-album-meta">
+                <div><strong class="card-album-numero">4.220</strong> scrobbles</div>
+                <div><strong class="card-album-numero">18%</strong> dos scrobbles do ato</div>
+                <div><strong class="card-album-numero">#4</strong> no ranking</div>
+
+                <div class="album-top5">
+                  <div class="album-top5-titulo">Principais músicas</div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.220</div>
+                    <div class="album-top5-nome">Chained To The Rhythm</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">4.000</div>
+                    <div class="album-top5-nome">Swish Swish</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.760</div>
+                    <div class="album-top5-nome">Bon Appétit</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.500</div>
+                    <div class="album-top5-nome">Witness</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.260</div>
+                    <div class="album-top5-nome">Roulette</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-album card-album-5" data-spotify-album-id="3KjXg0MDej2pG9fv6I22lT">
+            <a class="card-album-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <div class="card-album-rank">5</div>
+              <img class="card-album-imagem imagem-fluida" src="" alt="" loading="lazy">
+              <div class="card-album-placeholder">Capa do álbum</div>
+              <div class="card-album-overlay">
+                <i class="fa-solid fa-arrow-up-right-from-square card-album-icone" aria-hidden="true"></i>
+              </div>
+            </a>
+
+            <div class="card-album-info">
+              <a class="card-album-nome link-padrao" href="#" target="_blank" rel="noopener">Smile</a>
+
+              <div class="card-album-meta">
+                <div><strong class="card-album-numero">3.960</strong> scrobbles</div>
+                <div><strong class="card-album-numero">16%</strong> dos scrobbles do ato</div>
+                <div><strong class="card-album-numero">#5</strong> no ranking</div>
+
+                <div class="album-top5">
+                  <div class="album-top5-titulo">Principais músicas</div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.960</div>
+                    <div class="album-top5-nome">Never Really Over</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.800</div>
+                    <div class="album-top5-nome">Harleys In Hawaii</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.600</div>
+                    <div class="album-top5-nome">Daisies</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.420</div>
+                    <div class="album-top5-nome">Smile</div>
+                  </div>
+                  <div class="album-top5-musica">
+                    <div class="album-top5-plays">3.100</div>
+                    <div class="album-top5-nome">Cry About It Later</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
+
+  <section class="bloco-geral bloco-musicas" id="musicas">
+    <div class="container">
+      <div class="cabecalho-bloco cabecalho-bloco-musicas">
+        <h2 class="titulo-bloco titulo-bloco-musicas">Principais músicas</h2>
+
+        <select class="seletor-periodo seletor-periodo-claro seletor-periodo-musicas"
+          aria-label="Selecionar período de músicas">
+          <option class="opcao-periodo" value="all" data-full="Todo o período" data-short="Tudo">Todo o período</option>
+          <option class="opcao-periodo" value="12m" data-full="12 meses" data-short="12m" selected>12 meses</option>
+          <option class="opcao-periodo" value="6m" data-full="6 meses" data-short="6m">6 meses</option>
+          <option class="opcao-periodo" value="3m" data-full="3 meses" data-short="3m">3 meses</option>
+          <option class="opcao-periodo" value="1m" data-full="1 mês" data-short="1m">1 mês</option>
+        </select>
+      </div>
+
+      <div class="top-cards-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+        <div class="grade-top-cards">
+          <article class="top-card top-card-1 top-card-destaque">
+            <div class="top-card-numero">54</div>
+            <div class="top-card-label">na posição No. 1</div>
+            <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              <div>200%</div>
+            </div>
+            <div class="top-card-info">
+              <div>111 entradas</div>
+              <div>#1 no ranking</div>
+            </div>
+          </article>
+
+          <article class="top-card top-card-2">
+            <div class="top-card-numero">85</div>
+            <div class="top-card-label">no top 5</div>
+            <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              <div>200%</div>
+            </div>
+            <div class="top-card-info">
+              <div>437 entradas</div>
+              <div>#1 no ranking</div>
+            </div>
+          </article>
+
+          <article class="top-card top-card-3">
+            <div class="top-card-numero">102</div>
+            <div class="top-card-label">no top 10</div>
+            <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              <div>200%</div>
+            </div>
+            <div class="top-card-info">
+              <div>870 entradas</div>
+              <div>#1 no ranking</div>
+            </div>
+          </article>
+
+          <article class="top-card top-card-4">
+            <div class="top-card-numero">109</div>
+            <div class="top-card-label">na Ton Charts</div>
+            <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              <div>200%</div>
+            </div>
+            <div class="top-card-info">
+              <div>1.747 entradas</div>
+              <div>#1 no ranking</div>
+            </div>
+          </article>
+
+          <article class="top-card top-card-5">
+            <div class="top-card-numero">154</div>
+            <div class="top-card-label">músicas com algum scrobble</div>
+            <div class="badge-crescimento"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+              <div>200%</div>
+            </div>
+            <div class="top-card-info">
+              <div>total editorial</div>
+              <div>#1 no ranking</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="musicas-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+        <div class="lista-musicas">
+          <div class="cabecalho-musicas">
+            <div class="cabecalho-musica cabecalho-musica-1">Posição</div>
+            <div class="cabecalho-musica cabecalho-musica-2">Ranking</div>
+            <div class="cabecalho-musica cabecalho-musica-3">Música</div>
+            <div class="cabecalho-musica cabecalho-musica-4">Scrobbles</div>
+            <div class="cabecalho-musica cabecalho-musica-5">Pontuação</div>
+            <div class="cabecalho-musica cabecalho-musica-6">Pico</div>
+            <div class="cabecalho-musica cabecalho-musica-7">Semanas</div>
+            <div class="cabecalho-musica cabecalho-musica-8">Dias #1</div>
+          </div>
+
+          <div class="linhas-musicas">
+            <article class="linha-musica linha-musica-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
+              <div class="musica-posicao">1</div>
+              <div class="musica-ranking">#1</div>
+              <div class="musica-principal">
+                <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
+                  <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone"
+                      aria-hidden="true"></i></div>
+                </a>
+                <div class="musica-info">
+                  <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">The One That Got Away</a>
+                  <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> ·
+                    3:47</div>
+                </div>
+              </div>
+              <div class="musica-numero musica-scrobbles">5.000</div>
+              <div class="musica-numero musica-pontuacao">10.000</div>
+              <div class="pico-musica">
+                <div class="pico-posicao">#1</div>
+                <div class="pico-vezes">10x</div>
+              </div>
+              <div class="musica-semanas">150</div>
+              <div class="musica-dias">6.347</div>
+            </article>
+
+            <article class="linha-musica linha-musica-2" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
+              <div class="musica-posicao">2</div>
+              <div class="musica-ranking">#1</div>
+              <div class="musica-principal">
+                <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
+                  <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone"
+                      aria-hidden="true"></i></div>
+                </a>
+                <div class="musica-info">
+                  <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">Firework</a>
+                  <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> ·
+                    3:48</div>
+                </div>
+              </div>
+              <div class="musica-numero musica-scrobbles">4.800</div>
+              <div class="musica-numero musica-pontuacao">9.750</div>
+              <div class="pico-musica">
+                <div class="pico-posicao">#1</div>
+                <div class="pico-vezes">8x</div>
+              </div>
+              <div class="musica-semanas">148</div>
+              <div class="musica-dias">6.120</div>
+            </article>
+
+            <article class="linha-musica linha-musica-3" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
+              <div class="musica-posicao">3</div>
+              <div class="musica-ranking">#1</div>
+              <div class="musica-principal">
+                <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
+                  <img class="musica-imagem imagem-fluida" src="" alt="" loading="lazy">
+                  <div class="musica-capa-overlay"><i class="fa-solid fa-arrow-up-right-from-square musica-capa-icone"
+                      aria-hidden="true"></i></div>
+                </a>
+                <div class="musica-info">
+                  <a class="musica-nome link-padrao" href="#" target="_blank" rel="noopener">Dark Horse</a>
+                  <div class="musica-artista">com <div class="nome-artista-api" style="display:inline">Artista</div> ·
+                    3:35</div>
+                </div>
+              </div>
+              <div class="musica-numero musica-scrobbles">4.600</div>
+              <div class="musica-numero musica-pontuacao">9.410</div>
+              <div class="pico-musica">
+                <div class="pico-posicao">#1</div>
+                <div class="pico-vezes">7x</div>
+              </div>
+              <div class="musica-semanas">144</div>
+              <div class="musica-dias">5.980</div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="acoes-musicas">
+        <button class="botao botao-musicas botao-exibir-mais" type="button" id="botaoExibirMais">exibir mais</button>
+        <button class="botao botao-musicas botao-recolher-tudo" type="button" id="botaoRecolherTudo">recolher
+          tudo</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco-geral bloco-certificados" id="certificacoes">
+    <div class="container">
+      <div class="cabecalho-bloco cabecalho-bloco-certificados">
+        <h2 class="titulo-bloco titulo-bloco-certificados">Últimos certificados</h2>
+      </div>
+
+      <div class="certificados-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
+        <div class="grade-certificados">
+          <article class="card-certificado card-certificado-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
+            <div class="card-certificado-topo">
+              <div class="card-certificado-tipo">5x Ouro</div>
+              <div class="card-certificado-quantidade">5000</div>
+            </div>
+
+            <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">The One That Got
+              Away</a>
+            <div class="card-certificado-artista nome-artista-api">Artista</div>
+
+            <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
+            </a>
+
+            <div class="card-certificado-stats">
+              <div>
+                <div class="card-certificado-numero">44°</div>
+                <div class="card-certificado-label">do artista</div>
+              </div>
+              <div>
+                <div class="card-certificado-numero">44°</div>
+                <div class="card-certificado-label">no geral</div>
+              </div>
+            </div>
+
+            <time class="card-certificado-data" datetime="2026-01-01">1 jan 2026 20:15</time>
+          </article>
+
+          <article class="card-certificado card-certificado-2 card-certificado-platina"
+            data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
+            <div class="card-certificado-topo">
+              <div class="card-certificado-tipo">5x Platina</div>
+              <div class="card-certificado-quantidade">5000</div>
+            </div>
+
+            <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">Firework</a>
+            <div class="card-certificado-artista nome-artista-api">Artista</div>
+
+            <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
+            </a>
+
+            <div class="card-certificado-stats">
+              <div>
+                <div class="card-certificado-numero">45°</div>
+                <div class="card-certificado-label">do artista</div>
+              </div>
+              <div>
+                <div class="card-certificado-numero">45°</div>
+                <div class="card-certificado-label">no geral</div>
+              </div>
+            </div>
+
+            <time class="card-certificado-data" datetime="2026-01-02">2 jan 2026 20:15</time>
+          </article>
+
+          <article class="card-certificado card-certificado-3 card-certificado-diamante"
+            data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
+            <div class="card-certificado-topo">
+              <div class="card-certificado-tipo">5x Diamante</div>
+              <div class="card-certificado-quantidade">5000</div>
+            </div>
+
+            <a class="card-certificado-nome link-padrao" href="#" target="_blank" rel="noopener">Dark Horse</a>
+            <div class="card-certificado-artista nome-artista-api">Artista</div>
+
+            <a class="card-certificado-capa link-padrao" href="#" target="_blank" rel="noopener">
+              <img class="card-certificado-imagem imagem-fluida" src="" alt="" loading="lazy">
+            </a>
+
+            <div class="card-certificado-stats">
+              <div>
+                <div class="card-certificado-numero">46°</div>
+                <div class="card-certificado-label">do artista</div>
+              </div>
+              <div>
+                <div class="card-certificado-numero">46°</div>
+                <div class="card-certificado-label">no geral</div>
+              </div>
+            </div>
+
+            <time class="card-certificado-data" datetime="2026-01-03">3 jan 2026 20:15</time>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer" id="lastfm">
+    <div class="container site-footer-container">
+      <div class="footer-principal">
+        <a class="logo-toncharts footer-logo link-padrao" href="#topo" aria-label="TonCharts">
+          <div class="logo-toncharts-palavra-1">ton</div>
+          <div class="logo-toncharts-palavra-2">charts</div>
+        </a>
+
+        <nav class="footer-nav" aria-label="Menu do rodapé">
+          <a class="footer-link footer-link-1 link-padrao" href="#calendario">calendário</a>
+          <a class="footer-link footer-link-2 link-padrao" href="#charts">charts</a>
+          <a class="footer-link footer-link-3 link-padrao" href="#artistas">artistas</a>
+          <a class="footer-link footer-link-4 link-padrao" href="#albuns">álbuns</a>
+          <a class="footer-link footer-link-5 link-padrao" href="#musicas">músicas</a>
+          <a class="footer-link footer-link-6 link-padrao" href="#certificacoes">certificações</a>
+          <a class="footer-link footer-link-7 link-padrao" href="#lastfm">meu last.fm</a>
+        </nav>
+      </div>
+
+      <div class="footer-info">
+        <p class="footer-texto">
+          Esta página usa dados públicos da Spotify Web API apenas para perfil, capa e links. Rankings, scrobbles,
+          semanas e certificações são preenchidos manualmente no HTML.
+        </p>
+
+        <p class="footer-creditos">
+          <strong class="footer-destaque">TonCharts</strong> — visual experimental para charts musicais.
+        </p>
+      </div>
+    </div>
+  </footer>
   </div>
 
   <div class="tooltip-semana" id="tooltipSemana">
@@ -2660,4 +3160,5 @@
     window.addEventListener("resize", atualizarLabelsPeriodoResponsivo);
   </script>
 </body>
+
 </html>
