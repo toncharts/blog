@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-28T20:12:16.445Z",
+  "atualizadoEm": "2026-06-29T02:55:25.298Z",
   "artistas": {
     "6jJ0s89eD6GaHleKKya26X": {
       "id": "6jJ0s89eD6GaHleKKya26X",
@@ -12,7 +12,7 @@
     "5BvgP623rtvlc0HDcpzquz": {
       "id": "5BvgP623rtvlc0HDcpzquz",
       "name": "Teenage Dream: The Complete Confection",
-      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02937af329667311f4b2831616",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02937af329667311f4b2831616",
       "spotify": "https://open.spotify.com/album/5BvgP623rtvlc0HDcpzquz"
     },
     "3jB9yFDwRe3KhtGnHXJntk": {
@@ -30,7 +30,7 @@
     "0UlbGi4oAth8s6rwaGSU8Z": {
       "id": "0UlbGi4oAth8s6rwaGSU8Z",
       "name": "Witness (Deluxe)",
-      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02cce6bab1f59b165133175d88",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02cce6bab1f59b165133175d88",
       "spotify": "https://open.spotify.com/album/0UlbGi4oAth8s6rwaGSU8Z"
     },
     "3KjXg0MDej2pG9fv6I22lT": {
@@ -38,6 +38,66 @@
       "name": "Never Really Over",
       "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e029bea3b79b95f86d1b66ac960",
       "spotify": "https://open.spotify.com/album/3KjXg0MDej2pG9fv6I22lT"
+    },
+    "album-demo-1": {
+      "id": "album-demo-1",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-1"
+    },
+    "album-demo-2": {
+      "id": "album-demo-2",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-2"
+    },
+    "album-demo-3": {
+      "id": "album-demo-3",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-3"
+    },
+    "album-demo-4": {
+      "id": "album-demo-4",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-4"
+    },
+    "album-demo-5": {
+      "id": "album-demo-5",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-5"
+    },
+    "album-demo-6": {
+      "id": "album-demo-6",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-6"
+    },
+    "album-demo-7": {
+      "id": "album-demo-7",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-7"
+    },
+    "album-demo-8": {
+      "id": "album-demo-8",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-8"
+    },
+    "album-demo-9": {
+      "id": "album-demo-9",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-9"
+    },
+    "album-demo-10": {
+      "id": "album-demo-10",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/album/album-demo-10"
     },
     "1Fxp4d5gcsxq4gH2wKYXpB": {
       "id": "1Fxp4d5gcsxq4gH2wKYXpB",
@@ -50,7 +110,7 @@
     "6F5c58TMEs1byxUstkzVeM": {
       "id": "6F5c58TMEs1byxUstkzVeM",
       "name": "Roar",
-      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0247f930accd8ac01686401fa2",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0247f930accd8ac01686401fa2",
       "spotify": "https://open.spotify.com/track/6F5c58TMEs1byxUstkzVeM"
     },
     "4lCv7b86sLynZbXhfScfm2": {
@@ -62,8 +122,92 @@
     "4jbmgIyjGoXjY01XxatOx6": {
       "id": "4jbmgIyjGoXjY01XxatOx6",
       "name": "Dark Horse",
-      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e021e9a057052d59004caf47e22",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e021e9a057052d59004caf47e22",
       "spotify": "https://open.spotify.com/track/4jbmgIyjGoXjY01XxatOx6"
+    },
+    "track-demo-1": {
+      "id": "track-demo-1",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-1"
+    },
+    "track-demo-2": {
+      "id": "track-demo-2",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-2"
+    },
+    "track-demo-3": {
+      "id": "track-demo-3",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-3"
+    },
+    "track-demo-5": {
+      "id": "track-demo-5",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-5"
+    },
+    "track-demo-6": {
+      "id": "track-demo-6",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-6"
+    },
+    "track-demo-7": {
+      "id": "track-demo-7",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-7"
+    },
+    "track-demo-8": {
+      "id": "track-demo-8",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-8"
+    },
+    "track-demo-9": {
+      "id": "track-demo-9",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-9"
+    },
+    "track-demo-10": {
+      "id": "track-demo-10",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-10"
+    },
+    "track-demo-11": {
+      "id": "track-demo-11",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-11"
+    },
+    "track-demo-12": {
+      "id": "track-demo-12",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-12"
+    },
+    "track-demo-13": {
+      "id": "track-demo-13",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-13"
+    },
+    "track-demo-14": {
+      "id": "track-demo-14",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-14"
+    },
+    "track-demo-15": {
+      "id": "track-demo-15",
+      "name": "",
+      "image": "",
+      "spotify": "https://open.spotify.com/track/track-demo-15"
     }
   }
 }
