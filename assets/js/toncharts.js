@@ -26,6 +26,7 @@ async function carregarSpotify() {
     aplicarCapasAlbuns(cache.albuns || {});
     aplicarCapasMusicas(cache.musicas || {});
     aplicarCapasCertificados(cache.musicas || {});
+    aplicarCapasNumeroUm(cache.musicas || {}, cache.albuns || {});
   } catch (erro) {
     console.error("Erro ao carregar spotify-cache.json:", erro);
   }
@@ -139,6 +140,43 @@ function aplicarCapasCertificados(musicas) {
     }
   });
 }
+
+function aplicarCapasNumeroUm(musicas, albuns) {
+  const cards = Array.from(
+    document.querySelectorAll(".no1-card[data-spotify-track-id]")
+  );
+
+  cards.forEach((card) => {
+    const trackId = card.dataset.spotifyTrackId;
+    const albumId = card.dataset.spotifyAlbumId;
+
+    const musica = musicas[trackId];
+    const album = albuns[albumId];
+
+    const imagem = card.querySelector(".no1-img");
+    const capa = card.querySelector(".no1-capa");
+
+    if (musica && "href" in card) {
+      card.href = musica.spotify || "#";
+    }
+
+    if (imagem && album?.image) {
+      imagem.src = album.image;
+      imagem.alt = `Capa de ${album.name || "álbum"}`;
+      card.classList.add("no1-card-com-img");
+      capa?.classList.add("no1-capa-com-img");
+      return;
+    }
+
+    if (imagem && musica?.image) {
+      imagem.src = musica.image;
+      imagem.alt = `Capa de ${musica.name || "música"}`;
+      card.classList.add("no1-card-com-img");
+      capa?.classList.add("no1-capa-com-img");
+    }
+  });
+}
+
 
 function aplicarPeriodo(periodo) {
   selecionarTodos(".seletor-periodo").forEach((select) => {
