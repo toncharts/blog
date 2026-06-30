@@ -211,51 +211,91 @@ function configurarPeriodos() {
   });
 }
 
-function configurarMusicas() {
-  const botaoExibir = selecionar("#botaoExibirMais");
-  const botaoRecolher = selecionar("#botaoRecolherTudo");
+function configurarListaMusicas(listaSelector, itemSelector, botaoExibirSelector, botaoRecolherSelector) {
+  const botaoExibir = selecionar(botaoExibirSelector);
+  const botaoRecolher = selecionar(botaoRecolherSelector);
 
   if (!botaoExibir || !botaoRecolher) return;
 
+  selecionarTodos(listaSelector).forEach((lista) => {
+    const itens = Array.from(lista.querySelectorAll(itemSelector));
+
+    itens.forEach((item, indice) => {
+      item.hidden = indice >= 10;
+    });
+  });
+
   botaoExibir.addEventListener("click", () => {
-    const lista = selecionar(".musicas-area.conteudo-periodo-ativo .linhas-musicas");
+    const lista = selecionar(listaSelector);
     if (!lista) return;
 
-    const escondidas = Array.from(lista.querySelectorAll(".linha-musica[hidden]"));
+    const escondidas = Array.from(lista.querySelectorAll(`${itemSelector}[hidden]`));
 
-    escondidas.slice(0, 10).forEach((linha) => {
-      linha.hidden = false;
+    escondidas.slice(0, 10).forEach((item) => {
+      item.hidden = false;
     });
 
     atualizarBotoesMusicas();
   });
 
   botaoRecolher.addEventListener("click", () => {
-    const lista = selecionar(".musicas-area.conteudo-periodo-ativo .linhas-musicas");
+    const lista = selecionar(listaSelector);
     if (!lista) return;
 
-    const linhas = Array.from(lista.querySelectorAll(".linha-musica"));
+    const itens = Array.from(lista.querySelectorAll(itemSelector));
 
-    linhas.forEach((linha, indice) => {
-      linha.hidden = indice >= 10;
+    itens.forEach((item, indice) => {
+      item.hidden = indice >= 10;
     });
 
     atualizarBotoesMusicas();
   });
 }
 
-function atualizarBotoesMusicas() {
-  const lista = selecionar(".musicas-area.conteudo-periodo-ativo .linhas-musicas");
-  const botaoExibir = selecionar("#botaoExibirMais");
-  const botaoRecolher = selecionar("#botaoRecolherTudo");
+function atualizarBotoesListaMusicas(listaSelector, itemSelector, botaoExibirSelector, botaoRecolherSelector) {
+  const lista = selecionar(listaSelector);
+  const botaoExibir = selecionar(botaoExibirSelector);
+  const botaoRecolher = selecionar(botaoRecolherSelector);
 
   if (!lista || !botaoExibir || !botaoRecolher) return;
 
-  const linhas = Array.from(lista.querySelectorAll(".linha-musica"));
-  const visiveis = linhas.filter((linha) => !linha.hidden).length;
+  const itens = Array.from(lista.querySelectorAll(itemSelector));
+  const visiveis = itens.filter((item) => !item.hidden).length;
 
-  botaoExibir.disabled = visiveis >= linhas.length;
+  botaoExibir.disabled = visiveis >= itens.length;
   botaoRecolher.disabled = visiveis <= 10;
+}
+
+function configurarMusicas() {
+  configurarListaMusicas(
+    ".musicas-area.conteudo-periodo-ativo .linhas-musicas",
+    ".linha-musica",
+    "#btnExibirMais",
+    "#btnRecolherTudo"
+  );
+
+  configurarListaMusicas(
+    ".no1-area .grade-no1.conteudo-periodo-ativo",
+    ".no1-card",
+    "#btnExibirMaisNo1",
+    "#btnRecolherTudoNo1"
+  );
+}
+
+function atualizarBotoesMusicas() {
+  atualizarBotoesListaMusicas(
+    ".musicas-area.conteudo-periodo-ativo .linhas-musicas",
+    ".linha-musica",
+    "#btnExibirMais",
+    "#btnRecolherTudo"
+  );
+
+  atualizarBotoesListaMusicas(
+    ".no1-area .grade-no1.conteudo-periodo-ativo",
+    ".no1-card",
+    "#btnExibirMaisNo1",
+    "#btnRecolherTudoNo1"
+  );
 }
 
 function configurarTema() {
