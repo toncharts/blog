@@ -2113,6 +2113,203 @@
 
 
 
+    .titulo-bloco-sequencias::before {
+      content: "Maiores sequências consecutivas";
+    }
+
+    .sequencias-area {
+      width: 100%;
+    }
+
+    .grade-sequencias {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .sequencia-card.no1-card {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: stretch;
+      align-content: start;
+      gap: 0;
+      padding: 0.9rem;
+    }
+
+    .sequencia-principal {
+      display: grid;
+      grid-template-columns: 4rem minmax(0, 1fr);
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .sequencia-capa.no1-capa {
+      width: 4rem;
+      align-self: center;
+    }
+
+    .sequencia-info {
+      min-width: 0;
+      display: grid;
+      align-content: center;
+      gap: 0.3rem;
+    }
+
+    .sequencia-chamada {
+      color: var(--cor-texto-mudo);
+      font-size: var(--texto-pequeno);
+      font-weight: var(--peso-normal);
+      line-height: 1.25;
+    }
+
+    .sequencia-card-chart .sequencia-chamada::before {
+      content: "A música com mais semanas consecutivas no chart neste período é";
+    }
+
+    .sequencia-card-top10 .sequencia-chamada::before {
+      content: "A música com mais semanas consecutivas no top 10 neste período é";
+    }
+
+    .sequencia-card-top5 .sequencia-chamada::before {
+      content: "A música com mais semanas consecutivas no top 5 neste período é";
+    }
+
+    .sequencia-card-topo .sequencia-chamada::before {
+      content: "A música com mais semanas consecutivas no topo neste período é";
+    }
+
+    .sequencia-nome {
+      color: var(--cor-texto);
+      font-size: var(--texto-medio);
+      font-weight: var(--peso-bold);
+      line-height: 1.1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sequencia-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.8rem;
+      color: var(--cor-texto-mudo);
+      font-size: var(--texto-pequeno);
+      line-height: 1.15;
+    }
+
+    .sequencia-meta strong {
+      color: var(--cor-texto);
+      font-weight: var(--peso-semi);
+    }
+
+    .sequencia-lista {
+      counter-reset: posicao-sequencia 1;
+      display: grid;
+      margin-top: 0.85rem;
+      border-top: 0.0625rem solid var(--cor-linha);
+    }
+
+    .sequencia-item {
+      counter-increment: posicao-sequencia;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 1.6rem minmax(0, 1fr);
+      align-items: center;
+      gap: 0.4rem;
+      padding-block: 0.45rem;
+      border-bottom: 0.0625rem solid var(--cor-linha);
+    }
+
+    .sequencia-item-posicao::before {
+      content: "#" counter(posicao-sequencia);
+      color: var(--cor-texto);
+      font-size: var(--texto-normal);
+      font-weight: var(--peso-bold);
+      line-height: 1;
+    }
+
+    .sequencia-item-conteudo {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .sequencia-item-nome {
+      color: var(--cor-texto-mudo);
+      font-size: var(--texto-normal);
+      font-weight: var(--peso-normal);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sequencia-item-meta {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.6rem;
+      color: var(--cor-texto-mudo);
+      font-size: var(--texto-pequeno);
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .sequencia-item-meta strong {
+      color: var(--cor-texto);
+      font-weight: var(--peso-semi);
+    }
+
+    @media (max-width: 46rem) {
+      .grade-sequencias {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 32.5rem) {
+      .sequencia-principal {
+        grid-template-columns: 3.5rem minmax(0, 1fr);
+      }
+
+      .sequencia-capa.no1-capa {
+        width: 3.5rem;
+      }
+
+      .sequencia-item-conteudo {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      .sequencia-item-meta {
+        justify-content: flex-start;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3718,7 +3915,7 @@
         </div>
       </section>
 
-
+      Cole dentro de cada:
 
       <section class="bloco-geral bloco-no1" id="numeroUm">
         <div class="container">
