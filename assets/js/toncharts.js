@@ -351,46 +351,55 @@ function compararValoresNulos(valorA, valorB) {
 }
 
 function compararPico(linhaA, linhaB, direcao) {
-  const picoA = obterValorMusica(linhaA, ".pico-posicao");
-  const picoB = obterValorMusica(linhaB, ".pico-posicao");
+  const picoA =
+    obterValorMusica(linhaA, ".pico-posicao");
 
-  const comparacaoNulos = compararValoresNulos(picoA, picoB);
+  const picoB =
+    obterValorMusica(linhaB, ".pico-posicao");
 
-  if (comparacaoNulos !== null && comparacaoNulos !== 0) {
-    return comparacaoNulos;
-  }
-
-  /*
-   * No pico, o número menor representa o melhor resultado.
-   *
-   * asc:
-   * #1, #2, #3, #4...
-   *
-   * desc:
-   * #100, #99, #98...
-   */
-  if (picoA !== picoB) {
-    return direcao === "asc"
-      ? picoA - picoB
-      : picoB - picoA;
-  }
-
-  /*
-   * Quando o pico for igual, a quantidade de vezes
-   * será sempre classificada do maior para o menor.
-   *
-   * Exemplo:
-   * #1 10x
-   * #1 8x
-   * #1 5x
-   */
   const vezesA =
     obterValorMusica(linhaA, ".pico-vezes") ?? 0;
 
   const vezesB =
     obterValorMusica(linhaB, ".pico-vezes") ?? 0;
 
-  return vezesB - vezesA;
+  const comparacaoNulos =
+    compararValoresNulos(picoA, picoB);
+
+  if (comparacaoNulos !== null && comparacaoNulos !== 0) {
+    return comparacaoNulos;
+  }
+
+  /*
+   * DESC = melhor para pior.
+   *
+   * Pico menor primeiro:
+   * 1, 2, 3, 4...
+   *
+   * Em empate, mais vezes primeiro:
+   * 10x, 8x, 5x...
+   */
+  if (direcao === "desc") {
+    if (picoA !== picoB) {
+      return picoA - picoB;
+    }
+
+    return vezesB - vezesA;
+  }
+
+  /*
+   * ASC = pior para melhor.
+   *
+   * Pico maior primeiro:
+   * 100, 99, 98...
+   *
+   * Em empate, menos vezes primeiro.
+   */
+  if (picoA !== picoB) {
+    return picoB - picoA;
+  }
+
+  return vezesA - vezesB;
 }
 
 function ordenarListaMusicas(botao) {
@@ -410,7 +419,7 @@ function ordenarListaMusicas(botao) {
    * As demais colunas começam do maior para o menor.
    */
 const direcaoInicial =
-  coluna === "pico" || coluna === "ranking"
+  coluna === "ranking"
     ? "asc"
     : "desc";
 
