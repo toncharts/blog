@@ -195,8 +195,8 @@ function aplicarPeriodo(periodo) {
 }
 
 function filtrarSemanas(periodo) {
-  selecionarTodos(".grade-semanas .semana-celula").forEach((semana) => {
-    const periodos = semana.dataset.periodos || "all";
+  selecionarTodos(".grade-semanas .sem-cel").forEach((semana) => {
+    const periodos = semana.dataset.periodo || "all";
     const deveMostrar = periodos.split(" ").includes(periodo);
 
     semana.hidden = !deveMostrar;
@@ -339,7 +339,7 @@ function atualizarLabelsPeriodoResponsivo() {
 }
 
 function configurarTooltipSemanas() {
-  selecionarTodos(".semana-quadrinho").forEach((quadrinho) => {
+  selecionarTodos(".sem-item").forEach((quadrinho) => {
     quadrinho.addEventListener("mouseenter", () => mostrarTooltipSemana(quadrinho));
     quadrinho.addEventListener("focus", () => mostrarTooltipSemana(quadrinho));
     quadrinho.addEventListener("mouseleave", esconderTooltipSemana);
