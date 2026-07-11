@@ -1505,6 +1505,52 @@
       font-weight: var(--peso-semi);
     }
 
+    .cabecalho-musica-ordenavel {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.3rem;
+      border: 0;
+      padding: 0;
+      color: inherit;
+      background: transparent;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        color var(--transicao),
+        opacity var(--transicao);
+    }
+
+    .cabecalho-musica-ordenavel::after {
+      content: "↕";
+      font-size: 0.65rem;
+      opacity: 0.4;
+    }
+
+    .cabecalho-musica-ordenavel:hover {
+      color: var(--cor-ciano);
+    }
+
+    .cabecalho-musica-ordenavel[data-direcao="desc"] {
+      color: var(--cor-ciano);
+    }
+
+    .cabecalho-musica-ordenavel[data-direcao="desc"]::after {
+      content: "↓";
+      opacity: 1;
+    }
+
+    .cabecalho-musica-ordenavel[data-direcao="asc"] {
+      color: var(--cor-ciano);
+    }
+
+    .cabecalho-musica-ordenavel[data-direcao="asc"]::after {
+      content: "↑";
+      opacity: 1;
+    }
+
     .linha-musica {
       min-height: 3rem;
       padding: 0.5rem 0.8rem;
@@ -3540,11 +3586,30 @@
                 <div class="cabecalho-musica cabecalho-musica-1">Posição</div>
                 <div class="cabecalho-musica cabecalho-musica-2">Ranking</div>
                 <div class="cabecalho-musica cabecalho-musica-3">Música</div>
-                <div class="cabecalho-musica cabecalho-musica-4">Scrobbles</div>
-                <div class="cabecalho-musica cabecalho-musica-5">Pontuação</div>
-                <div class="cabecalho-musica cabecalho-musica-6">Pico</div>
-                <div class="cabecalho-musica cabecalho-musica-7">Semanas</div>
-                <div class="cabecalho-musica cabecalho-musica-8">Dias #1</div>
+                <button class="cabecalho-musica cabecalho-musica-4 cabecalho-musica-ordenavel" type="button"
+                  data-ordenar="scrobbles" data-direcao="" aria-label="Ordenar por Scrobbles">
+                  Scrobbles
+                </button>
+
+                <button class="cabecalho-musica cabecalho-musica-5 cabecalho-musica-ordenavel" type="button"
+                  data-ordenar="pontuacao" data-direcao="" aria-label="Ordenar por Pontuação">
+                  Pontuação
+                </button>
+
+                <button class="cabecalho-musica cabecalho-musica-6 cabecalho-musica-ordenavel" type="button"
+                  data-ordenar="pico" data-direcao="" aria-label="Ordenar por Pico">
+                  Pico
+                </button>
+
+                <button class="cabecalho-musica cabecalho-musica-7 cabecalho-musica-ordenavel" type="button"
+                  data-ordenar="semanas" data-direcao="" aria-label="Ordenar por Semanas">
+                  Semanas
+                </button>
+
+                <button class="cabecalho-musica cabecalho-musica-8 cabecalho-musica-ordenavel" type="button"
+                  data-ordenar="dias" data-direcao="" aria-label="Ordenar por Dias em primeiro lugar">
+                  Dias #1
+                </button>
               </div>
 
               <div class="linhas-musicas">

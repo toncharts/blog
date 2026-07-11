@@ -306,6 +306,126 @@ function atualizarBotoesMusicas() {
   );
 }
 
+
+function converterValorMusica(texto) {
+  if (!texto) return null;
+
+  const valorLimpo = texto
+    .trim()
+    .replace(/\s+/g, "")
+    .replace(/#/g, "")
+    .replace(/x$/i, "")
+    .replace(/\./g, "")
+    .replace(",", ".")
+    .replace(/[^\d.-]/g, "");
+
+  if (!valorLimpo) return null;
+
+  const numero = Number(valorLimpo);
+
+  return Number.isFinite(numero) ? numero : null;
+}
+
+function obterValorOrdenacaoMusica(linha, coluna) {
+  const seletores = {
+    scrobbles: ".musica-scrobbles",
+    pontuacao: ".musica-pontuacao",
+    pico: ".pico-posicao",
+    semanas: ".musica-semanas",
+    dias: ".musica-dias"
+  };
+
+  const seletor = seletores[coluna];
+  const elemento = linha.querySelector(seletor);
+
+  return converterValorMusica(elemento?.textContent || "");
+}
+
+function obterPosicaoOriginalMusica(linha) {
+  const elementoPosicao = linha.querySelector(".musica-posicao");
+
+  return converterValorMusica(elementoPosicao?.textContent || "") || 0;
+}
+
+function ordenarListaMusicas(botao) {
+  const listaMusicas = botao.closest(".lista-musicas");
+  const linhasContainer = listaMusicas?.querySelector(".linhas-musicas");
+
+  if (!listaMusicas || !linhasContainer) return;
+
+  const coluna = botao.dataset.ordenar;
+  const direcaoAtual = botao.dataset.direcao;
+  const novaDirecao = direcaoAtual === "desc" ? "asc" : "desc";
+
+  listaMusicas
+    .querySelectorAll(".cabecalho-musica-ordenavel")
+    .forEach((outroBotao) => {
+      outroBotao.dataset.direcao = "";
+    });
+
+  botao.dataset.direcao = novaDirecao;
+
+  const linhas = Array.from(
+    linhasContainer.querySelectorAll(".linha-musica")
+  );
+
+  /*
+   * Antes de ordenar, exibe todas as músicas.
+   */
+  linhas.forEach((linha) => {
+    linha.hidden = false;
+  });
+
+  linhas.sort((linhaA, linhaB) => {
+    const valorA = obterValorOrdenacaoMusica(linhaA, coluna);
+    const valorB = obterValorOrdenacaoMusica(linhaB, coluna);
+
+    /*
+     * Valores vazios permanecem sempre no final.
+     */
+    if (valorA === null && valorB === null) {
+      return (
+        obterPosicaoOriginalMusica(linhaA) -
+        obterPosicaoOriginalMusica(linhaB)
+      );
+    }
+
+    if (valorA === null) return 1;
+    if (valorB === null) return -1;
+
+    const diferenca =
+      novaDirecao === "desc"
+        ? valorB - valorA
+        : valorA - valorB;
+
+    /*
+     * Em caso de empate, mantém a ordem da posição original.
+     */
+    if (diferenca === 0) {
+      return (
+        obterPosicaoOriginalMusica(linhaA) -
+        obterPosicaoOriginalMusica(linhaB)
+      );
+    }
+
+    return diferenca;
+  });
+
+  linhas.forEach((linha) => {
+    linhasContainer.appendChild(linha);
+  });
+
+  atualizarBotoesMusicas();
+}
+
+function configurarOrdenacaoMusicas() {
+  selecionarTodos(".cabecalho-musica-ordenavel").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      ordenarListaMusicas(botao);
+    });
+  });
+}
+
 function configurarTema() {
   const temaSalvo = localStorage.getItem("toncharts-theme") || "dark";
 
@@ -420,6 +540,7 @@ function iniciarPagina() {
   configurarTema();
   configurarPeriodos();
   configurarMusicas();
+  configurarOrdenacaoMusicas();
   configurarTooltipSemanas();
   atualizarLabelsPeriodoResponsivo();
 
