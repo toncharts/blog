@@ -194,12 +194,20 @@ function aplicarPeriodo(periodo) {
   atualizarBotoesMusicas();
 }
 
-function filtrarSemanas(periodo) {
-  selecionarTodos(".grade-semanas .sem-cel").forEach((semana) => {
-    const periodos = semana.dataset.periodo || "all";
-    const deveMostrar = periodos.split(" ").includes(periodo);
+function filtrarSemanas(periodoSelecionado) {
+  const periodosPermitidos = {
+    all: ["all", "12m", "6m", "3m", "1m"],
+    "12m": ["12m", "6m", "3m", "1m"],
+    "6m": ["6m", "3m", "1m"],
+    "3m": ["3m", "1m"],
+    "1m": ["1m"]
+  };
 
-    semana.hidden = !deveMostrar;
+  selecionarTodos(".grade-semanas .sem-cel").forEach((semana) => {
+    const periodoSemana = semana.dataset.periodo || "all";
+
+    semana.hidden =
+      !periodosPermitidos[periodoSelecionado].includes(periodoSemana);
   });
 }
 
