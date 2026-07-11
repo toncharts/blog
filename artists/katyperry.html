@@ -1563,6 +1563,14 @@
       background: var(--cor-superficie);
     }
 
+    .linhas-musicas {
+      counter-reset: posicao-musica;
+    }
+
+    .linha-musica:not([hidden]) {
+      counter-increment: posicao-musica;
+    }
+
     .musica-posicao {
       font-size: 1.3rem;
       font-weight: var(--peso-bold);
@@ -1571,9 +1579,9 @@
     }
 
     .musica-posicao::before {
-      content: "#";
-      font-weight: var(--peso-semi);
-      color: var(--cor-media);
+      content: "#" counter(posicao-musica);
+      font-weight: var(--peso-bold);
+      color: var(--cor-texto);
     }
 
     .musica-ranking {
@@ -3613,8 +3621,8 @@
               </div>
 
               <div class="linhas-musicas">
-                <article class="linha-musica linha-musica-1" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
-                  <div class="musica-posicao">1</div>
+                <article class="linha-musica" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
+                  <div class="musica-posicao"></div>
                   <div class="musica-ranking">#1</div>
                   <div class="musica-principal">
                     <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
@@ -3639,8 +3647,8 @@
                   <div class="musica-dias">6.347</div>
                 </article>
 
-                <article class="linha-musica linha-musica-2" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
-                  <div class="musica-posicao">2</div>
+                <article class="linha-musica" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
+                  <div class="musica-posicao"></div>
                   <div class="musica-ranking">#1</div>
                   <div class="musica-principal">
                     <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">
@@ -3664,8 +3672,8 @@
                   <div class="musica-dias">6.120</div>
                 </article>
 
-                <article class="linha-musica linha-musica-3" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
-                  <div class="musica-posicao">3</div>
+                <article class="linha-musica" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
+                  <div class="musica-posicao"></div>
                   <div class="musica-ranking">#1</div>
                   <div class="musica-principal">
                     <a class="musica-capa-link link-padrao" href="#" target="_blank" rel="noopener">

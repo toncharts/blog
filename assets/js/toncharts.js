@@ -313,8 +313,6 @@ function converterValorMusica(texto) {
   const valorLimpo = texto
     .trim()
     .replace(/\s+/g, "")
-    .replace(/#/g, "")
-    .replace(/x$/i, "")
     .replace(/\./g, "")
     .replace(",", ".")
     .replace(/[^\d.-]/g, "");
@@ -326,36 +324,99 @@ function converterValorMusica(texto) {
   return Number.isFinite(numero) ? numero : null;
 }
 
-function obterValorOrdenacaoMusica(linha, coluna) {
-  const seletores = {
-    scrobbles: ".musica-scrobbles",
-    pontuacao: ".musica-pontuacao",
-    pico: ".pico-posicao",
-    semanas: ".musica-semanas",
-    dias: ".musica-dias"
-  };
-
-  const seletor = seletores[coluna];
+function obterValorMusica(linha, seletor) {
   const elemento = linha.querySelector(seletor);
 
   return converterValorMusica(elemento?.textContent || "");
 }
 
-function obterPosicaoOriginalMusica(linha) {
-  const elementoPosicao = linha.querySelector(".musica-posicao");
+function obterValorOrdenacaoMusica(linha, coluna) {
+  const seletores = {
+    scrobbles: ".musica-scrobbles",
+    pontuacao: ".musica-pontuacao",
+    semanas: ".musica-semanas",
+    dias: ".musica-dias"
+  };
 
-  return converterValorMusica(elementoPosicao?.textContent || "") || 0;
+  return obterValorMusica(linha, seletores[coluna]);
+}
+
+function compararValoresNulos(valorA, valorB) {
+  if (valorA === null && valorB === null) return 0;
+  if (valorA === null) return 1;
+  if (valorB === null) return -1;
+
+  return null;
+}
+
+function compararPico(linhaA, linhaB, direcao) {
+  const picoA = obterValorMusica(linhaA, ".pico-posicao");
+  const picoB = obterValorMusica(linhaB, ".pico-posicao");
+
+  const comparacaoNulos = compararValoresNulos(picoA, picoB);
+
+  if (comparacaoNulos !== null && comparacaoNulos !== 0) {
+    return comparacaoNulos;
+  }
+
+  /*
+   * No pico, o número menor representa o melhor resultado.
+   *
+   * asc:
+   * #1, #2, #3, #4...
+   *
+   * desc:
+   * #100, #99, #98...
+   */
+  if (picoA !== picoB) {
+    return direcao === "asc"
+      ? picoA - picoB
+      : picoB - picoA;
+  }
+
+  /*
+   * Quando o pico for igual, a quantidade de vezes
+   * será sempre classificada do maior para o menor.
+   *
+   * Exemplo:
+   * #1 10x
+   * #1 8x
+   * #1 5x
+   */
+  const vezesA =
+    obterValorMusica(linhaA, ".pico-vezes") ?? 0;
+
+  const vezesB =
+    obterValorMusica(linhaB, ".pico-vezes") ?? 0;
+
+  return vezesB - vezesA;
 }
 
 function ordenarListaMusicas(botao) {
   const listaMusicas = botao.closest(".lista-musicas");
-  const linhasContainer = listaMusicas?.querySelector(".linhas-musicas");
+  const linhasContainer =
+    listaMusicas?.querySelector(".linhas-musicas");
 
   if (!listaMusicas || !linhasContainer) return;
 
   const coluna = botao.dataset.ordenar;
-  const direcaoAtual = botao.dataset.direcao;
-  const novaDirecao = direcaoAtual === "desc" ? "asc" : "desc";
+  const direcaoAtual = botao.dataset.direcao || "";
+
+  /*
+   * Pico começa do melhor para o pior:
+   * #1, #2, #3...
+   *
+   * As demais colunas começam do maior para o menor.
+   */
+  const direcaoInicial =
+    coluna === "pico" ? "asc" : "desc";
+
+  const novaDirecao =
+    direcaoAtual === ""
+      ? direcaoInicial
+      : direcaoAtual === "desc"
+        ? "asc"
+        : "desc";
 
   listaMusicas
     .querySelectorAll(".cabecalho-musica-ordenavel")
@@ -370,45 +431,70 @@ function ordenarListaMusicas(botao) {
   );
 
   /*
-   * Antes de ordenar, exibe todas as músicas.
+   * Guarda a ordem atual para preservar empates completos.
+   */
+  const ordemAtual = new Map(
+    linhas.map((linha, indice) => [linha, indice])
+  );
+
+  /*
+   * Primeiro exibe todas as músicas.
    */
   linhas.forEach((linha) => {
     linha.hidden = false;
   });
 
   linhas.sort((linhaA, linhaB) => {
-    const valorA = obterValorOrdenacaoMusica(linhaA, coluna);
-    const valorB = obterValorOrdenacaoMusica(linhaB, coluna);
+    if (coluna === "pico") {
+      const resultadoPico = compararPico(
+        linhaA,
+        linhaB,
+        novaDirecao
+      );
 
-    /*
-     * Valores vazios permanecem sempre no final.
-     */
-    if (valorA === null && valorB === null) {
+      if (resultadoPico !== 0) {
+        return resultadoPico;
+      }
+
       return (
-        obterPosicaoOriginalMusica(linhaA) -
-        obterPosicaoOriginalMusica(linhaB)
+        ordemAtual.get(linhaA) -
+        ordemAtual.get(linhaB)
       );
     }
 
-    if (valorA === null) return 1;
-    if (valorB === null) return -1;
+    const valorA =
+      obterValorOrdenacaoMusica(linhaA, coluna);
+
+    const valorB =
+      obterValorOrdenacaoMusica(linhaB, coluna);
+
+    const comparacaoNulos =
+      compararValoresNulos(valorA, valorB);
+
+    if (comparacaoNulos !== null) {
+      if (comparacaoNulos !== 0) {
+        return comparacaoNulos;
+      }
+
+      return (
+        ordemAtual.get(linhaA) -
+        ordemAtual.get(linhaB)
+      );
+    }
 
     const diferenca =
       novaDirecao === "desc"
         ? valorB - valorA
         : valorA - valorB;
 
-    /*
-     * Em caso de empate, mantém a ordem da posição original.
-     */
-    if (diferenca === 0) {
-      return (
-        obterPosicaoOriginalMusica(linhaA) -
-        obterPosicaoOriginalMusica(linhaB)
-      );
+    if (diferenca !== 0) {
+      return diferenca;
     }
 
-    return diferenca;
+    return (
+      ordemAtual.get(linhaA) -
+      ordemAtual.get(linhaB)
+    );
   });
 
   linhas.forEach((linha) => {
@@ -419,7 +505,9 @@ function ordenarListaMusicas(botao) {
 }
 
 function configurarOrdenacaoMusicas() {
-  selecionarTodos(".cabecalho-musica-ordenavel").forEach((botao) => {
+  selecionarTodos(
+    ".cabecalho-musica-ordenavel"
+  ).forEach((botao) => {
     botao.addEventListener("click", () => {
       ordenarListaMusicas(botao);
     });
@@ -544,7 +632,8 @@ function iniciarPagina() {
   configurarTooltipSemanas();
   atualizarLabelsPeriodoResponsivo();
 
-  const periodoInicial = selecionar(".seletor-periodo")?.value || "12m";
+  const periodoInicial =
+    selecionar(".seletor-periodo")?.value || "12m";
 
   aplicarPeriodo(periodoInicial);
   carregarSpotify();
