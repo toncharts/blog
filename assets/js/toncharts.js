@@ -332,10 +332,11 @@ function obterValorMusica(linha, seletor) {
 
 function obterValorOrdenacaoMusica(linha, coluna) {
   const seletores = {
-    scrobbles: ".musica-scrobbles",
-    pontuacao: ".musica-pontuacao",
-    semanas: ".musica-semanas",
-    dias: ".musica-dias"
+  ranking: ".musica-ranking",
+  scrobbles: ".musica-scrobbles",
+  pontuacao: ".musica-pontuacao",
+  semanas: ".musica-semanas",
+  dias: ".musica-dias"
   };
 
   return obterValorMusica(linha, seletores[coluna]);
@@ -408,8 +409,10 @@ function ordenarListaMusicas(botao) {
    *
    * As demais colunas começam do maior para o menor.
    */
-  const direcaoInicial =
-    coluna === "pico" ? "asc" : "desc";
+const direcaoInicial =
+  coluna === "pico" || coluna === "ranking"
+    ? "asc"
+    : "desc";
 
   const novaDirecao =
     direcaoAtual === ""
