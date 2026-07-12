@@ -643,13 +643,235 @@ function atualizarMetaPropriedade(propriedade, conteudo) {
   if (meta) meta.setAttribute("content", conteudo || "");
 }
 
+function atualizarUnidadeSemanas() {
+  selecionarTodos(".sequencia-semanas").forEach((elemento) => {
+    const numero = Number(
+      elemento.querySelector("strong")?.textContent.trim()
+    );
+
+    const unidade = elemento.querySelector(
+      ".sequencia-semanas-unidade"
+    );
+
+    if (!unidade) return;
+
+    unidade.textContent = numero === 1
+      ? "semana"
+      : "semanas";
+  });
+}
+
+
+function configurarSequenciasDobraveis() {
+  selecionarTodos(".sequencia-ranking").forEach(
+    (ranking, indice) => {
+      const titulo = ranking.querySelector(
+        ".sequencia-ranking-titulo"
+      );
+
+      const lista = ranking.querySelector(
+        ".sequencia-ranking-lista"
+      );
+
+      if (!titulo || !lista) return;
+
+      if (titulo.dataset.dobravel === "true") return;
+
+      titulo.dataset.dobravel = "true";
+
+      const listaId =
+        lista.id ||
+        `sequencia-ranking-lista-${indice + 1}`;
+
+      lista.id = listaId;
+
+      /*
+       * "No chart" começa aberto.
+       * Top 10, top 5 e topo começam fechados.
+       */
+      const abertoInicialmente = ranking.classList.contains(
+        "sequencia-ranking-chart"
+      );
+
+      titulo.setAttribute("role", "button");
+      titulo.setAttribute("tabindex", "0");
+      titulo.setAttribute("aria-controls", listaId);
+
+      const seta = document.createElement("i");
+
+      seta.className = "fa-solid sequencia-ranking-seta";
+      seta.setAttribute("aria-hidden", "true");
+
+      titulo.appendChild(seta);
+
+      function atualizarEstado(aberto) {
+        titulo.setAttribute(
+          "aria-expanded",
+          String(aberto)
+        );
+
+        lista.hidden = !aberto;
+
+        ranking.classList.toggle(
+          "sequencia-ranking-fechado",
+          !aberto
+        );
+
+        seta.classList.toggle(
+          "fa-chevron-up",
+          aberto
+        );
+
+        seta.classList.toggle(
+          "fa-chevron-down",
+          !aberto
+        );
+      }
+
+      function alternarRanking() {
+        const estaAberto =
+          titulo.getAttribute("aria-expanded") === "true";
+
+        atualizarEstado(!estaAberto);
+      }
+
+      atualizarEstado(abertoInicialmente);
+
+      titulo.addEventListener(
+        "click",
+        alternarRanking
+      );
+
+      titulo.addEventListener(
+        "keydown",
+        (evento) => {
+          if (
+            evento.key !== "Enter" &&
+            evento.key !== " "
+          ) {
+            return;
+          }
+
+          evento.preventDefault();
+          alternarRanking();
+        }
+      );
+    }
+  );
+}
+
+
+function configurarSequenciasAcumuladasDobraveis() {
+  selecionarTodos(".sequencia-acumulado").forEach(
+    (acumulado, indice) => {
+      const titulo = acumulado.querySelector(
+        ".sequencia-acumulado-titulo"
+      );
+
+      const lista = acumulado.querySelector(
+        ".sequencia-acumulado-lista"
+      );
+
+      if (!titulo || !lista) return;
+
+      if (titulo.dataset.dobravel === "true") return;
+
+      titulo.dataset.dobravel = "true";
+
+      const listaId =
+        lista.id ||
+        `sequencia-acumulado-lista-${indice + 1}`;
+
+      lista.id = listaId;
+
+      /*
+       * Chart começa aberto.
+       * Top 10, top 5 e topo começam fechados.
+       */
+      const abertoInicialmente =
+        acumulado.classList.contains(
+          "sequencia-acumulado-chart"
+        );
+
+      titulo.setAttribute("role", "button");
+      titulo.setAttribute("tabindex", "0");
+      titulo.setAttribute("aria-controls", listaId);
+
+      const seta = document.createElement("i");
+
+      seta.className =
+        "fa-solid sequencia-acumulado-seta";
+
+      seta.setAttribute("aria-hidden", "true");
+
+      titulo.appendChild(seta);
+
+      function atualizarEstado(aberto) {
+        titulo.setAttribute(
+          "aria-expanded",
+          String(aberto)
+        );
+
+        lista.hidden = !aberto;
+
+        acumulado.classList.toggle(
+          "sequencia-acumulado-fechado",
+          !aberto
+        );
+
+        seta.classList.toggle(
+          "fa-chevron-up",
+          aberto
+        );
+
+        seta.classList.toggle(
+          "fa-chevron-down",
+          !aberto
+        );
+      }
+
+      function alternarAcumulado() {
+        const estaAberto =
+          titulo.getAttribute("aria-expanded") === "true";
+
+        atualizarEstado(!estaAberto);
+      }
+
+      atualizarEstado(abertoInicialmente);
+
+      titulo.addEventListener(
+        "click",
+        alternarAcumulado
+      );
+
+      titulo.addEventListener(
+        "keydown",
+        (evento) => {
+          if (
+            evento.key !== "Enter" &&
+            evento.key !== " "
+          ) {
+            return;
+          }
+
+          evento.preventDefault();
+          alternarAcumulado();
+        }
+      );
+    }
+  );
+}
+
 function iniciarPagina() {
   configurarTema();
   configurarPeriodos();
+  configurarSequenciasDobraveis();
+  configurarSequenciasAcumuladasDobraveis();
   configurarMusicas();
   configurarOrdenacaoMusicas();
   configurarTooltipSemanas();
   atualizarLabelsPeriodoResponsivo();
+  atualizarUnidadeSemanas();
 
   const periodoInicial =
     selecionar(".seletor-periodo")?.value || "12m";
