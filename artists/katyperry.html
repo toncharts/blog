@@ -256,7 +256,7 @@
     }
 
     .grafico-evolucao__periodo:hover {
-      border-color: rgba(255, 255, 255, 0.30);
+      border-color: rgba(255, 255, 255, 0.3);
       color: var(--grafico-texto);
     }
 
@@ -318,25 +318,27 @@
       touch-action: pan-y;
     }
 
+    /* CARD HOVER */
+
     .grafico-tooltip {
       position: absolute;
       z-index: 20;
 
       width: max-content;
-      min-width: 215px;
-      max-width: min(290px, calc(100vw - 32px));
+      min-width: 190px;
+      max-width: min(270px, calc(100vw - 32px));
 
-      padding: 16px;
+      padding: 11px 13px;
 
       border: 1px solid var(--grafico-tooltip-borda);
-      border-radius: 14px;
+      border-radius: 11px;
 
       background: var(--grafico-tooltip-fundo);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 
       color: var(--grafico-texto);
-      font-size: 0.84rem;
-      line-height: 1.35;
+      font-size: 0.8rem;
+      line-height: 1.25;
 
       pointer-events: none;
       opacity: 0;
@@ -356,47 +358,62 @@
     }
 
     .grafico-tooltip__titulo {
-      margin-bottom: 14px;
-      padding-bottom: 10px;
+      margin-bottom: 8px;
+      padding-bottom: 7px;
 
       border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 750;
     }
 
     .grafico-tooltip__bloco+.grafico-tooltip__bloco {
-      margin-top: 15px;
-      padding-top: 14px;
+      margin-top: 9px;
+      padding-top: 9px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .grafico-tooltip__subtitulo {
-      margin-bottom: 10px;
+      margin-bottom: 6px;
 
       color: var(--grafico-texto-secundario);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
+    /* Mantém conteúdo da métrica na mesma linha */
+
+    .grafico-tooltip__metrica {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 3px 5px;
+    }
+
     .grafico-tooltip__metrica+.grafico-tooltip__metrica {
-      margin-top: 12px;
+      margin-top: 6px;
     }
 
     .grafico-tooltip__rotulo {
-      display: block;
-      margin-bottom: 3px;
+      display: inline;
+      flex: 1 1 auto;
+      margin: 0;
 
       color: var(--grafico-texto-secundario);
-      font-size: 0.75rem;
+      font-size: 0.73rem;
+      white-space: nowrap;
     }
 
     .grafico-tooltip__valor {
-      display: block;
-      font-size: 1rem;
+      display: inline;
+      flex: 0 0 auto;
+      margin: 0;
+
+      font-size: 0.91rem;
       font-weight: 750;
+      white-space: nowrap;
     }
 
     .grafico-tooltip__valor--scrobbles {
@@ -407,23 +424,31 @@
       color: var(--grafico-pontos);
     }
 
+    /* "scrobbles" e "pontos" ao lado do número */
+
     .grafico-tooltip__unidade {
-      display: block;
-      margin-top: 2px;
+      display: inline;
+      flex: 0 0 auto;
+      margin: 0;
 
       color: var(--grafico-texto-secundario);
       font-size: 0.72rem;
+      white-space: nowrap;
     }
 
+    /* Seta e percentual compactos */
+
     .grafico-tooltip__variacao {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 6px;
+      flex: 0 0 auto;
+      gap: 4px;
 
-      margin-top: 5px;
+      margin: 0 0 0 auto;
 
-      font-size: 0.76rem;
+      font-size: 0.71rem;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .grafico-tooltip__variacao--alta {
@@ -461,11 +486,308 @@
       }
 
       .grafico-tooltip {
-        min-width: 195px;
-        padding: 14px;
-        font-size: 0.8rem;
+        min-width: 185px;
+        max-width: calc(100vw - 24px);
+        padding: 10px 12px;
+        font-size: 0.78rem;
+      }
+
+      .grafico-tooltip__rotulo {
+        white-space: normal;
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ----- MARCOS DO ARTISTA ----- */
+
+    .marco {
+      --mar-fundo:
+        var(--card-fundo, rgba(255, 255, 255, 0.04));
+
+      --mar-borda:
+        var(--card-borda, rgba(255, 255, 255, 0.1));
+
+      --mar-texto:
+        var(--texto-principal, #f4f7fa);
+
+      --mar-sec:
+        var(--texto-secundario, #aab4c0);
+
+      --mar-cor:
+        var(--cor-destaque, #08d4f2);
+
+      --mar-cor2:
+        var(--cor-secundaria, #08dfb0);
+    }
+
+    .marco,
+    .marco * {
+      box-sizing: border-box;
+    }
+
+    .marco .topo {
+      margin-bottom: 22px;
+    }
+
+    .marco .topo h2 {
+      margin: 0;
+    }
+
+    .marco .intro {
+      max-width: 680px;
+      margin: 7px 0 0;
+
+      color: var(--mar-sec);
+
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .marco .grade {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+      grid-auto-rows: 1fr;
+      gap: 12px;
+    }
+
+    .marco .card {
+      display: flex;
+      flex-direction: column;
+
+      min-width: 0;
+      min-height: 158px;
+      padding: 14px;
+
+      border: 1px solid var(--mar-borda);
+      border-radius: 14px;
+
+      background: var(--mar-fundo);
+      color: var(--mar-texto);
+
+      overflow: hidden;
+
+      transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+    }
+
+    .marco .card:hover {
+      border-color: var(--mar-cor);
+      transform: translateY(-2px);
+    }
+
+    .marco .desta {
+      background:
+        linear-gradient(145deg,
+          rgba(8, 212, 242, 0.08),
+          rgba(8, 223, 176, 0.035)),
+        var(--mar-fundo);
+    }
+
+    /* Número principal */
+
+    .marco .valor {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+
+      margin: 0;
+
+      color: var(--mar-texto);
+
+      font-size: var(--texto-numero);
+      font-weight: var(--peso-bold);
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
+
+    /* Unidade gerada conforme a classe do card */
+
+    .marco .valor::after {
+      font-size: var(--texto-normal);
+      font-weight: var(--peso-semi);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .marco .scr .valor::after {
+      content: "scrobbles";
+    }
+
+    .marco .sem .valor::after {
+      content: "semanas";
+    }
+
+    .marco .vez .valor::after {
+      content: "vezes";
+    }
+
+    /* Singular: adicione class="sing" ao article */
+
+    .marco .scr.sing .valor::after {
+      content: "scrobble";
+    }
+
+    .marco .sem.sing .valor::after {
+      content: "semana";
+    }
+
+    .marco .vez.sing .valor::after {
+      content: "vez";
+    }
+
+    /* Texto principal */
+
+    .marco .texto {
+      min-height: 2.5em;
+      margin: 5px 0 10px;
+
+      color: var(--mar-sec);
+
+      font-size: var(--texto-normal);
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    /* Textos automáticos dos cards de semanas */
+
+    .marco .s1000 .texto::after {
+      content: "com mais de 1.000 scrobbles";
+    }
+
+    .marco .s700 .texto::after {
+      content: "com mais de 700 scrobbles";
+    }
+
+    .marco .s500 .texto::after {
+      content: "com mais de 500 scrobbles";
+    }
+
+    .marco .s200 .texto::after {
+      content: "com mais de 200 scrobbles";
+    }
+
+    /* Bloco inferior padronizado */
+
+    .marco .info {
+      display: grid;
+      grid-template-rows: 14px 18px 15px;
+      align-items: center;
+      gap: 2px;
+
+      width: 100%;
+      height: 62px;
+      margin-top: auto;
+      padding-top: 9px;
+
+      border-top: 1px solid var(--mar-borda);
+    }
+
+    .marco .rotul {
+      color: var(--mar-sec);
+
+      font-size: var(--texto-pequeno);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Texto automático dos cards de semanas */
+
+    .marco .sem .rotul::after {
+      content: "Última vez em";
+    }
+
+    .marco .music {
+      display: block;
+      width: 100%;
+
+      color: var(--mar-texto);
+
+      font-size: var(--texto-normal);
+      font-weight: var(--peso-semi);
+      line-height: 1.25;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .marco .vazio {
+      visibility: hidden;
+    }
+
+    .marco .data {
+      color: var(--mar-cor2);
+
+      font-size: var(--texto-normal);
+      font-weight: var(--peso-semi);
+    }
+
+    @media (max-width: 980px) {
+      .marco .grade {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .marco .grade {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .marco .card {
+        min-height: 152px;
+        padding: 13px;
+      }
+
+      .marco .valor {
+        font-size: 1.4rem;
+      }
+
+      .marco .texto {
+        min-height: auto;
+      }
+
+      .marco .info {
+        height: 60px;
+      }
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8045,6 +8367,319 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
           </div>
         </div>
       </section>
+
+
+
+
+
+      <!-- ----- MARCOS DO ARTISTA ----- -->
+
+      <section class="bloco-geral marco" id="marcosArtista" aria-labelledby="marcosTitulo">
+        <div class="container">
+
+          <header class="topo">
+            <h2 id="marcosTitulo">
+              Principais marcos
+            </h2>
+
+            <p class="intro">
+              Recordes e conquistas gerais do artista no chart.
+            </p>
+          </header>
+
+          <div class="grade">
+
+            <!-- RECORDES PRINCIPAIS -->
+
+            <article class="card desta scr">
+              <strong class="valor">
+                1.248
+              </strong>
+
+              <p class="texto">
+                na maior semana do artista
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Semana encerrada em
+                </span>
+
+                <span class="music vazio" aria-hidden="true">
+                  —
+                </span>
+
+                <time class="data" datetime="2025-11-28">
+                  28 nov 2025
+                </time>
+              </div>
+            </article>
+
+            <article class="card desta scr">
+              <strong class="valor">
+                612
+              </strong>
+
+              <p class="texto">
+                na maior semana de uma música
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2025-11-28">
+                  28 nov 2025
+                </time>
+              </div>
+            </article>
+
+            <article class="card desta scr">
+              <strong class="valor">
+                428
+              </strong>
+
+              <p class="texto">
+                na maior estreia de uma música
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2025-03-21">
+                  21 mar 2025
+                </time>
+              </div>
+            </article>
+
+            <article class="card desta pico">
+              <strong class="valor">
+                #1
+              </strong>
+
+              <p class="texto">
+                como maior posição de estreia
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2024-08-16">
+                  16 ago 2024
+                </time>
+              </div>
+            </article>
+
+            <!-- SEMANAS ACIMA DAS METAS -->
+
+            <article class="card sem s1000">
+              <strong class="valor">
+                3
+              </strong>
+
+              <p class="texto"></p>
+
+              <div class="info">
+                <span class="rotul"></span>
+
+                <span class="music vazio" aria-hidden="true">
+                  —
+                </span>
+
+                <time class="data" datetime="2025-11-28">
+                  28 nov 2025
+                </time>
+              </div>
+            </article>
+
+            <article class="card sem s700">
+              <strong class="valor">
+                12
+              </strong>
+
+              <p class="texto"></p>
+
+              <div class="info">
+                <span class="rotul"></span>
+
+                <span class="music vazio" aria-hidden="true">
+                  —
+                </span>
+
+                <time class="data" datetime="2026-05-22">
+                  22 mai 2026
+                </time>
+              </div>
+            </article>
+
+            <article class="card sem s500">
+              <strong class="valor">
+                28
+              </strong>
+
+              <p class="texto"></p>
+
+              <div class="info">
+                <span class="rotul"></span>
+
+                <span class="music vazio" aria-hidden="true">
+                  —
+                </span>
+
+                <time class="data" datetime="2026-07-10">
+                  10 jul 2026
+                </time>
+              </div>
+            </article>
+
+            <article class="card sem s200">
+              <strong class="valor">
+                126
+              </strong>
+
+              <p class="texto"></p>
+
+              <div class="info">
+                <span class="rotul"></span>
+
+                <span class="music vazio" aria-hidden="true">
+                  —
+                </span>
+
+                <time class="data" datetime="2026-07-10">
+                  10 jul 2026
+                </time>
+              </div>
+            </article>
+
+            <!-- MÚSICAS QUE ATINGIRAM AS METAS -->
+
+            <article class="card vez">
+              <strong class="valor">
+                8
+              </strong>
+
+              <p class="texto">
+                uma música atingiu 200 scrobbles
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Última vez com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2026-06-19">
+                  19 jun 2026
+                </time>
+              </div>
+            </article>
+
+            <article class="card vez">
+              <strong class="valor">
+                17
+              </strong>
+
+              <p class="texto">
+                uma música atingiu 150 scrobbles
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Última vez com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2026-05-29">
+                  29 mai 2026
+                </time>
+              </div>
+            </article>
+
+            <article class="card vez">
+              <strong class="valor">
+                42
+              </strong>
+
+              <p class="texto">
+                uma música atingiu 100 scrobbles
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Última vez com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2026-07-03">
+                  3 jul 2026
+                </time>
+              </div>
+            </article>
+
+            <article class="card vez">
+              <strong class="valor">
+                118
+              </strong>
+
+              <p class="texto">
+                uma música atingiu 50 scrobbles
+              </p>
+
+              <div class="info">
+                <span class="rotul">
+                  Última vez com
+                </span>
+
+                <strong class="music">
+                  Nome da música
+                </strong>
+
+                <time class="data" datetime="2026-07-10">
+                  10 jul 2026
+                </time>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
     </main>
 
     <footer class="site-footer" id="lastfm">

@@ -648,118 +648,131 @@ const canvas = raiz.querySelector(".grafico-evolucao__canvas");
     );
   }
 
-  function criarTooltipSemana(item) {
-    return `
-      <div class="grafico-tooltip__titulo">
-        ${item.rotulo}
+function criarTooltipSemana(item) {
+  return `
+    <div class="grafico-tooltip__titulo">
+      ${item.rotulo}
+    </div>
+
+    <div class="grafico-tooltip__bloco">
+
+      <div class="grafico-tooltip__subtitulo">
+        Acumulado até aqui
       </div>
 
-      <div class="grafico-tooltip__bloco">
+      <div class="grafico-tooltip__metrica">
+        <strong class="
+          grafico-tooltip__valor
+          grafico-tooltip__valor--scrobbles
+        ">
+          ${formatarNumero(item.scrobbles)}
+        </strong>
 
-        <div class="grafico-tooltip__metrica">
-          <span class="grafico-tooltip__rotulo">
-            Scrobbles acumulados
-          </span>
-
-          <strong class="
-            grafico-tooltip__valor
-            grafico-tooltip__valor--scrobbles
-          ">
-            ${formatarNumero(item.scrobbles)}
-          </strong>
-        </div>
-
-        <div class="grafico-tooltip__metrica">
-          <span class="grafico-tooltip__rotulo">
-            Pontos acumulados
-          </span>
-
-          <strong class="
-            grafico-tooltip__valor
-            grafico-tooltip__valor--pontos
-          ">
-            ${formatarNumero(item.pontos)}
-          </strong>
-        </div>
-
-      </div>
-    `;
-  }
-
-  function criarTooltipPeriodoCompleto(item) {
-    return `
-      <div class="grafico-tooltip__titulo">
-        ${item.rotulo}
+        <span class="grafico-tooltip__unidade">
+          scrobbles
+        </span>
       </div>
 
-      <div class="grafico-tooltip__bloco">
+      <div class="grafico-tooltip__metrica">
+        <strong class="
+          grafico-tooltip__valor
+          grafico-tooltip__valor--pontos
+        ">
+          ${formatarNumero(item.pontos)}
+        </strong>
 
-        <div class="grafico-tooltip__subtitulo">
-          Scrobbles
-        </div>
-
-        <div class="grafico-tooltip__metrica">
-          <span class="grafico-tooltip__rotulo">
-            Acumulado
-          </span>
-
-          <strong class="
-            grafico-tooltip__valor
-            grafico-tooltip__valor--scrobbles
-          ">
-            ${formatarNumero(item.scrobbles)}
-          </strong>
-        </div>
-
-        <div class="grafico-tooltip__metrica">
-          <span class="grafico-tooltip__rotulo">
-            Ganho no período
-          </span>
-
-          <strong class="grafico-tooltip__valor">
-            ${formatarNumero(item.ganhoScrobbles)}
-          </strong>
-
-          ${criarVariacao(item.variacaoScrobbles)}
-        </div>
-
+        <span class="grafico-tooltip__unidade">
+          pontos
+        </span>
       </div>
 
-      <div class="grafico-tooltip__bloco">
+    </div>
+  `;
+}
+function criarTooltipPeriodoCompleto(item) {
+  const nomePeriodo =
+    periodoAtual === "mes"
+      ? "No mês"
+      : "No ano";
 
-        <div class="grafico-tooltip__subtitulo">
-          Pontos
-        </div>
+  return `
+    <div class="grafico-tooltip__titulo">
+      ${item.rotulo}
+    </div>
 
-        <div class="grafico-tooltip__metrica">
-          <span class="grafico-tooltip__rotulo">
-            Acumulado
-          </span>
+    <div class="grafico-tooltip__bloco">
 
-          <strong class="
-            grafico-tooltip__valor
-            grafico-tooltip__valor--pontos
-          ">
-            ${formatarNumero(item.pontos)}
-          </strong>
-        </div>
-
-        <div class="grafico-tooltip__metrica">
-          <span class="grafico-tooltip__rotulo">
-            Ganho no período
-          </span>
-
-          <strong class="grafico-tooltip__valor">
-            ${formatarNumero(item.ganhoPontos)}
-          </strong>
-
-          ${criarVariacao(item.variacaoPontos)}
-        </div>
-
+      <div class="grafico-tooltip__subtitulo">
+        ${nomePeriodo}
       </div>
-    `;
-  }
 
+      <div class="grafico-tooltip__metrica">
+        <strong class="
+          grafico-tooltip__valor
+          grafico-tooltip__valor--scrobbles
+        ">
+          ${formatarNumero(item.ganhoScrobbles)}
+        </strong>
+
+        <span class="grafico-tooltip__unidade">
+          scrobbles
+        </span>
+
+        ${criarVariacao(item.variacaoScrobbles)}
+      </div>
+
+      <div class="grafico-tooltip__metrica">
+        <strong class="
+          grafico-tooltip__valor
+          grafico-tooltip__valor--pontos
+        ">
+          ${formatarNumero(item.ganhoPontos)}
+        </strong>
+
+        <span class="grafico-tooltip__unidade">
+          pontos
+        </span>
+
+        ${criarVariacao(item.variacaoPontos)}
+      </div>
+
+    </div>
+
+    <div class="grafico-tooltip__bloco">
+
+      <div class="grafico-tooltip__subtitulo">
+        Acumulado até aqui
+      </div>
+
+      <div class="grafico-tooltip__metrica">
+        <strong class="
+          grafico-tooltip__valor
+          grafico-tooltip__valor--scrobbles
+        ">
+          ${formatarNumero(item.scrobbles)}
+        </strong>
+
+        <span class="grafico-tooltip__unidade">
+          scrobbles
+        </span>
+      </div>
+
+      <div class="grafico-tooltip__metrica">
+        <strong class="
+          grafico-tooltip__valor
+          grafico-tooltip__valor--pontos
+        ">
+          ${formatarNumero(item.pontos)}
+        </strong>
+
+        <span class="grafico-tooltip__unidade">
+          pontos
+        </span>
+      </div>
+
+    </div>
+  `;
+}
   function verificarDivisaoAnual(clientX, clientY) {
     if (periodoAtual === "ano") {
       limparDivisaoAno();
@@ -902,39 +915,31 @@ const canvas = raiz.querySelector(".grafico-evolucao__canvas");
     `;
   }
 
-  function criarVariacao(valor) {
-    if (valor === null || !Number.isFinite(valor)) {
-      return `
-        <span class="
-          grafico-tooltip__variacao
-          grafico-tooltip__variacao--neutra
-        ">
-          <i class="fa-solid fa-minus"></i>
-          Sem comparação
-        </span>
-      `;
-    }
-
-    let classe = "grafico-tooltip__variacao--neutra";
-    let icone = "fa-minus";
-
-    if (valor > 0) {
-      classe = "grafico-tooltip__variacao--alta";
-      icone = "fa-arrow-up";
-    }
-
-    if (valor < 0) {
-      classe = "grafico-tooltip__variacao--queda";
-      icone = "fa-arrow-down";
-    }
-
-    return `
-      <span class="grafico-tooltip__variacao ${classe}">
-        <i class="fa-solid ${icone}"></i>
-        ${formatadorPercentual.format(Math.abs(valor))}%
-      </span>
-    `;
+function criarVariacao(valor) {
+  if (valor === null || !Number.isFinite(valor)) {
+    return "";
   }
+
+  let classe = "grafico-tooltip__variacao--neutra";
+  let icone = "fa-minus";
+
+  if (valor > 0) {
+    classe = "grafico-tooltip__variacao--alta";
+    icone = "fa-arrow-up";
+  }
+
+  if (valor < 0) {
+    classe = "grafico-tooltip__variacao--queda";
+    icone = "fa-arrow-down";
+  }
+
+  return `
+    <span class="grafico-tooltip__variacao ${classe}">
+      <i class="fa-solid ${icone}"></i>
+      ${formatadorPercentual.format(Math.abs(valor))}%
+    </span>
+  `;
+}
 
   function ativarPontoMaisProximo(clientX, clientY) {
     const posicao = obterPosicaoCanvas(clientX, clientY);
