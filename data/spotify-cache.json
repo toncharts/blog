@@ -1,10 +1,10 @@
 {
-  "atualizadoEm": "2026-07-11T05:49:46.011Z",
+  "atualizadoEm": "2026-07-12T02:05:53.873Z",
   "artistas": {
     "6jJ0s89eD6GaHleKKya26X": {
       "id": "6jJ0s89eD6GaHleKKya26X",
       "name": "Katy Perry",
-      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616100005174cd50e745cf782f905769f482",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616100005174cd50e745cf782f905769f482",
       "spotify": "https://open.spotify.com/artist/6jJ0s89eD6GaHleKKya26X"
     }
   },
@@ -12,13 +12,13 @@
     "5BvgP623rtvlc0HDcpzquz": {
       "id": "5BvgP623rtvlc0HDcpzquz",
       "name": "Teenage Dream: The Complete Confection",
-      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02937af329667311f4b2831616",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02937af329667311f4b2831616",
       "spotify": "https://open.spotify.com/album/5BvgP623rtvlc0HDcpzquz"
     },
     "3jB9yFDwRe3KhtGnHXJntk": {
       "id": "3jB9yFDwRe3KhtGnHXJntk",
       "name": "PRISM",
-      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e021e9a057052d59004caf47e22",
+      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e021e9a057052d59004caf47e22",
       "spotify": "https://open.spotify.com/album/3jB9yFDwRe3KhtGnHXJntk"
     },
     "0r2BUyPTmpbfuz4rR39mLl": {
@@ -36,7 +36,7 @@
     "3KjXg0MDej2pG9fv6I22lT": {
       "id": "3KjXg0MDej2pG9fv6I22lT",
       "name": "Never Really Over",
-      "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e029bea3b79b95f86d1b66ac960",
+      "image": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e029bea3b79b95f86d1b66ac960",
       "spotify": "https://open.spotify.com/album/3KjXg0MDej2pG9fv6I22lT"
     },
     "album-demo-1": {
@@ -124,126 +124,6 @@
       "name": "Dark Horse",
       "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e021e9a057052d59004caf47e22",
       "spotify": "https://open.spotify.com/track/4jbmgIyjGoXjY01XxatOx6"
-    },
-    "COLE_ID_ALL_CHART": {
-      "id": "COLE_ID_ALL_CHART",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_ALL_CHART"
-    },
-    "COLE_ID_ALL_TOP10": {
-      "id": "COLE_ID_ALL_TOP10",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_ALL_TOP10"
-    },
-    "COLE_ID_ALL_TOP5": {
-      "id": "COLE_ID_ALL_TOP5",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_ALL_TOP5"
-    },
-    "COLE_ID_ALL_TOPO": {
-      "id": "COLE_ID_ALL_TOPO",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_ALL_TOPO"
-    },
-    "COLE_ID_12M_CHART": {
-      "id": "COLE_ID_12M_CHART",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_12M_CHART"
-    },
-    "COLE_ID_12M_TOP10": {
-      "id": "COLE_ID_12M_TOP10",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_12M_TOP10"
-    },
-    "COLE_ID_12M_TOP5": {
-      "id": "COLE_ID_12M_TOP5",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_12M_TOP5"
-    },
-    "COLE_ID_12M_TOPO": {
-      "id": "COLE_ID_12M_TOPO",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_12M_TOPO"
-    },
-    "COLE_ID_6M_CHART": {
-      "id": "COLE_ID_6M_CHART",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_6M_CHART"
-    },
-    "COLE_ID_6M_TOP10": {
-      "id": "COLE_ID_6M_TOP10",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_6M_TOP10"
-    },
-    "COLE_ID_6M_TOP5": {
-      "id": "COLE_ID_6M_TOP5",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_6M_TOP5"
-    },
-    "COLE_ID_6M_TOPO": {
-      "id": "COLE_ID_6M_TOPO",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_6M_TOPO"
-    },
-    "COLE_ID_3M_CHART": {
-      "id": "COLE_ID_3M_CHART",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_3M_CHART"
-    },
-    "COLE_ID_3M_TOP10": {
-      "id": "COLE_ID_3M_TOP10",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_3M_TOP10"
-    },
-    "COLE_ID_3M_TOP5": {
-      "id": "COLE_ID_3M_TOP5",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_3M_TOP5"
-    },
-    "COLE_ID_3M_TOPO": {
-      "id": "COLE_ID_3M_TOPO",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_3M_TOPO"
-    },
-    "COLE_ID_1M_CHART": {
-      "id": "COLE_ID_1M_CHART",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_1M_CHART"
-    },
-    "COLE_ID_1M_TOP10": {
-      "id": "COLE_ID_1M_TOP10",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_1M_TOP10"
-    },
-    "COLE_ID_1M_TOP5": {
-      "id": "COLE_ID_1M_TOP5",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_1M_TOP5"
-    },
-    "COLE_ID_1M_TOPO": {
-      "id": "COLE_ID_1M_TOPO",
-      "name": "",
-      "image": "",
-      "spotify": "https://open.spotify.com/track/COLE_ID_1M_TOPO"
     },
     "track-demo-1": {
       "id": "track-demo-1",
