@@ -96,13 +96,19 @@ const canvas = raiz.querySelector(".grafico-evolucao__canvas");
         const x = (pontos[i - 1].x + pontos[i].x) / 2;
         const resumo = resumosAnuais.get(anterior.ano);
 
+        const ySeletor = chartArea.top + 10;
+
         chart.$divisoesAnuais.push({
           x,
+          y: ySeletor,
           ano: anterior.ano,
           resumo
         });
 
         ctx.save();
+
+        /* Linha divisória do ano */
+
         ctx.beginPath();
         ctx.setLineDash([3, 5]);
         ctx.strokeStyle = CORES.divisao;
@@ -110,6 +116,21 @@ const canvas = raiz.querySelector(".grafico-evolucao__canvas");
         ctx.moveTo(x, chartArea.top);
         ctx.lineTo(x, chartArea.bottom);
         ctx.stroke();
+
+        /* Marcador para selecionar o ano */
+
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.arc(
+          x,
+          ySeletor,
+          4,
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = CORES.divisao;
+        ctx.fill();
+
         ctx.restore();
       }
     },
@@ -791,9 +812,11 @@ function criarTooltipPeriodoCompleto(item) {
       return false;
     }
 
-    const divisao = grafico.$divisoesAnuais?.find(
-      item => Math.abs(item.x - posicao.x) <= 7
-    );
+
+const divisao = grafico.$divisoesAnuais?.find(
+  item =>
+    Math.abs(item.x - posicao.x) <= 3
+);
 
     if (!divisao) {
       limparDivisaoAno();
@@ -819,7 +842,7 @@ function criarTooltipPeriodoCompleto(item) {
     posicionarTooltip(
       tooltipAno,
       divisao.x,
-      posicao.y
+      divisao.y
     );
 
     grafico.draw();
