@@ -1,0 +1,8088 @@
+/* ==========================================================================
+   TONCHARTS — STYLE.CSS ORGANIZADO
+   ==========================================================================
+   IMPORTANTE:
+   - Nenhum seletor, classe, ID, variável, propriedade ou valor foi renomeado.
+   - A ordem interna das regras foi preservada para manter a cascata idêntica.
+   - Os antigos blocos inline foram convertidos em seções comentadas, na mesma
+     ordem em que eram interpretados pelo navegador.
+   - @media potencialmente dependentes da cascata NÃO foram deslocados.
+   ========================================================================== */
+
+/* ==========================================================================
+   CAMADA 1 — CSS ORIGINAL — CAMADA 1
+   Mantida nesta posição para preservar precedência e sobrescritas originais.
+   ========================================================================== */
+
+:root {
+    --fonte-principal: "TASA Explorer", system-ui, sans-serif;
+
+    --peso-normal: 400;
+    --peso-semi: 600;
+    --peso-bold: 800;
+
+    --cor-ciano: #08d4f2;
+    --cor-verde: #08dfb0;
+    --cor-hero-1: #087584;
+    --cor-hero-2: #09b8c9;
+    --cor-hero-3: #08dfad;
+    --gradiente-destaque: linear-gradient(45deg, var(--cor-verde), var(--cor-ciano));
+
+    --cor-clara: #f4f4f6;
+    --cor-clara-2: #e7e7eb;
+    --cor-media: #9c9ca6;
+    --cor-media-2: #6f6f7a;
+    --cor-escura: #14141a;
+    --cor-escura-2: #20202a;
+    --cor-escura-3: #2c2c36;
+
+    --cor-fundo: var(--cor-escura);
+    --cor-superficie: var(--cor-escura-2);
+    --cor-superficie-2: var(--cor-escura-3);
+    --cor-texto: var(--cor-clara);
+    --cor-texto-inverso: var(--cor-escura);
+    --cor-texto-suave: var(--cor-clara-2);
+    --cor-texto-mudo: var(--cor-media);
+    --cor-linha: rgba(244, 244, 246, 0.12);
+    --cor-rodape: #191920;
+    --cor-badge: rgba(244, 244, 246, 0.1);
+    --cor-tooltip: rgba(32, 32, 42, 0.98);
+
+    --cor-ouro: #b88d0a;
+    --cor-platina: #7d969f;
+    --cor-diamante: #838172;
+
+    --largura-container: 57.5rem;
+    --largura-musicas: 57.5rem;
+    --largura-card-album: 9.5rem;
+    --largura-top-card: 9.5rem;
+    --largura-certificado: 9.5rem;
+
+    --raio-sm: 0.25rem;
+    --raio-full: 999rem;
+
+    --sombra: 0 1rem 2.6rem rgba(20, 20, 26, 0.22);
+    --transicao: 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    --transicao-popup: 120ms ease-out;
+
+    --altura-grafico: 16rem;
+    --tamanho-semana: 1rem;
+    --largura-ano: 1.4rem;
+
+    --texto-pequeno: 0.65rem;
+    --texto-normal: 0.8rem;
+    --texto-medio: 0.9rem;
+    --texto-grande: 1.3rem;
+    --texto-titulo: 1.5rem;
+    --texto-numero: 2rem;
+
+    --scrollbar-tamanho: 0.65rem;
+    --scrollbar-cor: #7b7b84;
+    --scrollbar-cor-hover: #92929c;
+    --scrollbar-trilho: transparent;
+
+    --grafico-scrobbles: #08d4f2;
+    --grafico-pontos: #08dfb0;
+
+    --grafico-texto: #f4f7fa;
+    --grafico-texto-secundario: #aab4c0;
+
+    --grafico-grade: rgba(180, 195, 210, 0.16);
+    --grafico-divisao-ano: rgba(180, 195, 210, 0.30);
+
+    --grafico-tooltip-fundo: #101722;
+    --grafico-tooltip-borda: rgba(255, 255, 255, 0.10);
+
+    --grafico-alta: #20c978;
+    --grafico-queda: #ff5a68;
+    --grafico-neutro: #98a3af;
+}
+
+h2 {
+    font-size: var(--texto-grande)
+}
+
+html[data-theme="light"] {
+    --cor-fundo: #f4f4f6;
+    --cor-superficie: #e9e9ed;
+    --cor-superficie-2: #dfdfe5;
+    --cor-texto: #20202a;
+    --cor-texto-inverso: var(--cor-clara);
+    --cor-texto-suave: #44444e;
+    --cor-texto-mudo: #777781;
+    --cor-linha: rgba(32, 32, 42, 0.12);
+    --cor-rodape: #dfdfe5;
+    --cor-badge: rgba(32, 32, 42, 0.1);
+    --cor-tooltip: rgba(32, 32, 42, 0.98);
+    --sombra: 0 1rem 2.4rem rgba(32, 32, 42, 0.12);
+}
+
+* {
+    transition:
+        color 2s ease,
+        background-color 2s ease,
+        border-color 2s ease,
+        opacity 2s ease,
+        transform 2s ease;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+html {
+    overflow-x: hidden;
+    scrollbar-color: var(--cor-media) !important;
+    scrollbar-width: initial !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-cor) var(--scrollbar-trilho);
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+    width: var(--scrollbar-tamanho);
+    height: var(--scrollbar-tamanho);
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--scrollbar-trilho);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-cor);
+    border-radius: var(--raio-full);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-cor-hover);
+}
+
+*::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+body.body-pagina {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: var(--fonte-principal);
+    font-weight: var(--peso-normal);
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+}
+
+
+
+
+
+
+
+
+
+
+/* ----- GRÁFICO EVOLUÇÃO ----- */
+
+.grafico-evolucao {
+    width: 100%;
+    color: var(--grafico-texto);
+    font-family: inherit;
+}
+
+.grafico-evolucao,
+.grafico-evolucao * {
+    box-sizing: border-box;
+}
+
+.grafico-evolucao__cabecalho {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.grafico-evolucao__titulo {
+    margin: 0;
+}
+
+.grafico-evolucao__descricao {
+    max-width: 700px;
+    margin: 8px 0 0;
+    color: var(--grafico-texto-secundario);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.grafico-evolucao__periodos {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.grafico-evolucao__periodo {
+    min-height: 40px;
+    padding: 9px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0px;
+
+    background: transparent;
+    color: var(--grafico-texto-secundario);
+
+    font: inherit;
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background-color 180ms ease;
+}
+
+.grafico-evolucao__periodo:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--grafico-texto);
+}
+
+.grafico-evolucao__periodo[aria-pressed="true"] {
+    border-color: var(--grafico-scrobbles);
+    background: rgba(8, 212, 242, 0.12);
+    color: var(--grafico-texto);
+}
+
+.grafico-evolucao__periodo:focus-visible {
+    outline: 2px solid var(--grafico-scrobbles);
+    outline-offset: 3px;
+}
+
+.grafico-evolucao__plot {
+    position: relative;
+    width: 100%;
+    height: clamp(400px, 52vw, 560px);
+    padding-top: 32px;
+
+    background: transparent;
+    user-select: none;
+}
+
+.grafico-evolucao__nome-eixo {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    pointer-events: none;
+}
+
+.grafico-evolucao__nome-eixo--scrobbles {
+    left: 0;
+    color: var(--grafico-scrobbles);
+}
+
+.grafico-evolucao__nome-eixo--pontos {
+    right: 0;
+    color: var(--grafico-pontos);
+}
+
+.grafico-evolucao__canvas-area {
+    position: absolute;
+    inset: 32px 0 0;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.grafico-evolucao__canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    touch-action: pan-y;
+}
+
+/* CARD HOVER */
+
+.grafico-tooltip {
+    position: absolute;
+    z-index: 20;
+
+    width: max-content;
+    min-width: 190px;
+    max-width: min(270px, calc(100vw - 32px));
+
+    padding: 11px 13px;
+
+    border: 1px solid var(--grafico-tooltip-borda);
+    border-radius: 11px;
+
+    background: var(--grafico-tooltip-fundo);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+
+    color: var(--grafico-texto);
+    font-size: 0.8rem;
+    line-height: 1.25;
+
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+
+    transition:
+        opacity 120ms ease,
+        transform 120ms ease,
+        visibility 120ms ease;
+}
+
+.grafico-tooltip.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.grafico-tooltip__titulo {
+    margin-bottom: 8px;
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+    font-size: 0.9rem;
+    font-weight: 750;
+}
+
+.grafico-tooltip__bloco+.grafico-tooltip__bloco {
+    margin-top: 9px;
+    padding-top: 9px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.grafico-tooltip__subtitulo {
+    margin-bottom: 6px;
+
+    color: var(--grafico-texto-secundario);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Mantém conteúdo da métrica na mesma linha */
+
+.grafico-tooltip__metrica {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 3px 5px;
+}
+
+.grafico-tooltip__metrica+.grafico-tooltip__metrica {
+    margin-top: 6px;
+}
+
+.grafico-tooltip__rotulo {
+    display: inline;
+    flex: 1 1 auto;
+    margin: 0;
+
+    color: var(--grafico-texto-secundario);
+    font-size: 0.73rem;
+    white-space: nowrap;
+}
+
+.grafico-tooltip__valor {
+    display: inline;
+    flex: 0 0 auto;
+    margin: 0;
+
+    font-size: 0.91rem;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.grafico-tooltip__valor--scrobbles {
+    color: var(--grafico-scrobbles);
+}
+
+.grafico-tooltip__valor--pontos {
+    color: var(--grafico-pontos);
+}
+
+/* "scrobbles" e "pontos" ao lado do número */
+
+.grafico-tooltip__unidade {
+    display: inline;
+    flex: 0 0 auto;
+    margin: 0;
+
+    color: var(--grafico-texto-secundario);
+    font-size: 0.72rem;
+    white-space: nowrap;
+}
+
+/* Seta e percentual compactos */
+
+.grafico-tooltip__variacao {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 4px;
+
+    margin: 0 0 0 auto;
+
+    font-size: 0.71rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.grafico-tooltip__variacao--alta {
+    color: var(--grafico-alta);
+}
+
+.grafico-tooltip__variacao--queda {
+    color: var(--grafico-queda);
+}
+
+.grafico-tooltip__variacao--neutra {
+    color: var(--grafico-neutro);
+}
+
+@media (max-width: 720px) {
+    .grafico-evolucao__cabecalho {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .grafico-evolucao__periodos {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .grafico-evolucao__periodo {
+        min-height: 38px;
+        padding-inline: 14px;
+        font-size: 0.85rem;
+    }
+
+    .grafico-evolucao__plot {
+        height: 420px;
+    }
+
+    .grafico-tooltip {
+        min-width: 185px;
+        max-width: calc(100vw - 24px);
+        padding: 10px 12px;
+        font-size: 0.78rem;
+    }
+
+    .grafico-tooltip__rotulo {
+        white-space: normal;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----- MARCOS DO ARTISTA ----- */
+
+.marco {
+    --mar-fundo:
+        var(--card-fundo, rgba(255, 255, 255, 0.04));
+
+    --mar-borda:
+        var(--card-borda, rgba(255, 255, 255, 0.1));
+
+    --mar-texto:
+        var(--texto-principal, #f4f7fa);
+
+    --mar-sec:
+        var(--texto-secundario, #aab4c0);
+
+    --mar-cor:
+        var(--cor-destaque, #08d4f2);
+
+    --mar-cor2:
+        var(--cor-secundaria, #08dfb0);
+}
+
+.marco,
+.marco * {
+    box-sizing: border-box;
+}
+
+.marco .topo {
+    margin-bottom: 22px;
+}
+
+.marco .topo h2 {
+    margin: 0;
+}
+
+.marco .intro {
+    max-width: 680px;
+    margin: 7px 0 0;
+
+    color: var(--mar-sec);
+
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.marco .grade {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    grid-auto-rows: 1fr;
+    gap: 12px;
+}
+
+.marco .card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 158px;
+    padding: 14px;
+
+    border: 1px solid var(--mar-borda);
+    border-radius: 14px;
+
+    background: var(--mar-fundo);
+    color: var(--mar-texto);
+
+    overflow: hidden;
+
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+.marco .card:hover {
+    border-color: var(--mar-cor);
+    transform: translateY(-2px);
+}
+
+.marco .desta {
+    background:
+        linear-gradient(145deg,
+            rgba(8, 212, 242, 0.08),
+            rgba(8, 223, 176, 0.035)),
+        var(--mar-fundo);
+}
+
+/* Número principal */
+
+.marco .valor {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+
+    margin: 0;
+
+    color: var(--mar-texto);
+
+    font-size: var(--texto-numero);
+    font-weight: var(--peso-bold);
+    line-height: 1;
+}
+
+/* Unidade gerada conforme a classe do card */
+
+.marco .valor::after {
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-semi);
+    line-height: 1;
+}
+
+.marco .scr .valor::after {
+    content: "scrobbles";
+}
+
+.marco .sem .valor::after {
+    content: "semanas";
+}
+
+.marco .vez .valor::after {
+    content: "vezes";
+}
+
+/* Singular: adicione class="sing" ao article */
+
+.marco .scr.sing .valor::after {
+    content: "scrobble";
+}
+
+.marco .sem.sing .valor::after {
+    content: "semana";
+}
+
+.marco .vez.sing .valor::after {
+    content: "vez";
+}
+
+/* Texto principal */
+
+.marco .texto {
+    min-height: 2.5em;
+    margin: 5px 0 10px;
+
+    color: var(--mar-sec);
+
+    font-size: var(--texto-normal);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+/* Textos automáticos dos cards de semanas */
+
+.marco .s1000 .texto::after {
+    content: "com mais de 1.000 scrobbles";
+}
+
+.marco .s700 .texto::after {
+    content: "com mais de 700 scrobbles";
+}
+
+.marco .s500 .texto::after {
+    content: "com mais de 500 scrobbles";
+}
+
+.marco .s200 .texto::after {
+    content: "com mais de 200 scrobbles";
+}
+
+/* Bloco inferior padronizado */
+
+.marco .info {
+    display: grid;
+    grid-template-rows: 14px 18px 15px;
+    align-items: center;
+    gap: 2px;
+
+    width: 100%;
+    height: 62px;
+    margin-top: auto;
+    padding-top: 9px;
+
+    border-top: 1px solid var(--mar-borda);
+}
+
+.marco .rotul {
+    color: var(--mar-sec);
+
+    font-size: var(--texto-pequeno);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Texto automático dos cards de semanas */
+
+.marco .sem .rotul::after {
+    content: "Última vez em";
+}
+
+.marco .music {
+    display: block;
+    width: 100%;
+
+    color: var(--mar-texto);
+
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-semi);
+    line-height: 1.25;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.marco .vazio {
+    visibility: hidden;
+}
+
+.marco .data {
+    color: var(--mar-cor2);
+
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-semi);
+}
+
+@media (max-width: 980px) {
+    .marco .grade {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .marco .grade {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .marco .card {
+        min-height: 152px;
+        padding: 13px;
+    }
+
+    .marco .valor {
+        font-size: 1.4rem;
+    }
+
+    .marco .texto {
+        min-height: auto;
+    }
+
+    .marco .info {
+        height: 60px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.titulo-bloco-desempenho::before {
+    content: "Desempenho por período"
+}
+
+
+.titulo-bloco-semanas::before {
+    content: "Desempenho por semanas"
+}
+
+.titulo-bloco-albuns::before {
+    content: "Principais álbuns"
+}
+
+.titulo-bloco-musicas::before {
+    content: "Principais músicas"
+}
+
+.titulo-bloco-certificados::before {
+    content: "Últimos certificados"
+}
+
+.titulo-bloco-no1::before {
+    content: "Últimas músicas no topo"
+}
+
+.titulo-bloco-atoprincipal::before {
+    content: "Ato principal e participações"
+}
+
+.titulo-bloco-recordes::before {
+    content: "Ato principal"
+}
+
+
+
+
+
+img.imagem-fluida {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button.btn,
+select.seletor-periodo {
+    font-family: inherit;
+}
+
+button.btn {
+    border: 0;
+    cursor: pointer;
+}
+
+button.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.42;
+}
+
+:focus-visible {
+    outline: 0.18rem solid rgba(156, 156, 166, 0.8);
+    outline-offset: 0.18rem;
+}
+
+.pagina {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.spotify-fontes {
+    display: none;
+}
+
+.container {
+    width: min(100% - 2rem, var(--largura-container));
+    margin-inline: auto;
+}
+
+.conteudo-periodo {
+    display: none;
+}
+
+.conteudo-periodo-ativo {
+    display: block;
+}
+
+.hero-area {
+    color: var(--cor-clara);
+    background:
+        radial-gradient(circle at 72% 26%, rgba(8, 223, 176, 0.6), transparent 32%),
+        linear-gradient(155deg, var(--cor-hero-1), var(--cor-hero-2), var(--cor-hero-3));
+    overflow: hidden;
+}
+
+.site-header {
+    padding-block: 1.5rem 0;
+}
+
+.site-header-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding-bottom: 1.35rem;
+    border-bottom: 0.0625rem solid rgba(244, 244, 246, 0.22);
+}
+
+.logo-toncharts {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: end;
+    width: fit-content;
+    line-height: 0.86;
+}
+
+.logo-toncharts-palavra-1,
+.logo-toncharts-palavra-2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.logo-toncharts-palavra-1 {
+    font-weight: var(--peso-bold);
+}
+
+.logo-toncharts-palavra-2 {
+    font-weight: var(--peso-normal);
+}
+
+.site-nav {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.8rem);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.site-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.site-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--texto-normal);
+}
+
+.site-nav-icone {
+    line-height: 1;
+    display: none
+}
+
+.site-nav-link:hover,
+.site-nav-link-ativo {
+    opacity: 1;
+    transform: translateY(-0.08rem);
+}
+
+.site-nav-link-ativo {
+    font-weight: var(--peso-semi);
+}
+
+.btn-tema {
+    width: 2.6rem;
+    height: 2.6rem;
+    display: grid;
+    place-items: center;
+    border-radius: var(--raio-full);
+    color: var(--cor-clara);
+    background: rgba(244, 244, 246, 0.14);
+
+}
+
+.btn-tema:hover {
+    background: rgba(244, 244, 246, 0.24);
+    transform: translateY(-0.08rem);
+}
+
+.hero-artista {
+    padding-block: 2.2rem 4.5rem;
+}
+
+.hero-topo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-titulo-grupo {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.hero-titulo {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 2rem);
+    font-weight: var(--peso-bold);
+    line-height: 0.95;
+}
+
+.hero-link-spotify {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-semi);
+    opacity: 0.9;
+
+}
+
+.hero-link-spotify:hover {
+    opacity: 1;
+    transform: translateY(-0.08rem);
+}
+
+.seletor-periodo {
+    appearance: none;
+    min-width: 9rem;
+    border: 0;
+    border-radius: 0;
+    color: var(--cor-clara);
+    background-color: rgba(244, 244, 246, 0.2);
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--cor-clara) 50%),
+        linear-gradient(135deg, var(--cor-clara) 50%, transparent 50%);
+    background-position:
+        calc(100% - 1.1rem) 50%,
+        calc(100% - 0.75rem) 50%;
+    background-size: 0.45rem 0.45rem, 0.45rem 0.45rem;
+    background-repeat: no-repeat;
+    padding: 0.75rem 2.6rem 0.75rem 1rem;
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-semi);
+    cursor: pointer;
+
+}
+
+.seletor-periodo:hover {
+    background-color: rgba(244, 244, 246, 0.28);
+}
+
+.seletor-periodo-claro {
+    color: var(--cor-texto);
+    background-color: transparent;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--cor-texto) 50%),
+        linear-gradient(135deg, var(--cor-texto) 50%, transparent 50%);
+    font-weight: var(--peso-semi);
+}
+
+.opcao-periodo {
+    color: var(--cor-escura);
+    background: var(--cor-clara);
+}
+
+.hero-grade {
+    --hero-gap: 1.4rem;
+    --hero-card-altura: 8.9rem;
+    --hero-imagem-tamanho: calc((var(--hero-card-altura) * 2) + var(--hero-gap));
+
+    display: grid;
+    grid-template-columns: minmax(16rem, var(--hero-imagem-tamanho)) repeat(3, minmax(8.4rem, 1fr));
+    grid-template-rows: repeat(2, var(--hero-card-altura));
+    align-items: stretch;
+}
+
+.hero-imagem-box {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    align-self: stretch;
+    margin: 0;
+    background: var(--cor-superficie-2);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+.card-metrica {
+    min-height: 0;
+    height: 100%;
+    display: grid;
+    align-content: start;
+    gap: 0.45rem;
+    padding: 1rem;
+    color: var(--cor-clara);
+    background: rgba(8, 117, 132, 0.3);
+
+}
+
+.card-metrica:hover {
+    transform: translateY(-0.16rem);
+    background: rgba(8, 117, 132, 0.42);
+}
+
+.card-metrica-numero {
+    font-size: var(--texto-numero);
+    font-weight: var(--peso-bold);
+    line-height: 0.9;
+}
+
+.card-metrica-label {
+    max-width: 7.5rem;
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-semi);
+    line-height: 0.96;
+}
+
+.card-metrica-1 .card-metrica-label::before {
+    content:"scrobbles registrados"
+}
+
+.card-metrica-2 .card-metrica-label::before {
+    content:"pontos acumulados"
+}
+
+.card-metrica-3 .card-metrica-label::before {
+    content:"músicas como ato principal"
+}
+
+.card-metrica-4 .card-metrica-label::before {
+    content:"músicas na posição No. 1"
+}
+
+.card-metrica-5 .card-metrica-label::before {
+    content:"entradas na Ton Charts"
+}
+
+.card-metrica-6 .card-metrica-label::before {
+    content:"certificados por scrobbles"
+}
+
+.badge-crescimento {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.18rem 0.5rem;
+    border-radius: var(--raio-full);
+    background: var(--cor-badge);
+    font-size: 0.7rem;
+    font-weight: var(--peso-semi);
+    line-height: 1;
+}
+
+.badge-crescimento-hero {
+    background: rgba(244, 244, 246, 0.1);
+}
+
+.card-metrica-ranking {
+    font-size: var(--texto-pequeno);
+    opacity: 0.78;
+}
+
+.card-metrica-ranking::before {
+    content: "#";
+}
+
+.card-metrica-ranking::after {
+    content: " no ranking";
+}
+
+.hero-imagem-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+    margin: 0;
+    background: var(--cor-superficie-2);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+.hero-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+
+}
+
+.hero-imagem-carregada {
+    opacity: 1;
+}
+
+.hero-imagem-box:hover .hero-imagem {
+    transform: scale(1.025);
+}
+
+.hero-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-semi);
+    text-align: center;
+}
+
+.hero-imagem-box-com-imagem .hero-placeholder {
+    display: none;
+}
+
+.conteudo-principal {
+    padding-block: 3rem 3.6rem;
+}
+
+.bloco-geral {
+    margin-bottom: 3rem;
+}
+
+.cabecalho-bloco {
+    min-height: 40px;
+    display: grid;
+    vertical-align: middle;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 0.0625rem solid var(--cor-linha);
+}
+
+.titulo-bloco {
+    margin: 0;
+    color: var(--cor-ciano);
+    font-size: var(--texto-titulo);
+    font-weight: var(--peso-bold);
+    line-height: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.grafico-area {
+    max-width: 100%;
+    min-height: var(--altura-grafico);
+    padding: 2.2rem 1.1rem 1.1rem;
+    background: var(--cor-superficie);
+    overflow-x: hidden;
+}
+
+.grafico-periodo {
+    width: 100%;
+    max-width: 100%;
+    height: var(--altura-grafico);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.3rem;
+}
+
+.grafico-item {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: end;
+    gap: 0.5rem;
+}
+
+.barra-area {
+    height: 100%;
+    display: grid;
+    align-items: end;
+    overflow: visible;
+}
+
+.barra-preenchimento {
+    position: relative;
+    width: 100%;
+    min-height: 2rem;
+    display: block;
+    padding-top: 0;
+    color: var(--cor-texto-inverso);
+    background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
+    font-size: var(--texto-pequeno);
+    font-weight: var(--peso-semi);
+    transition:
+        height 360ms cubic-bezier(0.22, 1, 0.36, 1),
+        background 180ms ease;
+}
+
+.barra-valor {
+    position: absolute;
+    top: -1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--cor-texto);
+    font-size: 0.7rem;
+    font-weight: var(--peso-semi);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.grafico-item:hover .barra-preenchimento {
+    background: linear-gradient(0deg, var(--cor-hero-1), var(--cor-hero-2));
+}
+
+.barra-legenda {
+    display: grid;
+    justify-items: center;
+    color: var(--cor-texto);
+    font-size: var(--texto-pequeno);
+    line-height: 1.05;
+}
+
+.altura-38 {
+    height: 38%;
+}
+
+.altura-45 {
+    height: 45%;
+}
+
+.altura-52 {
+    height: 52%;
+}
+
+.altura-58 {
+    height: 58%;
+}
+
+.altura-64 {
+    height: 64%;
+}
+
+.altura-70 {
+    height: 70%;
+}
+
+.altura-76 {
+    height: 76%;
+}
+
+.altura-82 {
+    height: 82%;
+}
+
+.altura-88 {
+    height: 88%;
+}
+
+.altura-95 {
+    height: 95%;
+}
+
+.semanas-container {
+    width: min(100% - 2rem, var(--largura-container));
+    margin-inline: auto;
+}
+
+.semanas-area {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+
+.sem-item {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    min-width: var(--tamanho-semana);
+    display: grid;
+    place-items: center;
+    border: 0;
+    padding: 0;
+    background: var(--cor-superficie-2) !important;
+    opacity: 1 !important;
+    color: var(--cor-texto) !important;
+    -webkit-text-fill-color: var(--cor-texto) !important;
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-normal);
+    line-height: 1;
+
+}
+
+.sem-item:hover,
+.sem-item:focus-visible {
+    transform: scale(1.45);
+    box-shadow: 0 0 0 .12rem rgba(156, 156, 166, .8);
+    z-index: 999;
+}
+
+.grade-semanas button.btn.sem-item[data-posicao="#0"],
+.grade-semanas button.btn.sem-item[data-posicao="#1"],
+.grade-semanas button.btn.sem-item[data-posicao="#2"],
+.grade-semanas button.btn.sem-item[data-posicao="#3"],
+.grade-semanas button.btn.sem-item[data-posicao="#4"],
+.grade-semanas button.btn.sem-item[data-posicao="#5"],
+.grade-semanas button.btn.sem-item[data-posicao="#6"],
+.grade-semanas button.btn.sem-item[data-posicao="#7"],
+.grade-semanas button.btn.sem-item[data-posicao="#8"],
+.grade-semanas button.btn.sem-item[data-posicao="#9"],
+.grade-semanas button.btn.sem-item[data-posicao="#10"] {
+    color: var(--cor-texto-inverso) !important;
+    -webkit-text-fill-color: var(--cor-texto-inverso) !important;
+    font-weight: var(--peso-semi) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-1 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-2 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-3 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-4 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-5 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-6 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-7 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-8 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-9 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-10 {
+    background: rgba(8, 218, 209, .10) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-11 {
+    background: rgba(8, 218, 209, .11) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-12 {
+    background: rgba(8, 218, 209, .12) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-13 {
+    background: rgba(8, 218, 209, .13) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-14 {
+    background: rgba(8, 218, 209, .14) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-15 {
+    background: rgba(8, 218, 209, .15) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-16 {
+    background: rgba(8, 218, 209, .16) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-17 {
+    background: rgba(8, 218, 209, .17) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-18 {
+    background: rgba(8, 218, 209, .18) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-19 {
+    background: rgba(8, 218, 209, .19) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-20 {
+    background: rgba(8, 218, 209, .20) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-21 {
+    background: rgba(8, 218, 209, .21) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-22 {
+    background: rgba(8, 218, 209, .22) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-23 {
+    background: rgba(8, 218, 209, .23) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-24 {
+    background: rgba(8, 218, 209, .24) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-25 {
+    background: rgba(8, 218, 209, .25) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-26 {
+    background: rgba(8, 218, 209, .26) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-27 {
+    background: rgba(8, 218, 209, .27) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-28 {
+    background: rgba(8, 218, 209, .28) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-29 {
+    background: rgba(8, 218, 209, .29) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-30 {
+    background: rgba(8, 218, 209, .30) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-31 {
+    background: rgba(8, 218, 209, .31) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-32 {
+    background: rgba(8, 218, 209, .32) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-33 {
+    background: rgba(8, 218, 209, .33) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-34 {
+    background: rgba(8, 218, 209, .34) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-35 {
+    background: rgba(8, 218, 209, .35) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-36 {
+    background: rgba(8, 218, 209, .36) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-37 {
+    background: rgba(8, 218, 209, .37) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-38 {
+    background: rgba(8, 218, 209, .38) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-39 {
+    background: rgba(8, 218, 209, .39) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-40 {
+    background: rgba(8, 218, 209, .40) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-41 {
+    background: rgba(8, 218, 209, .41) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-42 {
+    background: rgba(8, 218, 209, .42) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-43 {
+    background: rgba(8, 218, 209, .43) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-44 {
+    background: rgba(8, 218, 209, .44) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-45 {
+    background: rgba(8, 218, 209, .45) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-46 {
+    background: rgba(8, 218, 209, .46) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-47 {
+    background: rgba(8, 218, 209, .47) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-48 {
+    background: rgba(8, 218, 209, .48) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-49 {
+    background: rgba(8, 218, 209, .49) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-50 {
+    background: rgba(8, 218, 209, .50) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-51 {
+    background: rgba(8, 218, 209, .51) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-52 {
+    background: rgba(8, 218, 209, .52) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-53 {
+    background: rgba(8, 218, 209, .53) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-54 {
+    background: rgba(8, 218, 209, .54) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-55 {
+    background: rgba(8, 218, 209, .55) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-56 {
+    background: rgba(8, 218, 209, .56) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-57 {
+    background: rgba(8, 218, 209, .57) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-58 {
+    background: rgba(8, 218, 209, .58) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-59 {
+    background: rgba(8, 218, 209, .59) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-60 {
+    background: rgba(8, 218, 209, .60) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-61 {
+    background: rgba(8, 218, 209, .61) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-62 {
+    background: rgba(8, 218, 209, .62) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-63 {
+    background: rgba(8, 218, 209, .63) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-64 {
+    background: rgba(8, 218, 209, .64) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-65 {
+    background: rgba(8, 218, 209, .65) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-66 {
+    background: rgba(8, 218, 209, .66) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-67 {
+    background: rgba(8, 218, 209, .67) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-68 {
+    background: rgba(8, 218, 209, .68) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-69 {
+    background: rgba(8, 218, 209, .69) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-70 {
+    background: rgba(8, 218, 209, .70) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-71 {
+    background: rgba(8, 218, 209, .71) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-72 {
+    background: rgba(8, 218, 209, .72) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-73 {
+    background: rgba(8, 218, 209, .73) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-74 {
+    background: rgba(8, 218, 209, .74) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-75 {
+    background: rgba(8, 218, 209, .75) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-76 {
+    background: rgba(8, 218, 209, .76) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-77 {
+    background: rgba(8, 218, 209, .77) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-78 {
+    background: rgba(8, 218, 209, .78) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-79 {
+    background: rgba(8, 218, 209, .79) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-80 {
+    background: rgba(8, 218, 209, .80) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-81 {
+    background: rgba(8, 218, 209, .81) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-82 {
+    background: rgba(8, 218, 209, .82) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-83 {
+    background: rgba(8, 218, 209, .83) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-84 {
+    background: rgba(8, 218, 209, .84) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-85 {
+    background: rgba(8, 218, 209, .85) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-86 {
+    background: rgba(8, 218, 209, .86) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-87 {
+    background: rgba(8, 218, 209, .87) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-88 {
+    background: rgba(8, 218, 209, .88) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-89 {
+    background: rgba(8, 218, 209, .89) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-90 {
+    background: rgba(8, 218, 209, .90) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-91 {
+    background: rgba(8, 218, 209, .91) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-92 {
+    background: rgba(8, 218, 209, .92) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-93 {
+    background: rgba(8, 218, 209, .93) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-94 {
+    background: rgba(8, 218, 209, .94) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-95 {
+    background: rgba(8, 218, 209, .95) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-96 {
+    background: rgba(8, 218, 209, .96) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-97 {
+    background: rgba(8, 218, 209, .97) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-98 {
+    background: rgba(8, 218, 209, .98) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-99 {
+    background: rgba(8, 218, 209, .99) !important;
+}
+
+.grade-semanas button.btn.sem-item.sem-item-100 {
+    background: rgba(8, 218, 209, 1) !important;
+}
+
+.grade-semanas button.btn.sem-item.semana-melhor-desempenho {
+    background: var(--cor-texto) !important;
+    color: var(--cor-texto-inverso) !important;
+    opacity: 1 !important;
+    font-weight: var(--peso-bold) !important;
+}
+
+
+.grade-semanas {
+    width: 100%;
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(25, minmax(var(--tamanho-semana), 1fr));
+    row-gap: 1rem;
+    align-items: center;
+}
+
+.sem-cel {
+    position: relative;
+    display: grid;
+}
+
+.semana-marcador-ano {
+    position: absolute;
+    top: -0.75rem;
+    left: 0;
+    z-index: 2;
+    text-align: center;
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-pequeno);
+    font-weight: var(--peso-semi);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.semana-inicio-ano::before {
+    content: attr(data-ano);
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--cor-texto-mudo);
+    font-size: 0.5rem;
+    font-weight: var(--peso-semi);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+.tooltip-semana {
+    position: fixed;
+    z-index: 99999;
+    max-width: 14rem;
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: var(--raio-sm);
+    color: var(--cor-clara);
+    background: var(--cor-tooltip);
+    box-shadow: var(--sombra);
+    font-size: var(--texto-pequeno);
+    line-height: 1.25;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -120%);
+
+}
+
+.tooltip-semana-visivel {
+    opacity: 1;
+    transform: translate(-50%, -135%);
+}
+
+.tooltip-data {
+    color: var(--cor-clara-2);
+    font-size: 0.6rem;
+}
+
+.tooltip-linha {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 0.35rem;
+    align-items: baseline;
+}
+
+.tooltip-posicao,
+.tooltip-melhor {
+    font-weight: var(--peso-semi);
+    background: var(--gradiente-destaque);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.tooltip-plays {
+    color: var(--cor-clara-2);
+}
+
+.tooltip-melhor {
+    display: none;
+    width: fit-content;
+}
+
+.tooltip-melhor-visivel {
+    display: inline-grid;
+}
+
+.albuns-area,
+.top-cards-area,
+.certificados-area {
+    overflow-x: visible;
+}
+
+.grade-albuns,
+.grade-top-cards,
+.grade-certificados {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.card-album {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.card-album-capa {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    color: var(--cor-clara);
+    background: var(--cor-superficie-2);
+}
+
+.card-album-capa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 3rem;
+    height: 3rem;
+    background: var(--gradiente-destaque);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    pointer-events: none;
+}
+
+.card-album-rank {
+    position: absolute;
+    top: 0.35rem;
+    left: 0.45rem;
+    z-index: 2;
+    color: var(--cor-escura);
+    font-size: 1.3rem;
+    font-weight: var(--peso-bold);
+    line-height: 0.8;
+    pointer-events: none;
+}
+
+.card-album-imagem,
+.musica-imagem,
+.card-certificado-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-album-overlay,
+.musica-capa-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--cor-clara);
+    background: rgba(20, 20, 26, 0.58);
+    opacity: 0;
+
+}
+
+.card-album-capa:hover .card-album-overlay,
+.musica-capa-link:hover .musica-capa-overlay {
+    opacity: 1;
+}
+
+.card-album-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 0.75rem;
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-semi);
+    text-align: center;
+}
+
+.card-album-com-imagem .card-album-placeholder {
+    display: none;
+}
+
+.card-album-info {
+    display: grid;
+    gap: 0.42rem;
+}
+
+.card-album-nome {
+    height: 20px;
+    color: var(--cor-texto);
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-semi);
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-album-meta {
+    padding-top: 0.45rem;
+    border-top: 0.0625rem solid var(--cor-linha);
+    display: grid;
+    gap: 0.35rem;
+    color: var(--cor-texto-mudo);
+    font-size: 0.7rem;
+    line-height: 1.15;
+}
+
+.card-album-numero {
+    color: var(--cor-texto);
+    font-weight: var(--peso-semi);
+}
+
+.album-top5 {
+    display: grid;
+    gap: 0;
+    margin-top: 0.25rem;
+}
+
+.album-top5-titulo {
+    padding-block: 0.26rem;
+    border-bottom: 0.0625rem solid var(--cor-linha);
+    color: var(--cor-texto-suave);
+    font-weight: var(--peso-bold);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.album-top5-musica {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.35rem;
+    padding-block: 0.26rem;
+    border-bottom: 0.0625rem solid var(--cor-linha);
+}
+
+.album-top5-plays {
+    color: var(--cor-texto);
+    font-weight: var(--peso-semi);
+    white-space: nowrap;
+}
+
+.album-top5-nome {
+    color: var(--cor-texto-mudo);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.top-card {
+    aspect-ratio: 1 / 1;
+    display: grid;
+    align-content: start;
+    gap: 0.38rem;
+    padding: 1rem;
+    background: var(--cor-superficie);
+
+}
+
+.top-card:hover {
+    transform: translateY(-0.16rem);
+    box-shadow: var(--sombra);
+}
+
+.top-card-destaque {
+    color: var(--cor-escura);
+    background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
+}
+
+.top-card-numero {
+    font-size: var(--texto-numero);
+    font-weight: var(--peso-bold);
+    line-height: 0.9;
+}
+
+.top-card-label {
+    max-width: 7.4rem;
+    font-size: var(--texto-normal);
+    font-weight: var(--peso-semi);
+    line-height: 0.96;
+}
+
+.top-card-info {
+    display: grid;
+    gap: 0.16rem;
+    font-size: var(--texto-pequeno);
+    opacity: 0.76;
+    line-height: 1.15;
+}
+
+.musicas-area {
+    margin-top: 1.25rem;
+    overflow-x: auto;
+}
+
+.lista-musicas {
+    min-width: var(--largura-musicas);
+    display: grid;
+}
+
+.cabecalho-musicas,
+.linha-musica {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) 350px repeat(5, minmax(0, 1fr));
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.linha-musica-feat {
+    opacity: 0.6
+}
+
+.linha-musica-feat:hover {
+    opacity: 1
+}
+
+.cabecalho-musicas {
+    padding: 0 0.8rem 0.65rem;
+    font-size: var(--texto-pequeno);
+    font-weight: var(--peso-semi);
+}
+
+.cabecalho-musica-ordenavel {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        color var(--transicao),
+        opacity var(--transicao);
+}
+
+.cabecalho-musica-ordenavel::after {
+    content: "↕";
+    font-size: 0.65rem;
+    opacity: 0.4;
+}
+
+.cabecalho-musica-ordenavel:hover {
+    color: var(--cor-ciano);
+}
+
+.cabecalho-musica-ordenavel[data-direcao="desc"] {
+    color: var(--cor-ciano);
+}
+
+.cabecalho-musica-ordenavel[data-direcao="desc"]::after {
+    content: "↓";
+    opacity: 1;
+}
+
+.cabecalho-musica-ordenavel[data-direcao="asc"] {
+    color: var(--cor-ciano);
+}
+
+.cabecalho-musica-ordenavel[data-direcao="asc"]::after {
+    content: "↑";
+    opacity: 1;
+}
+
+.linha-musica {
+    min-height: 3rem;
+    padding: 0.5rem 0.8rem;
+    border-top: 0.0625rem solid var(--cor-linha);
+    font-size: var(--texto-medio);
+
+}
+
+.linha-musica:hover {
+    background: var(--cor-superficie);
+}
+
+.linhas-musicas {
+    counter-reset: posicao-musica;
+}
+
+.linha-musica:not([hidden]) {
+    counter-increment: posicao-musica;
+}
+
+.musica-posicao {
+    font-size: 1.3rem;
+    font-weight: var(--peso-bold);
+    line-height: 1;
+}
+
+.musica-posicao::before {
+    content: "#" counter(posicao-musica);
+    font-weight: var(--peso-bold);
+    color: var(--cor-texto);
+}
+
+.musica-ranking {
+    font-weight: var(--peso-semi);
+}
+
+.musica-ranking::before {
+    content: "#";
+    color: var(--cor-media);
+    font-weight: var(--peso-semi);
+}
+
+.musica-principal {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.musica-capa-link {
+    position: relative;
+    width: 2.4rem;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--cor-ciano), var(--cor-verde));
+}
+
+.musica-info {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.musica-nome {
+    color: var(--cor-texto);
+    font-weight: var(--peso-semi);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.musica-artista {
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-normal);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.musica-numero {
+    font-weight: var(--peso-bold);
+}
+
+.pico-musica {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: start;
+    justify-content: start;
+    gap: 0.18rem;
+}
+
+.pico-posicao {
+    font-weight: var(--peso-semi);
+    line-height: 1;
+}
+
+.pico-vezes {
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-pequeno);
+    transform: translateY(-0.25rem);
+}
+
+.acoes-musicas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.btn-musicas {
+    width: fit-content;
+    min-width: 8.2rem;
+    min-height: 2.6rem;
+    padding: 0.75rem 1.2rem;
+    color: var(--cor-escura);
+    background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-semi);
+
+}
+
+.btn-musicas:hover:not(:disabled) {
+    transform: translateY(-0.12rem);
+    box-shadow: var(--sombra);
+}
+
+.btn-exibir-mais {
+    justify-self: start;
+}
+
+.btn-recolher-tudo {
+    justify-self: end;
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+}
+
+.card-certificado {
+    min-height: 14.2rem;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto auto;
+    gap: 0.45rem;
+    padding: 0.85rem;
+    color: var(--cor-clara);
+    background: var(--cor-ouro);
+
+}
+
+.card-certificado:hover {
+    transform: translateY(-0.16rem);
+    box-shadow: var(--sombra);
+}
+
+.card-certificado-platina {
+    background: var(--cor-platina);
+}
+
+.card-certificado-diamante {
+    background: var(--cor-diamante);
+}
+
+.card-certificado-topo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    font-size: var(--texto-pequeno);
+}
+
+.card-certificado-nome {
+    color: var(--cor-clara);
+    font-size: 0.7rem;
+    font-weight: var(--peso-semi);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-certificado-artista {
+    margin-top: -0.2rem;
+    font-size: var(--texto-pequeno);
+    opacity: 0.9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-certificado-capa {
+    width: 4.3rem;
+    aspect-ratio: 1 / 1;
+    justify-self: center;
+    align-self: center;
+    overflow: hidden;
+    background: rgba(244, 244, 246, 0.22);
+}
+
+.card-certificado-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding-top: 0.45rem;
+    border-top: 0.0625rem solid rgba(244, 244, 246, 0.35);
+    text-align: center;
+}
+
+.card-certificado-numero {
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-bold);
+    line-height: 1;
+}
+
+.card-certificado-label {
+    font-size: 0.6rem;
+    opacity: 0.9;
+}
+
+.card-certificado-data {
+    text-align: center;
+    font-size: var(--texto-pequeno);
+    opacity: 0.78;
+}
+
+.site-footer {
+    color: var(--cor-texto-mudo);
+    background: var(--cor-rodape);
+    padding-block: 2rem;
+}
+
+.site-footer-container {
+    display: grid;
+    gap: 1.4rem;
+}
+
+.footer-principal {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.footer-logo {
+    color: var(--cor-texto-mudo);
+}
+
+.footer-nav {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.8rem);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.footer-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.footer-link {
+    font-size: var(--texto-medio);
+    white-space: nowrap;
+}
+
+.footer-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 0.0625rem solid var(--cor-linha);
+}
+
+.footer-texto,
+.footer-creditos {
+    margin: 0;
+    font-size: var(--texto-normal);
+    line-height: 1.5;
+}
+
+
+.footer-destaque {
+    font-weight: var(--peso-semi);
+}
+
+
+.bloco-no1 {
+    margin-bottom: 3rem;
+}
+
+.no1-area {
+    width: 100%;
+}
+
+.grade-no1 {
+    display: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.grade-no1.conteudo-periodo-ativo {
+    display: grid;
+}
+
+.no1-card {
+    position: relative;
+    min-height: 3rem;
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    align-items: center;
+    gap: .9rem;
+    padding: .75rem;
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
+    overflow: hidden;
+
+}
+
+.no1-card:hover {
+    transform: translateY(-.12rem);
+    background: var(--cor-superficie-2) !important;
+    box-shadow: var(--sombra) !important;
+}
+
+.no1-capa {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    overflow: hidden;
+    background: var(--cor-superficie-2);
+}
+
+.no1-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+
+}
+
+.no1-card:hover .no1-img {
+    transform: scale(1.04);
+}
+
+.no1-card-com-img .no1-img {
+    opacity: 1;
+}
+
+.no1-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: .4rem;
+    color: var(--cor-texto-mudo);
+    font-size: .58rem;
+    font-weight: var(--peso-semi);
+    text-align: center;
+}
+
+.no1-card-com-img .no1-placeholder {
+    display: none;
+}
+
+.no1-seta {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    color: var(--cor-clara);
+    background: rgba(20, 20, 26, .58);
+    opacity: 0;
+
+}
+
+.no1-card:hover .no1-seta {
+    opacity: 1;
+}
+
+.no1-icone {
+    font-size: .9rem;
+}
+
+.no1-info {
+    display: grid;
+    gap: .45rem;
+}
+
+.no1-topo {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    min-width: 0;
+}
+
+.no1-data {
+    color: var(--cor-texto-suave);
+    font-size: .72rem;
+    font-weight: var(--peso-normal);
+    line-height: 1.1;
+}
+
+.no1-vezes {
+    width: fit-content;
+    flex: 0 0 auto;
+    padding: .18rem .46rem;
+    background: var(--gradiente-destaque);
+    color: var(--cor-escura);
+    font-size: .68rem;
+    font-weight: var(--peso-bold);
+    line-height: 1;
+}
+
+.no1-nome {
+    color: var(--cor-texto);
+    font-size: .92rem;
+    font-weight: var(--peso-semi);
+    line-height: 1.08;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.grafico-barra-periodo {
+    width: 100%;
+}
+
+.item-grafico-barra {
+    background: var(--cor-superficie);
+    padding: 20px;
+}
+
+.grafico-barra {
+    position: relative;
+    width: 100%;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.grafico-barra-labels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: end;
+    font-size: var(--texto-pequeno);
+    font-weight: var(--peso-semi);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.grafico-barra-label-ato {
+    justify-self: left;
+    background: var(--gradiente-destaque);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.grafico-barra-label-grupo {
+    justify-self: right;
+    color: var(--cor-texto-mudo);
+}
+
+.grafico-barra-trilha {
+    position: relative;
+    height: 3.5rem;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    background: var(--cor-superficie-2);
+}
+
+.grafico-barra-segmento-ato {
+    width: var(--ato-pct);
+    height: 100%;
+    background: var(--gradiente-destaque);
+}
+
+.grafico-barra-segmento-grupo {
+    width: var(--grupo-pct);
+    height: 100%;
+    background: var(--cor-media);
+}
+
+.grafico-barra-encontro {
+    position: absolute;
+    left: var(--ato-pct);
+    top: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.grafico-barra-numero {
+    display: grid;
+    place-items: center;
+    min-width: 2.5rem;
+    height: 1.35rem;
+    font-size: var(--texto-medio);
+    font-weight: var(--peso-bold);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.grafico-barra-numero-ato {
+    justify-self: end;
+    color: var(--cor-escura);
+}
+
+.grafico-barra-numero-grupo {
+    justify-self: start;
+    color: var(--cor-escura);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.titulo-bloco-sequencias::before {
+    content: "Sequências consecutivas";
+}
+
+.sequencias-area {
+    width: 100%;
+}
+
+.sequencias-area.conteudo-periodo-ativo {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.sequencia-ranking {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.sequencia-ranking-titulo {
+    position: relative;
+
+    margin: 0;
+    padding-right: 2rem;
+
+    display: flex;
+    align-items: baseline;
+    gap: 0.42rem;
+
+    line-height: 1.05;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sequencia-ranking-titulo::before {
+    content: "Mais semanas consecutivas";
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-grande);
+    font-weight: var(--peso-normal);
+}
+
+.sequencia-ranking-titulo::after {
+    color: var(--cor-texto);
+    font-weight: var(--peso-semi);
+}
+
+.sequencia-ranking-chart .sequencia-ranking-titulo::after {
+    content: "no chart";
+}
+
+.sequencia-ranking-top10 .sequencia-ranking-titulo::after {
+    content: "no top 10";
+}
+
+.sequencia-ranking-top5 .sequencia-ranking-titulo::after {
+    content: "no top 5";
+}
+
+.sequencia-ranking-topo .sequencia-ranking-titulo::after {
+    content: "no topo";
+}
+
+.sequencia-ranking-seta {
+    position: absolute;
+    top: 50%;
+    right: 0.4rem;
+
+    transform: translateY(-50%);
+
+    color: var(--cor-texto-mudo);
+    font-size: 0.8rem;
+
+
+}
+
+.sequencia-ranking-titulo:hover .sequencia-ranking-seta {
+    color: var(--cor-ciano);
+}
+
+.sequencia-ranking-lista[hidden] {
+    display: none;
+}
+
+.sequencia-ranking-lista {
+    counter-reset: sequencia-posicao;
+    display: grid;
+    gap: 0.65rem;
+}
+
+.sequencia-linha {
+    position: relative;
+    z-index: 1;
+
+    counter-increment: sequencia-posicao;
+
+    display: grid;
+    grid-template-columns:
+        2.2rem minmax(15rem, 1.3fr) 6.5rem minmax(12rem, 1fr) 6.5rem 6.8rem;
+    grid-template-areas:
+        "posicao musica data-inicio grafico data-fim semanas";
+
+    align-items: center;
+    column-gap: 0.75rem;
+
+    min-height: 3rem;
+    padding: 0.5rem 1rem;
+
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+
+    transition:
+        background var(--transicao),
+        box-shadow var(--transicao),
+        transform var(--transicao);
+}
+
+.sequencia-linha:hover {
+    z-index: 2;
+    background: var(--cor-superficie-2);
+    box-shadow: var(--sombra);
+    transform: translateY(-0.08rem);
+}
+
+.sequencia-posicao {
+    grid-area: posicao;
+}
+
+.sequencia-posicao::before {
+    content: "#" counter(sequencia-posicao);
+    color: var(--cor-texto);
+    font-size: 1rem;
+    font-weight: var(--peso-bold);
+    line-height: 1;
+}
+
+.sequencia-musica {
+    grid-area: musica;
+
+    min-width: 0;
+    overflow: hidden;
+
+    color: var(--cor-texto);
+    font-size: 1rem;
+    font-weight: var(--peso-normal);
+    line-height: 1.1;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sequencia-data {
+    color: var(--cor-texto-mudo);
+    font-size: 0.7rem;
+    font-weight: var(--peso-normal);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.sequencia-data-inicio {
+    grid-area: data-inicio;
+    text-align: right;
+}
+
+.sequencia-data-fim {
+    grid-area: data-fim;
+    text-align: left;
+}
+
+.sequencia-grafico {
+    grid-area: grafico;
+
+    width: 100%;
+    min-width: 0;
+    height: 1rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.sequencia-progresso {
+    position: relative;
+
+    width: clamp(0%,
+            calc(var(--duracao) * 1%),
+            100%);
+
+    height: 0.18rem;
+    background: var(--cor-media);
+}
+
+.sequencia-progresso::before,
+.sequencia-progresso::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+
+    width: 0.9rem;
+    aspect-ratio: 1 / 1;
+
+    border-radius: var(--raio-full);
+    background: var(--cor-verde);
+}
+
+.sequencia-progresso::before {
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.sequencia-progresso::after {
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+/*
+A primeira linha será sempre o maior período.
+Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
+*/
+.sequencia-linha:first-child .sequencia-progresso {
+    width: 100%;
+}
+
+.sequencia-semanas {
+    grid-area: semanas;
+
+    color: var(--cor-texto);
+    font-size: var(--texto-normal);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.sequencia-semanas strong {
+    font-weight: var(--peso-bold);
+}
+
+.sequencia-semanas>* {
+    display: inline
+}
+
+
+
+@media (max-width: 46rem) {
+    .sequencias-area {
+        gap: 3rem;
+    }
+
+    .sequencia-ranking-titulo {
+        display: grid;
+        gap: 0.12rem;
+    }
+
+    .sequencia-ranking-titulo::before {
+        font-size: 1rem;
+    }
+
+
+    .sequencia-linha {
+        grid-template-columns:
+            auto minmax(0, 1fr) auto;
+
+        grid-template-areas:
+            "posicao musica musica"
+            "grafico grafico grafico"
+            "data-inicio semanas data-fim";
+
+        row-gap: 0.65rem;
+        column-gap: 0.7rem;
+
+        min-height: 0;
+        padding: 1rem;
+    }
+
+    .sequencia-musica {
+        font-size: 1rem;
+    }
+
+    .sequencia-grafico {
+        height: 0.85rem;
+        margin-top: 0.05rem;
+    }
+
+    .sequencia-data-inicio {
+        text-align: left;
+    }
+
+    .sequencia-data-fim {
+        text-align: right;
+    }
+
+    .sequencia-semanas {
+        font-size: var(--texto-pequeno);
+        text-align: center;
+    }
+}
+
+@media (max-width: 24rem) {
+    .sequencia-linha {
+        padding-inline: 0.8rem;
+    }
+
+    .sequencia-data {
+        font-size: 0.62rem;
+    }
+
+    .sequencia-musica {
+        font-size: 0.92rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sequencia-acumulado {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.sequencia-acumulado-titulo {
+    position: relative;
+
+    margin: 0;
+    padding-right: 2rem;
+
+    display: flex;
+    align-items: baseline;
+    gap: 0.42rem;
+
+    line-height: 1.05;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sequencias-acumuladas-grade {
+    width: 100%;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.sequencia-acumulado-titulo::before {
+    content: "Músicas com mais semanas no geral";
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-grande);
+    font-weight: var(--peso-normal);
+}
+
+.titulo-bloco-sequencias-acumuladas::before {
+    content: "Semanas acumuladas";
+}
+
+.sequencia-acumulado-titulo::after {
+    color: var(--cor-texto);
+    font-weight: var(--peso-semi);
+}
+
+.sequencia-acumulado-chart .sequencia-acumulado-titulo::after {
+    content: "no chart";
+}
+
+.sequencia-acumulado-top10 .sequencia-acumulado-titulo::after {
+    content: "no top 10";
+}
+
+.sequencia-acumulado-top5 .sequencia-acumulado-titulo::after {
+    content: "no top 5";
+}
+
+.sequencia-acumulado-topo .sequencia-acumulado-titulo::after {
+    content: "no topo";
+}
+
+.sequencia-acumulado-lista {
+    counter-reset: sequencia-posicao;
+    display: grid;
+    gap: 0.65rem;
+}
+
+.sequencia-acumulado-seta {
+    position: absolute;
+    top: 50%;
+    right: 0.4rem;
+
+    transform: translateY(-50%);
+
+    color: var(--cor-texto-mudo);
+    font-size: 0.8rem;
+
+
+}
+
+.sequencia-acumulado-titulo:hover .sequencia-acumulado-seta {
+    color: var(--cor-ciano);
+}
+
+.sequencia-acumulado-lista[hidden] {
+    display: none;
+}
+
+@media (max-width: 46rem) {
+    .sequencia-acumulado-titulo {
+        display: grid;
+        gap: 0.12rem;
+    }
+
+    .sequencia-acumulado-titulo::before {
+        font-size: 1rem;
+    }
+
+    .sequencia-acumulado-titulo::after {
+        font-size: 1.55rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1000px) {
+    .hero-grade {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .hero-grade> :first-child {
+        grid-column: 1 / -1;
+        grid-row: 1 / div 2;
+    }
+
+    .hero-coluna-metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-column: 1 / -1;
+        order: 2;
+    }
+
+    .hero-imagem-box {
+        order: 1;
+    }
+
+    .hero-grade-metricas {
+        grid-template-columns: repeat(4, minmax(8.2rem, 1fr));
+        grid-column: 1 / -1;
+        order: 3;
+    }
+
+    .container,
+    .semanas-container {
+        width: min(100% - 1.5rem, var(--largura-container));
+    }
+
+    .site-header-container {
+        grid-template-columns: 1fr auto;
+    }
+
+    .site-nav {
+        grid-column: 1 / -1;
+        justify-content: start;
+        order: 3;
+    }
+
+    .site-nav-link {
+        justify-content: center;
+        gap: 0;
+        width: 2.4rem;
+        height: 2.4rem;
+        padding: 0;
+    }
+
+    .site-nav-icone {
+        display: inline-block;
+        font-size: 1rem;
+    }
+
+    .site-nav-texto {
+        display: none;
+    }
+
+
+    .card-metrica {
+        min-height: 7.6rem;
+    }
+
+    .albuns-area,
+    .top-cards-area,
+    .certificados-area {
+        overflow-x: auto;
+        padding-right: 2rem;
+        padding-bottom: 0.55rem;
+    }
+
+    .grade-albuns,
+    .grade-top-cards,
+    .grade-certificados {
+        width: max-content;
+        gap: 1rem;
+    }
+
+    .grade-albuns {
+        grid-template-columns: repeat(5, var(--largura-card-album));
+    }
+
+    .grade-top-cards {
+        grid-template-columns: repeat(5, var(--largura-top-card));
+    }
+
+    .grade-certificados {
+        grid-template-columns: repeat(5, var(--largura-certificado));
+    }
+
+
+    .footer-principal,
+    .footer-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-creditos {
+        text-align: left;
+    }
+
+    .grade-no1 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 520px) {
+    :root {
+        --tamanho-semana: 0.76rem;
+        --largura-musicas: 55rem;
+    }
+
+    .grade-semanas {
+        grid-template-columns: repeat(12, minmax(var(--tamanho-semana), 1fr));
+    }
+
+    .footer-nav {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-auto-flow: initial !important;
+    }
+
+    .logo-toncharts-palavra-1,
+    .logo-toncharts-palavra-2 {
+        font-size: 2.1rem;
+    }
+
+    .seletor-periodo {
+        min-width: 6.4rem;
+        padding-right: 2.1rem;
+    }
+
+    .acoes-musicas {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grade-no1 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   TONCHARTS — CAMADA DE OTIMIZAÇÃO UI/UX
+   Mantém todos os dados e classes funcionais do HTML original.
+   Prioridades: legibilidade, navegação, consistência, acessibilidade,
+   responsividade e integridade visual dos dados.
+   ========================================================= */
+
+:root {
+    --largura-container: 75rem;
+    --largura-musicas: 100%;
+
+    --raio-sm: .625rem;
+    --raio-md: .875rem;
+    --raio-lg: 1.125rem;
+
+    --texto-pequeno: .75rem;
+    --texto-normal: .875rem;
+    --texto-medio: .95rem;
+    --texto-grande: 1.25rem;
+    --texto-titulo: clamp(1.35rem, 2.1vw, 1.7rem);
+    --texto-numero: clamp(1.9rem, 3vw, 2.45rem);
+
+    --sombra: 0 1rem 2.8rem rgba(0, 0, 0, .22);
+    --sombra-hover: 0 1.1rem 2.8rem rgba(0, 0, 0, .28);
+    --foco: 0 0 0 .2rem rgba(8, 212, 242, .28);
+
+    --cor-superficie-elevada: #272a34;
+    --cor-superficie-hover: #303440;
+}
+
+html {
+    scroll-padding-top: 4.5rem;
+    user-select: text;
+    -webkit-user-select: text;
+    color-scheme: dark;
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+
+    --cor-superficie-elevada: #ffffff;
+    --cor-superficie-hover: #f2f2f5;
+
+    --grafico-texto: #20202a;
+    --grafico-texto-secundario: #65707c;
+    --grafico-grade: rgba(32, 32, 42, .13);
+    --grafico-divisao-ano: rgba(32, 32, 42, .25);
+    --grafico-tooltip-fundo: #ffffff;
+    --grafico-tooltip-borda: rgba(32, 32, 42, .14);
+}
+
+body.body-pagina {
+    line-height: 1.45;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+select,
+a,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.site-nav-link,
+.navegacao-secoes__link,
+.seletor-periodo,
+.sem-item,
+.no1-card,
+.card-album-capa,
+.musica-capa-link,
+.card-certificado-capa {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+:focus-visible {
+    outline: .16rem solid var(--cor-ciano);
+    outline-offset: .18rem;
+}
+
+img {
+    background: var(--cor-superficie-2);
+}
+
+.skip-link {
+    position: fixed;
+    top: .75rem;
+    left: .75rem;
+    z-index: 100000;
+    padding: .75rem 1rem;
+    border-radius: var(--raio-sm);
+    color: var(--cor-escura);
+    background: var(--cor-ciano);
+    font-weight: var(--peso-bold);
+    transform: translateY(-180%);
+
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+#conteudo:focus {
+    outline: 0;
+}
+
+.bloco-geral,
+#graficoEvolucao,
+#marcosArtista {
+    scroll-margin-top: 5rem;
+}
+
+/* --- títulos agora existem no HTML; pseudo-conteúdo deixa de ser necessário --- */
+
+.titulo-bloco-desempenho::before,
+.titulo-bloco-semanas::before,
+.titulo-bloco-albuns::before,
+.titulo-bloco-musicas::before,
+.titulo-bloco-certificados::before,
+.titulo-bloco-no1::before,
+.titulo-bloco-atoprincipal::before,
+.titulo-bloco-recordes::before,
+.titulo-bloco-sequencias::before,
+.titulo-bloco-sequencias-acumuladas::before,
+.sequencia-ranking-titulo::before,
+.sequencia-ranking-titulo::after,
+.sequencia-acumulado-titulo::before,
+.sequencia-acumulado-titulo::after {
+    content: none !important;
+}
+
+/* --- hero e navegação principal --- */
+
+.hero-area {
+    background:
+        radial-gradient(circle at 78% 18%, rgba(8, 223, 176, .26), transparent 34%),
+        radial-gradient(circle at 18% 76%, rgba(8, 212, 242, .18), transparent 32%),
+        linear-gradient(140deg, #063942 0%, #086979 48%, #087565 100%);
+}
+
+.site-header {
+    padding-block: 1rem 0;
+}
+
+.site-header-container {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.logo-toncharts {
+    flex: 0 0 auto;
+}
+
+.site-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: .3rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+}
+
+.site-nav-link {
+    flex: 0 0 auto;
+    gap: .42rem;
+    min-height: 2.5rem;
+    padding: .55rem .7rem;
+    border: 1px solid transparent;
+    border-radius: var(--raio-full);
+    opacity: .82;
+    scroll-snap-align: start;
+    transition:
+        color 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease,
+        opacity 160ms ease,
+        transform 160ms ease;
+}
+
+.site-nav-link:hover {
+    border-color: rgba(244, 244, 246, .18);
+    background: rgba(244, 244, 246, .08);
+}
+
+.site-nav-link-ativo {
+    border-color: rgba(244, 244, 246, .2);
+    background: rgba(244, 244, 246, .13);
+    opacity: 1;
+}
+
+.site-nav-icone {
+    display: inline-block;
+    font-size: .86rem;
+}
+
+.hero-artista {
+    padding-block: 2.35rem 3.25rem;
+}
+
+.hero-topo {
+    align-items: end;
+    margin-bottom: 1.45rem;
+}
+
+.hero-titulo-grupo {
+    gap: .65rem;
+}
+
+.hero-titulo {
+    max-width: 18ch;
+    font-size: clamp(2.35rem, 5vw, 3.7rem);
+    line-height: .92;
+}
+
+.hero-link-spotify {
+    min-height: 2.4rem;
+    padding: .4rem 0;
+}
+
+.seletor-periodo {
+    min-height: 2.65rem;
+    border: 1px solid rgba(244, 244, 246, .2);
+    border-radius: var(--raio-full);
+    padding-block: .65rem;
+}
+
+.seletor-periodo-claro {
+    border-color: var(--cor-linha);
+    padding-left: .9rem;
+    background-color: var(--cor-superficie);
+}
+
+.seletor-periodo-claro:hover {
+    background-color: var(--cor-superficie-2);
+}
+
+.hero-grade {
+    --hero-gap: 1rem;
+    --hero-card-altura: 8.15rem;
+    --hero-imagem-tamanho: calc((var(--hero-card-altura) * 2) + var(--hero-gap));
+
+    grid-template-columns:
+        minmax(15rem, var(--hero-imagem-tamanho)) repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, var(--hero-card-altura));
+}
+
+.hero-imagem-box {
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--raio-lg);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .18);
+}
+
+.hero-imagem {
+    transform: scale(1.001);
+}
+
+.card-metrica {
+    position: relative;
+    gap: .42rem;
+    padding: 1rem 1.05rem;
+    border: 1px solid rgba(255, 255, 255, .11);
+    border-radius: var(--raio-md);
+    background: rgba(8, 76, 87, .42);
+    box-shadow: 0 .8rem 1.8rem rgba(0, 0, 0, .08);
+    overflow: hidden;
+}
+
+.card-metrica::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: .16rem;
+    background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
+    opacity: .58;
+}
+
+.card-metrica:hover {
+    background: rgba(8, 76, 87, .56);
+    transform: translateY(-.1rem);
+}
+
+.card-metrica-numero,
+.top-card-numero,
+.card-album-numero,
+.musica-numero,
+.musica-ranking,
+.musica-semanas,
+.musica-dias,
+.pico-musica,
+.no1-vezes,
+.card-certificado-numero,
+.card-certificado-quantidade,
+.marco .valor,
+.sequencia-semanas,
+.barra-valor {
+    font-variant-numeric: tabular-nums;
+}
+
+.card-metrica-label {
+    max-width: 12rem;
+    line-height: 1.08;
+}
+
+.card-metrica-ranking {
+    margin-top: auto;
+    opacity: .82;
+}
+
+/* --- índice fixo das seções: melhora navegação em página longa --- */
+
+.navegacao-secoes {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    border-bottom: 1px solid var(--cor-linha);
+    background: rgba(20, 20, 26, .88);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+}
+
+html[data-theme="light"] .navegacao-secoes {
+    background: rgba(244, 244, 246, .9);
+}
+
+.navegacao-secoes__lista {
+    display: flex;
+    gap: .25rem;
+    padding-block: .52rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+}
+
+.navegacao-secoes__lista::-webkit-scrollbar {
+    display: none;
+}
+
+.navegacao-secoes__link {
+    flex: 0 0 auto;
+    min-height: 2.15rem;
+    display: inline-flex;
+    justify-content: center;
+    padding: .42rem .68rem;
+    border: 1px solid transparent;
+    border-radius: var(--raio-full);
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-pequeno);
+    font-weight: var(--peso-semi);
+    white-space: nowrap;
+    transition:
+        color 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease;
+    flex-direction: row !important;
+    align-items: center;
+}
+
+
+.navegacao-secoes__texto {
+    display: inline-block;
+    margin-left: 1.65rem;
+    white-space: nowrap;
+}
+.navegacao-secoes__link:hover,
+.navegacao-secoes__link:focus-visible {
+    color: var(--cor-texto);
+    border-color: var(--cor-linha);
+    background: var(--cor-superficie);
+}
+
+/* --- ícones da navegação --- */
+
+/* --- índice fixo das seções: melhora navegação em página longa --- */
+
+.navegacao-secoes {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    border-bottom: 1px solid var(--cor-linha);
+    background: rgba(20, 20, 26, .88);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+}
+
+html[data-theme="light"] .navegacao-secoes {
+    background: rgba(244, 244, 246, .9);
+}
+
+.navegacao-secoes__lista {
+    display: flex;
+    gap: .25rem;
+    padding-block: .52rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+}
+
+.navegacao-secoes__lista::-webkit-scrollbar {
+    display: none;
+}
+
+.navegacao-secoes__link {
+    position: relative;
+    flex: 0 0 auto;
+    min-height: 2.15rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    padding: .42rem .68rem;
+    border: 1px solid transparent;
+    border-radius: var(--raio-full);
+    color: var(--cor-texto-mudo);
+    font-size: var(--texto-pequeno);
+    font-weight: var(--peso-semi);
+    white-space: nowrap;
+    transition:
+        color 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        width 220ms cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Font Awesome */
+
+.navegacao-secoes__link::before {
+    flex: 0 0 1.2rem;
+    width: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Font Awesome 6 Free";
+    font-size: .85rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Visão geral */
+.navegacao-secoes__link[href="#topo"]::before {
+    content: "\f015";
+}
+
+/* Desempenho */
+.navegacao-secoes__link[href="#charts"]::before {
+    content: "\f080";
+}
+
+/* Evolução */
+.navegacao-secoes__link[href="#graficoEvolucao"]::before {
+    content: "\f201";
+}
+
+/* Semanas */
+.navegacao-secoes__link[href="#calendario"]::before {
+    content: "\f073";
+}
+
+/* Álbuns */
+.navegacao-secoes__link[href="#albuns"]::before {
+    content: "\f51f";
+}
+
+/* Músicas */
+.navegacao-secoes__link[href="#musicas"]::before {
+    content: "\f001";
+}
+
+/* Sequências */
+.navegacao-secoes__link[href="#sequencias"]::before {
+    content: "\f0cb";
+}
+
+/* Acumuladas */
+.navegacao-secoes__link[href="#sequenciasAcumuladas"]::before {
+    content: "\f5fd";
+}
+
+/* Topo */
+.navegacao-secoes__link[href="#numeroUm"]::before {
+    content: "\f091";
+}
+
+/* Ato principal */
+.navegacao-secoes__link[href="#atoprincipal"]::before {
+    content: "\f130";
+}
+
+/* Certificados */
+.navegacao-secoes__link[href="#certificados"]::before {
+    content: "\f0a3";
+}
+
+/* Marcos */
+.navegacao-secoes__link[href="#marcosArtista"]::before {
+    content: "\f024";
+}
+
+
+/* Indicador lateral do item ativo */
+
+.navegacao-secoes__link::after {
+    content: "";
+    position: absolute;
+    left: .2rem;
+    width: 2px;
+    height: 0;
+    border-radius: 2px;
+    background: var(--cor-ciano);
+    transition: height var(--transicao);
+}
+
+.navegacao-secoes__link[aria-current="location"]::after,
+.navegacao-secoes__link.is-active::after {
+    height: 1rem;
+}
+
+.navegacao-secoes__link:hover,
+.navegacao-secoes__link:focus-visible {
+    color: var(--cor-texto);
+    border-color: var(--cor-linha);
+    background: var(--cor-superficie);
+}
+
+
+/* Menor que 1600px: somente ícones */
+
+@media (max-width: 1599px) and (min-width: 1200px) {
+
+    .navegacao-secoes {
+        width: 3rem !important;
+        overflow: hidden;
+        transition: width 220ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .navegacao-secoes::before {
+        display: none !important;
+    }
+
+    .navegacao-secoes__texto {
+        display: none;
+        white-space: nowrap;
+    }
+
+    .navegacao-secoes__link {
+    width: 100%;
+    height: 2.25rem;
+    min-height: 2.25rem;
+    max-height: 2.25rem;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding-block: 0 !important;
+    padding-inline: .35rem;
+    line-height: 1;
+    }
+
+    .navegacao-secoes__link::before {
+        flex: 0 0 1.2rem;
+        font-size: .9rem;
+    }
+
+    /* Abre ao passar o mouse ou navegar pelo teclado */
+    .navegacao-secoes:hover,
+    .navegacao-secoes:focus-within {
+        width: var(--largura-rail) !important;
+    }
+
+    .navegacao-secoes:hover .navegacao-secoes__texto,
+    .navegacao-secoes:focus-within .navegacao-secoes__texto {
+        display: inline-block;
+    }
+
+    .navegacao-secoes:hover .navegacao-secoes__link,
+    .navegacao-secoes:focus-within .navegacao-secoes__link {
+    justify-content: flex-start;
+    gap: 0;
+    padding-left: 2.8rem !important;
+    padding-right: .65rem !important;
+    }
+}
+
+/* 1600px ou mais: ícone + texto */
+
+@media (min-width: 1600px) {
+
+    .navegacao-secoes {
+        width: 3rem !important;
+        overflow: hidden;
+        transition: width 220ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .navegacao-secoes::before {
+        display: none !important;
+    }
+
+    .navegacao-secoes__texto {
+        display: none;
+        white-space: nowrap;
+    }
+
+    .navegacao-secoes__link {
+    width: 100%;
+    height: 2.25rem;
+    min-height: 2.25rem;
+    max-height: 2.25rem;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding-block: 0 !important;
+    padding-inline: .35rem;
+    line-height: 1;
+    }
+
+    .navegacao-secoes__link::before {
+        flex: 0 0 1.2rem;
+        font-size: .9rem;
+    }
+
+    .navegacao-secoes:hover,
+    .navegacao-secoes:focus-within {
+        width: var(--largura-rail) !important;
+    }
+
+    .navegacao-secoes:hover .navegacao-secoes__texto,
+    .navegacao-secoes:focus-within .navegacao-secoes__texto {
+        display: inline-block;
+    }
+
+    .navegacao-secoes:hover .navegacao-secoes__link,
+    .navegacao-secoes:focus-within .navegacao-secoes__link {
+        justify-content: flex-start;
+        gap: .5rem;
+        padding-inline: 1.65rem;
+    }
+}
+
+/* --- estrutura das seções --- */
+
+.conteudo-principal {
+    padding-block: 2.7rem 4rem;
+}
+
+.bloco-geral {
+    margin-bottom: 4.25rem;
+}
+
+.cabecalho-bloco {
+    min-height: 0;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: .82rem;
+}
+
+.titulo-bloco,
+.marco .topo h2,
+.grafico-evolucao__titulo {
+    color: var(--cor-texto);
+    font-size: var(--texto-titulo);
+    line-height: 1.1;
+    white-space: normal;
+}
+
+.titulo-bloco {
+    position: relative;
+    padding-left: .85rem;
+}
+
+.titulo-bloco::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .08em;
+    bottom: .08em;
+    width: .22rem;
+    border-radius: var(--raio-full);
+    background: linear-gradient(var(--cor-ciano), var(--cor-verde));
+}
+
+/* --- gráfico por período: sem distorcer a altura no hover --- */
+
+.grafico-area {
+    min-height: var(--altura-grafico);
+    padding: 2.6rem 1.25rem 1.2rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .015), transparent),
+        var(--cor-superficie);
+    overflow-x: auto;
+}
+
+.grafico-periodo {
+    min-width: 0;
+    gap: clamp(.35rem, 1vw, .75rem);
+}
+
+.conteudo-periodo[data-periodo="12m"] .grafico-periodo {
+    min-width: 42rem;
+}
+
+.barra-preenchimento {
+    min-height: 1px;
+    border-radius: .45rem .45rem .16rem .16rem;
+    transform-origin: bottom;
+    transition:
+        filter 160ms ease,
+        transform 160ms ease;
+}
+
+.grafico-item:hover .barra-preenchimento {
+    filter: brightness(1.08) saturate(1.08);
+    transform: translateY(-.12rem);
+}
+
+.barra-valor {
+    top: -1.45rem;
+    font-size: .74rem;
+}
+
+.barra-legenda {
+    gap: .15rem;
+    line-height: 1.2;
+}
+
+/* --- evolução acumulada --- */
+
+.grafico-evolucao__cabecalho {
+    align-items: end;
+    margin-bottom: 1rem;
+}
+
+.grafico-evolucao__descricao {
+    margin-top: .4rem;
+    font-size: var(--texto-normal);
+}
+
+.grafico-evolucao__periodos {
+    flex-wrap: wrap;
+}
+
+.grafico-evolucao__periodo {
+    min-height: 2.55rem;
+    padding: .55rem .9rem;
+    border-color: var(--cor-linha);
+    color: var(--grafico-texto-secundario);
+}
+
+html[data-theme="light"] .grafico-evolucao__periodo {
+    border-color: rgba(32, 32, 42, .14);
+}
+
+.grafico-evolucao__plot {
+    height: clamp(22rem, 44vw, 30rem);
+    padding-top: 2.8rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background: var(--cor-superficie);
+    overflow: hidden;
+}
+
+.grafico-evolucao__canvas-area {
+    inset: 2.8rem .75rem .75rem;
+}
+
+.grafico-evolucao__nome-eixo--scrobbles {
+    left: .8rem;
+    top: .8rem;
+}
+
+.grafico-evolucao__nome-eixo--pontos {
+    right: .8rem;
+    top: .8rem;
+}
+
+.grafico-tooltip {
+    border-radius: var(--raio-md);
+    box-shadow: var(--sombra-hover);
+}
+
+/* --- calendário / heatmap semanal --- */
+
+.semanas-area {
+    padding: .9rem .2rem .6rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+}
+
+.grade-semanas {
+    grid-template-columns: repeat(25, minmax(2rem, 1fr));
+    column-gap: .14rem;
+    row-gap: 1.15rem;
+}
+
+.sem-item {
+    min-width: 2rem;
+    border-radius: .28rem;
+    transform-origin: center;
+    transition:
+        transform 120ms ease,
+        box-shadow 120ms ease,
+        filter 120ms ease;
+}
+
+.sem-item:hover,
+.sem-item:focus-visible {
+    z-index: 10;
+    transform: scale(1.08);
+    filter: brightness(1.08);
+    box-shadow: 0 0 0 .12rem var(--cor-ciano);
+}
+
+.grade-semanas button.btn.sem-item[data-posicao="#1"],
+.grade-semanas button.btn.sem-item[data-posicao="#2"],
+.grade-semanas button.btn.sem-item[data-posicao="#3"],
+.grade-semanas button.btn.sem-item[data-posicao="#4"],
+.grade-semanas button.btn.sem-item[data-posicao="#5"],
+.grade-semanas button.btn.sem-item[data-posicao="#6"],
+.grade-semanas button.btn.sem-item[data-posicao="#7"],
+.grade-semanas button.btn.sem-item[data-posicao="#8"],
+.grade-semanas button.btn.sem-item[data-posicao="#9"],
+.grade-semanas button.btn.sem-item[data-posicao="#10"],
+.grade-semanas button.btn.sem-item[data-posicao="#11"],
+.grade-semanas button.btn.sem-item[data-posicao="#12"],
+.grade-semanas button.btn.sem-item[data-posicao="#13"],
+.grade-semanas button.btn.sem-item[data-posicao="#14"],
+.grade-semanas button.btn.sem-item[data-posicao="#15"],
+.grade-semanas button.btn.sem-item[data-posicao="#16"],
+.grade-semanas button.btn.sem-item[data-posicao="#17"],
+.grade-semanas button.btn.sem-item[data-posicao="#18"],
+.grade-semanas button.btn.sem-item[data-posicao="#19"],
+.grade-semanas button.btn.sem-item[data-posicao="#20"] {
+    color: #07181b !important;
+    -webkit-text-fill-color: #07181b !important;
+    font-weight: var(--peso-semi) !important;
+}
+
+.tooltip-semana {
+    max-width: min(18rem, calc(100vw - 1.5rem));
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: var(--raio-md);
+    padding: .7rem .8rem;
+}
+
+/* --- álbuns / cards-resumo / certificados: grids responsivos, sem scroll obrigatório --- */
+
+.albuns-area,
+.top-cards-area,
+.certificados-area {
+    overflow: visible;
+    padding: 0;
+}
+
+.grade-albuns,
+.grade-top-cards,
+.grade-certificados {
+    width: 100%;
+    gap: 1rem;
+}
+
+.grade-albuns {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grade-top-cards {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grade-certificados {
+    grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
+}
+
+.card-album {
+    gap: .75rem;
+    padding: .72rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-md);
+    background: var(--cor-superficie);
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.card-album:hover {
+    border-color: rgba(8, 212, 242, .38);
+    background: var(--cor-superficie-elevada);
+    transform: translateY(-.12rem);
+    box-shadow: var(--sombra);
+}
+
+.card-album-capa,
+.musica-capa-link,
+.card-certificado-capa,
+.no1-capa {
+    border-radius: calc(var(--raio-md) - .18rem);
+}
+
+.card-album-capa::before {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.card-album-nome {
+    height: auto;
+    min-height: 1.25rem;
+    line-height: 1.28;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.card-album-meta {
+    gap: .42rem;
+    font-size: var(--texto-pequeno);
+    line-height: 1.3;
+}
+
+.album-top5-titulo {
+    white-space: normal;
+}
+
+.album-top5-musica {
+    align-items: start;
+}
+
+.album-top5-nome {
+    line-height: 1.25;
+    white-space: normal;
+}
+
+.top-card {
+    aspect-ratio: auto;
+    min-height: 10rem;
+    align-content: start;
+    gap: .5rem;
+    padding: 1rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-md);
+}
+
+.top-card-destaque {
+    border-color: transparent;
+}
+
+.top-card-info {
+    margin-top: auto;
+    font-size: var(--texto-pequeno);
+    line-height: 1.3;
+}
+
+.card-certificado {
+    --cert-accent: #c7a334;
+
+    min-height: 15rem;
+    border: 1px solid var(--cor-linha);
+    border-top: .22rem solid var(--cert-accent);
+    border-radius: var(--raio-md);
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    box-shadow: none;
+}
+
+.card-certificado-platina {
+    --cert-accent: #a6bdc8;
+    background: var(--cor-superficie);
+}
+
+.card-certificado-diamante {
+    --cert-accent: #b6b09c;
+    background: var(--cor-superficie);
+}
+
+.card-certificado:hover {
+    background: var(--cor-superficie-elevada);
+    box-shadow: var(--sombra);
+}
+
+.card-certificado-topo,
+.card-certificado-nome,
+.card-certificado-artista,
+.card-certificado-data {
+    color: var(--cor-texto);
+}
+
+.card-certificado-tipo,
+.card-certificado-quantidade {
+    color: var(--cert-accent);
+    font-weight: var(--peso-bold);
+}
+
+.card-certificado-capa {
+    width: 5.2rem;
+    border: 1px solid var(--cor-linha);
+}
+
+.card-certificado-stats {
+    border-color: var(--cor-linha);
+}
+
+.card-certificado-label,
+.card-certificado-data,
+.card-certificado-artista {
+    color: var(--cor-texto-mudo);
+    opacity: 1;
+}
+
+/* --- tabela/lista de músicas --- */
+
+.musicas-area {
+    margin-top: 1.4rem;
+    overflow: visible;
+}
+
+.lista-musicas {
+    min-width: 0;
+    width: 100%;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background: var(--cor-superficie);
+    overflow: hidden;
+}
+
+.cabecalho-musicas,
+.linha-musica {
+    grid-template-columns:
+        3.4rem 4.5rem minmax(15rem, 2.3fr) minmax(6.4rem, .85fr) minmax(6.4rem, .85fr) minmax(5rem, .7fr) minmax(5rem, .65fr) minmax(5.4rem, .7fr);
+    gap: .65rem;
+}
+
+.cabecalho-musicas {
+    min-height: 2.65rem;
+    align-items: center;
+    padding: .6rem .8rem;
+    border-bottom: 1px solid var(--cor-linha);
+    color: var(--cor-texto-mudo);
+    background: var(--cor-fundo);
+}
+
+.cabecalho-musica-ordenavel {
+    min-height: 2rem;
+    border-radius: .4rem;
+    padding: .25rem .35rem;
+}
+
+.cabecalho-musica-ordenavel:hover {
+    background: var(--cor-superficie-2);
+}
+
+.linha-musica {
+    min-height: 4.1rem;
+    padding: .62rem .8rem;
+    border-top: 1px solid var(--cor-linha);
+}
+
+.linha-musica:first-child {
+    border-top: 0;
+}
+
+.linha-musica:hover {
+    background: var(--cor-superficie-hover);
+}
+
+.linha-musica-feat {
+    opacity: .72;
+}
+
+.linha-musica-feat:hover {
+    opacity: 1;
+}
+
+.musica-posicao {
+    font-size: 1.2rem;
+}
+
+.musica-principal {
+    grid-template-columns: 2.85rem minmax(0, 1fr);
+    gap: .7rem;
+}
+
+.musica-capa-link {
+    width: 2.85rem;
+}
+
+.musica-nome {
+    line-height: 1.2;
+}
+
+.musica-artista {
+    margin-top: .14rem;
+    color: var(--cor-texto-mudo);
+    line-height: 1.25;
+}
+
+.acoes-musicas {
+    margin-top: 1rem;
+}
+
+.btn-musicas {
+    min-height: 2.75rem;
+    border-radius: var(--raio-full);
+}
+
+/* --- rankings de sequências --- */
+
+.sequencias-area.conteudo-periodo-ativo,
+.sequencias-acumuladas-grade {
+    gap: 1.8rem;
+}
+
+.sequencia-ranking,
+.sequencia-acumulado {
+    padding: 1rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background: color-mix(in srgb, var(--cor-superficie) 78%, transparent);
+}
+
+.sequencia-ranking-titulo,
+.sequencia-acumulado-titulo {
+    min-height: 2rem;
+    align-items: center;
+    padding-right: 2.2rem;
+    color: var(--cor-texto);
+    font-size: 1.02rem;
+    font-weight: var(--peso-semi);
+    line-height: 1.25;
+}
+
+.sequencia-ranking-seta,
+.sequencia-acumulado-seta {
+    right: .25rem;
+}
+
+.sequencia-ranking-lista,
+.sequencia-acumulado-lista {
+    gap: .5rem;
+}
+
+.sequencia-linha {
+    border: 1px solid transparent;
+    border-radius: .65rem;
+}
+
+.sequencia-linha:hover {
+    border-color: var(--cor-linha);
+}
+
+.sequencia-musica {
+    font-weight: var(--peso-semi);
+}
+
+.sequencia-progresso {
+    height: .2rem;
+    border-radius: var(--raio-full);
+}
+
+.sequencia-semanas-unidade {
+    color: var(--cor-texto-mudo);
+}
+
+/* --- músicas no topo --- */
+
+.grade-no1 {
+    gap: .8rem;
+}
+
+.no1-card {
+    min-height: 4.5rem;
+    padding: .7rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-md);
+}
+
+.no1-card:hover {
+    border-color: rgba(8, 212, 242, .35);
+}
+
+.no1-nome {
+    font-weight: var(--peso-semi);
+}
+
+/* --- ato principal / participações --- */
+
+.item-grafico-barra {
+    padding: 1.15rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background: var(--cor-superficie);
+}
+
+.grafico-barra-trilha {
+    overflow: hidden;
+    border-radius: var(--raio-full);
+}
+
+/* --- marcos --- */
+
+.marco .topo {
+    margin-bottom: 1rem;
+}
+
+.marco .intro {
+    max-width: 52rem;
+    margin-top: .4rem;
+    font-size: var(--texto-normal);
+}
+
+.marco .grade {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .8rem;
+}
+
+.marco .card {
+    min-height: 10.5rem;
+    border-radius: var(--raio-md);
+    background: var(--cor-superficie);
+}
+
+.marco .card:hover {
+    background: var(--cor-superficie-elevada);
+    transform: translateY(-.1rem);
+}
+
+.marco .texto {
+    line-height: 1.3;
+}
+
+/* --- rodapé --- */
+
+.site-footer {
+    padding-block: 2.4rem;
+}
+
+.footer-principal {
+    align-items: start;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .3rem .9rem;
+    overflow: visible;
+}
+
+.footer-link {
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    color: var(--cor-texto-mudo);
+}
+
+.footer-link:hover {
+    color: var(--cor-texto);
+}
+
+/* --- responsividade --- */
+
+@media (max-width: 1000px) {
+    .site-header-container {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .site-nav {
+        grid-column: auto;
+        order: initial;
+        justify-content: flex-end;
+    }
+
+    .site-nav-link {
+        width: auto;
+        height: auto;
+        justify-content: flex-start;
+        gap: .4rem;
+        padding: .5rem .65rem;
+    }
+
+    .site-nav-texto {
+        display: block;
+    }
+
+    .hero-grade {
+        grid-template-columns: minmax(14rem, .9fr) repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(7.5rem, auto));
+        gap: .9rem;
+    }
+
+    .hero-imagem-box {
+        grid-column: 1;
+        grid-row: 1 / 4;
+        order: initial;
+    }
+
+    .card-metrica {
+        min-height: 7.5rem;
+    }
+
+    .grade-albuns,
+    .grade-top-cards,
+    .grade-certificados {
+        width: 100%;
+        gap: .85rem;
+    }
+
+    .grade-albuns {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grade-top-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grade-certificados {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .albuns-area,
+    .top-cards-area,
+    .certificados-area {
+        overflow: visible;
+        padding: 0;
+    }
+
+    .marco .grade {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 860px) {
+
+    .container,
+    .semanas-container {
+        width: min(100% - 1.25rem, var(--largura-container));
+    }
+
+    .site-header-container {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+    }
+
+    .site-nav {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .hero-topo {
+        align-items: start;
+    }
+
+    .hero-titulo {
+        max-width: 100%;
+    }
+
+    .hero-grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+    }
+
+    .hero-imagem-box {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        width: min(100%, 22rem);
+        justify-self: start;
+    }
+
+    .cabecalho-musicas {
+        display: flex;
+        align-items: center;
+        gap: .45rem;
+        padding: .55rem;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+    }
+
+    .cabecalho-musicas::before {
+        content: "Ordenar:";
+        flex: 0 0 auto;
+        color: var(--cor-texto-mudo);
+        font-size: var(--texto-pequeno);
+        font-weight: var(--peso-semi);
+    }
+
+    .cabecalho-musica-1,
+    .cabecalho-musica-3 {
+        display: none;
+    }
+
+    .cabecalho-musica-ordenavel {
+        flex: 0 0 auto;
+        width: auto;
+        min-height: 2.1rem;
+        padding: .35rem .55rem;
+        border: 1px solid var(--cor-linha);
+        border-radius: var(--raio-full);
+        background: var(--cor-superficie);
+    }
+
+    .linha-musica {
+        grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas:
+            "posicao principal principal"
+            "ranking scrobbles pontuacao"
+            "pico semanas dias";
+        gap: .75rem .85rem;
+        min-height: 0;
+        margin: .55rem;
+        padding: .9rem;
+        border: 1px solid var(--cor-linha);
+        border-radius: var(--raio-md);
+        background: var(--cor-fundo);
+    }
+
+    .linha-musica+.linha-musica {
+        border-top: 1px solid var(--cor-linha);
+    }
+
+    .musica-posicao {
+        grid-area: posicao;
+        align-self: start;
+    }
+
+    .musica-ranking {
+        grid-area: ranking;
+    }
+
+    .musica-principal {
+        grid-area: principal;
+    }
+
+    .musica-scrobbles {
+        grid-area: scrobbles;
+    }
+
+    .musica-pontuacao {
+        grid-area: pontuacao;
+    }
+
+    .pico-musica {
+        grid-area: pico;
+    }
+
+    .musica-semanas {
+        grid-area: semanas;
+    }
+
+    .musica-dias {
+        grid-area: dias;
+    }
+
+    .musica-ranking,
+    .musica-scrobbles,
+    .musica-pontuacao,
+    .pico-musica,
+    .musica-semanas,
+    .musica-dias {
+        min-width: 0;
+        display: grid;
+        align-content: start;
+        gap: .2rem;
+        text-align: left;
+    }
+
+    .musica-ranking::before,
+    .musica-scrobbles::before,
+    .musica-pontuacao::before,
+    .pico-musica::before,
+    .musica-semanas::before,
+    .musica-dias::before {
+        content: attr(data-label);
+        color: var(--cor-texto-mudo);
+        font-size: .65rem;
+        font-weight: var(--peso-normal);
+        line-height: 1.1;
+    }
+
+    .musica-ranking::before {
+        content: attr(data-label);
+    }
+
+    .pico-musica {
+        justify-content: start;
+    }
+
+    .pico-vezes {
+        transform: none;
+    }
+
+    .marco .grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .conteudo-principal {
+        padding-top: 2.1rem;
+    }
+
+    .bloco-geral {
+        margin-bottom: 3.25rem;
+    }
+
+    .cabecalho-bloco,
+    .grafico-evolucao__cabecalho {
+        align-items: stretch;
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho-bloco {
+        display: grid;
+    }
+
+    .seletor-periodo {
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .grafico-evolucao__periodos {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: .15rem;
+    }
+
+    .grafico-evolucao__plot {
+        height: 22rem;
+    }
+
+    .grade-albuns,
+    .grade-top-cards,
+    .grade-certificados {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grade-no1 {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-principal,
+    .footer-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-nav {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    :root {
+        --texto-normal: .84rem;
+        --texto-medio: .92rem;
+        --texto-titulo: 1.35rem;
+    }
+
+    .site-header {
+        padding-top: .75rem;
+    }
+
+    .logo-toncharts-palavra-1,
+    .logo-toncharts-palavra-2 {
+        font-size: 2rem;
+    }
+
+    .site-nav-link {
+        min-height: 2.35rem;
+        padding-inline: .58rem;
+    }
+
+    .site-nav-texto {
+        display: block;
+        font-size: .74rem;
+    }
+
+    .hero-artista {
+        padding-block: 1.8rem 2.4rem;
+    }
+
+    .hero-topo {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hero-titulo {
+        font-size: clamp(2.1rem, 11vw, 3rem);
+    }
+
+    .hero-grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .7rem;
+    }
+
+    .hero-imagem-box {
+        width: 100%;
+    }
+
+    .card-metrica {
+        min-height: 7.2rem;
+        padding: .85rem;
+    }
+
+    .card-metrica-numero {
+        font-size: 1.7rem;
+    }
+
+    .card-metrica-label {
+        font-size: .76rem;
+    }
+
+    .badge-crescimento {
+        font-size: .65rem;
+    }
+
+    .navegacao-secoes__lista {
+        padding-block: .45rem;
+    }
+
+    .navegacao-secoes__link {
+        min-height: 2rem;
+        padding-inline: .6rem;
+    }
+
+    .semanas-area {
+        margin-inline: -.15rem;
+    }
+
+    .grade-semanas {
+        width: max-content;
+        min-width: 33rem;
+        grid-template-columns: repeat(12, minmax(2.65rem, 1fr));
+    }
+
+    .sem-item {
+        min-width: 2.65rem;
+    }
+
+    .grade-albuns,
+    .grade-top-cards,
+    .grade-certificados {
+        grid-template-columns: 1fr;
+    }
+
+    .card-album {
+        grid-template-columns: 7rem minmax(0, 1fr);
+        align-items: start;
+    }
+
+    .card-album-capa {
+        grid-column: 1;
+    }
+
+    .card-album-info {
+        grid-column: 2;
+    }
+
+    .top-card {
+        min-height: 8.5rem;
+    }
+
+    .linha-musica {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas:
+            "posicao principal"
+            "ranking principal"
+            "scrobbles pontuacao"
+            "pico semanas"
+            "dias dias";
+    }
+
+    .musica-principal {
+        grid-template-columns: 2.65rem minmax(0, 1fr);
+    }
+
+    .musica-capa-link {
+        width: 2.65rem;
+    }
+
+    .acoes-musicas {
+        grid-template-columns: 1fr;
+        gap: .65rem;
+    }
+
+    .btn-exibir-mais,
+    .btn-recolher-tudo {
+        justify-self: stretch;
+        width: 100%;
+    }
+
+    .sequencia-ranking,
+    .sequencia-acumulado {
+        padding: .75rem;
+    }
+
+    .sequencia-linha {
+        padding: .8rem;
+    }
+
+    .marco .grade {
+        grid-template-columns: 1fr;
+    }
+
+    .marco .card {
+        min-height: 0;
+    }
+
+    .footer-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: .2rem .7rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-grade {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-imagem-box {
+        grid-column: 1;
+    }
+
+    .card-album {
+        grid-template-columns: 5.8rem minmax(0, 1fr);
+    }
+
+    .footer-nav {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Evita animações que dificultam leitura para quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 1s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1s !important;
+    }
+
+    .sem-item:hover,
+    .sem-item:focus-visible,
+    .card-metrica:hover,
+    .card-album:hover,
+    .top-card:hover,
+    .no1-card:hover,
+    .marco .card:hover {
+        transform: none !important;
+    }
+}
+
+/* Em dispositivos sem hover, evita movimentos que atrapalham toque */
+@media (hover: none) {
+
+    .sem-item:hover,
+    .card-metrica:hover,
+    .card-album:hover,
+    .top-card:hover,
+    .no1-card:hover,
+    .marco .card:hover {
+        transform: none;
+    }
+
+    .card-album-overlay,
+    .musica-capa-overlay,
+    .no1-seta {
+        opacity: 0;
+    }
+}
+
+/* Hero: métricas sincronizadas com o seletor de período */
+.hero-grade .card-metrica-numero,
+.hero-grade .badge-crescimento-texto,
+.hero-grade .card-metrica-ranking {}
+
+.hero-grade.hero-periodo-atualizando .card-metrica-numero,
+.hero-grade.hero-periodo-atualizando .badge-crescimento-texto,
+.hero-grade.hero-periodo-atualizando .card-metrica-ranking {
+    opacity: .18;
+    transform: translateY(2px);
+}
+
+.hero-grade .card-metrica-dado-ausente {
+    opacity: .62;
+}
+
+/* ==========================================================================
+   CAMADA 2 — REDESIGN V3
+   Mantida nesta posição para preservar precedência e sobrescritas originais.
+   ========================================================================== */
+
+/* =========================================================
+   TONCHARTS — REDESIGN EDITORIAL / DATA-FIRST v3
+   Mantém os hooks de dados e comportamento existentes.
+   ========================================================= */
+
+:root {
+    --fonte-principal: "TASA Explorer", system-ui, sans-serif;
+    --fonte-numero: "TASA Explorer", system-ui, sans-serif;
+
+    --cor-ciano: #35d4e8;
+    --cor-verde: #25d6a2;
+    --cor-hero-1: #0d1115;
+    --cor-hero-2: #11181c;
+    --cor-hero-3: #132328;
+    --gradiente-destaque: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
+
+    --cor-fundo: #0b0d10;
+    --cor-superficie: #111419;
+    --cor-superficie-2: #171b21;
+    --cor-superficie-elevada: #15191f;
+    --cor-superficie-hover: #181d23;
+    --cor-texto: #f4f6f8;
+    --cor-texto-suave: #c9cfd6;
+    --cor-texto-mudo: #89919a;
+    --cor-texto-inverso: #081014;
+    --cor-linha: rgba(244, 246, 248, .105);
+    --cor-linha-forte: rgba(244, 246, 248, .18);
+    --cor-rodape: #090b0e;
+    --cor-badge: rgba(255, 255, 255, .08);
+    --cor-tooltip: #171b21;
+
+    --largura-container: 74rem;
+    --largura-shell: 88rem;
+    --largura-rail: 10.5rem;
+
+    --raio-sm: .375rem;
+    --raio-md: .625rem;
+    --raio-lg: .875rem;
+    --raio-xl: 1.125rem;
+    --raio-full: 999rem;
+
+    --sombra: 0 1.25rem 3.5rem rgba(0, 0, 0, .22);
+    --sombra-hover: 0 1.5rem 4rem rgba(0, 0, 0, .26);
+    --transicao: 160ms cubic-bezier(.2, .7, .2, 1);
+
+    --texto-pequeno: .72rem;
+    --texto-normal: .84rem;
+    --texto-medio: .94rem;
+    --texto-grande: 1.15rem;
+    --texto-titulo: clamp(1.35rem, 2.1vw, 1.85rem);
+    --texto-numero: clamp(1.8rem, 3vw, 2.65rem);
+}
+
+html[data-theme="light"] {
+    --cor-fundo: #f4f5f6;
+    --cor-superficie: #ffffff;
+    --cor-superficie-2: #eceff1;
+    --cor-superficie-elevada: #ffffff;
+    --cor-superficie-hover: #f7f8f9;
+    --cor-texto: #11151a;
+    --cor-texto-suave: #3e4650;
+    --cor-texto-mudo: #68717b;
+    --cor-texto-inverso: #f7f9fa;
+    --cor-linha: rgba(17, 21, 26, .11);
+    --cor-linha-forte: rgba(17, 21, 26, .18);
+    --cor-rodape: #e8ebee;
+    --cor-badge: rgba(17, 21, 26, .075);
+    --cor-tooltip: #15191f;
+    --sombra: 0 1.2rem 3rem rgba(17, 21, 26, .10);
+    --sombra-hover: 0 1.4rem 3.4rem rgba(17, 21, 26, .13);
+}
+
+html {
+    scroll-padding-top: 1rem;
+    background: var(--cor-fundo);
+}
+
+body.body-pagina {
+    background: var(--cor-fundo);
+    font-family: var(--fonte-principal);
+    line-height: 1.45;
+}
+
+::selection {
+    background: rgba(53, 212, 232, .28);
+    color: var(--cor-texto);
+}
+
+.container,
+.semanas-container {
+    width: min(100% - 2.5rem, var(--largura-container));
+}
+
+.skip-link {
+    border-radius: .4rem;
+    background: var(--cor-ciano);
+    color: #071013;
+    font-weight: 800;
+}
+
+:focus-visible {
+    outline: 2px solid var(--cor-ciano);
+    outline-offset: 3px;
+}
+
+/* ---------- HERO / IDENTIDADE ---------- */
+.hero-area {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: #0d1115;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.hero-area::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent 0 64%, rgba(53, 212, 232, .045) 64% 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, .015), transparent 38%);
+}
+
+.hero-area::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 34rem;
+    height: 34rem;
+    right: -11rem;
+    bottom: -22rem;
+    border: 1px solid rgba(53, 212, 232, .12);
+    border-radius: 50%;
+    box-shadow: 0 0 0 7rem rgba(53, 212, 232, .018), 0 0 0 14rem rgba(37, 214, 162, .012);
+    pointer-events: none;
+}
+
+.site-header {
+    padding-block: 0;
+}
+
+.site-header-container {
+    min-height: 4.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+}
+
+.logo-toncharts {
+    grid-template-columns: auto auto;
+    align-items: baseline;
+}
+
+.logo-toncharts-palavra-1,
+.logo-toncharts-palavra-2 {
+    font-size: clamp(1.75rem, 3.1vw, 2.35rem);
+}
+
+.site-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: .15rem;
+    overflow-x: auto;
+}
+
+.site-nav-link {
+    min-height: 2.75rem;
+    padding: .68rem .72rem;
+    border: 0;
+    border-radius: .3rem;
+    color: rgba(244, 246, 248, .68);
+    font-size: .78rem;
+    font-weight: 600;
+    opacity: 1;
+
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, .055);
+    transform: none;
+}
+
+.site-nav-link-ativo {
+    color: #fff;
+    background: transparent;
+    box-shadow: inset 0 -2px 0 var(--cor-ciano);
+}
+
+.hero-artista {
+    padding-block: clamp(2.6rem, 5vw, 5rem) clamp(3rem, 6vw, 5.5rem);
+}
+
+.hero-topo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 2.1rem;
+}
+
+.hero-titulo-grupo {
+    gap: .85rem;
+}
+
+.hero-titulo-grupo::before {
+    content: "PERFIL DO ARTISTA";
+    display: block;
+    color: var(--cor-ciano);
+    font-size: .67rem;
+    font-weight: 800;
+}
+
+.hero-titulo {
+    max-width: 15ch;
+    margin: 0;
+    color: #f8fafb;
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    font-weight: 750;
+    line-height: .9;
+}
+
+.hero-link-spotify {
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: rgba(244, 246, 248, .72);
+    font-size: .78rem;
+    font-weight: 600;
+    opacity: 1;
+}
+
+.hero-link-spotify:hover {
+    color: #fff;
+    transform: none;
+}
+
+.icone-spotify {
+    color: #1ed760;
+}
+
+.seletor-periodo {
+    min-height: 2.75rem;
+    border: 1px solid var(--cor-linha-forte);
+    border-radius: .45rem;
+    background-color: var(--cor-superficie);
+    color: var(--cor-texto);
+    font-size: .82rem;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.seletor-periodo:hover {
+    border-color: rgba(53, 212, 232, .42);
+    background-color: var(--cor-superficie-elevada);
+}
+
+.seletor-periodo-hero {
+    min-width: 10rem;
+    border-color: rgba(255, 255, 255, .17);
+    background-color: rgba(255, 255, 255, .055);
+    color: #fff;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #fff 50%),
+        linear-gradient(135deg, #fff 50%, transparent 50%);
+}
+
+.hero-grade {
+    --hero-gap: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(17rem, 22rem);
+    grid-template-rows: repeat(2, minmax(9.25rem, auto));
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, .13);
+    border-bottom: 1px solid rgba(255, 255, 255, .13);
+}
+
+.hero-imagem-box {
+    grid-column: 4;
+    grid-row: 1 / 3;
+    width: 100%;
+    height: 100%;
+    min-height: 18.5rem;
+    aspect-ratio: auto;
+    margin: 0;
+    border: 0;
+    border-left: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 0;
+    background: #171b21;
+    box-shadow: none;
+}
+
+.hero-imagem {
+    object-fit: cover;
+    filter: saturate(.92) contrast(1.02);
+}
+
+.hero-placeholder {
+    color: rgba(244, 246, 248, .64);
+    font-size: .78rem;
+}
+
+.card-metrica {
+    position: relative;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    align-content: start;
+    gap: .32rem;
+    padding: 1.25rem 1.2rem 1.05rem;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 0;
+    background: transparent;
+    color: #f5f7f8;
+    box-shadow: none;
+
+}
+
+.card-metrica:nth-of-type(-n+4) {
+    border-bottom: 1px solid rgba(255, 255, 255, .13);
+}
+
+.card-metrica:hover {
+    transform: none;
+    background: rgba(255, 255, 255, .035);
+}
+
+.card-metrica::after {
+    display: none;
+}
+
+.card-metrica-numero {
+    font-family: var(--fonte-numero);
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    font-weight: 760;
+    line-height: .95;
+    font-variant-numeric: tabular-nums;
+}
+
+.card-metrica-label {
+    max-width: 15rem;
+    color: rgba(244, 246, 248, .86);
+    font-size: .77rem;
+    font-weight: 650;
+    line-height: 1.2;
+}
+
+.badge-crescimento-hero {
+    align-self: start;
+    margin-top: .25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--cor-verde);
+    font-size: .68rem;
+    font-weight: 750;
+}
+
+.card-metrica-ranking {
+    align-self: end;
+    color: rgba(244, 246, 248, .52);
+    font-size: .68rem;
+}
+
+/* ---------- SHELL / NAVEGAÇÃO CONTEXTUAL ---------- */
+.perfil-shell {
+    width: min(100% - 2.5rem, var(--largura-shell));
+    display: grid;
+    grid-template-columns: var(--largura-rail) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(2rem, 4vw, 4.75rem);
+    margin-inline: auto;
+}
+
+.navegacao-secoes {
+    position: sticky;
+    top: 1rem;
+    z-index: 20;
+    width: 100%;
+    margin-top: 2.8rem;
+    border: 0;
+    background: transparent;
+    backdrop-filter: none;
+}
+
+html[data-theme="light"] .navegacao-secoes {
+    background: transparent;
+}
+
+.navegacao-secoes::before {
+    content: "NESTE PERFIL";
+    display: block;
+    margin: 0 0 .75rem .7rem;
+    color: var(--cor-texto-mudo);
+    font-size: .62rem;
+    font-weight: 800;
+}
+
+.navegacao-secoes .container {
+    width: 100%;
+    margin: 0;
+}
+
+.navegacao-secoes__lista {
+    display: grid;
+    gap: .08rem;
+    padding: 0;
+    overflow: visible;
+}
+
+.navegacao-secoes__link {
+    position: relative;
+    min-height: 2.25rem;
+    display: flex;
+    align-items: center;
+    padding: .5rem .7rem .5rem 1rem;
+    border: 0;
+    border-radius: .35rem;
+    color: var(--cor-texto-mudo);
+    font-size: .73rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+}
+
+.navegacao-secoes__link::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    width: 2px;
+    height: 0;
+    border-radius: 2px;
+    background: var(--cor-ciano);
+
+}
+
+.navegacao-secoes__link:hover,
+.navegacao-secoes__link:focus-visible {
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+}
+
+.navegacao-secoes__link[aria-current="location"],
+.navegacao-secoes__link.is-active {
+    color: var(--cor-texto);
+    background: var(--cor-superficie);
+    font-weight: 700;
+}
+
+.navegacao-secoes__link[aria-current="location"]::before,
+.navegacao-secoes__link.is-active::before {
+    height: 1rem;
+}
+
+/* ---------- CONTEÚDO / HIERARQUIA ---------- */
+.conteudo-principal {
+    width: 100%;
+    min-width: 0;
+    padding-block: 2.8rem 5rem;
+    counter-reset: ton-section;
+}
+
+.conteudo-principal>.bloco-geral {
+    counter-increment: ton-section;
+}
+
+.bloco-geral {
+    margin-bottom: clamp(4.5rem, 7vw, 7rem);
+    scroll-margin-top: 1rem;
+}
+
+.cabecalho-bloco,
+.grafico-evolucao__cabecalho,
+.marco .topo {
+    position: relative;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 1.25rem;
+    margin-bottom: 1.4rem;
+    padding: 0 0 1rem;
+    border-bottom: 1px solid var(--cor-linha);
+}
+
+.titulo-bloco,
+.grafico-evolucao__titulo,
+.marco .topo h2 {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: .7rem !important;
+    margin: 0;
+    padding: 0;
+    color: var(--cor-texto);
+    font-size: var(--texto-titulo);
+    font-weight: 720;
+    line-height: 1.05;
+    white-space: normal;
+}
+
+.titulo-bloco::before,
+.grafico-evolucao__titulo::before,
+.marco .topo h2::before {
+    content: counter(ton-section, decimal-leading-zero);
+    flex: 0 0 auto;
+    color: var(--cor-ciano);
+    font-size: .66rem;
+    font-weight: 800;
+}
+
+.titulo-bloco::after {
+    display: none;
+}
+
+.grafico-evolucao__descricao,
+.marco .intro {
+    max-width: 40rem;
+    margin: .55rem 0 0 2.2rem;
+    color: var(--cor-texto-mudo);
+    font-size: .78rem;
+    line-height: 1.5;
+}
+
+/* ---------- DESEMPENHO / BARRAS ---------- */
+.grafico-area {
+    min-height: 19rem;
+    padding: 2.7rem 1rem 1rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.grafico-periodo {
+    height: 17rem;
+    gap: clamp(.22rem, .7vw, .65rem);
+    border-bottom: 1px solid var(--cor-linha-forte);
+}
+
+.grafico-item {
+    gap: .7rem;
+}
+
+.barra-preenchimento {
+    min-height: 1.5rem;
+    border: 0;
+    border-radius: .2rem .2rem 0 0;
+    background: var(--cor-ciano);
+    box-shadow: none;
+
+}
+
+.grafico-item:nth-child(odd) .barra-preenchimento {
+    background: color-mix(in srgb, var(--cor-ciano) 78%, var(--cor-verde));
+}
+
+.grafico-item:hover .barra-preenchimento {
+    height: inherit;
+    filter: brightness(1.13);
+}
+
+.barra-valor {
+    top: -1.35rem;
+    color: var(--cor-texto-suave);
+    font-size: .66rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.barra-legenda {
+    color: var(--cor-texto-mudo);
+    font-size: .67rem;
+    gap: .1rem;
+}
+
+.barra-legenda>div:first-child {
+    color: var(--cor-texto-suave);
+    font-weight: 650;
+}
+
+/* ---------- EVOLUÇÃO ---------- */
+.grafico-evolucao__cabecalho {
+    align-items: end;
+}
+
+.grafico-evolucao__periodos {
+    gap: .25rem;
+    padding: .22rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: 0;
+    background: var(--cor-superficie);
+}
+
+.grafico-evolucao__periodo {
+    min-width: 4.3rem;
+    min-height: 2.35rem;
+    padding: .5rem .8rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--cor-texto-mudo);
+    font-size: .75rem;
+}
+
+.grafico-evolucao__periodo:hover {
+    border-color: transparent;
+    color: var(--cor-texto);
+}
+
+.grafico-evolucao__periodo[aria-pressed="true"] {
+    border: 0;
+    background: var(--cor-superficie-2);
+    color: var(--cor-texto);
+    box-shadow: inset 0 -2px 0 var(--cor-ciano);
+}
+
+.grafico-evolucao__plot {
+    height: clamp(26rem, 43vw, 34rem);
+    padding: 3rem 1.2rem 1.2rem;
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background: var(--cor-superficie);
+    box-shadow: none;
+}
+
+.grafico-evolucao__canvas-area {
+    inset: 3rem 1rem 1rem;
+}
+
+.grafico-evolucao__nome-eixo {
+    top: 1rem;
+    font-size: .63rem;
+}
+
+.grafico-evolucao__nome-eixo--scrobbles {
+    left: 1.2rem;
+}
+
+.grafico-evolucao__nome-eixo--pontos {
+    right: 1.2rem;
+}
+
+.grafico-tooltip,
+.tooltip-semana {
+    border: 1px solid var(--cor-linha-forte);
+    border-radius: .55rem;
+    background: var(--cor-tooltip);
+    box-shadow: 0 1rem 2.6rem rgba(0, 0, 0, .28);
+}
+
+/* ---------- SEMANAS / HEATMAP ---------- */
+.semanas-container {
+    width: 100%;
+}
+
+.semanas-area {
+    margin-inline: 0;
+    padding: .2rem 0 .65rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+}
+
+.grade-semanas {
+    gap: .24rem;
+}
+
+.sem-item {
+    min-width: 1.65rem;
+    border: 1px solid rgba(255, 255, 255, .045);
+    border-radius: .22rem;
+    font-size: .66rem;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    scroll-snap-align: start;
+}
+
+.sem-item:hover,
+.sem-item:focus-visible {
+    z-index: 2;
+    transform: translateY(-2px);
+    filter: brightness(1.13);
+    box-shadow: 0 .4rem .9rem rgba(0, 0, 0, .22);
+}
+
+.ano-label {
+    color: var(--cor-texto-mudo);
+    font-size: .66rem;
+    font-weight: 650;
+}
+
+/* ---------- ÁLBUNS ---------- */
+.albuns-area {
+    overflow: visible;
+}
+
+.grade-albuns {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(.85rem, 1.4vw, 1.2rem);
+}
+
+.card-album {
+    position: relative;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.card-album:hover {
+    border-color: transparent;
+    background: transparent;
+    transform: none;
+}
+
+.card-album-capa {
+    position: relative;
+    margin-bottom: .9rem;
+    border: 0;
+    border-radius: .35rem;
+    background: var(--cor-superficie-2);
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.card-album-capa::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, .10);
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.card-album:hover .card-album-capa {
+    box-shadow: var(--sombra);
+}
+
+.card-album-posicao {
+    top: .55rem;
+    left: .55rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 50%;
+    background: rgba(8, 12, 15, .78);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 800;
+    backdrop-filter: blur(8px);
+}
+
+.card-album-nome {
+    font-size: .86rem;
+    font-weight: 720;
+    line-height: 1.2;
+}
+
+.card-album-stats {
+    margin-top: .6rem;
+    color: var(--cor-texto-mudo);
+    font-size: .69rem;
+    line-height: 1.55;
+}
+
+.card-album-stats strong,
+.card-album-ranking {
+    color: var(--cor-texto-suave);
+}
+
+.card-album-musicas-titulo {
+    margin-top: .75rem;
+    padding: .6rem 0 .35rem;
+    border-top: 1px solid var(--cor-linha);
+    color: var(--cor-texto-mudo);
+    font-size: .61rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card-album-musica {
+    padding-block: .23rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--cor-linha) 60%, transparent);
+    color: var(--cor-texto-mudo);
+    font-size: .64rem;
+}
+
+.card-album-musica strong {
+    color: var(--cor-texto-suave);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- MÚSICAS / KPIs + TABELA ---------- */
+.top-cards-area {
+    overflow: visible;
+}
+
+.grade-top-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    margin-bottom: 1.25rem;
+    border-top: 1px solid var(--cor-linha-forte);
+    border-bottom: 1px solid var(--cor-linha-forte);
+}
+
+.top-card {
+    min-width: 0;
+    min-height: 9.5rem;
+    padding: 1.05rem 1rem;
+    border: 0;
+    border-right: 1px solid var(--cor-linha);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.top-card:last-child {
+    border-right: 0;
+}
+
+.top-card:hover {
+    background: var(--cor-superficie);
+    transform: none;
+}
+
+.top-card-destaque {
+    background: transparent;
+    color: var(--cor-texto);
+    box-shadow: none;
+}
+
+.top-card-destaque::before {
+    display: none;
+}
+
+.top-card-destaque .top-card-numero {
+    color: var(--cor-ciano);
+}
+
+.top-card-numero {
+    font-size: clamp(2rem, 3.1vw, 2.7rem);
+    font-weight: 760;
+    line-height: .95;
+    font-variant-numeric: tabular-nums;
+}
+
+.top-card-label {
+    min-height: 2.1em;
+    color: var(--cor-texto-suave);
+    font-size: .72rem;
+    font-weight: 680;
+    line-height: 1.12;
+}
+
+.top-card .badge-crescimento {
+    margin-top: .4rem;
+    padding: 0;
+    background: transparent;
+    color: var(--cor-verde);
+}
+
+.top-card-info {
+    margin-top: .55rem;
+    color: var(--cor-texto-mudo);
+    font-size: .65rem;
+    line-height: 1.45;
+}
+
+.lista-musicas {
+    border: 1px solid var(--cor-linha);
+    border-radius: var(--raio-lg);
+    background: var(--cor-superficie);
+    box-shadow: none;
+    overflow: clip;
+}
+
+.cabecalho-musicas {
+    min-height: 2.7rem;
+    border-bottom: 1px solid var(--cor-linha);
+    background: var(--cor-fundo);
+    color: var(--cor-texto-mudo);
+    font-size: .62rem;
+    font-weight: 750;
+}
+
+.cabecalho-musica-ordenavel {
+    min-height: 2.5rem;
+    border-radius: 0;
+}
+
+.cabecalho-musica-ordenavel:hover {
+    background: var(--cor-superficie-2);
+    color: var(--cor-texto);
+}
+
+.linha-musica {
+    position: relative;
+    min-height: 4.35rem;
+    border-bottom: 1px solid var(--cor-linha);
+    background: transparent;
+
+}
+
+.linha-musica:last-child {
+    border-bottom: 0;
+}
+
+.linha-musica:hover {
+    background: var(--cor-superficie-hover);
+}
+
+.linha-musica::before {
+    content: "";
+    position: absolute;
+    inset: .65rem auto .65rem 0;
+    width: 2px;
+    background: transparent;
+}
+
+.linha-musica:hover::before {
+    background: var(--cor-ciano);
+}
+
+.musica-posicao {
+    color: var(--cor-texto);
+    font-size: .92rem;
+    font-weight: 780;
+    font-variant-numeric: tabular-nums;
+}
+
+.musica-capa-link {
+    border-radius: .3rem;
+}
+
+.musica-nome {
+    color: var(--cor-texto);
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.musica-meta,
+.musica-estatistica-label {
+    color: var(--cor-texto-mudo);
+}
+
+.musica-scrobbles,
+.musica-pontuacao,
+.musica-pico,
+.musica-semanas,
+.musica-dias {
+    font-variant-numeric: tabular-nums;
+}
+
+.acoes-musicas {
+    margin-top: 1rem;
+}
+
+.btn-musicas {
+    min-height: 2.75rem;
+    padding: .66rem 1rem;
+    border: 1px solid var(--cor-linha-forte);
+    border-radius: .45rem;
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
+    font-size: .75rem;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.btn-musicas:hover {
+    border-color: rgba(53, 212, 232, .4);
+    background: var(--cor-superficie-hover);
+    transform: none;
+}
+
+.btn-musicas-principal {
+    border-color: transparent;
+    background: var(--cor-ciano);
+    color: #071014;
+}
+
+.btn-musicas-principal:hover {
+    background: color-mix(in srgb, var(--cor-ciano) 84%, white);
+}
+
+/* ---------- SEQUÊNCIAS ---------- */
+.sequencia-ranking,
+.sequencia-acumulado {
+    margin-top: 1.8rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.sequencia-ranking+.sequencia-ranking,
+.sequencia-acumulado+.sequencia-acumulado {
+    margin-top: 2.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cor-linha);
+}
+
+.sequencia-ranking-titulo,
+.sequencia-acumulado-titulo {
+    margin-bottom: .85rem;
+    padding: 0;
+    color: var(--cor-texto-suave);
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.sequencia-lista,
+.sequencia-acumulado-lista {
+    display: grid;
+    gap: 0;
+}
+
+.sequencia-linha,
+.sequencia-acumulado-linha {
+    min-height: 3.35rem;
+    margin: 0;
+    padding: .72rem .7rem;
+    border: 0;
+    border-bottom: 1px solid var(--cor-linha);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.sequencia-linha:first-child,
+.sequencia-acumulado-linha:first-child {
+    border-top: 1px solid var(--cor-linha);
+}
+
+.sequencia-linha:hover,
+.sequencia-acumulado-linha:hover {
+    background: var(--cor-superficie);
+    transform: none;
+}
+
+.sequencia-posicao,
+.sequencia-acumulado-posicao {
+    color: var(--cor-ciano);
+    font-size: .72rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.sequencia-musica,
+.sequencia-acumulado-musica {
+    color: var(--cor-texto);
+    font-size: .78rem;
+    font-weight: 680;
+}
+
+.sequencia-progresso,
+.sequencia-acumulado-progresso {
+    height: 2px;
+    background: var(--cor-linha-forte);
+}
+
+.sequencia-progresso-preenchimento,
+.sequencia-acumulado-progresso-preenchimento {
+    background: var(--cor-ciano);
+}
+
+.sequencia-progresso::before,
+.sequencia-progresso::after,
+.sequencia-acumulado-progresso::before,
+.sequencia-acumulado-progresso::after {
+    width: .5rem;
+    height: .5rem;
+    border: 2px solid var(--cor-fundo);
+    background: var(--cor-verde);
+}
+
+/* ---------- Nº 1 / TOPO ---------- */
+.grade-no1 {
+    gap: 1rem;
+}
+
+.no1-card {
+    position: relative;
+    border: 0;
+    border-radius: .45rem;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.no1-capa {
+    border-radius: .4rem;
+    background: var(--cor-superficie-2);
+    overflow: hidden;
+}
+
+.no1-card:hover {
+    border-color: transparent;
+    background: transparent;
+    transform: none;
+}
+
+.no1-card:hover .no1-capa {
+    box-shadow: var(--sombra);
+}
+
+.no1-vezes {
+    top: .55rem;
+    right: .55rem;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: .35rem;
+    background: rgba(7, 12, 15, .78);
+    color: #fff;
+    backdrop-filter: blur(8px);
+}
+
+.no1-nome {
+    margin-top: .65rem;
+    color: var(--cor-texto);
+    font-size: .79rem;
+    font-weight: 700;
+}
+
+/* ---------- ATO PRINCIPAL ---------- */
+.grafico-barra {
+    padding: 1.2rem 0 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.grafico-barra-labels {
+    color: var(--cor-texto-mudo);
+    font-size: .68rem;
+}
+
+.grafico-barra-trilha {
+    height: .8rem;
+    border-radius: .2rem;
+    background: var(--cor-superficie-2);
+    overflow: hidden;
+}
+
+.grafico-barra-segmento-ato {
+    background: var(--cor-ciano);
+}
+
+.grafico-barra-segmento-grupo {
+    background: #38414a;
+}
+
+.grafico-barra-numero {
+    font-size: .7rem;
+    font-weight: 750;
+}
+
+/* ---------- CERTIFICADOS ---------- */
+.certificados-area {
+    overflow: visible;
+}
+
+.grade-certificados {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.card-certificado {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--cor-linha);
+    border-top: 2px solid var(--cor-ouro);
+    border-radius: .55rem;
+    background: var(--cor-superficie);
+    box-shadow: none;
+}
+
+.card-certificado-platina {
+    border-top-color: var(--cor-platina);
+}
+
+.card-certificado-diamante {
+    border-top-color: var(--cor-ciano);
+}
+
+.card-certificado:hover {
+    border-color: var(--cor-linha-forte);
+    border-top-color: var(--cor-ciano);
+    background: var(--cor-superficie-hover);
+    transform: none;
+}
+
+.card-certificado-topo {
+    padding-bottom: .65rem;
+    border-bottom: 1px solid var(--cor-linha);
+}
+
+.card-certificado-tipo {
+    font-size: .7rem;
+    font-weight: 800;
+}
+
+.card-certificado-quantidade {
+    color: var(--cor-texto-mudo);
+    font-size: .66rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.card-certificado-nome {
+    margin-top: .8rem;
+    font-size: .82rem;
+    font-weight: 720;
+}
+
+.card-certificado-capa {
+    margin-top: .75rem;
+    border-radius: .35rem;
+    overflow: hidden;
+}
+
+.card-certificado-stats {
+    margin-top: .75rem;
+    padding-top: .7rem;
+    border-top: 1px solid var(--cor-linha);
+}
+
+.card-certificado-numero {
+    font-size: .92rem;
+    font-weight: 750;
+}
+
+.card-certificado-label,
+.card-certificado-data,
+.card-certificado-artista {
+    color: var(--cor-texto-mudo);
+    font-size: .63rem;
+}
+
+/* ---------- MARCOS ---------- */
+.marco .topo {
+    display: block;
+}
+
+.marco .grade {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--cor-linha-forte);
+    border-left: 1px solid var(--cor-linha);
+}
+
+.marco .card {
+    min-height: 10rem;
+    padding: 1rem;
+    border: 0;
+    border-right: 1px solid var(--cor-linha);
+    border-bottom: 1px solid var(--cor-linha);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.marco .card:hover {
+    border-color: var(--cor-linha);
+    background: var(--cor-superficie);
+    transform: none;
+}
+
+.marco .desta {
+    background: transparent;
+    box-shadow: none;
+}
+
+.marco .valor {
+    color: var(--cor-texto);
+    font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+}
+
+.marco .texto {
+    color: var(--cor-texto-suave);
+    font-size: .72rem;
+}
+
+.marco .info {
+    height: auto;
+    min-height: 3.5rem;
+    grid-template-rows: auto auto auto;
+    padding-top: .65rem;
+    border-top: 1px solid var(--cor-linha);
+}
+
+.marco .rotul,
+.marco .data {
+    font-size: .63rem;
+}
+
+.marco .music {
+    font-size: .69rem;
+}
+
+/* ---------- RODAPÉ ---------- */
+.site-footer {
+    margin-top: 0;
+    padding-block: 3.5rem;
+    border-top: 1px solid var(--cor-linha);
+    background: var(--cor-rodape);
+}
+
+.site-footer-container {
+    width: min(100% - 2.5rem, var(--largura-shell));
+}
+
+.footer-principal {
+    align-items: start;
+}
+
+.footer-logo .logo-toncharts-palavra-1,
+.footer-logo .logo-toncharts-palavra-2 {
+    font-size: 1.8rem;
+}
+
+.footer-nav {
+    gap: .4rem 1.1rem;
+}
+
+.footer-link {
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    color: var(--cor-texto-mudo);
+    font-size: .72rem;
+}
+
+.footer-link:hover {
+    color: var(--cor-texto);
+    transform: none;
+}
+
+.footer-info {
+    margin-top: 1.8rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--cor-linha);
+}
+
+.footer-texto,
+.footer-creditos {
+    color: var(--cor-texto-mudo);
+    font-size: .68rem;
+    line-height: 1.55;
+}
+
+/* ---------- MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* ---------- TABLET ---------- */
+@media (max-width: 1120px) {
+    :root {
+        --largura-rail: 8.6rem;
+    }
+
+    .perfil-shell {
+        gap: 2rem;
+    }
+
+    .navegacao-secoes__link {
+        padding-left: .8rem;
+        font-size: .68rem;
+    }
+
+    .hero-grade {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(15rem, 18rem);
+    }
+
+    .grade-albuns,
+    .grade-certificados {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grade-albuns> :nth-child(n+4),
+    .grade-certificados> :nth-child(n+4) {
+        margin-top: .75rem;
+    }
+}
+
+/* ---------- NAV horizontal + content ---------- */
+@media (max-width: 900px) {
+
+    .container,
+    .semanas-container,
+    .site-footer-container {
+        width: min(100% - 1.5rem, var(--largura-container));
+    }
+
+    .site-header-container {
+        min-height: 4.2rem;
+        grid-template-columns: 1fr;
+        gap: .35rem;
+        padding-block: .75rem;
+    }
+
+    .site-nav {
+        justify-content: flex-start;
+    }
+
+    .site-nav-link {
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+    }
+
+    .site-nav-icone {
+        display: inline-block;
+    }
+
+    .site-nav-texto {
+        display: none;
+    }
+
+    .hero-topo {
+        align-items: start;
+    }
+
+    .hero-grade {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: auto repeat(2, minmax(8.6rem, auto));
+    }
+
+    .hero-imagem-box {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        width: 100%;
+        min-height: 22rem;
+        max-height: 31rem;
+        border-left: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .13);
+    }
+
+    .card-metrica:nth-of-type(-n+4) {
+        border-bottom: 1px solid rgba(255, 255, 255, .13);
+    }
+
+    .perfil-shell {
+        width: 100%;
+        display: block;
+    }
+
+    .navegacao-secoes {
+        top: 0;
+        margin: 0;
+        border-bottom: 1px solid var(--cor-linha);
+        background: rgba(11, 13, 16, .94);
+        backdrop-filter: blur(14px);
+    }
+
+    html[data-theme="light"] .navegacao-secoes {
+        background: rgba(244, 245, 246, .94);
+    }
+
+    .navegacao-secoes::before {
+        display: none;
+    }
+
+    .navegacao-secoes .container {
+        width: min(100% - 1rem, var(--largura-container));
+        margin-inline: auto;
+    }
+
+    .navegacao-secoes__lista {
+        display: flex;
+        gap: .12rem;
+        padding: .45rem 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .navegacao-secoes__lista::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navegacao-secoes__link {
+        flex: 0 0 auto;
+        min-height: 2.5rem;
+        padding: .58rem .75rem;
+        border-radius: .35rem;
+        font-size: .7rem;
+    }
+
+
+    .conteudo-principal {
+        width: min(100% - 1.5rem, var(--largura-container));
+        margin-inline: auto;
+    }
+
+    .conteudo-principal .container,
+    .conteudo-principal .semanas-container {
+        width: 100%;
+    }
+
+    .grade-top-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-bottom: 0;
+    }
+
+    .top-card {
+        border-bottom: 1px solid var(--cor-linha);
+    }
+
+    .top-card:nth-child(3) {
+        border-right: 0;
+    }
+
+    .top-card:nth-child(n+4) {
+        border-top: 0;
+    }
+
+    .marco .grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 640px) {
+    .hero-artista {
+        padding-block: 2rem 3rem;
+    }
+
+    .hero-topo {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-titulo {
+        font-size: clamp(2.75rem, 15vw, 4.3rem);
+    }
+
+    .seletor-periodo-hero {
+        width: 100%;
+    }
+
+    .hero-grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto repeat(3, minmax(8.2rem, auto));
+    }
+
+    .hero-imagem-box {
+        min-height: 18rem;
+    }
+
+    .card-metrica {
+        padding: 1rem .85rem;
+    }
+
+    .card-metrica:nth-of-type(odd) {
+        border-right: 1px solid rgba(255, 255, 255, .13);
+    }
+
+    .card-metrica:nth-of-type(even) {
+        border-right: 0;
+    }
+
+    .card-metrica:nth-last-of-type(-n+2) {
+        border-bottom: 0;
+    }
+
+    .card-metrica-numero {
+        font-size: 2rem;
+    }
+
+    .cabecalho-bloco,
+    .grafico-evolucao__cabecalho {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+
+    .cabecalho-bloco .seletor-periodo,
+    .grafico-evolucao__periodos {
+        width: 100%;
+    }
+
+    .grafico-evolucao__periodos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grafico-evolucao__periodo {
+        min-width: 0;
+    }
+
+    .bloco-geral {
+        margin-bottom: 4.2rem;
+    }
+
+    .grafico-area {
+        overflow-x: auto;
+    }
+
+    .grafico-periodo {
+        width: max(36rem, 100%);
+    }
+
+    .grade-albuns,
+    .grade-certificados {
+        width: max-content;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(10.8rem, 10.8rem));
+        gap: .9rem;
+    }
+
+    .albuns-area,
+    .certificados-area {
+        width: calc(100vw - .75rem);
+        margin-right: calc(50% - 50vw);
+        overflow-x: auto;
+        padding-right: 1rem;
+        padding-bottom: .65rem;
+        scroll-snap-type: x mandatory;
+    }
+
+    .card-album,
+    .card-certificado {
+        scroll-snap-align: start;
+    }
+
+    .grade-top-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .top-card,
+    .top-card:nth-child(3) {
+        border-right: 1px solid var(--cor-linha);
+    }
+
+    .top-card:nth-child(even) {
+        border-right: 0;
+    }
+
+    .top-card:last-child {
+        grid-column: 1 / -1;
+        border-right: 0;
+    }
+
+    .linha-musica {
+        margin: 0;
+        padding: .9rem;
+        border-radius: 0;
+    }
+
+    .acoes-musicas {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .sequencia-linha,
+    .sequencia-acumulado-linha {
+        min-height: auto;
+        padding-block: .85rem;
+    }
+
+    .grade-no1 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .marco .grade {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .marco .card {
+        min-height: 9.4rem;
+        padding: .85rem;
+    }
+
+    .site-footer {
+        padding-block: 2.75rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-grade {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-metrica-label {
+        font-size: .7rem;
+    }
+
+    .grade-top-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .marco .grade {
+        grid-template-columns: 1fr;
+    }
+
+    .marco .card {
+        min-height: 0;
+    }
+}
+
+
+/* v3.1 — integração sem alterar a árvore funcional original */
+:root {
+    --shell-gap: clamp(2rem, 4vw, 4.75rem);
+}
+
+@media (min-width: 901px) {
+    .pagina {
+        display: grid;
+        grid-template-columns:
+            minmax(1.25rem, 1fr) var(--largura-rail) var(--shell-gap) minmax(0, calc(var(--largura-shell) - var(--largura-rail) - var(--shell-gap))) minmax(1.25rem, 1fr);
+        grid-template-rows: auto auto auto;
+    }
+
+    .hero-area {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .navegacao-secoes {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: start;
+    }
+
+    .conteudo-principal {
+        grid-column: 4;
+        grid-row: 2;
+    }
+
+    .conteudo-principal>.bloco-geral>.container,
+    .conteudo-principal>.bloco-geral>.semanas-container,
+    .conteudo-principal>.grafico-evolucao>.container {
+        width: 100%;
+        margin-inline: 0;
+    }
+
+    .site-footer {
+        grid-column: 1 / -1;
+        grid-row: 3;
+    }
+}
+
+/* Os títulos já existem de verdade no HTML; o prefixo passa a ser só o índice. */
+.conteudo-principal>.bloco-geral .titulo-bloco::before,
+.conteudo-principal>.bloco-geral.grafico-evolucao .grafico-evolucao__titulo::before,
+.conteudo-principal>.bloco-geral.marco .topo h2::before {
+    content: counter(ton-section, decimal-leading-zero) !important;
+}
+
+/* Remove o antigo triângulo dos álbuns e cria um ranking mais discreto. */
+.card-album-capa::before {
+    display: none !important;
+}
+
+.card-album-rank {
+    position: absolute;
+    top: .6rem;
+    left: .6rem;
+    z-index: 3;
+    width: 1.9rem;
+    height: 1.9rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 50%;
+    background: rgba(8, 12, 15, .78);
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 800;
+    line-height: 1;
+    backdrop-filter: blur(8px);
+}
+
+@media (max-width: 900px) {
+    .pagina {
+        display: block;
+    }
+}
+
+/* ==========================================================================
+   CAMADA 3 — REVISAO FINAL 20260829
+   Mantida nesta posição para preservar precedência e sobrescritas originais.
+   ========================================================================== */
+
+/* ==========================================================
+   TONCHARTS — REVISÃO FINAL
+   Camada de correção visual/estrutural sem remover hooks.
+   ========================================================== */
+:root {
+    --fonte-principal: "TASA Explorer", system-ui, sans-serif;
+    --fonte-numero: "TASA Explorer", system-ui, sans-serif;
+    --texto-pequeno: .875rem;
+    --texto-normal: .9375rem;
+    --texto-medio: 1rem;
+    --texto-grande: 1.25rem;
+    --texto-titulo: clamp(1.45rem, 2vw, 1.8rem);
+    --texto-numero: clamp(1.75rem, 2.7vw, 2.4rem);
+    --tc-borda: color-mix(in srgb, var(--cor-texto) 14%, transparent);
+    --tc-borda-hover: color-mix(in srgb, var(--cor-texto) 25%, transparent);
+    --tc-duracao-rapida: 160ms;
+    --tc-duracao-normal: 260ms;
+    --tc-duracao-conteudo: 300ms;
+    --tc-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+body.body-pagina {
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+.tc-min-font {
+    font-size: .875rem !important;
+}
+
+/* Hierarquia tipográfica */
+.hero-titulo {
+    font-size: clamp(2.15rem, 4vw, 3.25rem);
+    line-height: .98;
+    font-weight: 800;
+}
+
+.titulo-bloco,
+.grafico-evolucao__titulo,
+.marco .topo h2 {
+    font-size: var(--texto-titulo) !important;
+    line-height: 1.08;
+    font-weight: 750;
+}
+
+.sequencia-ranking-titulo,
+.sequencia-acumulado-titulo {
+    font-size: 1.0625rem !important;
+    line-height: 1.3;
+    font-weight: 650;
+}
+
+.card-metrica-numero,
+.top-card-numero,
+.marco .valor {
+    font-family: var(--fonte-numero);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Ritmo vertical mais compacto, sem colagem */
+.conteudo-principal {
+    padding-block: 2rem 2.75rem;
+}
+
+.bloco-geral {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.cabecalho-bloco {
+    min-height: 2.75rem;
+    margin-bottom: 1rem;
+    gap: .9rem;
+    padding-bottom: .65rem;
+}
+
+.marco .topo {
+    margin-bottom: 1rem;
+}
+
+.hero-artista {
+    padding-block: 1.75rem 3rem;
+}
+
+.hero-topo {
+    margin-bottom: 1.35rem;
+}
+
+.hero-grade {
+    --hero-gap: 1rem;
+}
+
+/* Bordas neutras; cores ficam no conteúdo, não na moldura */
+.card-metrica,
+.top-card,
+.card-album,
+.musica-linha,
+.sequencia-ranking,
+.sequencia-acumulado,
+.no1-card,
+.card-certificado,
+.marco .card,
+.grafico-area,
+.grafico-evolucao__plot {
+    border-color: var(--tc-borda) !important;
+}
+
+.card-metrica:hover,
+.top-card:hover,
+.card-album:hover,
+.musica-linha:hover,
+.sequencia-ranking:hover,
+.sequencia-acumulado:hover,
+.no1-card:hover,
+.marco .card:hover {
+    border-color: var(--tc-borda-hover) !important;
+}
+
+.marco .card:hover {
+    transform: translateY(-1px);
+}
+
+/* Transições discretas */
+a,
+button,
+.btn,
+.card-metrica,
+.top-card,
+.card-album,
+.musica-linha,
+.sequencia-ranking,
+.sequencia-acumulado,
+.no1-card,
+.card-certificado,
+.marco .card,
+.sem-item,
+.sequencia-ranking-seta,
+.sequencia-acumulado-seta,
+.hero-imagem,
+.card-album-imagem,
+.no1-img,
+.card-certificado-imagem {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow, filter;
+    transition-duration: var(--tc-duracao-normal);
+    transition-timing-function: var(--tc-ease);
+}
+
+/* Sequências: grid realmente contido; uma única seta visual */
+.sequencia-ranking,
+.sequencia-acumulado {
+    overflow: hidden;
+}
+
+.sequencia-ranking-titulo,
+.sequencia-acumulado-titulo {
+    position: relative;
+    padding: .25rem 2.25rem .65rem 0;
+}
+
+.sequencia-ranking-seta,
+.sequencia-acumulado-seta {
+    position: absolute;
+    top: .75rem;
+    right: .25rem;
+    transform: rotate(0deg);
+    transform-origin: center;
+    font-size: .875rem !important;
+    color: var(--cor-texto-mudo);
+}
+
+.sequencia-ranking-titulo[aria-expanded="true"] .sequencia-ranking-seta,
+.sequencia-acumulado-titulo[aria-expanded="true"] .sequencia-acumulado-seta,
+.sequencia-ranking.is-open .sequencia-ranking-seta,
+.sequencia-acumulado.is-open .sequencia-acumulado-seta {
+    transform: rotate(180deg);
+}
+
+.sequencia-ranking-titulo .fa-chevron-up,
+.sequencia-acumulado-titulo .fa-chevron-up {
+    display: none !important;
+}
+
+.sequencia-linha {
+    width: 100%;
+    grid-template-columns: 2rem minmax(9rem, 1.35fr) minmax(5.5rem, .65fr) minmax(8rem, 1fr) minmax(5.5rem, .65fr) minmax(5.4rem, .55fr) !important;
+    gap: .65rem !important;
+    align-items: center;
+    padding: .65rem .55rem !important;
+}
+
+.sequencia-musica,
+.sequencia-data,
+.sequencia-semanas {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Certificados: fundo conforme o tipo; borda neutra */
+.card-certificado {
+    background: linear-gradient(145deg,
+            color-mix(in srgb, var(--cor-ouro) 32%, var(--cor-superficie)),
+            color-mix(in srgb, var(--cor-ouro) 14%, var(--cor-superficie))) !important;
+    border: 1px solid var(--tc-borda) !important;
+}
+
+.card-certificado-platina {
+    background: linear-gradient(145deg,
+            color-mix(in srgb, var(--cor-platina) 36%, var(--cor-superficie)),
+            color-mix(in srgb, var(--cor-platina) 16%, var(--cor-superficie))) !important;
+}
+
+.card-certificado-diamante {
+    background: linear-gradient(145deg,
+            color-mix(in srgb, var(--cor-diamante) 38%, var(--cor-superficie)),
+            color-mix(in srgb, var(--cor-diamante) 16%, var(--cor-superficie))) !important;
+}
+
+.card-certificado:hover {
+    transform: translateY(-2px);
+    border-color: var(--tc-borda-hover) !important;
+}
+
+/* Últimas músicas no topo: unidade visual coesa */
+.no1-area {
+    width: 100%;
+}
+
+.grade-no1 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+}
+
+.no1-card {
+    display: grid !important;
+    grid-template-columns: clamp(5rem, 8vw, 6.25rem) minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    padding: .85rem !important;
+    background: var(--cor-superficie) !important;
+    border: 1px solid var(--tc-borda) !important;
+    border-radius: .75rem;
+    overflow: hidden;
+}
+
+.no1-capa {
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.no1-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no1-info {
+    min-width: 0;
+    display: grid;
+    gap: .45rem;
+    align-content: center;
+}
+
+.no1-topo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem .7rem;
+    align-items: baseline;
+}
+
+.no1-card:hover {
+    transform: translateY(-2px);
+    background: var(--cor-superficie-2) !important;
+}
+
+/* Desempenho por semana / tooltip */
+.sem-item:hover,
+.sem-item:focus-visible {
+    transform: translateY(-2px) scale(1.06) !important;
+    box-shadow: 0 .35rem 1rem rgba(0, 0, 0, .18) !important;
+    z-index: 3 !important;
+}
+
+.tooltip-semana {
+    min-width: 13.5rem !important;
+    max-width: min(18rem, calc(100vw - 1.5rem)) !important;
+    padding: .9rem 1rem !important;
+    border: 1px solid var(--tc-borda) !important;
+    border-radius: .75rem !important;
+    line-height: 1.35;
+}
+
+.tooltip-data {
+    font-size: .875rem !important;
+    color: var(--cor-texto-mudo);
+    margin-bottom: .7rem;
+}
+
+.tooltip-linha {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .55rem !important;
+}
+
+.tooltip-posicao,
+.tooltip-plays {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .08rem;
+    font-size: 1rem !important;
+    font-weight: 700;
+}
+
+.tooltip-posicao::before {
+    content: "Posição";
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--cor-texto-mudo);
+}
+
+.tooltip-plays::before {
+    content: "Scrobbles";
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--cor-texto-mudo);
+}
+
+.tooltip-melhor {
+    margin-top: .7rem;
+    padding-top: .65rem;
+    border-top: 1px solid var(--tc-borda);
+    font-size: .875rem !important;
+}
+
+/* Gráfico: hover nunca altera valor/proporção */
+.grafico-item:hover .barra-preenchimento {
+    filter: brightness(1.06);
+}
+
+.barra-preenchimento {
+    transition-property: background-color, filter, opacity !important;
+    transition-duration: var(--tc-duracao-normal) !important;
+}
+
+.grafico-evolucao__periodo {
+    min-height: 2.75rem;
+    font-size: .875rem !important;
+}
+
+.grafico-tooltip,
+.grafico-tooltip * {
+    font-size: max(.875rem, 1em);
+}
+
+/* Animação direcional de troca de período */
+@keyframes tc-periodo-sobe {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tc-periodo-desce {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tc-periodo-sobe {
+    animation: tc-periodo-sobe var(--tc-duracao-conteudo) var(--tc-ease) both;
+}
+
+.tc-periodo-desce {
+    animation: tc-periodo-desce var(--tc-duracao-conteudo) var(--tc-ease) both;
+}
+
+/* Responsividade */
+@media (max-width: 1100px) {
+    .sequencia-linha {
+        grid-template-columns: 2rem minmax(10rem, 1.35fr) minmax(5.5rem, .7fr) minmax(7rem, 1fr) minmax(5.5rem, .7fr) minmax(5.2rem, .55fr) !important;
+        gap: .5rem !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .grade-no1 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .sequencia-ranking-lista,
+    .sequencia-acumulado-lista {
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        padding-bottom: .35rem;
+    }
+
+    .sequencia-linha {
+        min-width: 46rem;
+    }
+
+    .hero-grade {
+        gap: .85rem;
+    }
+}
+
+@media (max-width: 720px) {
+    .conteudo-principal {
+        padding-block: 1.5rem 2rem;
+    }
+
+    .bloco-geral {
+        margin-bottom: 2rem;
+    }
+
+    .cabecalho-bloco {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+        gap: .65rem;
+    }
+
+    .seletor-periodo {
+        width: 100%;
+        min-height: 2.75rem;
+    }
+
+    .no1-card {
+        grid-template-columns: 5rem minmax(0, 1fr);
+        gap: .8rem;
+    }
+
+    .grade-certificados,
+    .grade-albuns {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .grade-certificados,
+    .grade-top-cards {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .container,
+    .semanas-container {
+        width: min(100% - 1.25rem, var(--largura-container));
+    }
+
+    .hero-titulo {
+        font-size: clamp(2rem, 10vw, 2.6rem);
+    }
+
+    .no1-card {
+        grid-template-columns: 4.5rem minmax(0, 1fr);
+        padding: .7rem !important;
+    }
+
+    .sequencia-linha {
+        min-width: 43rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tc-periodo-sobe,
+    .tc-periodo-desce {
+        animation: none !important;
+    }
+
+    a,
+    button,
+    .btn,
+    .card-metrica,
+    .top-card,
+    .card-album,
+    .musica-linha,
+    .sequencia-ranking,
+    .sequencia-acumulado,
+    .no1-card,
+    .card-certificado,
+    .marco .card,
+    .sem-item,
+    .hero-imagem {
+        transition-duration: .01ms !important;
+    }
+}
+
+/* ==========================================================================
+   CAMADA 4 — CSS ORIGINAL — CAMADA SEM ID
+   Mantida nesta posição para preservar precedência e sobrescritas originais.
+   ========================================================================== */
+
+/* Ajustes pontuais solicitados — sem alterar hooks existentes. */
+
+/* Últimas músicas no topo: 4 colunas no desktop e gap uniforme. */
+.grade-no1 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    row-gap: 1rem !important;
+    column-gap: 1rem !important;
+}
+
+/* Ato principal e participações: barra mais alta e com degradê. */
+.grafico-barra-trilha {
+    height: 3.4rem !important;
+    padding: .3rem !important;
+    border-radius: .45rem !important;
+}
+
+.grafico-barra-segmento-ato {
+    background: linear-gradient(90deg, var(--cor-verde) 0%, var(--cor-ciano) 100%) !important;
+}
+
+.grafico-barra-segmento-grupo {
+    background: linear-gradient(90deg,
+            color-mix(in srgb, var(--cor-media) 82%, var(--cor-superficie-2)),
+            color-mix(in srgb, var(--cor-media-2) 72%, var(--cor-superficie-2))) !important;
+}
+
+/* Sequências: remove margens solicitadas. */
+.sequencia-ranking-titulo,
+.sequencia-acumulado-titulo {
+    margin-bottom: 0 !important;
+}
+
+.sequencia-ranking,
+.sequencia-acumulado {
+    margin-top: 0 !important;
+}
+
+/* Tabela/lista de músicas: centraliza todas as colunas numéricas. */
+.linha-musica>.musica-posicao,
+.linha-musica>.musica-ranking,
+.linha-musica>.musica-numero,
+.linha-musica>.pico-musica,
+.linha-musica>.musica-semanas,
+.linha-musica>.musica-dias {
+    justify-self: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.linha-musica>.pico-musica {
+    justify-items: center !important;
+}
+
+/* Metadados de álbum: descrições padronizadas via pseudo-elementos. */
+.card-album-meta>div:nth-child(-n+3) {
+    display: flex;
+    align-items: baseline;
+    gap: .35rem;
+}
+
+.card-album-meta>div:nth-child(-n+3)::before {
+    order: 2;
+    color: inherit;
+    font: inherit;
+}
+
+.card-album-meta>div:nth-child(1)::before {
+    content: "scrobbles";
+}
+
+.card-album-meta>div:nth-child(2)::before {
+    content: "dos scrobbles do ato";
+}
+
+.card-album-meta>div:nth-child(3)::before {
+    content: "no ranking";
+}
+
+.card-album-meta .card-album-numero {
+    order: 1;
+}
+
+.album-top5-titulo::before {
+    content: "Principais músicas";
+}
+
+/* Todas as barras usam o mesmo degradê vertical, ancorado à base do gráfico. */
+.barra-preenchimento,
+.grafico-item:nth-child(odd) .barra-preenchimento {
+    background-image: linear-gradient(to bottom,
+            var(--cor-ciano) 0%,
+            var(--cor-verde) 100%) !important;
+    background-size: 100% var(--altura-grafico) !important;
+    background-position: center bottom !important;
+    background-repeat: no-repeat !important;
+}
+
+.grafico-item:hover .barra-preenchimento {
+    background-image: linear-gradient(to bottom,
+            var(--cor-ciano) 0%,
+            var(--cor-verde) 100%) !important;
+}
+
+/* A navegação não participa do grid que posiciona o main. */
+.pagina {
+    display: block !important;
+}
+
+.conteudo-principal {
+    width: 100% !important;
+    margin-inline: 0 !important;
+}
+
+.conteudo-principal>.bloco-geral>.container,
+.conteudo-principal>.bloco-geral>.semanas-container,
+.conteudo-principal>.grafico-evolucao>.container {
+    width: min(100% - 2rem, var(--largura-container)) !important;
+    margin-inline: auto !important;
+}
+
+/* Desktop amplo: navegação lateral fixa e fora do fluxo do main. */
+@media (min-width: 1200px) {
+    .navegacao-secoes {
+        position: fixed !important;
+        top: 50% !important;
+        left: max(1rem, calc(50vw - 37rem - var(--largura-rail) - 1.5rem)) !important;
+        margin: 0 !important;
+        transform: translateY(-50%);
+        z-index: 900;
+    }
+
+    .navegacao-secoes .container {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .navegacao-secoes__lista {
+        display: grid !important;
+        gap: .08rem !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+}
+
+/* Notebook/tablet: permanece sticky horizontal, sem deslocar o main lateralmente. */
+@media (min-width: 901px) and (max-width: 1199px) {
+    .navegacao-secoes {
+        position: sticky !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        transform: none !important;
+        z-index: 900;
+    }
+
+    .navegacao-secoes::before {
+        display: none !important;
+    }
+
+    .navegacao-secoes .container {
+        width: min(100% - 1rem, var(--largura-container)) !important;
+        margin-inline: auto !important;
+    }
+
+    .navegacao-secoes__lista {
+        display: flex !important;
+        gap: .12rem !important;
+        padding: .45rem 0 !important;
+        overflow-x: auto !important;
+    }
+}
+
+/* Troca a linha divisória inferior pela superior. */
+.cabecalho-bloco,
+.grafico-evolucao__cabecalho,
+.marco .topo {
+    border-bottom: 0 !important;
+    border-top: 1px solid var(--cor-linha) !important;
+    padding-top: .65rem;
+}
+
+/* Mais respiro entre o marcador do ano e as semanas. */
+.semana-marcador-ano {
+    top: calc(-0.75rem - 5px) !important;
+}
+
+/* Responsividade específica do grid das últimas músicas no topo. */
+@media (max-width: 900px) {
+    .grade-no1 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 560px) {
+    .grade-no1 {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ==========================================================================
+   CAMADA 5 — AJUSTES 20260829 PERIODOS MENU TITULOS
+   Mantida nesta posição para preservar precedência e sobrescritas originais.
+   ========================================================================== */
+
+/* Ajustes solicitados: períodos cumulativos, navegação, seletores, dropdowns e títulos. */
+
+/* Navegação de seções: permanece acima do conteúdo e ganha superfície própria. */
+.navegacao-secoes {
+    z-index: 10000 !important;
+    background: var(--cor-fundo) !important;
+    border: 1px solid var(--tc-borda, var(--cor-linha)) !important;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .16) !important;
+    isolation: isolate;
+}
+
+@media (min-width: 1200px) {
+    .navegacao-secoes {
+        border-radius: .65rem;
+        padding: .35rem !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .navegacao-secoes {
+        border-inline: 0 !important;
+        border-radius: 0 !important;
+    }
+}
+
+/* Títulos: azul -> verde em 45deg; H2 leve; índice permanece branco. */
+h2,
+h3 {
+    background-image: linear-gradient(45deg, var(--cor-ciano) 0%, var(--cor-verde) 100%) !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+h2 {
+    font-weight: 400 !important;
+}
+
+h2::before,
+.titulo-bloco::before,
+.grafico-evolucao__titulo::before,
+.marco .topo h2::before {
+    background: none !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    font-size: .875rem !important;
+}
+
+/* Ícones dentro de H3 não herdam o preenchimento transparente do título. */
+.sequencia-ranking-seta,
+.sequencia-acumulado-seta {
+    color: var(--cor-texto-mudo) !important;
+    -webkit-text-fill-color: var(--cor-texto-mudo) !important;
+    transform: none !important;
+}
+
+.sequencia-ranking-titulo:hover .sequencia-ranking-seta,
+.sequencia-acumulado-titulo:hover .sequencia-acumulado-seta {
+    color: var(--cor-ciano) !important;
+    -webkit-text-fill-color: var(--cor-ciano) !important;
+}
+
+.sequencia-ranking-titulo .fa-chevron-up,
+.sequencia-acumulado-titulo .fa-chevron-up {
+    display: inline-block !important;
+}
+
+/* Expansão/recolhimento suave sem retirar a lista do fluxo durante a transição. */
+.sequencia-ranking-lista,
+.sequencia-acumulado-lista {
+    display: grid !important;
+    max-height: var(--tc-lista-altura, 100rem);
+    opacity: 1;
+    transform: translateY(0);
+    overflow: hidden;
+    transition:
+        max-height 320ms cubic-bezier(.22, 1, .36, 1),
+        opacity 180ms ease,
+        transform 240ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.sequencia-ranking-lista[hidden],
+.sequencia-acumulado-lista[hidden] {
+    display: grid !important;
+    max-height: 0 !important;
+    opacity: 0;
+    transform: translateY(-.35rem);
+    pointer-events: none;
+}
+
+/* Últimas músicas no topo: apenas os grupos válidos ficam visíveis.
+   O grid é do pai para que períodos cumulativos formem uma única grade. */
+#numeroUm .no1-area {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+}
+
+#numeroUm .grade-no1.conteudo-periodo {
+    display: none !important;
+}
+
+#numeroUm .grade-no1.conteudo-periodo.conteudo-periodo-ativo,
+#numeroUm .grade-no1.tc-periodo-acumulado-ativo {
+    display: contents !important;
+}
+
+@media (max-width: 900px) {
+    #numeroUm .no1-area {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 560px) {
+    #numeroUm .no1-area {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Select customizado: o select original permanece no DOM e sincronizado. */
+.tc-seletor-periodo {
+    position: relative;
+    width: max-content;
+    min-width: 10.5rem;
+    max-width: 100%;
+    font-family: var(--fonte-principal);
+    z-index: 20;
+}
+
+.tc-seletor-periodo.is-open {
+    z-index: 10020;
+}
+
+.tc-seletor-periodo__native {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.tc-seletor-periodo__botao {
+    width: 100%;
+    min-height: 2.75rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .75rem;
+    padding: .65rem .8rem;
+    border: 1px solid var(--tc-borda, var(--cor-linha));
+    border-radius: .5rem;
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
+    font: inherit;
+    font-size: .9375rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.tc-seletor-periodo__botao:hover {
+    background: var(--cor-superficie-2);
+    border-color: var(--tc-borda-hover, var(--cor-linha));
+}
+
+.tc-seletor-periodo__botao:focus-visible {
+    outline: .16rem solid var(--cor-ciano);
+    outline-offset: .15rem;
+}
+
+.tc-seletor-periodo__botao:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.tc-seletor-periodo__icone {
+    color: var(--cor-texto-mudo);
+    -webkit-text-fill-color: currentColor;
+
+}
+
+.tc-seletor-periodo.is-open .tc-seletor-periodo__icone {
+    transform: rotate(180deg);
+    color: var(--cor-ciano);
+}
+
+.tc-seletor-periodo__menu {
+    position: absolute;
+    top: calc(100% + .4rem);
+    right: 0;
+    width: 100%;
+    min-width: 11rem;
+    max-height: min(20rem, 60vh);
+    overflow-y: auto;
+    display: grid;
+    gap: .15rem;
+    padding: .35rem;
+    border: 1px solid var(--tc-borda, var(--cor-linha));
+    border-radius: .55rem;
+    background: var(--cor-superficie);
+    box-shadow: 0 .85rem 2rem rgba(0, 0, 0, .22);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-.35rem);
+    transform-origin: top right;
+    pointer-events: none;
+    transition:
+        opacity 160ms ease,
+        transform 200ms cubic-bezier(.22, 1, .36, 1),
+        visibility 160ms linear;
+}
+
+.tc-seletor-periodo.is-open .tc-seletor-periodo__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.tc-seletor-periodo__opcao {
+    width: 100%;
+    min-height: 2.45rem;
+    display: grid;
+    grid-template-columns: .2rem minmax(0, 1fr);
+    align-items: center;
+    gap: .6rem;
+    padding: .55rem .65rem;
+    border: 0;
+    border-radius: .35rem;
+    background: transparent;
+    color: var(--cor-texto-suave);
+    font: inherit;
+    font-size: .9375rem;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background-color 160ms ease,
+        color 160ms ease;
+}
+
+.tc-seletor-periodo__opcao::before {
+    content: "";
+    width: .18rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: transparent;
+
+}
+
+.tc-seletor-periodo__opcao:hover,
+.tc-seletor-periodo__opcao:focus-visible {
+    background: var(--cor-superficie-2);
+    color: var(--cor-texto);
+    outline: 0;
+}
+
+.tc-seletor-periodo__opcao[aria-selected="true"] {
+    color: var(--cor-texto);
+    font-weight: 700;
+    background: color-mix(in srgb, var(--cor-ciano) 10%, var(--cor-superficie));
+}
+
+.tc-seletor-periodo__opcao[aria-selected="true"]::before {
+    height: 1.25rem;
+    background: var(--cor-ciano);
+}
+
+.tc-seletor-periodo__opcao:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.hero-area .tc-seletor-periodo__botao,
+.hero-area .tc-seletor-periodo__menu {
+    background: color-mix(in srgb, var(--cor-escura) 82%, transparent);
+    border-color: rgba(255, 255, 255, .18);
+    color: var(--cor-clara);
+}
+
+.hero-area .tc-seletor-periodo__opcao {
+    color: rgba(255, 255, 255, .8);
+}
+
+.hero-area .tc-seletor-periodo__opcao:hover,
+.hero-area .tc-seletor-periodo__opcao:focus-visible,
+.hero-area .tc-seletor-periodo__opcao[aria-selected="true"] {
+    background: rgba(255, 255, 255, .09);
+    color: #fff;
+}
+
+@media (max-width: 720px) {
+    .tc-seletor-periodo {
+        width: 100%;
+    }
+
+    .tc-seletor-periodo__menu {
+        left: 0;
+        right: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sequencia-ranking-lista,
+    .sequencia-acumulado-lista,
+    .tc-seletor-periodo__menu,
+    .tc-seletor-periodo__icone {
+        transition-duration: .01ms !important;
+    }
+}
+
+
+/* ===== AJUSTES PONTUAIS — DADOS/PERÍODOS/METADADOS ===== */
+.sequencia-ranking,
+.sequencia-acumulado,
+h2 {
+    gap: 0 !important;
+}
+
+.site-nav-link {
+    border-radius: 0 !important;
+}
+
+/* Principais músicas permanece inteiro; somente seus valores mudam. */
+#musicas .top-cards-area,
+#musicas .musicas-area {
+    display: block !important;
+}
+
+.tc-periodo-item-oculto {
+    display: none !important;
+}
+
+/* Hero: somente a própria imagem do artista como fundo visual. */
+.hero-area {
+    position: relative;
+    isolation: isolate;
+    background: none !important;
+    background-color: #0d1115 !important;
+}
+
+.hero-area::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: -6rem !important;
+    z-index: -2 !important;
+    background: none !important;
+    background-image: var(--tc-hero-imagem, none) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    filter: blur(75px) !important;
+    opacity: .45 !important;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+.hero-area::after {
+    content: none !important;
+    display: none !important;
+}

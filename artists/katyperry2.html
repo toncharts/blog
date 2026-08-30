@@ -7,4875 +7,31 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="#087584" name="theme-color" />
     <meta content="dark light" name="color-scheme" />
-    <title>Perfil do artista — TonCharts</title>
-    <meta content="Perfil musical com métricas, desempenho por período, semanas, álbuns, músicas e certificações."
+    <title>Katy Perry - Ton Charts</title>
+    <meta
+        content="Katy Perry — perfil musical no Ton Charts com métricas, desempenho, semanas, álbuns, músicas e certificações."
         name="description" />
-    <meta content="Perfil do artista — TonCharts" property="og:title" />
-    <meta content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações."
+    <meta content="Katy Perry - Ton Charts" property="og:title" />
+    <meta
+        content="Katy Perry — perfil musical no Ton Charts com métricas, desempenho, semanas, álbuns, músicas e certificações."
         property="og:description" />
     <meta content="" property="og:image" />
     <meta content="website" property="og:type" />
-    <meta content="summary_large_image" name="twitter:card" />
-    <meta content="Perfil do artista — TonCharts" name="twitter:title" />
-    <meta content="Perfil musical com dados do Spotify, charts, álbuns, músicas e certificações."
-        name="twitter:description" />
-    <meta content="" name="twitter:image" />
+    <meta content="summary_large_image" property="twitter:card" />
+    <meta content="Katy Perry - Ton Charts" property="twitter:title" />
+    <meta
+        content="Katy Perry — perfil musical no Ton Charts com métricas, desempenho, semanas, álbuns, músicas e certificações."
+        property="twitter:description" />
+    <meta content="" property="twitter:image" />
     <link class="fonte-preconnect-1" href="https://fonts.googleapis.com" rel="preconnect" />
     <link class="fonte-preconnect-2" crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link class="fonte-exo-2" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&amp;display=swap"
+    <link class="fonte-exo-2"
+        href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
     <link class="fonte-awesome" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/style.css">
     <style>
-        :root {
-            --fonte-principal: "Exo 2", system-ui, sans-serif;
-
-            --peso-normal: 400;
-            --peso-semi: 600;
-            --peso-bold: 800;
-
-            --cor-ciano: #08d4f2;
-            --cor-verde: #08dfb0;
-            --cor-hero-1: #087584;
-            --cor-hero-2: #09b8c9;
-            --cor-hero-3: #08dfad;
-            --gradiente-destaque: linear-gradient(45deg, var(--cor-verde), var(--cor-ciano));
-
-            --cor-clara: #f4f4f6;
-            --cor-clara-2: #e7e7eb;
-            --cor-media: #9c9ca6;
-            --cor-media-2: #6f6f7a;
-            --cor-escura: #14141a;
-            --cor-escura-2: #20202a;
-            --cor-escura-3: #2c2c36;
-
-            --cor-fundo: var(--cor-escura);
-            --cor-superficie: var(--cor-escura-2);
-            --cor-superficie-2: var(--cor-escura-3);
-            --cor-texto: var(--cor-clara);
-            --cor-texto-inverso: var(--cor-escura);
-            --cor-texto-suave: var(--cor-clara-2);
-            --cor-texto-mudo: var(--cor-media);
-            --cor-linha: rgba(244, 244, 246, 0.12);
-            --cor-rodape: #191920;
-            --cor-badge: rgba(244, 244, 246, 0.1);
-            --cor-tooltip: rgba(32, 32, 42, 0.98);
-
-            --cor-ouro: #b88d0a;
-            --cor-platina: #7d969f;
-            --cor-diamante: #838172;
-
-            --largura-container: 57.5rem;
-            --largura-musicas: 57.5rem;
-            --largura-card-album: 9.5rem;
-            --largura-top-card: 9.5rem;
-            --largura-certificado: 9.5rem;
-
-            --raio-sm: 0.25rem;
-            --raio-full: 999rem;
-
-            --sombra: 0 1rem 2.6rem rgba(20, 20, 26, 0.22);
-            --transicao: 260ms cubic-bezier(0.22, 1, 0.36, 1);
-            --transicao-popup: 120ms ease-out;
-
-            --altura-grafico: 16rem;
-            --tamanho-semana: 1rem;
-            --largura-ano: 1.4rem;
-
-            --texto-pequeno: 0.65rem;
-            --texto-normal: 0.8rem;
-            --texto-medio: 0.9rem;
-            --texto-grande: 1.3rem;
-            --texto-titulo: 1.5rem;
-            --texto-numero: 2rem;
-
-            --scrollbar-tamanho: 0.65rem;
-            --scrollbar-cor: #7b7b84;
-            --scrollbar-cor-hover: #92929c;
-            --scrollbar-trilho: transparent;
-
-            --grafico-scrobbles: #08d4f2;
-            --grafico-pontos: #08dfb0;
-
-            --grafico-texto: #f4f7fa;
-            --grafico-texto-secundario: #aab4c0;
-
-            --grafico-grade: rgba(180, 195, 210, 0.16);
-            --grafico-divisao-ano: rgba(180, 195, 210, 0.30);
-
-            --grafico-tooltip-fundo: #101722;
-            --grafico-tooltip-borda: rgba(255, 255, 255, 0.10);
-
-            --grafico-alta: #20c978;
-            --grafico-queda: #ff5a68;
-            --grafico-neutro: #98a3af;
-        }
-
-        h2 {
-            font-size: var(--texto-grande)
-        }
-
-        html[data-theme="light"] {
-            --cor-fundo: #f4f4f6;
-            --cor-superficie: #e9e9ed;
-            --cor-superficie-2: #dfdfe5;
-            --cor-texto: #20202a;
-            --cor-texto-inverso: var(--cor-clara);
-            --cor-texto-suave: #44444e;
-            --cor-texto-mudo: #777781;
-            --cor-linha: rgba(32, 32, 42, 0.12);
-            --cor-rodape: #dfdfe5;
-            --cor-badge: rgba(32, 32, 42, 0.1);
-            --cor-tooltip: rgba(32, 32, 42, 0.98);
-            --sombra: 0 1rem 2.4rem rgba(32, 32, 42, 0.12);
-        }
-
-        * {
-            box-sizing: border-box;
-            min-width: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            scrollbar-color: var(--cor-media) !important;
-            scrollbar-width: initial !important;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        /* Firefox */
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: var(--scrollbar-cor) var(--scrollbar-trilho);
-        }
-
-        /* Chrome, Edge, Safari */
-        *::-webkit-scrollbar {
-            width: var(--scrollbar-tamanho);
-            height: var(--scrollbar-tamanho);
-        }
-
-        *::-webkit-scrollbar-track {
-            background: var(--scrollbar-trilho);
-        }
-
-        *::-webkit-scrollbar-thumb {
-            background: var(--scrollbar-cor);
-            border-radius: var(--raio-full);
-        }
-
-        *::-webkit-scrollbar-thumb:hover {
-            background: var(--scrollbar-cor-hover);
-        }
-
-        *::-webkit-scrollbar-corner {
-            background: transparent;
-        }
-
-        body.body-pagina {
-            margin: 0;
-            overflow-x: hidden;
-            font-family: var(--fonte-principal);
-            font-weight: var(--peso-normal);
-            color: var(--cor-texto);
-            background: var(--cor-fundo);
-        }
-
-
-
-
-
-
-
-
-
-
-        /* ----- GRÁFICO EVOLUÇÃO ----- */
-
-        .grafico-evolucao {
-            width: 100%;
-            color: var(--grafico-texto);
-            font-family: inherit;
-        }
-
-        .grafico-evolucao,
-        .grafico-evolucao * {
-            box-sizing: border-box;
-        }
-
-        .grafico-evolucao__cabecalho {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .grafico-evolucao__titulo {
-            margin: 0;
-        }
-
-        .grafico-evolucao__descricao {
-            max-width: 700px;
-            margin: 8px 0 0;
-            color: var(--grafico-texto-secundario);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .grafico-evolucao__periodos {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .grafico-evolucao__periodo {
-            min-height: 40px;
-            padding: 9px 16px;
-
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 999px;
-
-            background: transparent;
-            color: var(--grafico-texto-secundario);
-
-            font: inherit;
-            cursor: pointer;
-
-            transition:
-                color 180ms ease,
-                border-color 180ms ease,
-                background-color 180ms ease;
-        }
-
-        .grafico-evolucao__periodo:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            color: var(--grafico-texto);
-        }
-
-        .grafico-evolucao__periodo[aria-pressed="true"] {
-            border-color: var(--grafico-scrobbles);
-            background: rgba(8, 212, 242, 0.12);
-            color: var(--grafico-texto);
-        }
-
-        .grafico-evolucao__periodo:focus-visible {
-            outline: 2px solid var(--grafico-scrobbles);
-            outline-offset: 3px;
-        }
-
-        .grafico-evolucao__plot {
-            position: relative;
-            width: 100%;
-            height: clamp(400px, 52vw, 560px);
-            padding-top: 32px;
-
-            background: transparent;
-            user-select: none;
-        }
-
-        .grafico-evolucao__nome-eixo {
-            position: absolute;
-            top: 0;
-            z-index: 2;
-
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-
-            pointer-events: none;
-        }
-
-        .grafico-evolucao__nome-eixo--scrobbles {
-            left: 0;
-            color: var(--grafico-scrobbles);
-        }
-
-        .grafico-evolucao__nome-eixo--pontos {
-            right: 0;
-            color: var(--grafico-pontos);
-        }
-
-        .grafico-evolucao__canvas-area {
-            position: absolute;
-            inset: 32px 0 0;
-            min-width: 0;
-            overflow: hidden;
-        }
-
-        .grafico-evolucao__canvas {
-            display: block;
-            width: 100% !important;
-            height: 100% !important;
-            touch-action: pan-y;
-        }
-
-        /* CARD HOVER */
-
-        .grafico-tooltip {
-            position: absolute;
-            z-index: 20;
-
-            width: max-content;
-            min-width: 190px;
-            max-width: min(270px, calc(100vw - 32px));
-
-            padding: 11px 13px;
-
-            border: 1px solid var(--grafico-tooltip-borda);
-            border-radius: 11px;
-
-            background: var(--grafico-tooltip-fundo);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-
-            color: var(--grafico-texto);
-            font-size: 0.8rem;
-            line-height: 1.25;
-
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(4px);
-
-            transition:
-                opacity 120ms ease,
-                transform 120ms ease,
-                visibility 120ms ease;
-        }
-
-        .grafico-tooltip.is-visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .grafico-tooltip__titulo {
-            margin-bottom: 8px;
-            padding-bottom: 7px;
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-
-            font-size: 0.9rem;
-            font-weight: 750;
-        }
-
-        .grafico-tooltip__bloco+.grafico-tooltip__bloco {
-            margin-top: 9px;
-            padding-top: 9px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .grafico-tooltip__subtitulo {
-            margin-bottom: 6px;
-
-            color: var(--grafico-texto-secundario);
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* Mantém conteúdo da métrica na mesma linha */
-
-        .grafico-tooltip__metrica {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 3px 5px;
-        }
-
-        .grafico-tooltip__metrica+.grafico-tooltip__metrica {
-            margin-top: 6px;
-        }
-
-        .grafico-tooltip__rotulo {
-            display: inline;
-            flex: 1 1 auto;
-            margin: 0;
-
-            color: var(--grafico-texto-secundario);
-            font-size: 0.73rem;
-            white-space: nowrap;
-        }
-
-        .grafico-tooltip__valor {
-            display: inline;
-            flex: 0 0 auto;
-            margin: 0;
-
-            font-size: 0.91rem;
-            font-weight: 750;
-            white-space: nowrap;
-        }
-
-        .grafico-tooltip__valor--scrobbles {
-            color: var(--grafico-scrobbles);
-        }
-
-        .grafico-tooltip__valor--pontos {
-            color: var(--grafico-pontos);
-        }
-
-        /* "scrobbles" e "pontos" ao lado do número */
-
-        .grafico-tooltip__unidade {
-            display: inline;
-            flex: 0 0 auto;
-            margin: 0;
-
-            color: var(--grafico-texto-secundario);
-            font-size: 0.72rem;
-            white-space: nowrap;
-        }
-
-        /* Seta e percentual compactos */
-
-        .grafico-tooltip__variacao {
-            display: inline-flex;
-            align-items: center;
-            flex: 0 0 auto;
-            gap: 4px;
-
-            margin: 0 0 0 auto;
-
-            font-size: 0.71rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .grafico-tooltip__variacao--alta {
-            color: var(--grafico-alta);
-        }
-
-        .grafico-tooltip__variacao--queda {
-            color: var(--grafico-queda);
-        }
-
-        .grafico-tooltip__variacao--neutra {
-            color: var(--grafico-neutro);
-        }
-
-        @media (max-width: 720px) {
-            .grafico-evolucao__cabecalho {
-                align-items: stretch;
-                flex-direction: column;
-                gap: 18px;
-            }
-
-            .grafico-evolucao__periodos {
-                width: 100%;
-                justify-content: flex-end;
-            }
-
-            .grafico-evolucao__periodo {
-                min-height: 38px;
-                padding-inline: 14px;
-                font-size: 0.85rem;
-            }
-
-            .grafico-evolucao__plot {
-                height: 420px;
-            }
-
-            .grafico-tooltip {
-                min-width: 185px;
-                max-width: calc(100vw - 24px);
-                padding: 10px 12px;
-                font-size: 0.78rem;
-            }
-
-            .grafico-tooltip__rotulo {
-                white-space: normal;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* ----- MARCOS DO ARTISTA ----- */
-
-        .marco {
-            --mar-fundo:
-                var(--card-fundo, rgba(255, 255, 255, 0.04));
-
-            --mar-borda:
-                var(--card-borda, rgba(255, 255, 255, 0.1));
-
-            --mar-texto:
-                var(--texto-principal, #f4f7fa);
-
-            --mar-sec:
-                var(--texto-secundario, #aab4c0);
-
-            --mar-cor:
-                var(--cor-destaque, #08d4f2);
-
-            --mar-cor2:
-                var(--cor-secundaria, #08dfb0);
-        }
-
-        .marco,
-        .marco * {
-            box-sizing: border-box;
-        }
-
-        .marco .topo {
-            margin-bottom: 22px;
-        }
-
-        .marco .topo h2 {
-            margin: 0;
-        }
-
-        .marco .intro {
-            max-width: 680px;
-            margin: 7px 0 0;
-
-            color: var(--mar-sec);
-
-            font-size: 0.92rem;
-            line-height: 1.45;
-        }
-
-        .marco .grade {
-            display: grid;
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
-
-            grid-auto-rows: 1fr;
-            gap: 12px;
-        }
-
-        .marco .card {
-            display: flex;
-            flex-direction: column;
-
-            min-width: 0;
-            min-height: 158px;
-            padding: 14px;
-
-            border: 1px solid var(--mar-borda);
-            border-radius: 14px;
-
-            background: var(--mar-fundo);
-            color: var(--mar-texto);
-
-            overflow: hidden;
-
-            transition:
-                border-color 180ms ease,
-                background-color 180ms ease,
-                transform 180ms ease;
-        }
-
-        .marco .card:hover {
-            border-color: var(--mar-cor);
-            transform: translateY(-2px);
-        }
-
-        .marco .desta {
-            background:
-                linear-gradient(145deg,
-                    rgba(8, 212, 242, 0.08),
-                    rgba(8, 223, 176, 0.035)),
-                var(--mar-fundo);
-        }
-
-        /* Número principal */
-
-        .marco .valor {
-            display: flex;
-            align-items: baseline;
-            gap: 5px;
-
-            margin: 0;
-
-            color: var(--mar-texto);
-
-            font-size: var(--texto-numero);
-            font-weight: var(--peso-bold);
-            line-height: 1;
-            letter-spacing: -0.025em;
-        }
-
-        /* Unidade gerada conforme a classe do card */
-
-        .marco .valor::after {
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-semi);
-            line-height: 1;
-            letter-spacing: 0;
-        }
-
-        .marco .scr .valor::after {
-            content: "scrobbles";
-        }
-
-        .marco .sem .valor::after {
-            content: "semanas";
-        }
-
-        .marco .vez .valor::after {
-            content: "vezes";
-        }
-
-        /* Singular: adicione class="sing" ao article */
-
-        .marco .scr.sing .valor::after {
-            content: "scrobble";
-        }
-
-        .marco .sem.sing .valor::after {
-            content: "semana";
-        }
-
-        .marco .vez.sing .valor::after {
-            content: "vez";
-        }
-
-        /* Texto principal */
-
-        .marco .texto {
-            min-height: 2.5em;
-            margin: 5px 0 10px;
-
-            color: var(--mar-sec);
-
-            font-size: var(--texto-normal);
-            font-weight: 500;
-            line-height: 1.25;
-        }
-
-        /* Textos automáticos dos cards de semanas */
-
-        .marco .s1000 .texto::after {
-            content: "com mais de 1.000 scrobbles";
-        }
-
-        .marco .s700 .texto::after {
-            content: "com mais de 700 scrobbles";
-        }
-
-        .marco .s500 .texto::after {
-            content: "com mais de 500 scrobbles";
-        }
-
-        .marco .s200 .texto::after {
-            content: "com mais de 200 scrobbles";
-        }
-
-        /* Bloco inferior padronizado */
-
-        .marco .info {
-            display: grid;
-            grid-template-rows: 14px 18px 15px;
-            align-items: center;
-            gap: 2px;
-
-            width: 100%;
-            height: 62px;
-            margin-top: auto;
-            padding-top: 9px;
-
-            border-top: 1px solid var(--mar-borda);
-        }
-
-        .marco .rotul {
-            color: var(--mar-sec);
-
-            font-size: var(--texto-pequeno);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* Texto automático dos cards de semanas */
-
-        .marco .sem .rotul::after {
-            content: "Última vez em";
-        }
-
-        .marco .music {
-            display: block;
-            width: 100%;
-
-            color: var(--mar-texto);
-
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-semi);
-            line-height: 1.25;
-
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .marco .vazio {
-            visibility: hidden;
-        }
-
-        .marco .data {
-            color: var(--mar-cor2);
-
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-semi);
-        }
-
-        @media (max-width: 980px) {
-            .marco .grade {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 560px) {
-            .marco .grade {
-                grid-template-columns: 1fr;
-                gap: 9px;
-            }
-
-            .marco .card {
-                min-height: 152px;
-                padding: 13px;
-            }
-
-            .marco .valor {
-                font-size: 1.4rem;
-            }
-
-            .marco .texto {
-                min-height: auto;
-            }
-
-            .marco .info {
-                height: 60px;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        .titulo-bloco-desempenho::before {
-            content: "Desempenho por período"
-        }
-
-
-        .titulo-bloco-semanas::before {
-            content: "Desempenho por semanas"
-        }
-
-        .titulo-bloco-albuns::before {
-            content: "Principais álbuns"
-        }
-
-        .titulo-bloco-musicas::before {
-            content: "Principais músicas"
-        }
-
-        .titulo-bloco-certificados::before {
-            content: "Últimos certificados"
-        }
-
-        .titulo-bloco-no1::before {
-            content: "Últimas músicas no topo"
-        }
-
-        .titulo-bloco-atoprincipal::before {
-            content: "Ato principal e participações"
-        }
-
-        .titulo-bloco-recordes::before {
-            content: "Ato principal"
-        }
-
-
-
-
-
-        img.imagem-fluida {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button.btn,
-        select.seletor-periodo {
-            font-family: inherit;
-        }
-
-        button.btn {
-            border: 0;
-            cursor: pointer;
-        }
-
-        button.btn:disabled {
-            cursor: not-allowed;
-            opacity: 0.42;
-        }
-
-        :focus-visible {
-            outline: 0.18rem solid rgba(156, 156, 166, 0.8);
-            outline-offset: 0.18rem;
-        }
-
-        .pagina {
-            min-height: 100vh;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-        }
-
-        .spotify-fontes {
-            display: none;
-        }
-
-        .container {
-            width: min(100% - 2rem, var(--largura-container));
-            margin-inline: auto;
-        }
-
-        .conteudo-periodo {
-            display: none;
-        }
-
-        .conteudo-periodo-ativo {
-            display: block;
-        }
-
-        .hero-area {
-            color: var(--cor-clara);
-            background:
-                radial-gradient(circle at 72% 26%, rgba(8, 223, 176, 0.6), transparent 32%),
-                linear-gradient(155deg, var(--cor-hero-1), var(--cor-hero-2), var(--cor-hero-3));
-            overflow: hidden;
-        }
-
-        .site-header {
-            padding-block: 1.5rem 0;
-        }
-
-        .site-header-container {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            gap: 1.25rem;
-            padding-bottom: 1.35rem;
-            border-bottom: 0.0625rem solid rgba(244, 244, 246, 0.22);
-        }
-
-        .logo-toncharts {
-            display: grid;
-            grid-template-columns: auto auto;
-            align-items: end;
-            width: fit-content;
-            line-height: 0.86;
-            letter-spacing: -0.08em;
-        }
-
-        .logo-toncharts-palavra-1,
-        .logo-toncharts-palavra-2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-        }
-
-        .logo-toncharts-palavra-1 {
-            font-weight: var(--peso-bold);
-        }
-
-        .logo-toncharts-palavra-2 {
-            font-weight: var(--peso-normal);
-        }
-
-        .site-nav {
-            display: grid;
-            grid-auto-flow: column;
-            justify-content: end;
-            align-items: center;
-            gap: clamp(1rem, 2vw, 1.8rem);
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .site-nav::-webkit-scrollbar {
-            display: none;
-        }
-
-        .site-nav-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: var(--texto-normal);
-        }
-
-        .site-nav-icone {
-            line-height: 1;
-            display: none
-        }
-
-        .site-nav-link:hover,
-        .site-nav-link-ativo {
-            opacity: 1;
-            transform: translateY(-0.08rem);
-        }
-
-        .site-nav-link-ativo {
-            font-weight: var(--peso-semi);
-        }
-
-        .btn-tema {
-            width: 2.6rem;
-            height: 2.6rem;
-            display: grid;
-            place-items: center;
-            border-radius: var(--raio-full);
-            color: var(--cor-clara);
-            background: rgba(244, 244, 246, 0.14);
-            transition: background var(--transicao), transform var(--transicao);
-        }
-
-        .btn-tema:hover {
-            background: rgba(244, 244, 246, 0.24);
-            transform: translateY(-0.08rem);
-        }
-
-        .hero-artista {
-            padding-block: 2.2rem 4.5rem;
-        }
-
-        .hero-topo {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-titulo-grupo {
-            display: grid;
-            gap: 0.6rem;
-        }
-
-        .hero-titulo {
-            margin: 0;
-            font-size: clamp(2rem, 5vw, 2rem);
-            font-weight: var(--peso-bold);
-            line-height: 0.95;
-            letter-spacing: -0.045em;
-        }
-
-        .hero-link-spotify {
-            width: fit-content;
-            display: grid;
-            grid-template-columns: auto auto;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-semi);
-            opacity: 0.9;
-            transition: opacity var(--transicao), transform var(--transicao);
-        }
-
-        .hero-link-spotify:hover {
-            opacity: 1;
-            transform: translateY(-0.08rem);
-        }
-
-        .seletor-periodo {
-            appearance: none;
-            min-width: 9rem;
-            border: 0;
-            border-radius: 0;
-            color: var(--cor-clara);
-            background-color: rgba(244, 244, 246, 0.2);
-            background-image:
-                linear-gradient(45deg, transparent 50%, var(--cor-clara) 50%),
-                linear-gradient(135deg, var(--cor-clara) 50%, transparent 50%);
-            background-position:
-                calc(100% - 1.1rem) 50%,
-                calc(100% - 0.75rem) 50%;
-            background-size: 0.45rem 0.45rem, 0.45rem 0.45rem;
-            background-repeat: no-repeat;
-            padding: 0.75rem 2.6rem 0.75rem 1rem;
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-semi);
-            cursor: pointer;
-            transition: background-color var(--transicao);
-        }
-
-        .seletor-periodo:hover {
-            background-color: rgba(244, 244, 246, 0.28);
-        }
-
-        .seletor-periodo-claro {
-            color: var(--cor-texto);
-            background-color: transparent;
-            background-image:
-                linear-gradient(45deg, transparent 50%, var(--cor-texto) 50%),
-                linear-gradient(135deg, var(--cor-texto) 50%, transparent 50%);
-            font-weight: var(--peso-semi);
-        }
-
-        .opcao-periodo {
-            color: var(--cor-escura);
-            background: var(--cor-clara);
-        }
-
-        .hero-grade {
-            --hero-gap: 1.4rem;
-            --hero-card-altura: 8.9rem;
-            --hero-imagem-tamanho: calc((var(--hero-card-altura) * 2) + var(--hero-gap));
-
-            display: grid;
-            grid-template-columns: minmax(16rem, var(--hero-imagem-tamanho)) repeat(3, minmax(8.4rem, 1fr));
-            grid-template-rows: repeat(2, var(--hero-card-altura));
-            align-items: stretch;
-            gap: var(--hero-gap);
-        }
-
-        .hero-imagem-box {
-            grid-column: 1 / 2;
-            grid-row: 1 / 3;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            aspect-ratio: 1 / 1;
-            align-self: stretch;
-            margin: 0;
-            background: var(--cor-superficie-2);
-            overflow: hidden;
-            box-shadow: var(--sombra);
-        }
-
-        .card-metrica {
-            min-height: 0;
-            height: 100%;
-            display: grid;
-            align-content: start;
-            gap: 0.45rem;
-            padding: 1rem;
-            color: var(--cor-clara);
-            background: rgba(8, 117, 132, 0.3);
-            transition: transform var(--transicao), background var(--transicao);
-        }
-
-        .card-metrica:hover {
-            transform: translateY(-0.16rem);
-            background: rgba(8, 117, 132, 0.42);
-        }
-
-        .card-metrica-numero {
-            font-size: var(--texto-numero);
-            font-weight: var(--peso-bold);
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-        }
-
-        .card-metrica-label {
-            max-width: 7.5rem;
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-semi);
-            line-height: 0.96;
-        }
-
-        .badge-crescimento {
-            width: fit-content;
-            display: grid;
-            grid-template-columns: auto auto;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.18rem 0.5rem;
-            border-radius: var(--raio-full);
-            background: var(--cor-badge);
-            font-size: 0.7rem;
-            font-weight: var(--peso-semi);
-            line-height: 1;
-        }
-
-        .badge-crescimento-hero {
-            background: rgba(244, 244, 246, 0.1);
-        }
-
-        .card-metrica-ranking {
-            font-size: var(--texto-pequeno);
-            opacity: 0.78;
-        }
-
-        .hero-imagem-box {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            align-self: center;
-            margin: 0;
-            background: var(--cor-superficie-2);
-            overflow: hidden;
-            box-shadow: var(--sombra);
-        }
-
-        .hero-imagem {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity var(--transicao), transform var(--transicao);
-        }
-
-        .hero-imagem-carregada {
-            opacity: 1;
-        }
-
-        .hero-imagem-box:hover .hero-imagem {
-            transform: scale(1.025);
-        }
-
-        .hero-placeholder {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            padding: 1rem;
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-semi);
-            text-align: center;
-        }
-
-        .hero-imagem-box-com-imagem .hero-placeholder {
-            display: none;
-        }
-
-        .conteudo-principal {
-            padding-block: 3rem 3.6rem;
-        }
-
-        .bloco-geral {
-            margin-bottom: 3rem;
-        }
-
-        .cabecalho-bloco {
-            min-height: 40px;
-            display: grid;
-            vertical-align: middle;
-            grid-template-columns: minmax(0, 1fr) auto;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.1rem;
-            border-bottom: 0.0625rem solid var(--cor-linha);
-        }
-
-        .titulo-bloco {
-            margin: 0;
-            color: var(--cor-ciano);
-            font-size: var(--texto-titulo);
-            font-weight: var(--peso-bold);
-            line-height: 1;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .grafico-area {
-            max-width: 100%;
-            min-height: var(--altura-grafico);
-            padding: 2.2rem 1.1rem 1.1rem;
-            background: var(--cor-superficie);
-            overflow-x: hidden;
-        }
-
-        .grafico-periodo {
-            width: 100%;
-            max-width: 100%;
-            height: var(--altura-grafico);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-            align-items: end;
-            gap: 0.3rem;
-        }
-
-        .grafico-item {
-            height: 100%;
-            display: grid;
-            grid-template-rows: 1fr auto;
-            align-items: end;
-            gap: 0.5rem;
-        }
-
-        .barra-area {
-            height: 100%;
-            display: grid;
-            align-items: end;
-            overflow: visible;
-        }
-
-        .barra-preenchimento {
-            position: relative;
-            width: 100%;
-            min-height: 2rem;
-            display: block;
-            padding-top: 0;
-            color: var(--cor-texto-inverso);
-            background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
-            font-size: var(--texto-pequeno);
-            font-weight: var(--peso-semi);
-            transition:
-                height 360ms cubic-bezier(0.22, 1, 0.36, 1),
-                background 180ms ease;
-        }
-
-        .barra-valor {
-            position: absolute;
-            top: -1.25rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--cor-texto);
-            font-size: 0.7rem;
-            font-weight: var(--peso-semi);
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-        .grafico-item:hover .barra-preenchimento {
-            background: linear-gradient(0deg, var(--cor-hero-1), var(--cor-hero-2));
-        }
-
-        .barra-legenda {
-            display: grid;
-            justify-items: center;
-            color: var(--cor-texto);
-            font-size: var(--texto-pequeno);
-            line-height: 1.05;
-        }
-
-        .altura-38 {
-            height: 38%;
-        }
-
-        .altura-45 {
-            height: 45%;
-        }
-
-        .altura-52 {
-            height: 52%;
-        }
-
-        .altura-58 {
-            height: 58%;
-        }
-
-        .altura-64 {
-            height: 64%;
-        }
-
-        .altura-70 {
-            height: 70%;
-        }
-
-        .altura-76 {
-            height: 76%;
-        }
-
-        .altura-82 {
-            height: 82%;
-        }
-
-        .altura-88 {
-            height: 88%;
-        }
-
-        .altura-95 {
-            height: 95%;
-        }
-
-        .semanas-container {
-            width: min(100% - 2rem, var(--largura-container));
-            margin-inline: auto;
-        }
-
-        .semanas-area {
-            width: 100%;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-
-        .sem-item {
-            position: relative;
-            aspect-ratio: 1/1;
-            width: 100%;
-            min-width: var(--tamanho-semana);
-            display: grid;
-            place-items: center;
-            border: 0;
-            padding: 0;
-            background: var(--cor-superficie-2) !important;
-            opacity: 1 !important;
-            color: var(--cor-texto) !important;
-            -webkit-text-fill-color: var(--cor-texto) !important;
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-normal);
-            line-height: 1;
-            transition: transform var(--transicao), box-shadow var(--transicao);
-        }
-
-        .sem-item:hover,
-        .sem-item:focus-visible {
-            transform: scale(1.45);
-            box-shadow: 0 0 0 .12rem rgba(156, 156, 166, .8);
-            z-index: 999;
-        }
-
-        .grade-semanas button.btn.sem-item[data-posicao="#0"],
-        .grade-semanas button.btn.sem-item[data-posicao="#1"],
-        .grade-semanas button.btn.sem-item[data-posicao="#2"],
-        .grade-semanas button.btn.sem-item[data-posicao="#3"],
-        .grade-semanas button.btn.sem-item[data-posicao="#4"],
-        .grade-semanas button.btn.sem-item[data-posicao="#5"],
-        .grade-semanas button.btn.sem-item[data-posicao="#6"],
-        .grade-semanas button.btn.sem-item[data-posicao="#7"],
-        .grade-semanas button.btn.sem-item[data-posicao="#8"],
-        .grade-semanas button.btn.sem-item[data-posicao="#9"],
-        .grade-semanas button.btn.sem-item[data-posicao="#10"] {
-            color: var(--cor-texto-inverso) !important;
-            -webkit-text-fill-color: var(--cor-texto-inverso) !important;
-            font-weight: var(--peso-semi) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-1 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-2 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-3 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-4 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-5 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-6 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-7 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-8 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-9 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-10 {
-            background: rgba(8, 218, 209, .10) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-11 {
-            background: rgba(8, 218, 209, .11) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-12 {
-            background: rgba(8, 218, 209, .12) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-13 {
-            background: rgba(8, 218, 209, .13) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-14 {
-            background: rgba(8, 218, 209, .14) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-15 {
-            background: rgba(8, 218, 209, .15) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-16 {
-            background: rgba(8, 218, 209, .16) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-17 {
-            background: rgba(8, 218, 209, .17) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-18 {
-            background: rgba(8, 218, 209, .18) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-19 {
-            background: rgba(8, 218, 209, .19) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-20 {
-            background: rgba(8, 218, 209, .20) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-21 {
-            background: rgba(8, 218, 209, .21) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-22 {
-            background: rgba(8, 218, 209, .22) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-23 {
-            background: rgba(8, 218, 209, .23) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-24 {
-            background: rgba(8, 218, 209, .24) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-25 {
-            background: rgba(8, 218, 209, .25) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-26 {
-            background: rgba(8, 218, 209, .26) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-27 {
-            background: rgba(8, 218, 209, .27) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-28 {
-            background: rgba(8, 218, 209, .28) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-29 {
-            background: rgba(8, 218, 209, .29) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-30 {
-            background: rgba(8, 218, 209, .30) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-31 {
-            background: rgba(8, 218, 209, .31) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-32 {
-            background: rgba(8, 218, 209, .32) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-33 {
-            background: rgba(8, 218, 209, .33) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-34 {
-            background: rgba(8, 218, 209, .34) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-35 {
-            background: rgba(8, 218, 209, .35) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-36 {
-            background: rgba(8, 218, 209, .36) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-37 {
-            background: rgba(8, 218, 209, .37) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-38 {
-            background: rgba(8, 218, 209, .38) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-39 {
-            background: rgba(8, 218, 209, .39) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-40 {
-            background: rgba(8, 218, 209, .40) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-41 {
-            background: rgba(8, 218, 209, .41) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-42 {
-            background: rgba(8, 218, 209, .42) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-43 {
-            background: rgba(8, 218, 209, .43) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-44 {
-            background: rgba(8, 218, 209, .44) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-45 {
-            background: rgba(8, 218, 209, .45) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-46 {
-            background: rgba(8, 218, 209, .46) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-47 {
-            background: rgba(8, 218, 209, .47) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-48 {
-            background: rgba(8, 218, 209, .48) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-49 {
-            background: rgba(8, 218, 209, .49) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-50 {
-            background: rgba(8, 218, 209, .50) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-51 {
-            background: rgba(8, 218, 209, .51) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-52 {
-            background: rgba(8, 218, 209, .52) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-53 {
-            background: rgba(8, 218, 209, .53) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-54 {
-            background: rgba(8, 218, 209, .54) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-55 {
-            background: rgba(8, 218, 209, .55) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-56 {
-            background: rgba(8, 218, 209, .56) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-57 {
-            background: rgba(8, 218, 209, .57) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-58 {
-            background: rgba(8, 218, 209, .58) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-59 {
-            background: rgba(8, 218, 209, .59) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-60 {
-            background: rgba(8, 218, 209, .60) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-61 {
-            background: rgba(8, 218, 209, .61) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-62 {
-            background: rgba(8, 218, 209, .62) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-63 {
-            background: rgba(8, 218, 209, .63) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-64 {
-            background: rgba(8, 218, 209, .64) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-65 {
-            background: rgba(8, 218, 209, .65) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-66 {
-            background: rgba(8, 218, 209, .66) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-67 {
-            background: rgba(8, 218, 209, .67) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-68 {
-            background: rgba(8, 218, 209, .68) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-69 {
-            background: rgba(8, 218, 209, .69) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-70 {
-            background: rgba(8, 218, 209, .70) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-71 {
-            background: rgba(8, 218, 209, .71) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-72 {
-            background: rgba(8, 218, 209, .72) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-73 {
-            background: rgba(8, 218, 209, .73) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-74 {
-            background: rgba(8, 218, 209, .74) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-75 {
-            background: rgba(8, 218, 209, .75) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-76 {
-            background: rgba(8, 218, 209, .76) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-77 {
-            background: rgba(8, 218, 209, .77) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-78 {
-            background: rgba(8, 218, 209, .78) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-79 {
-            background: rgba(8, 218, 209, .79) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-80 {
-            background: rgba(8, 218, 209, .80) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-81 {
-            background: rgba(8, 218, 209, .81) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-82 {
-            background: rgba(8, 218, 209, .82) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-83 {
-            background: rgba(8, 218, 209, .83) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-84 {
-            background: rgba(8, 218, 209, .84) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-85 {
-            background: rgba(8, 218, 209, .85) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-86 {
-            background: rgba(8, 218, 209, .86) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-87 {
-            background: rgba(8, 218, 209, .87) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-88 {
-            background: rgba(8, 218, 209, .88) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-89 {
-            background: rgba(8, 218, 209, .89) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-90 {
-            background: rgba(8, 218, 209, .90) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-91 {
-            background: rgba(8, 218, 209, .91) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-92 {
-            background: rgba(8, 218, 209, .92) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-93 {
-            background: rgba(8, 218, 209, .93) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-94 {
-            background: rgba(8, 218, 209, .94) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-95 {
-            background: rgba(8, 218, 209, .95) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-96 {
-            background: rgba(8, 218, 209, .96) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-97 {
-            background: rgba(8, 218, 209, .97) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-98 {
-            background: rgba(8, 218, 209, .98) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-99 {
-            background: rgba(8, 218, 209, .99) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.sem-item-100 {
-            background: rgba(8, 218, 209, 1) !important;
-        }
-
-        .grade-semanas button.btn.sem-item.semana-melhor-desempenho {
-            background: var(--cor-texto) !important;
-            color: var(--cor-texto-inverso) !important;
-            opacity: 1 !important;
-            font-weight: var(--peso-bold) !important;
-        }
-
-
-        .grade-semanas {
-            width: 100%;
-            min-width: 100%;
-            display: grid;
-            grid-template-columns: repeat(25, minmax(var(--tamanho-semana), 1fr));
-            row-gap: 1rem;
-            align-items: center;
-        }
-
-        .sem-cel {
-            position: relative;
-            display: grid;
-        }
-
-        .semana-marcador-ano {
-            position: absolute;
-            top: -0.75rem;
-            left: 0;
-            z-index: 2;
-            text-align: center;
-            color: var(--cor-texto-mudo);
-            font-size: var(--texto-pequeno);
-            font-weight: var(--peso-semi);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .semana-inicio-ano::before {
-            content: attr(data-ano);
-            position: absolute;
-            top: -0.75rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--cor-texto-mudo);
-            font-size: 0.5rem;
-            font-weight: var(--peso-semi);
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-
-
-
-
-
-        .tooltip-semana {
-            position: fixed;
-            z-index: 99999;
-            max-width: 14rem;
-            display: grid;
-            gap: 0.3rem;
-            padding: 0.55rem 0.65rem;
-            border-radius: var(--raio-sm);
-            color: var(--cor-clara);
-            background: var(--cor-tooltip);
-            box-shadow: var(--sombra);
-            font-size: var(--texto-pequeno);
-            line-height: 1.25;
-            pointer-events: none;
-            opacity: 0;
-            transform: translate(-50%, -120%);
-            transition: opacity var(--transicao-popup), transform var(--transicao-popup);
-        }
-
-        .tooltip-semana-visivel {
-            opacity: 1;
-            transform: translate(-50%, -135%);
-        }
-
-        .tooltip-data {
-            color: var(--cor-clara-2);
-            font-size: 0.6rem;
-        }
-
-        .tooltip-linha {
-            display: grid;
-            grid-template-columns: auto auto;
-            justify-content: start;
-            gap: 0.35rem;
-            align-items: baseline;
-        }
-
-        .tooltip-posicao,
-        .tooltip-melhor {
-            font-weight: var(--peso-semi);
-            background: var(--gradiente-destaque);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .tooltip-plays {
-            color: var(--cor-clara-2);
-        }
-
-        .tooltip-melhor {
-            display: none;
-            width: fit-content;
-        }
-
-        .tooltip-melhor-visivel {
-            display: inline-grid;
-        }
-
-        .albuns-area,
-        .top-cards-area,
-        .certificados-area {
-            overflow-x: visible;
-        }
-
-        .grade-albuns,
-        .grade-top-cards,
-        .grade-certificados {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 1.25rem;
-        }
-
-        .card-album {
-            display: grid;
-            gap: 0.7rem;
-        }
-
-        .card-album-capa {
-            position: relative;
-            aspect-ratio: 1 / 1;
-            display: grid;
-            place-items: center;
-            overflow: hidden;
-            color: var(--cor-clara);
-            background: var(--cor-superficie-2);
-        }
-
-        .card-album-capa::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            width: 3rem;
-            height: 3rem;
-            background: var(--gradiente-destaque);
-            clip-path: polygon(0 0, 100% 0, 0 100%);
-            pointer-events: none;
-        }
-
-        .card-album-rank {
-            position: absolute;
-            top: 0.35rem;
-            left: 0.45rem;
-            z-index: 2;
-            color: var(--cor-escura);
-            font-size: 1.3rem;
-            font-weight: var(--peso-bold);
-            line-height: 0.8;
-            pointer-events: none;
-        }
-
-        .card-album-imagem,
-        .musica-imagem,
-        .card-certificado-imagem {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-album-overlay,
-        .musica-capa-overlay {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            color: var(--cor-clara);
-            background: rgba(20, 20, 26, 0.58);
-            opacity: 0;
-            transition: opacity var(--transicao);
-        }
-
-        .card-album-capa:hover .card-album-overlay,
-        .musica-capa-link:hover .musica-capa-overlay {
-            opacity: 1;
-        }
-
-        .card-album-placeholder {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            padding: 0.75rem;
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-semi);
-            text-align: center;
-        }
-
-        .card-album-com-imagem .card-album-placeholder {
-            display: none;
-        }
-
-        .card-album-info {
-            display: grid;
-            gap: 0.42rem;
-        }
-
-        .card-album-nome {
-            height: 20px;
-            color: var(--cor-texto);
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-semi);
-            line-height: 1.1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card-album-meta {
-            padding-top: 0.45rem;
-            border-top: 0.0625rem solid var(--cor-linha);
-            display: grid;
-            gap: 0.35rem;
-            color: var(--cor-texto-mudo);
-            font-size: 0.7rem;
-            line-height: 1.15;
-        }
-
-        .card-album-numero {
-            color: var(--cor-texto);
-            font-weight: var(--peso-semi);
-        }
-
-        .album-top5 {
-            display: grid;
-            gap: 0;
-            margin-top: 0.25rem;
-        }
-
-        .album-top5-titulo {
-            padding-block: 0.26rem;
-            border-bottom: 0.0625rem solid var(--cor-linha);
-            color: var(--cor-texto-suave);
-            font-weight: var(--peso-bold);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .album-top5-musica {
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr);
-            align-items: center;
-            gap: 0.35rem;
-            padding-block: 0.26rem;
-            border-bottom: 0.0625rem solid var(--cor-linha);
-        }
-
-        .album-top5-plays {
-            color: var(--cor-texto);
-            font-weight: var(--peso-semi);
-            white-space: nowrap;
-        }
-
-        .album-top5-nome {
-            color: var(--cor-texto-mudo);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .top-card {
-            aspect-ratio: 1 / 1;
-            display: grid;
-            align-content: start;
-            gap: 0.38rem;
-            padding: 1rem;
-            background: var(--cor-superficie);
-            transition: transform var(--transicao), box-shadow var(--transicao);
-        }
-
-        .top-card:hover {
-            transform: translateY(-0.16rem);
-            box-shadow: var(--sombra);
-        }
-
-        .top-card-destaque {
-            color: var(--cor-escura);
-            background: linear-gradient(180deg, var(--cor-ciano), var(--cor-verde));
-        }
-
-        .top-card-numero {
-            font-size: var(--texto-numero);
-            font-weight: var(--peso-bold);
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-        }
-
-        .top-card-label {
-            max-width: 7.4rem;
-            font-size: var(--texto-normal);
-            font-weight: var(--peso-semi);
-            line-height: 0.96;
-        }
-
-        .top-card-info {
-            display: grid;
-            gap: 0.16rem;
-            font-size: var(--texto-pequeno);
-            opacity: 0.76;
-            line-height: 1.15;
-        }
-
-        .musicas-area {
-            margin-top: 1.25rem;
-            overflow-x: auto;
-        }
-
-        .lista-musicas {
-            min-width: var(--largura-musicas);
-            display: grid;
-        }
-
-        .cabecalho-musicas,
-        .linha-musica {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr)) 350px repeat(5, minmax(0, 1fr));
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .linha-musica-feat {
-            opacity: 0.6
-        }
-
-        .linha-musica-feat:hover {
-            opacity: 1
-        }
-
-        .cabecalho-musicas {
-            padding: 0 0.8rem 0.65rem;
-            font-size: var(--texto-pequeno);
-            font-weight: var(--peso-semi);
-        }
-
-        .cabecalho-musica-ordenavel {
-            width: 100%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.3rem;
-            border: 0;
-            padding: 0;
-            color: inherit;
-            background: transparent;
-            font: inherit;
-            text-align: left;
-            cursor: pointer;
-            transition:
-                color var(--transicao),
-                opacity var(--transicao);
-        }
-
-        .cabecalho-musica-ordenavel::after {
-            content: "↕";
-            font-size: 0.65rem;
-            opacity: 0.4;
-        }
-
-        .cabecalho-musica-ordenavel:hover {
-            color: var(--cor-ciano);
-        }
-
-        .cabecalho-musica-ordenavel[data-direcao="desc"] {
-            color: var(--cor-ciano);
-        }
-
-        .cabecalho-musica-ordenavel[data-direcao="desc"]::after {
-            content: "↓";
-            opacity: 1;
-        }
-
-        .cabecalho-musica-ordenavel[data-direcao="asc"] {
-            color: var(--cor-ciano);
-        }
-
-        .cabecalho-musica-ordenavel[data-direcao="asc"]::after {
-            content: "↑";
-            opacity: 1;
-        }
-
-        .linha-musica {
-            min-height: 3rem;
-            padding: 0.5rem 0.8rem;
-            border-top: 0.0625rem solid var(--cor-linha);
-            font-size: var(--texto-medio);
-            transition: background var(--transicao);
-        }
-
-        .linha-musica:hover {
-            background: var(--cor-superficie);
-        }
-
-        .linhas-musicas {
-            counter-reset: posicao-musica;
-        }
-
-        .linha-musica:not([hidden]) {
-            counter-increment: posicao-musica;
-        }
-
-        .musica-posicao {
-            font-size: 1.3rem;
-            font-weight: var(--peso-bold);
-            line-height: 1;
-            letter-spacing: -0.05em;
-        }
-
-        .musica-posicao::before {
-            content: "#" counter(posicao-musica);
-            font-weight: var(--peso-bold);
-            color: var(--cor-texto);
-        }
-
-        .musica-ranking {
-            font-weight: var(--peso-semi);
-        }
-
-        .musica-ranking::before {
-            content: "#";
-            color: var(--cor-media);
-            font-weight: var(--peso-semi);
-        }
-
-        .musica-principal {
-            display: grid;
-            grid-template-columns: 2.4rem minmax(0, 1fr);
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .musica-capa-link {
-            position: relative;
-            width: 2.4rem;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--cor-ciano), var(--cor-verde));
-        }
-
-        .musica-info {
-            display: grid;
-            gap: 0.15rem;
-        }
-
-        .musica-nome {
-            color: var(--cor-texto);
-            font-weight: var(--peso-semi);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .musica-artista {
-            color: var(--cor-texto-mudo);
-            font-size: var(--texto-normal);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .musica-numero {
-            font-weight: var(--peso-bold);
-        }
-
-        .pico-musica {
-            display: grid;
-            grid-template-columns: auto auto;
-            align-items: start;
-            justify-content: start;
-            gap: 0.18rem;
-        }
-
-        .pico-posicao {
-            font-weight: var(--peso-semi);
-            line-height: 1;
-        }
-
-        .pico-vezes {
-            color: var(--cor-texto-mudo);
-            font-size: var(--texto-pequeno);
-            transform: translateY(-0.25rem);
-        }
-
-        .acoes-musicas {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1.25rem;
-        }
-
-        .btn-musicas {
-            width: fit-content;
-            min-width: 8.2rem;
-            min-height: 2.6rem;
-            padding: 0.75rem 1.2rem;
-            color: var(--cor-escura);
-            background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-semi);
-            transition: transform var(--transicao), box-shadow var(--transicao), opacity var(--transicao);
-        }
-
-        .btn-musicas:hover:not(:disabled) {
-            transform: translateY(-0.12rem);
-            box-shadow: var(--sombra);
-        }
-
-        .btn-exibir-mais {
-            justify-self: start;
-        }
-
-        .btn-recolher-tudo {
-            justify-self: end;
-            color: var(--cor-texto);
-            background: var(--cor-superficie);
-        }
-
-        .card-certificado {
-            min-height: 14.2rem;
-            display: grid;
-            grid-template-rows: auto auto auto 1fr auto auto;
-            gap: 0.45rem;
-            padding: 0.85rem;
-            color: var(--cor-clara);
-            background: var(--cor-ouro);
-            transition: transform var(--transicao), box-shadow var(--transicao);
-        }
-
-        .card-certificado:hover {
-            transform: translateY(-0.16rem);
-            box-shadow: var(--sombra);
-        }
-
-        .card-certificado-platina {
-            background: var(--cor-platina);
-        }
-
-        .card-certificado-diamante {
-            background: var(--cor-diamante);
-        }
-
-        .card-certificado-topo {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 0.5rem;
-            font-size: var(--texto-pequeno);
-        }
-
-        .card-certificado-nome {
-            color: var(--cor-clara);
-            font-size: 0.7rem;
-            font-weight: var(--peso-semi);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card-certificado-artista {
-            margin-top: -0.2rem;
-            font-size: var(--texto-pequeno);
-            opacity: 0.9;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card-certificado-capa {
-            width: 4.3rem;
-            aspect-ratio: 1 / 1;
-            justify-self: center;
-            align-self: center;
-            overflow: hidden;
-            background: rgba(244, 244, 246, 0.22);
-        }
-
-        .card-certificado-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            padding-top: 0.45rem;
-            border-top: 0.0625rem solid rgba(244, 244, 246, 0.35);
-            text-align: center;
-        }
-
-        .card-certificado-numero {
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-bold);
-            line-height: 1;
-        }
-
-        .card-certificado-label {
-            font-size: 0.6rem;
-            opacity: 0.9;
-        }
-
-        .card-certificado-data {
-            text-align: center;
-            font-size: var(--texto-pequeno);
-            opacity: 0.78;
-        }
-
-        .site-footer {
-            color: var(--cor-texto-mudo);
-            background: var(--cor-rodape);
-            padding-block: 2rem;
-        }
-
-        .site-footer-container {
-            display: grid;
-            gap: 1.4rem;
-        }
-
-        .footer-principal {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .footer-logo {
-            color: var(--cor-texto-mudo);
-        }
-
-        .footer-nav {
-            display: grid;
-            grid-auto-flow: column;
-            justify-content: end;
-            align-items: center;
-            gap: clamp(1rem, 2vw, 1.8rem);
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .footer-nav::-webkit-scrollbar {
-            display: none;
-        }
-
-        .footer-link {
-            font-size: var(--texto-medio);
-            white-space: nowrap;
-        }
-
-        .footer-info {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            padding-top: 1.2rem;
-            border-top: 0.0625rem solid var(--cor-linha);
-        }
-
-        .footer-texto,
-        .footer-creditos {
-            margin: 0;
-            font-size: var(--texto-normal);
-            line-height: 1.5;
-        }
-
-
-        .footer-destaque {
-            font-weight: var(--peso-semi);
-        }
-
-
-        .bloco-no1 {
-            margin-bottom: 3rem;
-        }
-
-        .no1-area {
-            width: 100%;
-        }
-
-        .grade-no1 {
-            display: none;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        .grade-no1.conteudo-periodo-ativo {
-            display: grid;
-        }
-
-        .no1-card {
-            position: relative;
-            min-height: 3rem;
-            display: grid;
-            grid-template-columns: 3rem minmax(0, 1fr);
-            align-items: center;
-            gap: .9rem;
-            padding: .75rem;
-            background: var(--cor-superficie);
-            color: var(--cor-texto);
-            overflow: hidden;
-            transition: transform var(--transicao), background var(--transicao), box-shadow var(--transicao);
-        }
-
-        .no1-card:hover {
-            transform: translateY(-.12rem);
-            background: var(--cor-superficie-2) !important;
-            box-shadow: var(--sombra) !important;
-        }
-
-        .no1-capa {
-            position: relative;
-            aspect-ratio: 1/1;
-            width: 100%;
-            overflow: hidden;
-            background: var(--cor-superficie-2);
-        }
-
-        .no1-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity var(--transicao), transform var(--transicao);
-        }
-
-        .no1-card:hover .no1-img {
-            transform: scale(1.04);
-        }
-
-        .no1-card-com-img .no1-img {
-            opacity: 1;
-        }
-
-        .no1-placeholder {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            padding: .4rem;
-            color: var(--cor-texto-mudo);
-            font-size: .58rem;
-            font-weight: var(--peso-semi);
-            text-align: center;
-        }
-
-        .no1-card-com-img .no1-placeholder {
-            display: none;
-        }
-
-        .no1-seta {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            display: grid;
-            place-items: center;
-            color: var(--cor-clara);
-            background: rgba(20, 20, 26, .58);
-            opacity: 0;
-            transition: opacity var(--transicao);
-        }
-
-        .no1-card:hover .no1-seta {
-            opacity: 1;
-        }
-
-        .no1-icone {
-            font-size: .9rem;
-        }
-
-        .no1-info {
-            display: grid;
-            gap: .45rem;
-        }
-
-        .no1-topo {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            min-width: 0;
-        }
-
-        .no1-data {
-            color: var(--cor-texto-suave);
-            font-size: .72rem;
-            font-weight: var(--peso-normal);
-            line-height: 1.1;
-        }
-
-        .no1-vezes {
-            width: fit-content;
-            flex: 0 0 auto;
-            padding: .18rem .46rem;
-            background: var(--gradiente-destaque);
-            color: var(--cor-escura);
-            font-size: .68rem;
-            font-weight: var(--peso-bold);
-            line-height: 1;
-        }
-
-        .no1-nome {
-            color: var(--cor-texto);
-            font-size: .92rem;
-            font-weight: var(--peso-semi);
-            line-height: 1.08;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        .grafico-barra-periodo {
-            width: 100%;
-        }
-
-        .item-grafico-barra {
-            background: var(--cor-superficie);
-            padding: 20px;
-        }
-
-        .grafico-barra {
-            position: relative;
-            width: 100%;
-            display: grid;
-            gap: 0.45rem;
-        }
-
-        .grafico-barra-labels {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            align-items: end;
-            font-size: var(--texto-pequeno);
-            font-weight: var(--peso-semi);
-            line-height: 1;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-        }
-
-        .grafico-barra-label-ato {
-            justify-self: left;
-            background: var(--gradiente-destaque);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .grafico-barra-label-grupo {
-            justify-self: right;
-            color: var(--cor-texto-mudo);
-        }
-
-        .grafico-barra-trilha {
-            position: relative;
-            height: 2.5rem;
-            display: flex;
-            width: 100%;
-            overflow: hidden;
-            background: var(--cor-superficie-2);
-        }
-
-        .grafico-barra-segmento-ato {
-            width: var(--ato-pct);
-            height: 100%;
-            background: var(--gradiente-destaque);
-        }
-
-        .grafico-barra-segmento-grupo {
-            width: var(--grupo-pct);
-            height: 100%;
-            background: var(--cor-media);
-        }
-
-        .grafico-barra-encontro {
-            position: absolute;
-            left: var(--ato-pct);
-            top: 50%;
-            z-index: 3;
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        .grafico-barra-numero {
-            display: grid;
-            place-items: center;
-            min-width: 2.5rem;
-            height: 1.35rem;
-            font-size: var(--texto-medio);
-            font-weight: var(--peso-bold);
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-        .grafico-barra-numero-ato {
-            justify-self: end;
-            color: var(--cor-escura);
-        }
-
-        .grafico-barra-numero-grupo {
-            justify-self: start;
-            color: var(--cor-escura);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        .titulo-bloco-sequencias::before {
-            content: "Sequências consecutivas";
-        }
-
-        .sequencias-area {
-            width: 100%;
-        }
-
-        .sequencias-area.conteudo-periodo-ativo {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .sequencia-ranking {
-            display: grid;
-            gap: 1.1rem;
-        }
-
-        .sequencia-ranking-titulo {
-            position: relative;
-
-            margin: 0;
-            padding-right: 2rem;
-
-            display: flex;
-            align-items: baseline;
-            gap: 0.42rem;
-
-            line-height: 1.05;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .sequencia-ranking-titulo::before {
-            content: "Mais semanas consecutivas";
-            color: var(--cor-texto-mudo);
-            font-size: var(--texto-grande);
-            font-weight: var(--peso-normal);
-        }
-
-        .sequencia-ranking-titulo::after {
-            color: var(--cor-texto);
-            font-weight: var(--peso-semi);
-        }
-
-        .sequencia-ranking-chart .sequencia-ranking-titulo::after {
-            content: "no chart";
-        }
-
-        .sequencia-ranking-top10 .sequencia-ranking-titulo::after {
-            content: "no top 10";
-        }
-
-        .sequencia-ranking-top5 .sequencia-ranking-titulo::after {
-            content: "no top 5";
-        }
-
-        .sequencia-ranking-topo .sequencia-ranking-titulo::after {
-            content: "no topo";
-        }
-
-        .sequencia-ranking-seta {
-            position: absolute;
-            top: 50%;
-            right: 0.4rem;
-
-            transform: translateY(-50%);
-
-            color: var(--cor-texto-mudo);
-            font-size: 0.8rem;
-
-            transition: color var(--transicao);
-        }
-
-        .sequencia-ranking-titulo:hover .sequencia-ranking-seta {
-            color: var(--cor-ciano);
-        }
-
-        .sequencia-ranking-lista[hidden] {
-            display: none;
-        }
-
-        .sequencia-ranking-lista {
-            counter-reset: sequencia-posicao;
-            display: grid;
-            gap: 0.65rem;
-        }
-
-        .sequencia-linha {
-            position: relative;
-            z-index: 1;
-
-            counter-increment: sequencia-posicao;
-
-            display: grid;
-            grid-template-columns:
-                2.2rem minmax(15rem, 1.3fr) 6.5rem minmax(12rem, 1fr) 6.5rem 6.8rem;
-            grid-template-areas:
-                "posicao musica data-inicio grafico data-fim semanas";
-
-            align-items: center;
-            column-gap: 0.75rem;
-
-            min-height: 3rem;
-            padding: 0.5rem 1rem;
-
-            color: var(--cor-texto);
-            background: var(--cor-superficie);
-
-            transition:
-                background var(--transicao),
-                box-shadow var(--transicao),
-                transform var(--transicao);
-        }
-
-        .sequencia-linha:hover {
-            z-index: 2;
-            background: var(--cor-superficie-2);
-            box-shadow: var(--sombra);
-            transform: translateY(-0.08rem);
-        }
-
-        .sequencia-posicao {
-            grid-area: posicao;
-        }
-
-        .sequencia-posicao::before {
-            content: "#" counter(sequencia-posicao);
-            color: var(--cor-texto);
-            font-size: 1rem;
-            font-weight: var(--peso-bold);
-            line-height: 1;
-        }
-
-        .sequencia-musica {
-            grid-area: musica;
-
-            min-width: 0;
-            overflow: hidden;
-
-            color: var(--cor-texto);
-            font-size: 1rem;
-            font-weight: var(--peso-normal);
-            line-height: 1.1;
-
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .sequencia-data {
-            color: var(--cor-texto-mudo);
-            font-size: 0.7rem;
-            font-weight: var(--peso-normal);
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-        .sequencia-data-inicio {
-            grid-area: data-inicio;
-            text-align: right;
-        }
-
-        .sequencia-data-fim {
-            grid-area: data-fim;
-            text-align: left;
-        }
-
-        .sequencia-grafico {
-            grid-area: grafico;
-
-            width: 100%;
-            min-width: 0;
-            height: 1rem;
-
-            display: flex;
-            align-items: center;
-        }
-
-        .sequencia-progresso {
-            position: relative;
-
-            width: clamp(0%,
-                    calc(var(--duracao) * 1%),
-                    100%);
-
-            height: 0.18rem;
-            background: var(--cor-media);
-        }
-
-        .sequencia-progresso::before,
-        .sequencia-progresso::after {
-            content: "";
-
-            position: absolute;
-            top: 50%;
-
-            width: 0.9rem;
-            aspect-ratio: 1 / 1;
-
-            border-radius: var(--raio-full);
-            background: var(--cor-verde);
-        }
-
-        .sequencia-progresso::before {
-            left: 0;
-            transform: translate(-50%, -50%);
-        }
-
-        .sequencia-progresso::after {
-            right: 0;
-            transform: translate(50%, -50%);
-        }
-
-        /*
-A primeira linha será sempre o maior período.
-Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
-*/
-        .sequencia-linha:first-child .sequencia-progresso {
-            width: 100%;
-        }
-
-        .sequencia-semanas {
-            grid-area: semanas;
-
-            color: var(--cor-texto);
-            font-size: var(--texto-normal);
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        .sequencia-semanas strong {
-            font-weight: var(--peso-bold);
-        }
-
-        .sequencia-semanas>* {
-            display: inline
-        }
-
-
-
-        @media (max-width: 46rem) {
-            .sequencias-area {
-                gap: 3rem;
-            }
-
-            .sequencia-ranking-titulo {
-                display: grid;
-                gap: 0.12rem;
-            }
-
-            .sequencia-ranking-titulo::before {
-                font-size: 1rem;
-            }
-
-
-            .sequencia-linha {
-                grid-template-columns:
-                    auto minmax(0, 1fr) auto;
-
-                grid-template-areas:
-                    "posicao musica musica"
-                    "grafico grafico grafico"
-                    "data-inicio semanas data-fim";
-
-                row-gap: 0.65rem;
-                column-gap: 0.7rem;
-
-                min-height: 0;
-                padding: 1rem;
-            }
-
-            .sequencia-musica {
-                font-size: 1rem;
-            }
-
-            .sequencia-grafico {
-                height: 0.85rem;
-                margin-top: 0.05rem;
-            }
-
-            .sequencia-data-inicio {
-                text-align: left;
-            }
-
-            .sequencia-data-fim {
-                text-align: right;
-            }
-
-            .sequencia-semanas {
-                font-size: var(--texto-pequeno);
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 24rem) {
-            .sequencia-linha {
-                padding-inline: 0.8rem;
-            }
-
-            .sequencia-data {
-                font-size: 0.62rem;
-            }
-
-            .sequencia-musica {
-                font-size: 0.92rem;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        .sequencia-acumulado {
-            display: grid;
-            gap: 1.1rem;
-        }
-
-        .sequencia-acumulado-titulo {
-            position: relative;
-
-            margin: 0;
-            padding-right: 2rem;
-
-            display: flex;
-            align-items: baseline;
-            gap: 0.42rem;
-
-            line-height: 1.05;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .sequencias-acumuladas-grade {
-            width: 100%;
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .sequencia-acumulado-titulo::before {
-            content: "Músicas com mais semanas no geral";
-            color: var(--cor-texto-mudo);
-            font-size: var(--texto-grande);
-            font-weight: var(--peso-normal);
-        }
-
-        .titulo-bloco-sequencias-acumuladas::before {
-            content: "Semanas acumuladas";
-        }
-
-        .sequencia-acumulado-titulo::after {
-            color: var(--cor-texto);
-            font-weight: var(--peso-semi);
-        }
-
-        .sequencia-acumulado-chart .sequencia-acumulado-titulo::after {
-            content: "no chart";
-        }
-
-        .sequencia-acumulado-top10 .sequencia-acumulado-titulo::after {
-            content: "no top 10";
-        }
-
-        .sequencia-acumulado-top5 .sequencia-acumulado-titulo::after {
-            content: "no top 5";
-        }
-
-        .sequencia-acumulado-topo .sequencia-acumulado-titulo::after {
-            content: "no topo";
-        }
-
-        .sequencia-acumulado-lista {
-            counter-reset: sequencia-posicao;
-            display: grid;
-            gap: 0.65rem;
-        }
-
-        .sequencia-acumulado-seta {
-            position: absolute;
-            top: 50%;
-            right: 0.4rem;
-
-            transform: translateY(-50%);
-
-            color: var(--cor-texto-mudo);
-            font-size: 0.8rem;
-
-            transition: color var(--transicao);
-        }
-
-        .sequencia-acumulado-titulo:hover .sequencia-acumulado-seta {
-            color: var(--cor-ciano);
-        }
-
-        .sequencia-acumulado-lista[hidden] {
-            display: none;
-        }
-
-        @media (max-width: 46rem) {
-            .sequencia-acumulado-titulo {
-                display: grid;
-                gap: 0.12rem;
-            }
-
-            .sequencia-acumulado-titulo::before {
-                font-size: 1rem;
-            }
-
-            .sequencia-acumulado-titulo::after {
-                font-size: 1.55rem;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        @media (max-width: 1000px) {
-            .hero-grade {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .hero-grade> :first-child {
-                grid-column: 1 / -1;
-                grid-row: 1 / div 2;
-            }
-
-            .hero-coluna-metricas {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-column: 1 / -1;
-                order: 2;
-            }
-
-            .hero-imagem-box {
-                order: 1;
-            }
-
-            .hero-grade-metricas {
-                grid-template-columns: repeat(4, minmax(8.2rem, 1fr));
-                grid-column: 1 / -1;
-                order: 3;
-            }
-
-            .container,
-            .semanas-container {
-                width: min(100% - 1.5rem, var(--largura-container));
-            }
-
-            .site-header-container {
-                grid-template-columns: 1fr auto;
-            }
-
-            .site-nav {
-                grid-column: 1 / -1;
-                justify-content: start;
-                order: 3;
-            }
-
-            .site-nav-link {
-                justify-content: center;
-                gap: 0;
-                width: 2.4rem;
-                height: 2.4rem;
-                padding: 0;
-            }
-
-            .site-nav-icone {
-                display: inline-block;
-                font-size: 1rem;
-            }
-
-            .site-nav-texto {
-                display: none;
-            }
-
-
-            .card-metrica {
-                min-height: 7.6rem;
-            }
-
-            .albuns-area,
-            .top-cards-area,
-            .certificados-area {
-                overflow-x: auto;
-                padding-right: 2rem;
-                padding-bottom: 0.55rem;
-            }
-
-            .grade-albuns,
-            .grade-top-cards,
-            .grade-certificados {
-                width: max-content;
-                gap: 1rem;
-            }
-
-            .grade-albuns {
-                grid-template-columns: repeat(5, var(--largura-card-album));
-            }
-
-            .grade-top-cards {
-                grid-template-columns: repeat(5, var(--largura-top-card));
-            }
-
-            .grade-certificados {
-                grid-template-columns: repeat(5, var(--largura-certificado));
-            }
-
-
-            .footer-principal,
-            .footer-info {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-creditos {
-                text-align: left;
-            }
-
-            .grade-no1 {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        @media (max-width: 520px) {
-            :root {
-                --tamanho-semana: 0.76rem;
-                --largura-musicas: 55rem;
-            }
-
-            .grade-semanas {
-                grid-template-columns: repeat(12, minmax(var(--tamanho-semana), 1fr));
-            }
-
-            .footer-nav {
-                grid-template-columns: repeat(2, 1fr) !important;
-                grid-auto-flow: initial !important;
-            }
-
-            .logo-toncharts-palavra-1,
-            .logo-toncharts-palavra-2 {
-                font-size: 2.1rem;
-            }
-
-            .seletor-periodo {
-                min-width: 6.4rem;
-                padding-right: 2.1rem;
-            }
-
-            .acoes-musicas {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .grade-no1 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-        /* =========================================================
-   TONCHARTS — CAMADA DE OTIMIZAÇÃO UI/UX
-   Mantém todos os dados e classes funcionais do HTML original.
-   Prioridades: legibilidade, navegação, consistência, acessibilidade,
-   responsividade e integridade visual dos dados.
-   ========================================================= */
-
-        :root {
-            --largura-container: 75rem;
-            --largura-musicas: 100%;
-
-            --raio-sm: .625rem;
-            --raio-md: .875rem;
-            --raio-lg: 1.125rem;
-
-            --texto-pequeno: .75rem;
-            --texto-normal: .875rem;
-            --texto-medio: .95rem;
-            --texto-grande: 1.25rem;
-            --texto-titulo: clamp(1.35rem, 2.1vw, 1.7rem);
-            --texto-numero: clamp(1.9rem, 3vw, 2.45rem);
-
-            --sombra: 0 1rem 2.8rem rgba(0, 0, 0, .22);
-            --sombra-hover: 0 1.1rem 2.8rem rgba(0, 0, 0, .28);
-            --foco: 0 0 0 .2rem rgba(8, 212, 242, .28);
-
-            --cor-superficie-elevada: #272a34;
-            --cor-superficie-hover: #303440;
-        }
-
-        html {
-            scroll-padding-top: 4.5rem;
-            user-select: text;
-            -webkit-user-select: text;
-            color-scheme: dark;
-        }
-
-        html[data-theme="light"] {
-            color-scheme: light;
-
-            --cor-superficie-elevada: #ffffff;
-            --cor-superficie-hover: #f2f2f5;
-
-            --grafico-texto: #20202a;
-            --grafico-texto-secundario: #65707c;
-            --grafico-grade: rgba(32, 32, 42, .13);
-            --grafico-divisao-ano: rgba(32, 32, 42, .25);
-            --grafico-tooltip-fundo: #ffffff;
-            --grafico-tooltip-borda: rgba(32, 32, 42, .14);
-        }
-
-        body.body-pagina {
-            line-height: 1.45;
-            text-rendering: optimizeLegibility;
-        }
-
-        button,
-        select,
-        a,
-        [role="button"] {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        button,
-        .site-nav-link,
-        .navegacao-secoes__link,
-        .seletor-periodo,
-        .sem-item,
-        .no1-card,
-        .card-album-capa,
-        .musica-capa-link,
-        .card-certificado-capa {
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        :focus-visible {
-            outline: .16rem solid var(--cor-ciano);
-            outline-offset: .18rem;
-        }
-
-        img {
-            background: var(--cor-superficie-2);
-        }
-
-        .skip-link {
-            position: fixed;
-            top: .75rem;
-            left: .75rem;
-            z-index: 100000;
-            padding: .75rem 1rem;
-            border-radius: var(--raio-sm);
-            color: var(--cor-escura);
-            background: var(--cor-ciano);
-            font-weight: var(--peso-bold);
-            transform: translateY(-180%);
-            transition: transform 160ms ease;
-        }
-
-        .skip-link:focus {
-            transform: translateY(0);
-        }
-
-        #conteudo:focus {
-            outline: 0;
-        }
-
-        .bloco-geral,
-        #graficoEvolucao,
-        #marcosArtista {
-            scroll-margin-top: 5rem;
-        }
-
-        /* --- títulos agora existem no HTML; pseudo-conteúdo deixa de ser necessário --- */
-
-        .titulo-bloco-desempenho::before,
-        .titulo-bloco-semanas::before,
-        .titulo-bloco-albuns::before,
-        .titulo-bloco-musicas::before,
-        .titulo-bloco-certificados::before,
-        .titulo-bloco-no1::before,
-        .titulo-bloco-atoprincipal::before,
-        .titulo-bloco-recordes::before,
-        .titulo-bloco-sequencias::before,
-        .titulo-bloco-sequencias-acumuladas::before,
-        .sequencia-ranking-titulo::before,
-        .sequencia-ranking-titulo::after,
-        .sequencia-acumulado-titulo::before,
-        .sequencia-acumulado-titulo::after {
-            content: none !important;
-        }
-
-        /* --- hero e navegação principal --- */
-
-        .hero-area {
-            background:
-                radial-gradient(circle at 78% 18%, rgba(8, 223, 176, .26), transparent 34%),
-                radial-gradient(circle at 18% 76%, rgba(8, 212, 242, .18), transparent 32%),
-                linear-gradient(140deg, #063942 0%, #086979 48%, #087565 100%);
-        }
-
-        .site-header {
-            padding-block: 1rem 0;
-        }
-
-        .site-header-container {
-            grid-template-columns: auto minmax(0, 1fr);
-            gap: 1.5rem;
-            padding-bottom: 1rem;
-        }
-
-        .logo-toncharts {
-            flex: 0 0 auto;
-        }
-
-        .site-nav {
-            display: flex;
-            justify-content: flex-end;
-            gap: .3rem;
-            overflow-x: auto;
-            overscroll-behavior-inline: contain;
-            scroll-snap-type: x proximity;
-        }
-
-        .site-nav-link {
-            flex: 0 0 auto;
-            gap: .42rem;
-            min-height: 2.5rem;
-            padding: .55rem .7rem;
-            border: 1px solid transparent;
-            border-radius: var(--raio-full);
-            opacity: .82;
-            scroll-snap-align: start;
-            transition:
-                color 160ms ease,
-                background-color 160ms ease,
-                border-color 160ms ease,
-                opacity 160ms ease,
-                transform 160ms ease;
-        }
-
-        .site-nav-link:hover {
-            border-color: rgba(244, 244, 246, .18);
-            background: rgba(244, 244, 246, .08);
-        }
-
-        .site-nav-link-ativo {
-            border-color: rgba(244, 244, 246, .2);
-            background: rgba(244, 244, 246, .13);
-            opacity: 1;
-        }
-
-        .site-nav-icone {
-            display: inline-block;
-            font-size: .86rem;
-        }
-
-        .hero-artista {
-            padding-block: 2.35rem 3.25rem;
-        }
-
-        .hero-topo {
-            align-items: end;
-            margin-bottom: 1.45rem;
-        }
-
-        .hero-titulo-grupo {
-            gap: .65rem;
-        }
-
-        .hero-titulo {
-            max-width: 18ch;
-            font-size: clamp(2.35rem, 5vw, 3.7rem);
-            line-height: .92;
-            letter-spacing: -.055em;
-        }
-
-        .hero-link-spotify {
-            min-height: 2.4rem;
-            padding: .4rem 0;
-        }
-
-        .seletor-periodo {
-            min-height: 2.65rem;
-            border: 1px solid rgba(244, 244, 246, .2);
-            border-radius: var(--raio-full);
-            padding-block: .65rem;
-        }
-
-        .seletor-periodo-claro {
-            border-color: var(--cor-linha);
-            padding-left: .9rem;
-            background-color: var(--cor-superficie);
-        }
-
-        .seletor-periodo-claro:hover {
-            background-color: var(--cor-superficie-2);
-        }
-
-        .hero-grade {
-            --hero-gap: 1rem;
-            --hero-card-altura: 8.15rem;
-            --hero-imagem-tamanho: calc((var(--hero-card-altura) * 2) + var(--hero-gap));
-
-            grid-template-columns:
-                minmax(15rem, var(--hero-imagem-tamanho)) repeat(3, minmax(0, 1fr));
-            grid-template-rows: repeat(2, var(--hero-card-altura));
-        }
-
-        .hero-imagem-box {
-            border: 1px solid rgba(255, 255, 255, .12);
-            border-radius: var(--raio-lg);
-            box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .18);
-        }
-
-        .hero-imagem {
-            transform: scale(1.001);
-        }
-
-        .card-metrica {
-            position: relative;
-            gap: .42rem;
-            padding: 1rem 1.05rem;
-            border: 1px solid rgba(255, 255, 255, .11);
-            border-radius: var(--raio-md);
-            background: rgba(8, 76, 87, .42);
-            box-shadow: 0 .8rem 1.8rem rgba(0, 0, 0, .08);
-            overflow: hidden;
-        }
-
-        .card-metrica::after {
-            content: "";
-            position: absolute;
-            inset: auto 0 0;
-            height: .16rem;
-            background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde));
-            opacity: .58;
-        }
-
-        .card-metrica:hover {
-            background: rgba(8, 76, 87, .56);
-            transform: translateY(-.1rem);
-        }
-
-        .card-metrica-numero,
-        .top-card-numero,
-        .card-album-numero,
-        .musica-numero,
-        .musica-ranking,
-        .musica-semanas,
-        .musica-dias,
-        .pico-musica,
-        .no1-vezes,
-        .card-certificado-numero,
-        .card-certificado-quantidade,
-        .marco .valor,
-        .sequencia-semanas,
-        .barra-valor {
-            font-variant-numeric: tabular-nums;
-        }
-
-        .card-metrica-label {
-            max-width: 12rem;
-            line-height: 1.08;
-        }
-
-        .card-metrica-ranking {
-            margin-top: auto;
-            opacity: .82;
-        }
-
-        /* --- índice fixo das seções: melhora navegação em página longa --- */
-
-        .navegacao-secoes {
-            position: sticky;
-            top: 0;
-            z-index: 900;
-            border-bottom: 1px solid var(--cor-linha);
-            background: rgba(20, 20, 26, .88);
-            -webkit-backdrop-filter: blur(16px) saturate(140%);
-            backdrop-filter: blur(16px) saturate(140%);
-        }
-
-        html[data-theme="light"] .navegacao-secoes {
-            background: rgba(244, 244, 246, .9);
-        }
-
-        .navegacao-secoes__lista {
-            display: flex;
-            gap: .25rem;
-            padding-block: .52rem;
-            overflow-x: auto;
-            overscroll-behavior-inline: contain;
-            scrollbar-width: none;
-        }
-
-        .navegacao-secoes__lista::-webkit-scrollbar {
-            display: none;
-        }
-
-        .navegacao-secoes__link {
-            flex: 0 0 auto;
-            min-height: 2.15rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: .42rem .68rem;
-            border: 1px solid transparent;
-            border-radius: var(--raio-full);
-            color: var(--cor-texto-mudo);
-            font-size: var(--texto-pequeno);
-            font-weight: var(--peso-semi);
-            white-space: nowrap;
-            transition:
-                color 150ms ease,
-                border-color 150ms ease,
-                background-color 150ms ease;
-        }
-
-        .navegacao-secoes__link:hover,
-        .navegacao-secoes__link:focus-visible {
-            color: var(--cor-texto);
-            border-color: var(--cor-linha);
-            background: var(--cor-superficie);
-        }
-
-        /* --- estrutura das seções --- */
-
-        .conteudo-principal {
-            padding-block: 2.7rem 4rem;
-        }
-
-        .bloco-geral {
-            margin-bottom: 4.25rem;
-        }
-
-        .cabecalho-bloco {
-            min-height: 0;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            padding-bottom: .82rem;
-        }
-
-        .titulo-bloco,
-        .marco .topo h2,
-        .grafico-evolucao__titulo {
-            color: var(--cor-texto);
-            font-size: var(--texto-titulo);
-            line-height: 1.1;
-            letter-spacing: -.025em;
-            white-space: normal;
-        }
-
-        .titulo-bloco {
-            position: relative;
-            padding-left: .85rem;
-        }
-
-        .titulo-bloco::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: .08em;
-            bottom: .08em;
-            width: .22rem;
-            border-radius: var(--raio-full);
-            background: linear-gradient(var(--cor-ciano), var(--cor-verde));
-        }
-
-        /* --- gráfico por período: sem distorcer a altura no hover --- */
-
-        .grafico-area {
-            min-height: var(--altura-grafico);
-            padding: 2.6rem 1.25rem 1.2rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-lg);
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, .015), transparent),
-                var(--cor-superficie);
-            overflow-x: auto;
-        }
-
-        .grafico-periodo {
-            min-width: 0;
-            gap: clamp(.35rem, 1vw, .75rem);
-        }
-
-        .conteudo-periodo[data-periodo="12m"] .grafico-periodo {
-            min-width: 42rem;
-        }
-
-        .barra-preenchimento {
-            min-height: 1px;
-            border-radius: .45rem .45rem .16rem .16rem;
-            transform-origin: bottom;
-            transition:
-                filter 160ms ease,
-                transform 160ms ease;
-        }
-
-        .grafico-item:hover .barra-preenchimento {
-            filter: brightness(1.08) saturate(1.08);
-            transform: translateY(-.12rem);
-        }
-
-        .barra-valor {
-            top: -1.45rem;
-            font-size: .74rem;
-        }
-
-        .barra-legenda {
-            gap: .15rem;
-            line-height: 1.2;
-        }
-
-        /* --- evolução acumulada --- */
-
-        .grafico-evolucao__cabecalho {
-            align-items: end;
-            margin-bottom: 1rem;
-        }
-
-        .grafico-evolucao__descricao {
-            margin-top: .4rem;
-            font-size: var(--texto-normal);
-        }
-
-        .grafico-evolucao__periodos {
-            flex-wrap: wrap;
-        }
-
-        .grafico-evolucao__periodo {
-            min-height: 2.55rem;
-            padding: .55rem .9rem;
-            border-color: var(--cor-linha);
-            color: var(--grafico-texto-secundario);
-        }
-
-        html[data-theme="light"] .grafico-evolucao__periodo {
-            border-color: rgba(32, 32, 42, .14);
-        }
-
-        .grafico-evolucao__plot {
-            height: clamp(22rem, 44vw, 30rem);
-            padding-top: 2.8rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-lg);
-            background: var(--cor-superficie);
-            overflow: hidden;
-        }
-
-        .grafico-evolucao__canvas-area {
-            inset: 2.8rem .75rem .75rem;
-        }
-
-        .grafico-evolucao__nome-eixo--scrobbles {
-            left: .8rem;
-            top: .8rem;
-        }
-
-        .grafico-evolucao__nome-eixo--pontos {
-            right: .8rem;
-            top: .8rem;
-        }
-
-        .grafico-tooltip {
-            border-radius: var(--raio-md);
-            box-shadow: var(--sombra-hover);
-        }
-
-        /* --- calendário / heatmap semanal --- */
-
-        .semanas-area {
-            padding: .9rem .2rem .6rem;
-            overflow-x: auto;
-            overscroll-behavior-inline: contain;
-        }
-
-        .grade-semanas {
-            grid-template-columns: repeat(25, minmax(2rem, 1fr));
-            column-gap: .14rem;
-            row-gap: 1.15rem;
-        }
-
-        .sem-item {
-            min-width: 2rem;
-            border-radius: .28rem;
-            transform-origin: center;
-            transition:
-                transform 120ms ease,
-                box-shadow 120ms ease,
-                filter 120ms ease;
-        }
-
-        .sem-item:hover,
-        .sem-item:focus-visible {
-            z-index: 10;
-            transform: scale(1.08);
-            filter: brightness(1.08);
-            box-shadow: 0 0 0 .12rem var(--cor-ciano);
-        }
-
-        .grade-semanas button.btn.sem-item[data-posicao="#1"],
-        .grade-semanas button.btn.sem-item[data-posicao="#2"],
-        .grade-semanas button.btn.sem-item[data-posicao="#3"],
-        .grade-semanas button.btn.sem-item[data-posicao="#4"],
-        .grade-semanas button.btn.sem-item[data-posicao="#5"],
-        .grade-semanas button.btn.sem-item[data-posicao="#6"],
-        .grade-semanas button.btn.sem-item[data-posicao="#7"],
-        .grade-semanas button.btn.sem-item[data-posicao="#8"],
-        .grade-semanas button.btn.sem-item[data-posicao="#9"],
-        .grade-semanas button.btn.sem-item[data-posicao="#10"],
-        .grade-semanas button.btn.sem-item[data-posicao="#11"],
-        .grade-semanas button.btn.sem-item[data-posicao="#12"],
-        .grade-semanas button.btn.sem-item[data-posicao="#13"],
-        .grade-semanas button.btn.sem-item[data-posicao="#14"],
-        .grade-semanas button.btn.sem-item[data-posicao="#15"],
-        .grade-semanas button.btn.sem-item[data-posicao="#16"],
-        .grade-semanas button.btn.sem-item[data-posicao="#17"],
-        .grade-semanas button.btn.sem-item[data-posicao="#18"],
-        .grade-semanas button.btn.sem-item[data-posicao="#19"],
-        .grade-semanas button.btn.sem-item[data-posicao="#20"] {
-            color: #07181b !important;
-            -webkit-text-fill-color: #07181b !important;
-            font-weight: var(--peso-semi) !important;
-        }
-
-        .tooltip-semana {
-            max-width: min(18rem, calc(100vw - 1.5rem));
-            border: 1px solid rgba(255, 255, 255, .1);
-            border-radius: var(--raio-md);
-            padding: .7rem .8rem;
-        }
-
-        /* --- álbuns / cards-resumo / certificados: grids responsivos, sem scroll obrigatório --- */
-
-        .albuns-area,
-        .top-cards-area,
-        .certificados-area {
-            overflow: visible;
-            padding: 0;
-        }
-
-        .grade-albuns,
-        .grade-top-cards,
-        .grade-certificados {
-            width: 100%;
-            gap: 1rem;
-        }
-
-        .grade-albuns {
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-        }
-
-        .grade-top-cards {
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-        }
-
-        .grade-certificados {
-            grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
-        }
-
-        .card-album {
-            gap: .75rem;
-            padding: .72rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-md);
-            background: var(--cor-superficie);
-            transition:
-                border-color 160ms ease,
-                background-color 160ms ease,
-                transform 160ms ease,
-                box-shadow 160ms ease;
-        }
-
-        .card-album:hover {
-            border-color: rgba(8, 212, 242, .38);
-            background: var(--cor-superficie-elevada);
-            transform: translateY(-.12rem);
-            box-shadow: var(--sombra);
-        }
-
-        .card-album-capa,
-        .musica-capa-link,
-        .card-certificado-capa,
-        .no1-capa {
-            border-radius: calc(var(--raio-md) - .18rem);
-        }
-
-        .card-album-capa::before {
-            width: 3.2rem;
-            height: 3.2rem;
-        }
-
-        .card-album-nome {
-            height: auto;
-            min-height: 1.25rem;
-            line-height: 1.28;
-            white-space: normal;
-            overflow: visible;
-            text-overflow: clip;
-        }
-
-        .card-album-meta {
-            gap: .42rem;
-            font-size: var(--texto-pequeno);
-            line-height: 1.3;
-        }
-
-        .album-top5-titulo {
-            white-space: normal;
-        }
-
-        .album-top5-musica {
-            align-items: start;
-        }
-
-        .album-top5-nome {
-            line-height: 1.25;
-            white-space: normal;
-        }
-
-        .top-card {
-            aspect-ratio: auto;
-            min-height: 10rem;
-            align-content: start;
-            gap: .5rem;
-            padding: 1rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-md);
-        }
-
-        .top-card-destaque {
-            border-color: transparent;
-        }
-
-        .top-card-info {
-            margin-top: auto;
-            font-size: var(--texto-pequeno);
-            line-height: 1.3;
-        }
-
-        .card-certificado {
-            --cert-accent: #c7a334;
-
-            min-height: 15rem;
-            border: 1px solid var(--cor-linha);
-            border-top: .22rem solid var(--cert-accent);
-            border-radius: var(--raio-md);
-            color: var(--cor-texto);
-            background: var(--cor-superficie);
-            box-shadow: none;
-        }
-
-        .card-certificado-platina {
-            --cert-accent: #a6bdc8;
-            background: var(--cor-superficie);
-        }
-
-        .card-certificado-diamante {
-            --cert-accent: #b6b09c;
-            background: var(--cor-superficie);
-        }
-
-        .card-certificado:hover {
-            background: var(--cor-superficie-elevada);
-            box-shadow: var(--sombra);
-        }
-
-        .card-certificado-topo,
-        .card-certificado-nome,
-        .card-certificado-artista,
-        .card-certificado-data {
-            color: var(--cor-texto);
-        }
-
-        .card-certificado-tipo,
-        .card-certificado-quantidade {
-            color: var(--cert-accent);
-            font-weight: var(--peso-bold);
-        }
-
-        .card-certificado-capa {
-            width: 5.2rem;
-            border: 1px solid var(--cor-linha);
-        }
-
-        .card-certificado-stats {
-            border-color: var(--cor-linha);
-        }
-
-        .card-certificado-label,
-        .card-certificado-data,
-        .card-certificado-artista {
-            color: var(--cor-texto-mudo);
-            opacity: 1;
-        }
-
-        /* --- tabela/lista de músicas --- */
-
-        .musicas-area {
-            margin-top: 1.4rem;
-            overflow: visible;
-        }
-
-        .lista-musicas {
-            min-width: 0;
-            width: 100%;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-lg);
-            background: var(--cor-superficie);
-            overflow: hidden;
-        }
-
-        .cabecalho-musicas,
-        .linha-musica {
-            grid-template-columns:
-                3.4rem 4.5rem minmax(15rem, 2.3fr) minmax(6.4rem, .85fr) minmax(6.4rem, .85fr) minmax(5rem, .7fr) minmax(5rem, .65fr) minmax(5.4rem, .7fr);
-            gap: .65rem;
-        }
-
-        .cabecalho-musicas {
-            min-height: 2.65rem;
-            align-items: center;
-            padding: .6rem .8rem;
-            border-bottom: 1px solid var(--cor-linha);
-            color: var(--cor-texto-mudo);
-            background: var(--cor-fundo);
-        }
-
-        .cabecalho-musica-ordenavel {
-            min-height: 2rem;
-            border-radius: .4rem;
-            padding: .25rem .35rem;
-        }
-
-        .cabecalho-musica-ordenavel:hover {
-            background: var(--cor-superficie-2);
-        }
-
-        .linha-musica {
-            min-height: 4.1rem;
-            padding: .62rem .8rem;
-            border-top: 1px solid var(--cor-linha);
-        }
-
-        .linha-musica:first-child {
-            border-top: 0;
-        }
-
-        .linha-musica:hover {
-            background: var(--cor-superficie-hover);
-        }
-
-        .linha-musica-feat {
-            opacity: .72;
-        }
-
-        .linha-musica-feat:hover {
-            opacity: 1;
-        }
-
-        .musica-posicao {
-            font-size: 1.2rem;
-        }
-
-        .musica-principal {
-            grid-template-columns: 2.85rem minmax(0, 1fr);
-            gap: .7rem;
-        }
-
-        .musica-capa-link {
-            width: 2.85rem;
-        }
-
-        .musica-nome {
-            line-height: 1.2;
-        }
-
-        .musica-artista {
-            margin-top: .14rem;
-            color: var(--cor-texto-mudo);
-            line-height: 1.25;
-        }
-
-        .acoes-musicas {
-            margin-top: 1rem;
-        }
-
-        .btn-musicas {
-            min-height: 2.75rem;
-            border-radius: var(--raio-full);
-        }
-
-        /* --- rankings de sequências --- */
-
-        .sequencias-area.conteudo-periodo-ativo,
-        .sequencias-acumuladas-grade {
-            gap: 1.8rem;
-        }
-
-        .sequencia-ranking,
-        .sequencia-acumulado {
-            padding: 1rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-lg);
-            background: color-mix(in srgb, var(--cor-superficie) 78%, transparent);
-        }
-
-        .sequencia-ranking-titulo,
-        .sequencia-acumulado-titulo {
-            min-height: 2rem;
-            align-items: center;
-            padding-right: 2.2rem;
-            color: var(--cor-texto);
-            font-size: 1.02rem;
-            font-weight: var(--peso-semi);
-            line-height: 1.25;
-        }
-
-        .sequencia-ranking-seta,
-        .sequencia-acumulado-seta {
-            right: .25rem;
-        }
-
-        .sequencia-ranking-lista,
-        .sequencia-acumulado-lista {
-            gap: .5rem;
-        }
-
-        .sequencia-linha {
-            border: 1px solid transparent;
-            border-radius: .65rem;
-        }
-
-        .sequencia-linha:hover {
-            border-color: var(--cor-linha);
-        }
-
-        .sequencia-musica {
-            font-weight: var(--peso-semi);
-        }
-
-        .sequencia-progresso {
-            height: .2rem;
-            border-radius: var(--raio-full);
-        }
-
-        .sequencia-semanas-unidade {
-            color: var(--cor-texto-mudo);
-        }
-
-        /* --- músicas no topo --- */
-
-        .grade-no1 {
-            gap: .8rem;
-        }
-
-        .no1-card {
-            min-height: 4.5rem;
-            padding: .7rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-md);
-        }
-
-        .no1-card:hover {
-            border-color: rgba(8, 212, 242, .35);
-        }
-
-        .no1-nome {
-            font-weight: var(--peso-semi);
-        }
-
-        /* --- ato principal / participações --- */
-
-        .item-grafico-barra {
-            padding: 1.15rem;
-            border: 1px solid var(--cor-linha);
-            border-radius: var(--raio-lg);
-            background: var(--cor-superficie);
-        }
-
-        .grafico-barra-trilha {
-            overflow: hidden;
-            border-radius: var(--raio-full);
-        }
-
-        /* --- marcos --- */
-
-        .marco .topo {
-            margin-bottom: 1rem;
-        }
-
-        .marco .intro {
-            max-width: 52rem;
-            margin-top: .4rem;
-            font-size: var(--texto-normal);
-        }
-
-        .marco .grade {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: .8rem;
-        }
-
-        .marco .card {
-            min-height: 10.5rem;
-            border-radius: var(--raio-md);
-            background: var(--cor-superficie);
-        }
-
-        .marco .card:hover {
-            background: var(--cor-superficie-elevada);
-            transform: translateY(-.1rem);
-        }
-
-        .marco .texto {
-            line-height: 1.3;
-        }
-
-        /* --- rodapé --- */
-
-        .site-footer {
-            padding-block: 2.4rem;
-        }
-
-        .footer-principal {
-            align-items: start;
-        }
-
-        .footer-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: .3rem .9rem;
-            overflow: visible;
-        }
-
-        .footer-link {
-            min-height: 2rem;
-            display: inline-flex;
-            align-items: center;
-            color: var(--cor-texto-mudo);
-        }
-
-        .footer-link:hover {
-            color: var(--cor-texto);
-        }
-
-        /* --- responsividade --- */
-
-        @media (max-width: 1000px) {
-            .site-header-container {
-                grid-template-columns: auto minmax(0, 1fr);
-            }
-
-            .site-nav {
-                grid-column: auto;
-                order: initial;
-                justify-content: flex-end;
-            }
-
-            .site-nav-link {
-                width: auto;
-                height: auto;
-                justify-content: flex-start;
-                gap: .4rem;
-                padding: .5rem .65rem;
-            }
-
-            .site-nav-texto {
-                display: block;
-            }
-
-            .hero-grade {
-                grid-template-columns: minmax(14rem, .9fr) repeat(2, minmax(0, 1fr));
-                grid-template-rows: repeat(3, minmax(7.5rem, auto));
-                gap: .9rem;
-            }
-
-            .hero-imagem-box {
-                grid-column: 1;
-                grid-row: 1 / 4;
-                order: initial;
-            }
-
-            .card-metrica {
-                min-height: 7.5rem;
-            }
-
-            .grade-albuns,
-            .grade-top-cards,
-            .grade-certificados {
-                width: 100%;
-                gap: .85rem;
-            }
-
-            .grade-albuns {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            .grade-top-cards {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            .grade-certificados {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            .albuns-area,
-            .top-cards-area,
-            .certificados-area {
-                overflow: visible;
-                padding: 0;
-            }
-
-            .marco .grade {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 860px) {
-
-            .container,
-            .semanas-container {
-                width: min(100% - 1.25rem, var(--largura-container));
-            }
-
-            .site-header-container {
-                grid-template-columns: 1fr;
-                gap: .8rem;
-            }
-
-            .site-nav {
-                justify-content: flex-start;
-                width: 100%;
-            }
-
-            .hero-topo {
-                align-items: start;
-            }
-
-            .hero-titulo {
-                max-width: 100%;
-            }
-
-            .hero-grade {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-template-rows: auto;
-            }
-
-            .hero-imagem-box {
-                grid-column: 1 / -1;
-                grid-row: auto;
-                width: min(100%, 22rem);
-                justify-self: start;
-            }
-
-            .cabecalho-musicas {
-                display: flex;
-                align-items: center;
-                gap: .45rem;
-                padding: .55rem;
-                overflow-x: auto;
-                overscroll-behavior-inline: contain;
-                scrollbar-width: thin;
-            }
-
-            .cabecalho-musicas::before {
-                content: "Ordenar:";
-                flex: 0 0 auto;
-                color: var(--cor-texto-mudo);
-                font-size: var(--texto-pequeno);
-                font-weight: var(--peso-semi);
-            }
-
-            .cabecalho-musica-1,
-            .cabecalho-musica-3 {
-                display: none;
-            }
-
-            .cabecalho-musica-ordenavel {
-                flex: 0 0 auto;
-                width: auto;
-                min-height: 2.1rem;
-                padding: .35rem .55rem;
-                border: 1px solid var(--cor-linha);
-                border-radius: var(--raio-full);
-                background: var(--cor-superficie);
-            }
-
-            .linha-musica {
-                grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
-                grid-template-areas:
-                    "posicao principal principal"
-                    "ranking scrobbles pontuacao"
-                    "pico semanas dias";
-                gap: .75rem .85rem;
-                min-height: 0;
-                margin: .55rem;
-                padding: .9rem;
-                border: 1px solid var(--cor-linha);
-                border-radius: var(--raio-md);
-                background: var(--cor-fundo);
-            }
-
-            .linha-musica+.linha-musica {
-                border-top: 1px solid var(--cor-linha);
-            }
-
-            .musica-posicao {
-                grid-area: posicao;
-                align-self: start;
-            }
-
-            .musica-ranking {
-                grid-area: ranking;
-            }
-
-            .musica-principal {
-                grid-area: principal;
-            }
-
-            .musica-scrobbles {
-                grid-area: scrobbles;
-            }
-
-            .musica-pontuacao {
-                grid-area: pontuacao;
-            }
-
-            .pico-musica {
-                grid-area: pico;
-            }
-
-            .musica-semanas {
-                grid-area: semanas;
-            }
-
-            .musica-dias {
-                grid-area: dias;
-            }
-
-            .musica-ranking,
-            .musica-scrobbles,
-            .musica-pontuacao,
-            .pico-musica,
-            .musica-semanas,
-            .musica-dias {
-                min-width: 0;
-                display: grid;
-                align-content: start;
-                gap: .2rem;
-                text-align: left;
-            }
-
-            .musica-ranking::before,
-            .musica-scrobbles::before,
-            .musica-pontuacao::before,
-            .pico-musica::before,
-            .musica-semanas::before,
-            .musica-dias::before {
-                content: attr(data-label);
-                color: var(--cor-texto-mudo);
-                font-size: .65rem;
-                font-weight: var(--peso-normal);
-                line-height: 1.1;
-            }
-
-            .musica-ranking::before {
-                content: attr(data-label);
-            }
-
-            .pico-musica {
-                justify-content: start;
-            }
-
-            .pico-vezes {
-                transform: none;
-            }
-
-            .marco .grade {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 720px) {
-            .conteudo-principal {
-                padding-top: 2.1rem;
-            }
-
-            .bloco-geral {
-                margin-bottom: 3.25rem;
-            }
-
-            .cabecalho-bloco,
-            .grafico-evolucao__cabecalho {
-                align-items: stretch;
-                grid-template-columns: 1fr;
-            }
-
-            .cabecalho-bloco {
-                display: grid;
-            }
-
-            .seletor-periodo {
-                width: fit-content;
-                max-width: 100%;
-            }
-
-            .grafico-evolucao__periodos {
-                width: 100%;
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: .15rem;
-            }
-
-            .grafico-evolucao__plot {
-                height: 22rem;
-            }
-
-            .grade-albuns,
-            .grade-top-cards,
-            .grade-certificados {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .grade-no1 {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-principal,
-            .footer-info {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-nav {
-                justify-content: flex-start;
-            }
-        }
-
-        @media (max-width: 560px) {
-            :root {
-                --texto-normal: .84rem;
-                --texto-medio: .92rem;
-                --texto-titulo: 1.35rem;
-            }
-
-            .site-header {
-                padding-top: .75rem;
-            }
-
-            .logo-toncharts-palavra-1,
-            .logo-toncharts-palavra-2 {
-                font-size: 2rem;
-            }
-
-            .site-nav-link {
-                min-height: 2.35rem;
-                padding-inline: .58rem;
-            }
-
-            .site-nav-texto {
-                display: block;
-                font-size: .74rem;
-            }
-
-            .hero-artista {
-                padding-block: 1.8rem 2.4rem;
-            }
-
-            .hero-topo {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .hero-titulo {
-                font-size: clamp(2.1rem, 11vw, 3rem);
-            }
-
-            .hero-grade {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: .7rem;
-            }
-
-            .hero-imagem-box {
-                width: 100%;
-            }
-
-            .card-metrica {
-                min-height: 7.2rem;
-                padding: .85rem;
-            }
-
-            .card-metrica-numero {
-                font-size: 1.7rem;
-            }
-
-            .card-metrica-label {
-                font-size: .76rem;
-            }
-
-            .badge-crescimento {
-                font-size: .65rem;
-            }
-
-            .navegacao-secoes__lista {
-                padding-block: .45rem;
-            }
-
-            .navegacao-secoes__link {
-                min-height: 2rem;
-                padding-inline: .6rem;
-            }
-
-            .semanas-area {
-                margin-inline: -.15rem;
-            }
-
-            .grade-semanas {
-                width: max-content;
-                min-width: 33rem;
-                grid-template-columns: repeat(12, minmax(2.65rem, 1fr));
-            }
-
-            .sem-item {
-                min-width: 2.65rem;
-            }
-
-            .grade-albuns,
-            .grade-top-cards,
-            .grade-certificados {
-                grid-template-columns: 1fr;
-            }
-
-            .card-album {
-                grid-template-columns: 7rem minmax(0, 1fr);
-                align-items: start;
-            }
-
-            .card-album-capa {
-                grid-column: 1;
-            }
-
-            .card-album-info {
-                grid-column: 2;
-            }
-
-            .top-card {
-                min-height: 8.5rem;
-            }
-
-            .linha-musica {
-                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-                grid-template-areas:
-                    "posicao principal"
-                    "ranking principal"
-                    "scrobbles pontuacao"
-                    "pico semanas"
-                    "dias dias";
-            }
-
-            .musica-principal {
-                grid-template-columns: 2.65rem minmax(0, 1fr);
-            }
-
-            .musica-capa-link {
-                width: 2.65rem;
-            }
-
-            .acoes-musicas {
-                grid-template-columns: 1fr;
-                gap: .65rem;
-            }
-
-            .btn-exibir-mais,
-            .btn-recolher-tudo {
-                justify-self: stretch;
-                width: 100%;
-            }
-
-            .sequencia-ranking,
-            .sequencia-acumulado {
-                padding: .75rem;
-            }
-
-            .sequencia-linha {
-                padding: .8rem;
-            }
-
-            .marco .grade {
-                grid-template-columns: 1fr;
-            }
-
-            .marco .card {
-                min-height: 0;
-            }
-
-            .footer-nav {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: .2rem .7rem;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .hero-grade {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-imagem-box {
-                grid-column: 1;
-            }
-
-            .card-album {
-                grid-template-columns: 5.8rem minmax(0, 1fr);
-            }
-
-            .footer-nav {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        /* Evita animações que dificultam leitura para quem prefere menos movimento */
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-            }
-
-            .sem-item:hover,
-            .sem-item:focus-visible,
-            .card-metrica:hover,
-            .card-album:hover,
-            .top-card:hover,
-            .no1-card:hover,
-            .marco .card:hover {
-                transform: none !important;
-            }
-        }
-
-        /* Em dispositivos sem hover, evita movimentos que atrapalham toque */
-        @media (hover: none) {
-
-            .sem-item:hover,
-            .card-metrica:hover,
-            .card-album:hover,
-            .top-card:hover,
-            .no1-card:hover,
-            .marco .card:hover {
-                transform: none;
-            }
-
-            .card-album-overlay,
-            .musica-capa-overlay,
-            .no1-seta {
-                opacity: 0;
-            }
-        }
     </style>
 
 </head>
@@ -4952,7 +108,12 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                             fetchpriority="high" id="imagemArtista" src="" />
                         <figcaption class="hero-placeholder">Imagem do artista</figcaption>
                     </figure>
-                    <article class="card-metrica card-metrica-1">
+                    <article class="card-metrica card-metrica-1" data-12m-crescimento="+200%" data-12m-numero="75.255"
+                        data-12m-ranking="#1 no ranking" data-1m-crescimento="+8%" data-1m-numero="6.940"
+                        data-1m-ranking="#1 no ranking" data-3m-crescimento="+21%" data-3m-numero="20.310"
+                        data-3m-ranking="#1 no ranking" data-6m-crescimento="+46%" data-6m-numero="39.840"
+                        data-6m-ranking="#1 no ranking" data-all-crescimento="+18%" data-all-numero="412.840"
+                        data-all-ranking="#1 no ranking">
                         <div class="card-metrica-numero">75.255</div>
                         <div class="card-metrica-label">scrobbles registrados</div>
                         <div class="badge-crescimento badge-crescimento-hero">
@@ -4961,7 +122,12 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                         </div>
                         <div class="card-metrica-ranking">#1 no ranking</div>
                     </article>
-                    <article class="card-metrica card-metrica-2">
+                    <article class="card-metrica card-metrica-2" data-12m-crescimento="+200%" data-12m-numero="254.865"
+                        data-12m-ranking="#1 no ranking" data-1m-crescimento="+9%" data-1m-numero="23.760"
+                        data-1m-ranking="#1 no ranking" data-3m-crescimento="+24%" data-3m-numero="72.480"
+                        data-3m-ranking="#1 no ranking" data-6m-crescimento="+51%" data-6m-numero="136.940"
+                        data-6m-ranking="#1 no ranking" data-all-crescimento="+22%" data-all-numero="1.386.420"
+                        data-all-ranking="#1 no ranking">
                         <div class="card-metrica-numero">254.865</div>
                         <div class="card-metrica-label">pontos acumulados</div>
                         <div class="badge-crescimento badge-crescimento-hero">
@@ -4970,7 +136,12 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                         </div>
                         <div class="card-metrica-ranking">#1 no ranking</div>
                     </article>
-                    <article class="card-metrica card-metrica-3">
+                    <article class="card-metrica card-metrica-3" data-12m-crescimento="+200%" data-12m-numero="146"
+                        data-12m-ranking="#6 no ranking" data-1m-crescimento="+7%" data-1m-numero="18"
+                        data-1m-ranking="#6 no ranking" data-3m-crescimento="+19%" data-3m-numero="47"
+                        data-3m-ranking="#5 no ranking" data-6m-crescimento="+38%" data-6m-numero="82"
+                        data-6m-ranking="#5 no ranking" data-all-crescimento="+14%" data-all-numero="398"
+                        data-all-ranking="#4 no ranking">
                         <div class="card-metrica-numero">146</div>
                         <div class="card-metrica-label">músicas como ato principal</div>
                         <div class="badge-crescimento badge-crescimento-hero">
@@ -4979,7 +150,12 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                         </div>
                         <div class="card-metrica-ranking">#6 no ranking</div>
                     </article>
-                    <article class="card-metrica card-metrica-4">
+                    <article class="card-metrica card-metrica-4" data-12m-crescimento="+200%" data-12m-numero="78"
+                        data-12m-ranking="#1 no ranking" data-1m-crescimento="+6%" data-1m-numero="9"
+                        data-1m-ranking="#2 no ranking" data-3m-crescimento="+16%" data-3m-numero="24"
+                        data-3m-ranking="#1 no ranking" data-6m-crescimento="+33%" data-6m-numero="41"
+                        data-6m-ranking="#1 no ranking" data-all-crescimento="+17%" data-all-numero="214"
+                        data-all-ranking="#1 no ranking">
                         <div class="card-metrica-numero">78</div>
                         <div class="card-metrica-label">músicas na posição No. 1</div>
                         <div class="badge-crescimento badge-crescimento-hero">
@@ -4988,7 +164,12 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                         </div>
                         <div class="card-metrica-ranking">#1 no ranking</div>
                     </article>
-                    <article class="card-metrica card-metrica-5">
+                    <article class="card-metrica card-metrica-5" data-12m-crescimento="+200%" data-12m-numero="1.547"
+                        data-12m-ranking="#1 no ranking" data-1m-crescimento="+7%" data-1m-numero="156"
+                        data-1m-ranking="#1 no ranking" data-3m-crescimento="+18%" data-3m-numero="452"
+                        data-3m-ranking="#1 no ranking" data-6m-crescimento="+42%" data-6m-numero="836"
+                        data-6m-ranking="#1 no ranking" data-all-crescimento="+20%" data-all-numero="4.968"
+                        data-all-ranking="#1 no ranking">
                         <div class="card-metrica-numero">1.547</div>
                         <div class="card-metrica-label">entradas na Ton Charts</div>
                         <div class="badge-crescimento badge-crescimento-hero">
@@ -4997,7 +178,12 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                         </div>
                         <div class="card-metrica-ranking">#1 no ranking</div>
                     </article>
-                    <article class="card-metrica card-metrica-6">
+                    <article class="card-metrica card-metrica-6" data-12m-crescimento="+200%" data-12m-numero="243"
+                        data-12m-ranking="#1 no ranking" data-1m-crescimento="+8%" data-1m-numero="28"
+                        data-1m-ranking="#1 no ranking" data-3m-crescimento="+17%" data-3m-numero="74"
+                        data-3m-ranking="#1 no ranking" data-6m-crescimento="+36%" data-6m-numero="132"
+                        data-6m-ranking="#1 no ranking" data-all-crescimento="+16%" data-all-numero="682"
+                        data-all-ranking="#1 no ranking">
                         <div class="card-metrica-numero">243</div>
                         <div class="card-metrica-label">certificados por scrobbles</div>
                         <div class="badge-crescimento badge-crescimento-hero">
@@ -6582,75 +1768,75 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                         </select>
                     </div>
                     <div class="grade-semanas">
-                        <div class="sem-cel" data-periodo="all">
+                        <div aria-hidden="false" class="sem-cel" data-periodo="1m">
                             <div class="semana-marcador-ano">2015</div><button
                                 aria-label="2015 — Semana 1, posição #8, 1.446 plays" class="btn sem-item sem-item-86"
                                 data-data="2015 — Semana 1" data-melhor="false" data-plays="1.446 plays"
                                 data-posicao="#8">8</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="1m"><button
                                 aria-label="2015 — Semana 2, posição #14, 1.496 plays" class="btn sem-item sem-item-74"
                                 data-data="2015 — Semana 2" data-melhor="false" data-plays="1.496 plays"
                                 data-posicao="#14">14</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="1m"><button
                                 aria-label="2015 — Semana 3, posição #19, 1.546 plays" class="btn sem-item sem-item-64"
                                 data-data="2015 — Semana 3" data-melhor="false" data-plays="1.546 plays"
                                 data-posicao="#19">19</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="1m"><button
                                 aria-label="2015 — Semana 4, posição #24, 1.596 plays" class="btn sem-item sem-item-54"
                                 data-data="2015 — Semana 4" data-melhor="false" data-plays="1.596 plays"
                                 data-posicao="#24">24</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="3m"><button
                                 aria-label="2015 — Semana 5, posição #29, 1.646 plays" class="btn sem-item sem-item-44"
                                 data-data="2015 — Semana 5" data-melhor="false" data-plays="1.646 plays"
                                 data-posicao="#29">29</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="3m"><button
                                 aria-label="2015 — Semana 6, posição #34, 1.696 plays" class="btn sem-item sem-item-34"
                                 data-data="2015 — Semana 6" data-melhor="false" data-plays="1.696 plays"
                                 data-posicao="#34">34</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="3m"><button
                                 aria-label="2015 — Semana 7, posição #2, 1.746 plays" class="btn sem-item sem-item-98"
                                 data-data="2015 — Semana 7" data-melhor="false" data-plays="1.746 plays"
                                 data-posicao="#2">2</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="3m"><button
                                 aria-label="2015 — Semana 8, posição #8, 1.796 plays" class="btn sem-item sem-item-86"
                                 data-data="2015 — Semana 8" data-melhor="false" data-plays="1.796 plays"
                                 data-posicao="#8">8</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="6m"><button
                                 aria-label="2015 — Semana 9, posição #13, 1.845 plays" class="btn sem-item sem-item-76"
                                 data-data="2015 — Semana 9" data-melhor="false" data-plays="1.845 plays"
                                 data-posicao="#13">13</button></div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="6m"><button
                                 aria-label="2015 — Semana 10, posição #18, 1.895 plays" class="btn sem-item sem-item-66"
                                 data-data="2015 — Semana 10" data-melhor="false" data-plays="1.895 plays"
                                 data-posicao="#18">18</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="6m"><button
                                 aria-label="2015 — Semana 11, posição #23, 1.945 plays" class="btn sem-item sem-item-56"
                                 data-data="2015 — Semana 11" data-melhor="false" data-plays="1.945 plays"
                                 data-posicao="#23">23</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="12m"><button
                                 aria-label="2015 — Semana 12, posição #1, 1.995 plays, melhor desempenho até aqui"
                                 class="btn sem-item semana-melhor-desempenho" data-data="2015 — Semana 12"
                                 data-melhor="true" data-plays="1.995 plays" data-posicao="#1">1</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="12m"><button
                                 aria-label="2015 — Semana 13, posição #34, 2.045 plays" class="btn sem-item sem-item-34"
                                 data-data="2015 — Semana 13" data-melhor="false" data-plays="2.045 plays"
                                 data-posicao="#34">34</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="false" class="sem-cel" data-periodo="12m"><button
                                 aria-label="2015 — Semana 14, posição #2, 2.095 plays" class="btn sem-item sem-item-98"
                                 data-data="2015 — Semana 14" data-melhor="false" data-plays="2.095 plays"
                                 data-posicao="#2">2</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="true" class="sem-cel tc-periodo-item-oculto" data-periodo="all"><button
                                 aria-label="2015 — Semana 15, posição #8, 2.145 plays" class="btn sem-item sem-item-86"
                                 data-data="2015 — Semana 15" data-melhor="false" data-plays="2.145 plays"
                                 data-posicao="#8">8</button>
                         </div>
-                        <div class="sem-cel" data-periodo="all"><button
+                        <div aria-hidden="true" class="sem-cel tc-periodo-item-oculto" data-periodo="all"><button
                                 aria-label="2015 — Semana 16, posição #12, 2.195 plays" class="btn sem-item sem-item-76"
                                 data-data="2015 — Semana 16" data-melhor="false" data-plays="2.195 plays"
                                 data-posicao="#12">12</button>
@@ -6658,7 +1844,6 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                     </div>
                 </div>
             </section>
-
             <section aria-labelledby="albuns-titulo" class="bloco-geral bloco-albuns" id="albuns">
                 <div class="container">
                     <div class="cabecalho-bloco cabecalho-bloco-albuns">
@@ -6680,7 +1865,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                     </div>
                     <div class="albuns-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
                         <div class="grade-albuns">
-                            <article class="card-album card-album-1" data-spotify-album-id="5BvgP623rtvlc0HDcpzquz">
+                            <article aria-hidden="false" class="card-album card-album-1" data-periodo="1m"
+                                data-spotify-album-id="5BvgP623rtvlc0HDcpzquz">
                                 <a aria-label="Abrir álbum Teenage Dream no Spotify" class="card-album-capa link-padrao"
                                     href="#" rel="noopener" target="_blank">
                                     <div class="card-album-rank">1</div>
@@ -6696,11 +1882,11 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     <a class="card-album-nome link-padrao" href="#" rel="noopener"
                                         target="_blank">Teenage Dream</a>
                                     <div class="card-album-meta">
-                                        <div><strong class="card-album-numero">5.000</strong> scrobbles</div>
-                                        <div><strong class="card-album-numero">28%</strong> dos scrobbles do ato</div>
-                                        <div><strong class="card-album-numero">#1</strong> no ranking</div>
+                                        <div><strong class="card-album-numero">5.000</strong></div>
+                                        <div><strong class="card-album-numero">28%</strong></div>
+                                        <div><strong class="card-album-numero">#1</strong></div>
                                         <div class="album-top5">
-                                            <div class="album-top5-titulo">Principais músicas</div>
+                                            <div class="album-top5-titulo"></div>
                                             <div class="album-top5-musica">
                                                 <div class="album-top5-plays">5.000</div>
                                                 <div class="album-top5-nome">The One That Got Away</div>
@@ -6725,7 +1911,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     </div>
                                 </div>
                             </article>
-                            <article class="card-album card-album-2" data-spotify-album-id="3jB9yFDwRe3KhtGnHXJntk">
+                            <article aria-hidden="false" class="card-album card-album-2" data-periodo="3m"
+                                data-spotify-album-id="3jB9yFDwRe3KhtGnHXJntk">
                                 <a aria-label="Abrir álbum PRISM no Spotify" class="card-album-capa link-padrao"
                                     href="#" rel="noopener" target="_blank">
                                     <div class="card-album-rank">2</div>
@@ -6741,11 +1928,11 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     <a class="card-album-nome link-padrao" href="#" rel="noopener"
                                         target="_blank">PRISM</a>
                                     <div class="card-album-meta">
-                                        <div><strong class="card-album-numero">4.740</strong> scrobbles</div>
-                                        <div><strong class="card-album-numero">24%</strong> dos scrobbles do ato</div>
-                                        <div><strong class="card-album-numero">#2</strong> no ranking</div>
+                                        <div><strong class="card-album-numero">4.740</strong></div>
+                                        <div><strong class="card-album-numero">24%</strong></div>
+                                        <div><strong class="card-album-numero">#2</strong></div>
                                         <div class="album-top5">
-                                            <div class="album-top5-titulo">Principais músicas</div>
+                                            <div class="album-top5-titulo"></div>
                                             <div class="album-top5-musica">
                                                 <div class="album-top5-plays">4.740</div>
                                                 <div class="album-top5-nome">Dark Horse</div>
@@ -6770,7 +1957,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     </div>
                                 </div>
                             </article>
-                            <article class="card-album card-album-3" data-spotify-album-id="0r2BUyPTmpbfuz4rR39mLl">
+                            <article aria-hidden="false" class="card-album card-album-3" data-periodo="6m"
+                                data-spotify-album-id="0r2BUyPTmpbfuz4rR39mLl">
                                 <a aria-label="Abrir álbum One Of The Boys no Spotify"
                                     class="card-album-capa link-padrao" href="#" rel="noopener" target="_blank">
                                     <div class="card-album-rank">3</div>
@@ -6786,11 +1974,11 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     <a class="card-album-nome link-padrao" href="#" rel="noopener" target="_blank">One
                                         Of The Boys</a>
                                     <div class="card-album-meta">
-                                        <div><strong class="card-album-numero">4.480</strong> scrobbles</div>
-                                        <div><strong class="card-album-numero">21%</strong> dos scrobbles do ato</div>
-                                        <div><strong class="card-album-numero">#3</strong> no ranking</div>
+                                        <div><strong class="card-album-numero">4.480</strong></div>
+                                        <div><strong class="card-album-numero">21%</strong></div>
+                                        <div><strong class="card-album-numero">#3</strong></div>
                                         <div class="album-top5">
-                                            <div class="album-top5-titulo">Principais músicas</div>
+                                            <div class="album-top5-titulo"></div>
                                             <div class="album-top5-musica">
                                                 <div class="album-top5-plays">4.480</div>
                                                 <div class="album-top5-nome">Hot N Cold</div>
@@ -6815,7 +2003,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     </div>
                                 </div>
                             </article>
-                            <article class="card-album card-album-4" data-spotify-album-id="0UlbGi4oAth8s6rwaGSU8Z">
+                            <article aria-hidden="false" class="card-album card-album-4" data-periodo="12m"
+                                data-spotify-album-id="0UlbGi4oAth8s6rwaGSU8Z">
                                 <a aria-label="Abrir álbum Witness no Spotify" class="card-album-capa link-padrao"
                                     href="#" rel="noopener" target="_blank">
                                     <div class="card-album-rank">4</div>
@@ -6831,11 +2020,11 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     <a class="card-album-nome link-padrao" href="#" rel="noopener"
                                         target="_blank">Witness</a>
                                     <div class="card-album-meta">
-                                        <div><strong class="card-album-numero">4.220</strong> scrobbles</div>
-                                        <div><strong class="card-album-numero">18%</strong> dos scrobbles do ato</div>
-                                        <div><strong class="card-album-numero">#4</strong> no ranking</div>
+                                        <div><strong class="card-album-numero">4.220</strong></div>
+                                        <div><strong class="card-album-numero">18%</strong></div>
+                                        <div><strong class="card-album-numero">#4</strong></div>
                                         <div class="album-top5">
-                                            <div class="album-top5-titulo">Principais músicas</div>
+                                            <div class="album-top5-titulo"></div>
                                             <div class="album-top5-musica">
                                                 <div class="album-top5-plays">4.220</div>
                                                 <div class="album-top5-nome">Chained To The Rhythm</div>
@@ -6860,7 +2049,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     </div>
                                 </div>
                             </article>
-                            <article class="card-album card-album-5" data-spotify-album-id="3KjXg0MDej2pG9fv6I22lT">
+                            <article aria-hidden="true" class="card-album card-album-5 tc-periodo-item-oculto"
+                                data-periodo="all" data-spotify-album-id="3KjXg0MDej2pG9fv6I22lT">
                                 <a aria-label="Abrir álbum Smile no Spotify" class="card-album-capa link-padrao"
                                     href="#" rel="noopener" target="_blank">
                                     <div class="card-album-rank">5</div>
@@ -6876,11 +2066,11 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     <a class="card-album-nome link-padrao" href="#" rel="noopener"
                                         target="_blank">Smile</a>
                                     <div class="card-album-meta">
-                                        <div><strong class="card-album-numero">3.960</strong> scrobbles</div>
-                                        <div><strong class="card-album-numero">16%</strong> dos scrobbles do ato</div>
-                                        <div><strong class="card-album-numero">#5</strong> no ranking</div>
+                                        <div><strong class="card-album-numero">3.960</strong></div>
+                                        <div><strong class="card-album-numero">16%</strong></div>
+                                        <div><strong class="card-album-numero">#5</strong></div>
                                         <div class="album-top5">
-                                            <div class="album-top5-titulo">Principais músicas</div>
+                                            <div class="album-top5-titulo"></div>
                                             <div class="album-top5-musica">
                                                 <div class="album-top5-plays">3.960</div>
                                                 <div class="album-top5-nome">Never Really Over</div>
@@ -6931,54 +2121,72 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                     <div class="top-cards-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
                         <div class="grade-top-cards">
                             <article class="top-card top-card-1 top-card-destaque">
-                                <div class="top-card-numero">54</div>
+                                <div class="top-card-numero" data-tc-periodo-12m="54" data-tc-periodo-1m="7"
+                                    data-tc-periodo-3m="17" data-tc-periodo-6m="31" data-tc-periodo-all="127">54</div>
                                 <div class="top-card-label">na posição No. 1</div>
                                 <div class="badge-crescimento"><i aria-hidden="true" class="fa-solid fa-arrow-up"></i>
-                                    <div>200%</div>
+                                    <div data-tc-periodo-12m="200%" data-tc-periodo-1m="+8%" data-tc-periodo-3m="+21%"
+                                        data-tc-periodo-6m="+46%" data-tc-periodo-all="+38%">200%</div>
                                 </div>
                                 <div class="top-card-info">
-                                    <div>111 entradas</div>
+                                    <div data-tc-periodo-12m="111 entradas" data-tc-periodo-1m="14 entradas"
+                                        data-tc-periodo-3m="36 entradas" data-tc-periodo-6m="64 entradas"
+                                        data-tc-periodo-all="261 entradas">111 entradas</div>
                                     <div>#1 no ranking</div>
                                 </div>
                             </article>
                             <article class="top-card top-card-2">
-                                <div class="top-card-numero">85</div>
+                                <div class="top-card-numero" data-tc-periodo-12m="85" data-tc-periodo-1m="11"
+                                    data-tc-periodo-3m="27" data-tc-periodo-6m="49" data-tc-periodo-all="200">85</div>
                                 <div class="top-card-label">no top 5</div>
                                 <div class="badge-crescimento"><i aria-hidden="true" class="fa-solid fa-arrow-up"></i>
-                                    <div>200%</div>
+                                    <div data-tc-periodo-12m="200%" data-tc-periodo-1m="+8%" data-tc-periodo-3m="+21%"
+                                        data-tc-periodo-6m="+46%" data-tc-periodo-all="+38%">200%</div>
                                 </div>
                                 <div class="top-card-info">
-                                    <div>437 entradas</div>
+                                    <div data-tc-periodo-12m="437 entradas" data-tc-periodo-1m="57 entradas"
+                                        data-tc-periodo-3m="140 entradas" data-tc-periodo-6m="253 entradas"
+                                        data-tc-periodo-all="1.027 entradas">437 entradas</div>
                                     <div>#1 no ranking</div>
                                 </div>
                             </article>
                             <article class="top-card top-card-3">
-                                <div class="top-card-numero">102</div>
+                                <div class="top-card-numero" data-tc-periodo-12m="102" data-tc-periodo-1m="13"
+                                    data-tc-periodo-3m="33" data-tc-periodo-6m="59" data-tc-periodo-all="240">102</div>
                                 <div class="top-card-label">no top 10</div>
                                 <div class="badge-crescimento"><i aria-hidden="true" class="fa-solid fa-arrow-up"></i>
-                                    <div>200%</div>
+                                    <div data-tc-periodo-12m="200%" data-tc-periodo-1m="+8%" data-tc-periodo-3m="+21%"
+                                        data-tc-periodo-6m="+46%" data-tc-periodo-all="+38%">200%</div>
                                 </div>
                                 <div class="top-card-info">
-                                    <div>870 entradas</div>
+                                    <div data-tc-periodo-12m="870 entradas" data-tc-periodo-1m="113 entradas"
+                                        data-tc-periodo-3m="278 entradas" data-tc-periodo-6m="505 entradas"
+                                        data-tc-periodo-all="2.044 entradas">870 entradas</div>
                                     <div>#1 no ranking</div>
                                 </div>
                             </article>
                             <article class="top-card top-card-4">
-                                <div class="top-card-numero">109</div>
+                                <div class="top-card-numero" data-tc-periodo-12m="109" data-tc-periodo-1m="14"
+                                    data-tc-periodo-3m="35" data-tc-periodo-6m="63" data-tc-periodo-all="256">109</div>
                                 <div class="top-card-label">na Ton Charts</div>
                                 <div class="badge-crescimento"><i aria-hidden="true" class="fa-solid fa-arrow-up"></i>
-                                    <div>200%</div>
+                                    <div data-tc-periodo-12m="200%" data-tc-periodo-1m="+8%" data-tc-periodo-3m="+21%"
+                                        data-tc-periodo-6m="+46%" data-tc-periodo-all="+38%">200%</div>
                                 </div>
                                 <div class="top-card-info">
-                                    <div>1.747 entradas</div>
+                                    <div data-tc-periodo-12m="1.747 entradas" data-tc-periodo-1m="227 entradas"
+                                        data-tc-periodo-3m="559 entradas" data-tc-periodo-6m="1.013 entradas"
+                                        data-tc-periodo-all="4.105 entradas">1.747 entradas</div>
                                     <div>#1 no ranking</div>
                                 </div>
                             </article>
                             <article class="top-card top-card-5">
-                                <div class="top-card-numero">154</div>
+                                <div class="top-card-numero" data-tc-periodo-12m="154" data-tc-periodo-1m="20"
+                                    data-tc-periodo-3m="49" data-tc-periodo-6m="89" data-tc-periodo-all="362">154</div>
                                 <div class="top-card-label">músicas com algum scrobble</div>
                                 <div class="badge-crescimento"><i aria-hidden="true" class="fa-solid fa-arrow-up"></i>
-                                    <div>200%</div>
+                                    <div data-tc-periodo-12m="200%" data-tc-periodo-1m="+8%" data-tc-periodo-3m="+21%"
+                                        data-tc-periodo-6m="+46%" data-tc-periodo-all="+38%">200%</div>
                                 </div>
                                 <div class="top-card-info">
                                     <div>total editorial</div>
@@ -7026,7 +2234,9 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                             <div class="linhas-musicas">
                                 <article class="linha-musica" data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
                                     <div class="musica-posicao"></div>
-                                    <div class="musica-ranking" data-label="Ranking">1</div>
+                                    <div class="musica-ranking" data-label="Ranking" data-tc-periodo-12m="1"
+                                        data-tc-periodo-1m="1" data-tc-periodo-3m="1" data-tc-periodo-6m="1"
+                                        data-tc-periodo-all="1">1</div>
                                     <div class="musica-principal">
                                         <a aria-label="Abrir música The One That Got
                         Away no Spotify" class="musica-capa-link link-padrao" href="#" rel="noopener" target="_blank">
@@ -7045,18 +2255,31 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                                 · 3:47</div>
                                         </div>
                                     </div>
-                                    <div class="musica-numero musica-scrobbles" data-label="Scrobbles">5.000</div>
-                                    <div class="musica-numero musica-pontuacao" data-label="Pontuação">10.000</div>
+                                    <div class="musica-numero musica-scrobbles" data-label="Scrobbles"
+                                        data-tc-periodo-12m="5.000" data-tc-periodo-1m="650" data-tc-periodo-3m="1.600"
+                                        data-tc-periodo-6m="2.900" data-tc-periodo-all="11.750">5.000</div>
+                                    <div class="musica-numero musica-pontuacao" data-label="Pontuação"
+                                        data-tc-periodo-12m="10.000" data-tc-periodo-1m="1.300"
+                                        data-tc-periodo-3m="3.200" data-tc-periodo-6m="5.800"
+                                        data-tc-periodo-all="23.500">10.000</div>
                                     <div class="pico-musica" data-label="Pico">
                                         <div class="pico-posicao">#1</div>
-                                        <div class="pico-vezes">10x</div>
+                                        <div class="pico-vezes" data-tc-periodo-12m="10x" data-tc-periodo-1m="1x"
+                                            data-tc-periodo-3m="3x" data-tc-periodo-6m="6x" data-tc-periodo-all="24x">
+                                            10x</div>
                                     </div>
-                                    <div class="musica-semanas" data-label="Semanas">150</div>
-                                    <div class="musica-dias" data-label="Dias em #1">6.347</div>
+                                    <div class="musica-semanas" data-label="Semanas" data-tc-periodo-12m="150"
+                                        data-tc-periodo-1m="20" data-tc-periodo-3m="48" data-tc-periodo-6m="87"
+                                        data-tc-periodo-all="352">150</div>
+                                    <div class="musica-dias" data-label="Dias em #1" data-tc-periodo-12m="6.347"
+                                        data-tc-periodo-1m="825" data-tc-periodo-3m="2.031" data-tc-periodo-6m="3.681"
+                                        data-tc-periodo-all="14.915">6.347</div>
                                 </article>
                                 <article class="linha-musica" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
                                     <div class="musica-posicao"></div>
-                                    <div class="musica-ranking" data-label="Ranking">1</div>
+                                    <div class="musica-ranking" data-label="Ranking" data-tc-periodo-12m="1"
+                                        data-tc-periodo-1m="2" data-tc-periodo-3m="2" data-tc-periodo-6m="2"
+                                        data-tc-periodo-all="2">1</div>
                                     <div class="musica-principal">
                                         <a aria-label="Abrir música Firework no Spotify"
                                             class="musica-capa-link link-padrao" href="#" rel="noopener"
@@ -7075,18 +2298,31 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                                 · 3:48</div>
                                         </div>
                                     </div>
-                                    <div class="musica-numero musica-scrobbles" data-label="Scrobbles">4.800</div>
-                                    <div class="musica-numero musica-pontuacao" data-label="Pontuação">9.750</div>
+                                    <div class="musica-numero musica-scrobbles" data-label="Scrobbles"
+                                        data-tc-periodo-12m="4.800" data-tc-periodo-1m="624" data-tc-periodo-3m="1.536"
+                                        data-tc-periodo-6m="2.784" data-tc-periodo-all="11.280">4.800</div>
+                                    <div class="musica-numero musica-pontuacao" data-label="Pontuação"
+                                        data-tc-periodo-12m="9.750" data-tc-periodo-1m="1.268"
+                                        data-tc-periodo-3m="3.120" data-tc-periodo-6m="5.655"
+                                        data-tc-periodo-all="22.912">9.750</div>
                                     <div class="pico-musica" data-label="Pico">
                                         <div class="pico-posicao">#1</div>
-                                        <div class="pico-vezes">8x</div>
+                                        <div class="pico-vezes" data-tc-periodo-12m="8x" data-tc-periodo-1m="1x"
+                                            data-tc-periodo-3m="3x" data-tc-periodo-6m="5x" data-tc-periodo-all="19x">8x
+                                        </div>
                                     </div>
-                                    <div class="musica-semanas" data-label="Semanas">148</div>
-                                    <div class="musica-dias" data-label="Dias em #1">6.120</div>
+                                    <div class="musica-semanas" data-label="Semanas" data-tc-periodo-12m="148"
+                                        data-tc-periodo-1m="19" data-tc-periodo-3m="47" data-tc-periodo-6m="86"
+                                        data-tc-periodo-all="348">148</div>
+                                    <div class="musica-dias" data-label="Dias em #1" data-tc-periodo-12m="6.120"
+                                        data-tc-periodo-1m="796" data-tc-periodo-3m="1.958" data-tc-periodo-6m="3.550"
+                                        data-tc-periodo-all="14.382">6.120</div>
                                 </article>
                                 <article class="linha-musica" data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
                                     <div class="musica-posicao"></div>
-                                    <div class="musica-ranking" data-label="Ranking">1</div>
+                                    <div class="musica-ranking" data-label="Ranking" data-tc-periodo-12m="1"
+                                        data-tc-periodo-1m="3" data-tc-periodo-3m="3" data-tc-periodo-6m="3"
+                                        data-tc-periodo-all="3">1</div>
                                     <div class="musica-principal">
                                         <a aria-label="Abrir música Dark Horse no Spotify"
                                             class="musica-capa-link link-padrao" href="#" rel="noopener"
@@ -7105,14 +2341,25 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                                 · 3:35</div>
                                         </div>
                                     </div>
-                                    <div class="musica-numero musica-scrobbles" data-label="Scrobbles">4.600</div>
-                                    <div class="musica-numero musica-pontuacao" data-label="Pontuação">9.410</div>
+                                    <div class="musica-numero musica-scrobbles" data-label="Scrobbles"
+                                        data-tc-periodo-12m="4.600" data-tc-periodo-1m="598" data-tc-periodo-3m="1.472"
+                                        data-tc-periodo-6m="2.668" data-tc-periodo-all="10.810">4.600</div>
+                                    <div class="musica-numero musica-pontuacao" data-label="Pontuação"
+                                        data-tc-periodo-12m="9.410" data-tc-periodo-1m="1.223"
+                                        data-tc-periodo-3m="3.011" data-tc-periodo-6m="5.458"
+                                        data-tc-periodo-all="22.114">9.410</div>
                                     <div class="pico-musica" data-label="Pico">
                                         <div class="pico-posicao">#1</div>
-                                        <div class="pico-vezes">7x</div>
+                                        <div class="pico-vezes" data-tc-periodo-12m="7x" data-tc-periodo-1m="1x"
+                                            data-tc-periodo-3m="2x" data-tc-periodo-6m="4x" data-tc-periodo-all="16x">7x
+                                        </div>
                                     </div>
-                                    <div class="musica-semanas" data-label="Semanas">144</div>
-                                    <div class="musica-dias" data-label="Dias em #1">5.980</div>
+                                    <div class="musica-semanas" data-label="Semanas" data-tc-periodo-12m="144"
+                                        data-tc-periodo-1m="19" data-tc-periodo-3m="46" data-tc-periodo-6m="84"
+                                        data-tc-periodo-all="338">144</div>
+                                    <div class="musica-dias" data-label="Dias em #1" data-tc-periodo-12m="5.980"
+                                        data-tc-periodo-1m="777" data-tc-periodo-3m="1.914" data-tc-periodo-6m="3.468"
+                                        data-tc-periodo-all="14.053">5.980</div>
                                 </article>
                             </div>
                         </div>
@@ -8634,7 +3881,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                         11 jul 2026
                                     </time>
                                     <div class="sequencia-semanas">
-                                        <strong>52</strong>
+                                        <strong data-tc-periodo-12m="52" data-tc-periodo-1m="7" data-tc-periodo-3m="17"
+                                            data-tc-periodo-6m="30" data-tc-periodo-all="122">52</strong>
                                         <span class="sequencia-semanas-unidade"> semanas</span>
                                     </div>
                                 </article>
@@ -8653,7 +3901,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                         11 jul 2026
                                     </time>
                                     <div class="sequencia-semanas">
-                                        <strong>42</strong>
+                                        <strong data-tc-periodo-12m="42" data-tc-periodo-1m="5" data-tc-periodo-3m="13"
+                                            data-tc-periodo-6m="24" data-tc-periodo-all="99">42</strong>
                                         <span class="sequencia-semanas-unidade"> semanas</span>
                                     </div>
                                 </article>
@@ -8672,7 +3921,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                         11 jul 2026
                                     </time>
                                     <div class="sequencia-semanas">
-                                        <strong>34</strong>
+                                        <strong data-tc-periodo-12m="34" data-tc-periodo-1m="4" data-tc-periodo-3m="11"
+                                            data-tc-periodo-6m="20" data-tc-periodo-all="80">34</strong>
                                         <span class="sequencia-semanas-unidade"> semanas</span>
                                     </div>
                                 </article>
@@ -8691,7 +3941,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                         11 jul 2026
                                     </time>
                                     <div class="sequencia-semanas">
-                                        <strong>26</strong>
+                                        <strong data-tc-periodo-12m="26" data-tc-periodo-1m="3" data-tc-periodo-3m="8"
+                                            data-tc-periodo-6m="15" data-tc-periodo-all="61">26</strong>
                                         <span class="sequencia-semanas-unidade"> semanas</span>
                                     </div>
                                 </article>
@@ -8710,7 +3961,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                         11 jul 2026
                                     </time>
                                     <div class="sequencia-semanas">
-                                        <strong>18</strong>
+                                        <strong data-tc-periodo-12m="18" data-tc-periodo-1m="2" data-tc-periodo-3m="6"
+                                            data-tc-periodo-6m="10" data-tc-periodo-all="42">18</strong>
                                         <span class="sequencia-semanas-unidade"> semanas</span>
                                     </div>
                                 </article>
@@ -9140,10 +4392,23 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                     <div class="cabecalho-bloco cabecalho-bloco-certificados">
                         <h2 class="titulo-bloco titulo-bloco-certificados" id="certificados-titulo">Últimos certificados
                         </h2>
+                        <select aria-label="Selecionar período de certificados"
+                            class="seletor-periodo seletor-periodo-claro seletor-periodo-certificados"
+                            title="Selecionar período de certificados">
+                            <option class="opcao-periodo" data-full="Todo o período" data-short="Tudo" value="all">Todo
+                                o período</option>
+                            <option class="opcao-periodo" data-full="12 meses" data-short="12m" selected="" value="12m">
+                                12 meses</option>
+                            <option class="opcao-periodo" data-full="6 meses" data-short="6m" value="6m">6 meses
+                            </option>
+                            <option class="opcao-periodo" data-full="3 meses" data-short="3m" value="3m">3 meses
+                            </option>
+                            <option class="opcao-periodo" data-full="1 mês" data-short="1m" value="1m">1 mês</option>
+                        </select>
                     </div>
                     <div class="certificados-area conteudo-periodo conteudo-periodo-ativo" data-periodo="12m">
                         <div class="grade-certificados">
-                            <article class="card-certificado card-certificado-1"
+                            <article aria-hidden="false" class="card-certificado card-certificado-1" data-periodo="1m"
                                 data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
                                 <div class="card-certificado-topo">
                                     <div class="card-certificado-tipo">5x Ouro</div>
@@ -9170,7 +4435,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                 </div>
                                 <time class="card-certificado-data" datetime="2026-01-01">1 jan 2026 20:15</time>
                             </article>
-                            <article class="card-certificado card-certificado-2 card-certificado-platina"
+                            <article aria-hidden="false"
+                                class="card-certificado card-certificado-2 card-certificado-platina" data-periodo="3m"
                                 data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
                                 <div class="card-certificado-topo">
                                     <div class="card-certificado-tipo">5x Platina</div>
@@ -9196,7 +4462,8 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                 </div>
                                 <time class="card-certificado-data" datetime="2026-01-02">2 jan 2026 20:15</time>
                             </article>
-                            <article class="card-certificado card-certificado-3 card-certificado-diamante"
+                            <article aria-hidden="false"
+                                class="card-certificado card-certificado-3 card-certificado-diamante" data-periodo="6m"
                                 data-spotify-track-id="4jbmgIyjGoXjY01XxatOx6">
                                 <div class="card-certificado-topo">
                                     <div class="card-certificado-tipo">5x Diamante</div>
@@ -9221,6 +4488,60 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
                                     </div>
                                 </div>
                                 <time class="card-certificado-data" datetime="2026-01-03">3 jan 2026 20:15</time>
+                            </article>
+                            <article aria-hidden="false" class="card-certificado card-certificado-4" data-periodo="12m"
+                                data-spotify-track-id="6F5c58TMEs1byxUstkzVeM">
+                                <div class="card-certificado-topo">
+                                    <div class="card-certificado-tipo">2x Ouro</div>
+                                    <div class="card-certificado-quantidade">2.000</div>
+                                </div>
+                                <a class="card-certificado-nome link-padrao" href="#" rel="noopener" target="_blank">The
+                                    One That Got
+                                    Away</a>
+                                <div class="card-certificado-artista nome-artista-api">Artista</div>
+                                <a aria-label="Abrir música The One That Got
+                  Away no Spotify" class="card-certificado-capa link-padrao" href="#" rel="noopener" target="_blank">
+                                    <img alt="" class="card-certificado-imagem imagem-fluida" decoding="async"
+                                        loading="lazy" src="" />
+                                </a>
+                                <div class="card-certificado-stats">
+                                    <div>
+                                        <div class="card-certificado-numero">47°</div>
+                                        <div class="card-certificado-label">do artista</div>
+                                    </div>
+                                    <div>
+                                        <div class="card-certificado-numero">48°</div>
+                                        <div class="card-certificado-label">no geral</div>
+                                    </div>
+                                </div>
+                                <time class="card-certificado-data" datetime="2025-11-01">1 nov 2025 20:15</time>
+                            </article>
+                            <article aria-hidden="true"
+                                class="card-certificado card-certificado-platina card-certificado-5 tc-periodo-item-oculto"
+                                data-periodo="all" data-spotify-track-id="4lCv7b86sLynZbXhfScfm2">
+                                <div class="card-certificado-topo">
+                                    <div class="card-certificado-tipo">1x Platina</div>
+                                    <div class="card-certificado-quantidade">1.000</div>
+                                </div>
+                                <a class="card-certificado-nome link-padrao" href="#" rel="noopener"
+                                    target="_blank">Firework</a>
+                                <div class="card-certificado-artista nome-artista-api">Artista</div>
+                                <a aria-label="Abrir música Firework no Spotify"
+                                    class="card-certificado-capa link-padrao" href="#" rel="noopener" target="_blank">
+                                    <img alt="" class="card-certificado-imagem imagem-fluida" decoding="async"
+                                        loading="lazy" src="" />
+                                </a>
+                                <div class="card-certificado-stats">
+                                    <div>
+                                        <div class="card-certificado-numero">49°</div>
+                                        <div class="card-certificado-label">do artista</div>
+                                    </div>
+                                    <div>
+                                        <div class="card-certificado-numero">50°</div>
+                                        <div class="card-certificado-label">no geral</div>
+                                    </div>
+                                </div>
+                                <time class="card-certificado-data" datetime="2024-06-01">1 jun 2024 20:15</time>
                             </article>
                         </div>
                     </div>
@@ -9498,6 +4819,7 @@ Mesmo que outro valor seja colocado no HTML, ela ficará em 100%.
     <script defer="" src="../assets/js/toncharts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="../assets/js/grafico-evolucao.js"></script>
+
 </body>
 
 </html>

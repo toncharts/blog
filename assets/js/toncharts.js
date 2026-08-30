@@ -1,3 +1,4 @@
+/* ===== ARQUIVO PRINCIPAL ORIGINAL: Código colado(5).js ===== */
 const selecionar = (query) => document.querySelector(query);
 const selecionarTodos = (query) => document.querySelectorAll(query);
 
@@ -7,13 +8,6 @@ const SPOTIFY_CACHE_URL = new URL("../../data/spotify-cache.json", SCRIPT_ATUAL)
 const SPOTIFY_ARTIST_ID =
   document.querySelector(".spotify-artista")?.id?.trim() || "";
 
-
-
-
-
-
-  
-  
 async function carregarSpotify() {
   if (!SPOTIFY_ARTIST_ID) {
     console.warn("Nenhum ID de artista foi encontrado em .spotify-artista.");
@@ -184,7 +178,6 @@ function aplicarCapasNumeroUm(musicas, albuns) {
   });
 }
 
-
 function aplicarPeriodo(periodo) {
   selecionarTodos(".seletor-periodo").forEach((select) => {
     select.value = periodo;
@@ -313,7 +306,6 @@ function atualizarBotoesMusicas() {
   );
 }
 
-
 function converterValorMusica(texto) {
   if (!texto) return null;
 
@@ -339,11 +331,11 @@ function obterValorMusica(linha, seletor) {
 
 function obterValorOrdenacaoMusica(linha, coluna) {
   const seletores = {
-  ranking: ".musica-ranking",
-  scrobbles: ".musica-scrobbles",
-  pontuacao: ".musica-pontuacao",
-  semanas: ".musica-semanas",
-  dias: ".musica-dias"
+    ranking: ".musica-ranking",
+    scrobbles: ".musica-scrobbles",
+    pontuacao: ".musica-pontuacao",
+    semanas: ".musica-semanas",
+    dias: ".musica-dias"
   };
 
   return obterValorMusica(linha, seletores[coluna]);
@@ -425,10 +417,10 @@ function ordenarListaMusicas(botao) {
    *
    * As demais colunas começam do maior para o menor.
    */
-const direcaoInicial =
-  coluna === "ranking"
-    ? "asc"
-    : "desc";
+  const direcaoInicial =
+    coluna === "ranking"
+      ? "asc"
+      : "desc";
 
   const novaDirecao =
     direcaoAtual === ""
@@ -449,16 +441,10 @@ const direcaoInicial =
     linhasContainer.querySelectorAll(".linha-musica")
   );
 
-  /*
-   * Guarda a ordem atual para preservar empates completos.
-   */
   const ordemAtual = new Map(
     linhas.map((linha, indice) => [linha, indice])
   );
 
-  /*
-   * Primeiro exibe todas as músicas.
-   */
   linhas.forEach((linha) => {
     linha.hidden = false;
   });
@@ -661,7 +647,6 @@ function atualizarUnidadeSemanas() {
   });
 }
 
-
 function configurarSequenciasDobraveis() {
   selecionarTodos(".sequencia-ranking").forEach(
     (ranking, indice) => {
@@ -685,10 +670,6 @@ function configurarSequenciasDobraveis() {
 
       lista.id = listaId;
 
-      /*
-       * "No chart" começa aberto.
-       * Top 10, top 5 e topo começam fechados.
-       */
       const abertoInicialmente = ranking.classList.contains(
         "sequencia-ranking-chart"
       );
@@ -760,7 +741,6 @@ function configurarSequenciasDobraveis() {
   );
 }
 
-
 function configurarSequenciasAcumuladasDobraveis() {
   selecionarTodos(".sequencia-acumulado").forEach(
     (acumulado, indice) => {
@@ -784,10 +764,6 @@ function configurarSequenciasAcumuladasDobraveis() {
 
       lista.id = listaId;
 
-      /*
-       * Chart começa aberto.
-       * Top 10, top 5 e topo começam fechados.
-       */
       const abertoInicialmente =
         acumulado.classList.contains(
           "sequencia-acumulado-chart"
@@ -862,6 +838,43 @@ function configurarSequenciasAcumuladasDobraveis() {
   );
 }
 
+let destinoScroll = window.scrollY;
+let scrollAtual = window.scrollY;
+let animandoScroll = false;
+
+window.addEventListener("wheel", function (e) {
+  e.preventDefault();
+
+  destinoScroll += e.deltaY;
+
+  destinoScroll = Math.max(
+    0,
+    Math.min(
+      destinoScroll,
+      document.documentElement.scrollHeight - window.innerHeight
+    )
+  );
+
+  if (!animandoScroll) {
+    animandoScroll = true;
+    animarScroll();
+  }
+}, { passive: false });
+
+function animarScroll() {
+  scrollAtual += (destinoScroll - scrollAtual) * 0.4;
+
+  window.scrollTo(0, scrollAtual);
+
+  if (Math.abs(destinoScroll - scrollAtual) > 0.5) {
+    requestAnimationFrame(animarScroll);
+  } else {
+    scrollAtual = destinoScroll;
+    window.scrollTo(0, destinoScroll);
+    animandoScroll = false;
+  }
+}
+
 function iniciarPagina() {
   configurarTema();
   configurarPeriodos();
@@ -883,3 +896,775 @@ function iniciarPagina() {
 iniciarPagina();
 
 window.addEventListener("resize", atualizarLabelsPeriodoResponsivo);
+/* ===== INÍCIO: bloco-inline-1 ===== */
+
+/* Sincroniza exclusivamente os cards do hero com .seletor-periodo-hero.
+   Não renomeia nem substitui hooks usados pelos JS externos. */
+(() => {
+  const seletor = document.querySelector('.seletor-periodo-hero');
+  const grade = document.querySelector('.hero-grade');
+
+  if (!seletor || !grade) return;
+
+  const cards = [...grade.querySelectorAll('.card-metrica')];
+
+  const chave = (periodo, campo) =>
+    `${periodo}${campo.charAt(0).toUpperCase()}${campo.slice(1)}`;
+
+function atualizarHero(periodo) {
+  grade.classList.add('hero-periodo-atualizando');
+
+  requestAnimationFrame(() => {
+    cards.forEach((card) => {
+      const numero = card.dataset[chave(periodo, 'numero')] ?? '—';
+      const crescimento = card.dataset[chave(periodo, 'crescimento')] ?? '—';
+      const ranking =
+        card.dataset[chave(periodo, 'ranking')] ??
+        'dados do período não preenchidos';
+      const link = card.dataset[chave(periodo, 'link')] ?? '';
+
+      const elNumero = card.querySelector('.card-metrica-numero');
+      const elCrescimento = card.querySelector('.badge-crescimento-texto');
+      const elRanking = card.querySelector('.card-metrica-ranking');
+      const badge = card.querySelector('.badge-crescimento');
+      const icone = card.querySelector('.icone-crescimento');
+
+      if (elNumero) elNumero.textContent = numero;
+      if (elCrescimento) elCrescimento.textContent = crescimento;
+      if (elRanking) elRanking.textContent = ranking;
+
+      card.dataset.linkAtual = link;
+
+      const ausente = numero === '—';
+      card.classList.toggle('card-metrica-dado-ausente', ausente);
+
+      if (badge) badge.hidden = crescimento === '—';
+
+      if (icone && crescimento !== '—') {
+        const valor = Number.parseFloat(
+          String(crescimento).replace(',', '.')
+        );
+
+        icone.classList.toggle('fa-arrow-up', !(valor < 0));
+        icone.classList.toggle('fa-arrow-down', valor < 0);
+      }
+    });
+
+    grade.dataset.periodoAtivo = periodo;
+    grade.classList.remove('hero-periodo-atualizando');
+  });
+}
+
+cards.forEach((card) => {
+  card.addEventListener('click', () => {
+    const link = card.dataset.linkAtual;
+    if (link) window.location.href = link;
+  });
+});
+
+seletor.addEventListener(
+  'change',
+  () => atualizarHero(seletor.value)
+);
+
+atualizarHero(seletor.value);
+
+  seletor.addEventListener(
+    'change',
+    () => atualizarHero(seletor.value)
+  );
+
+  atualizarHero(seletor.value);
+})();
+
+/* ===== FIM: bloco-inline-1 ===== */
+
+
+/* ===== INÍCIO: toncharts-scrollspy-v3 ===== */
+
+(() => {
+  const links = [
+    ...document.querySelectorAll(
+      '.navegacao-secoes__link[href^="#"]'
+    )
+  ];
+
+/* Texto dos links da navegação */
+links.forEach((link) => {
+    if (link.querySelector('.navegacao-secoes__texto')) return;
+
+    const texto = link.textContent
+        .trim()
+        .replace(/\s+/g, ' ');
+
+    link.textContent = '';
+
+    const span = document.createElement('span');
+    span.className = 'navegacao-secoes__texto';
+    span.textContent = texto;
+
+    link.appendChild(span);
+
+    if (!link.hasAttribute('aria-label')) {
+        link.setAttribute('aria-label', texto);
+    }
+});
+
+
+/* Abertura suave da navegação */
+const navegacao = document.querySelector('.navegacao-secoes');
+
+if (navegacao) {
+    let temporizadorFechar;
+
+    const abrirNavegacao = () => {
+        clearTimeout(temporizadorFechar);
+
+        requestAnimationFrame(() => {
+            navegacao.classList.add('navegacao-secoes--aberta');
+        });
+    };
+
+    const fecharNavegacao = () => {
+        clearTimeout(temporizadorFechar);
+
+        temporizadorFechar = setTimeout(() => {
+            if (!navegacao.matches(':hover') &&
+                !navegacao.contains(document.activeElement)) {
+                navegacao.classList.remove('navegacao-secoes--aberta');
+            }
+        }, 100);
+    };
+
+    navegacao.addEventListener('mouseenter', abrirNavegacao);
+    navegacao.addEventListener('mouseleave', fecharNavegacao);
+    navegacao.addEventListener('focusin', abrirNavegacao);
+    navegacao.addEventListener('focusout', fecharNavegacao);
+}
+
+  if (!links.length || !('IntersectionObserver' in window)) return;
+
+  const map = new Map();
+
+  links.forEach(link => {
+    const target = document.querySelector(
+      link.getAttribute('href')
+    );
+
+    if (target) map.set(target, link);
+  });
+
+  const setActive = (link) => {
+    links.forEach(item => {
+      item.classList.toggle('is-active', item === link);
+
+      if (item === link) {
+        item.setAttribute('aria-current', 'location');
+      } else {
+        item.removeAttribute('aria-current');
+      }
+    });
+
+    const list = link.closest('.navegacao-secoes__lista');
+
+    if (list && list.scrollWidth > list.clientWidth) {
+      const left =
+        link.offsetLeft -
+        (list.clientWidth / 2) +
+        (link.offsetWidth / 2);
+
+      list.scrollTo({
+        left: Math.max(0, left),
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort(
+        (a, b) =>
+          b.intersectionRatio -
+          a.intersectionRatio
+      )[0];
+
+    if (!visible) return;
+
+    const link = map.get(visible.target);
+
+    if (link) setActive(link);
+  }, {
+    rootMargin: '-15% 0px -68% 0px',
+    threshold: [0, .12, .3]
+  });
+
+  map.forEach(
+    (_, section) => observer.observe(section)
+  );
+
+  if (links[0]) setActive(links[0]);
+})();
+
+/* ===== FIM: toncharts-scrollspy-v3 ===== */
+
+
+/* ===== INÍCIO: toncharts-ajustes-finais-20260829 ===== */
+
+(() => {
+  const PERIODOS = ['all', '12m', '6m', '3m', '1m'];
+
+  const FATORES = {
+    all: 1.78,
+    '12m': 1,
+    '6m': .56,
+    '3m': .31,
+    '1m': .12
+  };
+
+  const HERO = [
+    {
+      all: ['412.840', '+18%', '#1 no ranking'],
+      '12m': ['75.255', '+200%', '#1 no ranking'],
+      '6m': ['39.840', '+46%', '#1 no ranking'],
+      '3m': ['20.310', '+21%', '#1 no ranking'],
+      '1m': ['6.940', '+8%', '#1 no ranking']
+    },
+    {
+      all: ['1.386.420', '+22%', '#1 no ranking'],
+      '12m': ['254.865', '+200%', '#1 no ranking'],
+      '6m': ['136.940', '+51%', '#1 no ranking'],
+      '3m': ['72.480', '+24%', '#1 no ranking'],
+      '1m': ['23.760', '+9%', '#1 no ranking']
+    },
+    {
+      all: ['398', '+14%', '#4 no ranking'],
+      '12m': ['146', '+200%', '#6 no ranking'],
+      '6m': ['82', '+38%', '#5 no ranking'],
+      '3m': ['47', '+19%', '#5 no ranking'],
+      '1m': ['18', '+7%', '#6 no ranking']
+    },
+    {
+      all: ['214', '+17%', '#1 no ranking'],
+      '12m': ['78', '+200%', '#1 no ranking'],
+      '6m': ['41', '+33%', '#1 no ranking'],
+      '3m': ['24', '+16%', '#1 no ranking'],
+      '1m': ['9', '+6%', '#2 no ranking']
+    },
+    {
+      all: ['4.968', '+20%', '#1 no ranking'],
+      '12m': ['1.547', '+200%', '#1 no ranking'],
+      '6m': ['836', '+42%', '#1 no ranking'],
+      '3m': ['452', '+18%', '#1 no ranking'],
+      '1m': ['156', '+7%', '#1 no ranking']
+    },
+    {
+      all: ['682', '+16%', '#1 no ranking'],
+      '12m': ['243', '+200%', '#1 no ranking'],
+      '6m': ['132', '+36%', '#1 no ranking'],
+      '3m': ['74', '+17%', '#1 no ranking'],
+      '1m': ['28', '+8%', '#1 no ranking']
+    }
+  ];
+
+  const numero = (txt) => {
+    const s = String(txt ?? '')
+      .trim()
+      .replace(/\./g, '')
+      .replace(',', '.');
+
+    const m = s.match(/-?\d+(?:\.\d+)?/);
+
+    return m ? Number(m[0]) : NaN;
+  };
+
+  const formatarEscalado = (original, fator) => {
+    const txt = String(original).trim();
+
+    const match =
+      txt.match(/-?\d[\d.]*([,]\d+)?/);
+
+    if (!match) return txt;
+
+    const raw = match[0];
+
+    const n = Number(
+      raw
+        .replace(/\./g, '')
+        .replace(',', '.')
+    );
+
+    if (!Number.isFinite(n)) return txt;
+
+    const scaled = Math.max(
+      n > 0 ? 1 : 0,
+      Math.round(n * fator)
+    );
+
+    const novo =
+      scaled.toLocaleString('pt-BR');
+
+    return txt.replace(raw, novo);
+  };
+
+  function preencherHero() {
+    document
+      .querySelectorAll('.hero-grade .card-metrica')
+      .forEach((card, i) => {
+        const dados = HERO[i];
+
+        if (!dados) return;
+
+        PERIODOS.forEach(p => {
+          card.dataset[`${p}Numero`] =
+            dados[p][0];
+
+          card.dataset[`${p}Crescimento`] =
+            dados[p][1];
+
+          card.dataset[`${p}Ranking`] =
+            dados[p][2];
+        });
+      });
+  }
+
+  function guardarBases(root) {
+    const seletores = [
+      '.top-card-numero',
+      '.top-card-info div',
+      '.card-album-numero',
+      '.album-top5-plays',
+      '.musica-numero',
+      '.musica-posicao',
+      '.musica-scrobbles',
+      '.musica-semanas',
+      '.card-certificado-quantidade',
+      '.card-certificado-numero'
+    ].join(',');
+
+    root
+      .querySelectorAll(seletores)
+      .forEach(el => {
+        if (!el.dataset.tcBase) {
+          el.dataset.tcBase =
+            el.textContent.trim();
+        }
+      });
+  }
+
+  function simularContainer(root, periodo) {
+    guardarBases(root);
+
+    const fator =
+      FATORES[periodo] ?? 1;
+
+    root
+      .querySelectorAll('[data-tc-base]')
+      .forEach(el => {
+        el.textContent =
+          periodo === '12m'
+            ? el.dataset.tcBase
+            : formatarEscalado(
+                el.dataset.tcBase,
+                fator
+              );
+      });
+  }
+
+  function animar(root, antes, depois) {
+    if (!root) return;
+
+    root.classList.remove(
+      'tc-periodo-sobe',
+      'tc-periodo-desce'
+    );
+
+    void root.offsetWidth;
+
+    root.classList.add(
+      Number.isFinite(antes) &&
+      Number.isFinite(depois) &&
+      depois >= antes
+        ? 'tc-periodo-sobe'
+        : 'tc-periodo-desce'
+    );
+
+    setTimeout(
+      () =>
+        root.classList.remove(
+          'tc-periodo-sobe',
+          'tc-periodo-desce'
+        ),
+      380
+    );
+  }
+
+  function sincronizarPeriodo(select) {
+    const section =
+      select.closest('section') ||
+      select.closest('.hero-area');
+
+    if (!section) return;
+
+    if (
+      [
+        'musicas',
+        'albuns',
+        'calendario',
+        'certificados',
+        'numeroUm',
+        'sequenciasAcumuladas'
+      ].includes(section.id)
+    ) {
+      return;
+    }
+
+    const periodo = select.value;
+
+    const containers = [
+      ...section.querySelectorAll(
+        '.conteudo-periodo[data-periodo]'
+      )
+    ];
+
+    const antesRoot =
+      section.querySelector(
+        '.conteudo-periodo-ativo'
+      ) ||
+      section
+        .querySelector(
+          '.card-metrica-numero'
+        )
+        ?.closest('.hero-grade');
+
+    const antes = numero(
+      antesRoot
+        ?.querySelector?.(
+          '.top-card-numero,.card-album-numero,.musica-numero,.card-certificado-quantidade,.card-metrica-numero'
+        )
+        ?.textContent
+    );
+
+    requestAnimationFrame(() => {
+      if (containers.length) {
+        const exato =
+          containers.filter(
+            c =>
+              c.dataset.periodo ===
+              periodo
+          );
+
+        if (exato.length) {
+          containers.forEach(c =>
+            c.classList.toggle(
+              'conteudo-periodo-ativo',
+              c.dataset.periodo ===
+                periodo
+            )
+          );
+        } else {
+          const fallback =
+            containers.find(
+              c =>
+                c.dataset.periodo ===
+                '12m'
+            ) ||
+            containers[0];
+
+          containers.forEach(c =>
+            c.classList.remove(
+              'conteudo-periodo-ativo'
+            )
+          );
+
+          fallback.classList.add(
+            'conteudo-periodo-ativo'
+          );
+
+          simularContainer(
+            fallback,
+            periodo
+          );
+        }
+      }
+
+      const ativos = [
+        ...section.querySelectorAll(
+          '.conteudo-periodo-ativo'
+        )
+      ];
+
+      if (
+        ativos.length &&
+        !containers.some(
+          c =>
+            c.dataset.periodo ===
+            periodo
+        )
+      ) {
+        ativos.forEach(c =>
+          simularContainer(
+            c,
+            periodo
+          )
+        );
+      }
+
+      const root =
+        section.querySelector(
+          '.conteudo-periodo-ativo'
+        ) ||
+        section.querySelector(
+          '.hero-grade'
+        );
+
+      const depois = numero(
+        root
+          ?.querySelector?.(
+            '.top-card-numero,.card-album-numero,.musica-numero,.card-certificado-quantidade,.card-metrica-numero'
+          )
+          ?.textContent
+      );
+
+      animar(
+        root,
+        antes,
+        depois
+      );
+    });
+  }
+
+  function normalizarDropdowns() {
+    const titulos =
+      document.querySelectorAll(
+        '.sequencia-ranking-titulo,.sequencia-acumulado-titulo'
+      );
+
+    titulos.forEach(titulo => {
+      const box =
+        titulo.closest(
+          '.sequencia-ranking,.sequencia-acumulado'
+        );
+
+      const lista =
+        box?.querySelector(
+          '.sequencia-ranking-lista,.sequencia-acumulado-lista'
+        );
+
+      if (!lista) return;
+
+      const aplicar = () => {
+        const aberto = !lista.hidden;
+
+        titulo.setAttribute(
+          'aria-expanded',
+          String(aberto)
+        );
+
+        box.classList.toggle(
+          'is-open',
+          aberto
+        );
+
+        const seta =
+          titulo.querySelector(
+            '.sequencia-ranking-seta,.sequencia-acumulado-seta'
+          );
+
+        if (seta) {
+          seta.classList.remove(
+            'fa-chevron-up'
+          );
+
+          seta.classList.add(
+            'fa-chevron-down'
+          );
+        }
+
+        titulo
+          .querySelectorAll(
+            '.fa-chevron-up'
+          )
+          .forEach(i => {
+            if (i !== seta) i.remove();
+          });
+      };
+
+      aplicar();
+
+      const obs =
+        new MutationObserver(aplicar);
+
+      obs.observe(lista, {
+        attributes: true,
+        attributeFilter: [
+          'hidden',
+          'class',
+          'style'
+        ]
+      });
+
+      obs.observe(titulo, {
+        childList: true,
+        subtree: true
+      });
+    });
+  }
+
+  function compactarEixosChart() {
+    if (!window.Chart) return;
+
+    const callback = (value) => {
+      const n = Number(value);
+
+      if (!Number.isFinite(n)) {
+        return value;
+      }
+
+      if (Math.abs(n) >= 1000) {
+        const k = n / 1000;
+
+        return `${
+          Number.isInteger(k)
+            ? k
+            : k
+                .toFixed(1)
+                .replace('.', ',')
+        }K`;
+      }
+
+      return String(n);
+    };
+
+    try {
+      Chart.defaults.scales.linear.ticks.callback =
+        callback;
+
+      Object
+        .values(
+          Chart.instances || {}
+        )
+        .forEach(chart => {
+          Object
+            .entries(
+              chart.options?.scales || {}
+            )
+            .forEach(
+              ([eixo, scale]) => {
+                if (eixo === 'x') {
+                  scale.ticks = {
+                    ...(scale.ticks || {}),
+                    display: false
+                  };
+                } else {
+                  scale.ticks = {
+                    ...(scale.ticks || {}),
+                    callback
+                  };
+                }
+              }
+            );
+
+          chart.update('none');
+        });
+    } catch (_) {}
+  }
+
+  function garantirMinimo14(
+    root = document
+  ) {
+    root
+      .querySelectorAll('body *')
+      .forEach(el => {
+        if (
+          el.hidden ||
+          getComputedStyle(el).display ===
+            'none'
+        ) {
+          return;
+        }
+
+        const fs = parseFloat(
+          getComputedStyle(el).fontSize
+        );
+
+        if (
+          Number.isFinite(fs) &&
+          fs < 14
+        ) {
+          el.classList.add(
+            'tc-min-font'
+          );
+        }
+      });
+  }
+
+  function inicializar() {
+    preencherHero();
+    normalizarDropdowns();
+
+    document
+      .querySelectorAll(
+        '.seletor-periodo'
+      )
+      .forEach(select => {
+        select.addEventListener(
+          'change',
+          () =>
+            setTimeout(
+              () =>
+                sincronizarPeriodo(
+                  select
+                ),
+              0
+            )
+        );
+
+        sincronizarPeriodo(select);
+      });
+
+    garantirMinimo14();
+
+    setTimeout(
+      compactarEixosChart,
+      80
+    );
+
+    setTimeout(
+      compactarEixosChart,
+      500
+    );
+  }
+
+  if (
+    document.readyState ===
+    'loading'
+  ) {
+    document.addEventListener(
+      'DOMContentLoaded',
+      inicializar,
+      { once: true }
+    );
+  } else {
+    inicializar();
+  }
+})();
+
+/* ===== FIM: toncharts-ajustes-finais-20260829 ===== */
+
+
+
+/* ===== HEADER E FOOTER EXTERNOS ===== */
+
+async function carregarComponente(seletor, arquivo) {
+    const elemento = document.querySelector(seletor);
+    if (!elemento) return;
+
+    const resposta = await fetch(arquivo);
+    if (!resposta.ok) return;
+
+    elemento.innerHTML = await resposta.text();
+}
+
+carregarComponente("#header", "/blog/header.html");
+carregarComponente("#footer", "/blog/footer.html");
